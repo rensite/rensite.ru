@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)" />
+<title>rensite — AI Development</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1E3A8A;
+    --navy-deep:#172554;
+    --ink:#0F172A;
+    --muted:#64748B;
+    --soft:#94A3B8;
+    --hair:#E2E8F0;
+    --bg:#FFFFFF;
+    --accent:#3B82F6;
+    --card:#FFFFFF;
+    --card-2:#F8FAFC;
+    --shadow:0 1px 2px rgba(15,23,42,.04), 0 8px 24px -12px rgba(15,23,42,.12);
+    --shadow-hover:0 2px 4px rgba(15,23,42,.06), 0 14px 32px -14px rgba(30,58,138,.22);
+    --glow:rgba(59,130,246,.10);
+    /* motion tokens */
+    --dur-fast:150ms; --dur-base:250ms; --dur-slow:400ms;
+    --ease-snap:cubic-bezier(0.33,1,0.68,1);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --navy:#93C5FD;     /* акцент на тёмном — светлый синий */
+      --navy-deep:#BFDBFE;
+      --ink:#E2E8F0;
+      --muted:#94A3B8;
+      --soft:#64748B;
+      --hair:#1E293B;
+      --bg:#0B1220;       /* очень тёмный navy, не чисто чёрный */
+      --accent:#60A5FA;
+      --card:#0F172A;
+      --card-2:#111C33;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+      --shadow-hover:0 2px 6px rgba(0,0,0,.5), 0 16px 38px -16px rgba(96,165,250,.35);
+      --glow:rgba(96,165,250,.12);
+    }
+  }
+
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  :focus:not(:focus-visible){outline:none}
+  body{
+    min-height:100vh;
+    min-height:100dvh;
+    display:flex;
+    justify-content:center;
+  }
+
+  .app{
+    width:100%;
+    max-width:430px;
+    min-height:100vh;
+    min-height:100dvh;
+    padding:18px 22px calc(14px + env(safe-area-inset-bottom));
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+
+  /* Top — лого + контакты */
+  .top{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+    font-size:11.5px;
+    color:var(--muted);
+    padding-bottom:14px;
+    border-bottom:1px solid var(--hair);
+  }
+  .logo{
+    color:var(--navy);
+    font-weight:600;
+    letter-spacing:-0.2px;
+    font-size:12.5px;
+  }
+  .logo .br{color:var(--soft);font-weight:400}
+  .contacts{display:flex;gap:14px;align-items:center}
+  .contacts a{
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .contacts a:hover,
+  .contacts a:focus-visible{color:var(--navy);border-bottom-color:var(--navy)}
+
+  /* Hero */
+  .hero h1{
+    margin:0;
+    font-size:30px;
+    line-height:1.05;
+    letter-spacing:-1.2px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .hero h1 span{color:var(--navy)}
+  .hero p{
+    margin:8px 0 0;
+    font-size:14px;
+    color:var(--muted);
+    line-height:1.5;
+    max-width:34ch;
+  }
+
+  /* Greeting в шапке */
+  .greeting{
+    color:var(--soft);
+    font-weight:400;
+    margin-left:6px;
+    font-size:11px;
+    letter-spacing:-0.2px;
+  }
+  .greeting::before{content:"// "}
+
+  /* Now-секция */
+  .now{display:flex;flex-direction:column;gap:8px}
+  .now p{
+    margin:0;
+    font-size:14px;
+    color:var(--ink);
+    line-height:1.5;
+  }
+  .now p::before{
+    content:"› ";
+    color:var(--navy);
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+    font-weight:600;
+  }
+
+  /* Section */
+  section.list{display:flex;flex-direction:column;gap:10px}
+  .label{
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+    font-size:11px;
+    color:var(--soft);
+    letter-spacing:.06em;
+    text-transform:lowercase;
+    display:flex;align-items:center;gap:8px;
+  }
+  .label::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+  ul.items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+  ul.items li{border-bottom:1px solid var(--hair)}
+  ul.items li:last-child{border-bottom:none}
+  ul.items a{
+    display:flex;align-items:baseline;gap:10px;
+    padding:11px 0;
+    text-decoration:none;
+    color:var(--ink);
+    transition:color .15s ease;
+  }
+  ul.items a:hover,
+  ul.items a:focus-visible{color:var(--navy)}
+  ul.items a:hover .desc,
+  ul.items a:focus-visible .desc{color:var(--ink)}
+  ul.items a:hover .arrow,
+  ul.items a:focus-visible .arrow{color:var(--navy);transform:translateX(2px)}
+  ul.items .name{font-size:15px;font-weight:500;letter-spacing:-0.2px;flex-shrink:0}
+  ul.items .desc{
+    font-size:13px;
+    color:var(--muted);
+    font-weight:400;
+    margin-left:auto;
+    text-align:right;
+    transition:color .15s ease;
+    line-height:1.35;
+  }
+  ul.items .arrow{
+    display:inline-block;
+    color:var(--soft);
+    transition:transform .15s ease, color .15s ease;
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+    font-size:12px;
+  }
+
+  /* Footer — телеметрия сеанса */
+  .telemetry{
+    margin-top:auto;
+    padding-top:16px;
+    border-top:1px solid var(--hair);
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+    font-size:11px;
+    color:var(--muted);
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .telemetry .head{
+    display:flex;justify-content:space-between;align-items:center;
+    color:var(--soft);
+    letter-spacing:.06em;
+  }
+  .pulse{display:inline-flex;align-items:center;gap:6px;color:var(--navy);font-family:'JetBrains Mono',ui-monospace,monospace}
+  .pulse::before{
+    content:"";width:6px;height:6px;border-radius:50%;background:#22C55E;flex-shrink:0;
+    box-shadow:0 0 0 0 rgba(34,197,94,.55);
+    animation:pulse 1.8s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}
+    70%{box-shadow:0 0 0 6px rgba(34,197,94,0)}
+    100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}
+  }
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:6px 14px;
+    color:var(--muted);
+  }
+  .stat{display:flex;justify-content:space-between;gap:6px;min-width:0;align-items:baseline}
+  .stat .k{color:var(--soft);font-size:10.5px;flex-shrink:0}
+  .stat .v{
+    color:var(--ink);font-weight:500;
+    font-variant-numeric:tabular-nums;
+    font-size:11.5px;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+
+  @media (max-height:700px){
+    .app{gap:18px}
+    .hero h1{font-size:26px}
+    ul.items a{padding:9px 0}
+  }
+
+  /* Уважаем prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration:.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.01ms !important;
+    }
+  }
+
+  /* На мобильном колонки «прозрачны» — секции в обычном потоке */
+  .col{display:contents}
+
+  /* === Desktop === */
+  @media (min-width:860px){
+    body{align-items:flex-start}
+    .app{
+      max-width:960px;
+      min-height:100vh;
+      min-height:100dvh;
+      padding:48px 56px 40px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      grid-template-rows:auto auto 1fr auto;
+      column-gap:64px;
+      row-gap:36px;
+      align-content:start;
+    }
+    /* Секции раскладываются напрямую в grid */
+    .col{display:contents}
+
+    /* Раскладка по ячейкам:
+       строка 1 — header (на всю ширину)
+       строка 2 — hero (слева) | projects (справа)
+       строка 3 — now (слева)  | notes (справа)  ← на одной строке
+       строка 4 — footer (на всю ширину) */
+    .top{grid-column:1 / -1;grid-row:1}
+    .hero{grid-column:1;grid-row:2}
+    .col-right > section.list:nth-of-type(1){grid-column:2;grid-row:2}
+    .now{grid-column:1;grid-row:3}
+    .col-right > section.list:nth-of-type(2){grid-column:2;grid-row:3}
+    .telemetry{grid-column:1 / -1;grid-row:4;margin-top:0}
+
+    .hero h1{font-size:44px;letter-spacing:-1.6px}
+    .hero p{font-size:15px;max-width:38ch}
+    .now p{font-size:15px}
+    ul.items .name{font-size:16px}
+    ul.items a{padding:13px 0}
+    /* stats рядом через отступ, без растягивания */
+    .stats{display:flex;flex-wrap:wrap;gap:0 36px}
+    .stat{justify-content:flex-start;gap:8px}
+  }
+</style>
+</head>
+<body>
+  <div class="app">
+
+    <header class="top">
+      <div class="logo"><span class="greeting" id="greeting"></span></div>
+      <div class="contacts">
+        <span class="pulse">live</span>
+        <a href="https://t.me/rensite" target="_blank" rel="noopener">@rensite</a>
+      </div>
+    </header>
+
+    <div class="col col-left">
+
+    <section class="hero">
+      <h1>Renat<br/><span>AI&nbsp;Development</span></h1>
+      <p>Собираю продукты на базе LLM: ассистенты, агенты, RAG-системы и автоматизации.</p>
+    </section>
+
+    <section class="now" aria-label="Сейчас">
+      <div class="label">now</div>
+      <p>Собираю агентов для Bizdevim.</p>
+      <p>Пишу книгу по «взлому».</p>
+    </section>
+
+    </div>
+
+    <div class="col col-right">
+
+    <section class="list" aria-label="Проекты">
+      <div class="label">projects</div>
+      <ul class="items">
+        <li>
+          <a href="#" target="_blank" rel="noopener">
+            <span class="name">project one <span class="arrow">↗</span></span>
+            <span class="desc">AI-ассистент для поддержки</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" target="_blank" rel="noopener">
+            <span class="name">project two <span class="arrow">↗</span></span>
+            <span class="desc">Агент для веб-ресёрча</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" target="_blank" rel="noopener">
+            <span class="name">project three <span class="arrow">↗</span></span>
+            <span class="desc">RAG поверх документов</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="list" aria-label="Заметки">
+      <div class="label">notes</div>
+      <ul class="items">
+        <li>
+          <a href="#" target="_blank" rel="noopener">
+            <span class="name">note one <span class="arrow">↗</span></span>
+            <span class="desc">Как я строю агентов</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" target="_blank" rel="noopener">
+            <span class="name">note two <span class="arrow">↗</span></span>
+            <span class="desc">Промптинг на практике</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" target="_blank" rel="noopener">
+            <span class="name">note three <span class="arrow">↗</span></span>
+            <span class="desc">Стек для AI-продуктов</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    </div>
+
+    <footer class="telemetry" aria-label="Статистика разработчика">
+      <div class="head">
+        <span>$ dev.stats --today</span>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="k">commits</span><span class="v" id="s-commits">0</span></div>
+        <div class="stat"><span class="k">hrs coded</span><span class="v" id="s-hours">0</span></div>
+        <div class="stat"><span class="k">coffee</span><span class="v" id="s-coffee">0</span></div>
+      </div>
+    </footer>
+
+  </div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+
+  // Целевые суточные значения (к концу дня в среднем такие)
+  const DAILY = {
+    commits: 7,
+    hours:   5,     // показываем с десятыми
+    coffee:  3,
+  };
+
+  // «Кривая активности» в течение суток: 0..1, площадь под кривой = 1.
+  // Спим 0–6, утром разгон, пик 10–13 и 16–19, вечерний спад, ночь — почти ноль.
+  // Возвращает накопленную долю прогресса от 0 (полночь) до 1 (полночь следующего дня).
+  function progressOfDay(now){
+    const t = now.getHours() + now.getMinutes()/60 + now.getSeconds()/3600; // 0..24
+    // Интенсивность (произвольный профиль)
+    function intensity(h){
+      if (h < 6)  return 0.02;
+      if (h < 9)  return 0.4 + (h-6)*0.2;       // разгон
+      if (h < 13) return 1.0;                    // утренний пик
+      if (h < 14) return 0.5;                    // обед
+      if (h < 19) return 0.95;                   // вечерний рабочий пик
+      if (h < 22) return 0.5 - (h-19)*0.1;       // спад
+      return 0.1;
+    }
+    // Интегрируем шагами по 6 минут
+    const step = 0.1;
+    let total = 0, upto = 0;
+    for (let h = 0; h < 24; h += step){
+      const v = intensity(h) * step;
+      total += v;
+      if (h + step <= t) upto += v;
+      else if (h <= t)   upto += v * ((t - h) / step);
+    }
+    return upto / total;
+  }
+
+  function fmt(n){
+    n = Math.floor(n);
+    if (n >= 1e6) return (n/1e6).toFixed(2) + 'M';
+    if (n >= 1e4) return (n/1e3).toFixed(1) + 'k';
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  }
+  function fmtFloat(n, d){
+    return n.toFixed(d).replace(/\.0+$/, '.0');
+  }
+
+  function render(){
+    const now = new Date();
+    const p = progressOfDay(now); // 0..1
+
+    $('s-commits').textContent  = fmt(DAILY.commits  * p);
+    $('s-hours').textContent    = fmtFloat(DAILY.hours * p, 1);
+    $('s-coffee').textContent   = fmt(DAILY.coffee   * p);
+  }
+
+  render();
+  setInterval(render, 1000);
+
+  // === Time-of-day greeting в шапке =====================================
+  function greeting(){
+    const h = new Date().getHours();
+    if (h < 5)  return 'deploying in dreams';
+    if (h < 11) return 'good morning';
+    if (h < 14) return 'shipping';
+    if (h < 18) return 'in the zone';
+    if (h < 22) return 'still coding';
+    return 'late night build';
+  }
+  function updateGreeting(){
+    const el = $('greeting');
+    if (el) el.textContent = greeting();
+  }
+  updateGreeting();
+  setInterval(updateGreeting, 60*1000);
+})();
+
+// === Console-приветствие для тех, кто откроет DevTools ====================
+(function(){
+  if (typeof console === 'undefined' || !console.log) return;
+  const LOGO = [
+    '',
+    '  ╭───────────────────────────╮',
+    '  │   <rensite/>              │',
+    '  │   AI Development          │',
+    '  ╰───────────────────────────╯',
+    ''
+  ].join('\n');
+  const cBig  = 'color:#3B82F6; font-family:JetBrains Mono, monospace; font-size:12px; line-height:1.4;';
+  const cMute = 'color:#94A3B8; font-family:JetBrains Mono, monospace; font-size:11px;';
+  const cLink = 'color:#3B82F6; font-family:JetBrains Mono, monospace; font-size:11px; font-weight:600;';
+
+  console.log('%c'+LOGO, cBig);
+  console.log('%chi, builder. you found the console.', cMute);
+  console.log('%c// telegram: %ct.me/rensite', cMute, cLink);
+  console.log('%c// mail:     %chi@rensite.dev', cMute, cLink);
+  console.log('%c// open for AI projects — agents, RAG, LLM products', cMute);
+})();
+</script>
+</body>
+</html>

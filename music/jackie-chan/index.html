@@ -172,7 +172,8 @@ hr{border:none;border-top:1px solid var(--rule)}
 /* footer */
 footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
 .foot-top .wm{font-family:"Fraunces",serif;font-size:1.5rem;display:block;margin-bottom:var(--s-2)}
-.foot-cols{display:flex;justify-content:space-between;align-items:center;gap:var(--s-8)}
+.foot-cols{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s-8)}
+.foot-lead{display:flex;flex-direction:column}
 .foot-top p{color:var(--ink-mute);font-size:.95rem;line-height:1.9;margin:0}
 .foot-top .foot-tip{max-width:52ch;text-align:right}
 .foot-top .foot-tip .mono{color:var(--ink-soft)}
@@ -183,6 +184,9 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
 .foot-legal{margin-top:var(--s-8);padding-top:var(--s-6);border-top:1px solid var(--rule);color:var(--ink-mute);font-size:.85rem;line-height:1.6;max-width:none;opacity:.55}
 .foot-legal a{color:var(--accent);text-decoration:none}
 .foot-legal a:hover{text-decoration:underline}
+.foot-top .foot-note{margin:1.8em 0 0;max-width:48ch;color:var(--ink-soft);font-size:.95rem;line-height:1.7}
+.foot-top .foot-note a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
+.foot-top .foot-note a:hover{opacity:.75}
 @media(max-width:700px){.topbar nav{display:none}}
 
 .reveal{will-change:transform,opacity}
@@ -271,7 +275,10 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
   <div class="wrap foot-top">
     <span class="wm">成龍</span>
     <div class="foot-cols">
-      <p>Jackie Chan — путеводитель по дискографии</p>
+      <div class="foot-lead">
+        <p>Jackie Chan — путеводитель по дискографии</p>
+        <p class="foot-note">Гид живой и наверняка неидеальный. Нашли ошибку, спорный факт или трек, который must — напишите <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>, поправим вместе. Спасибо, что уделили время ♪</p>
+      </div>
       <p class="foot-tip"><span class="mono">Совет:</span> ищите по иероглифам 成龙 / 成龍 в YouTube Music, Spotify или QQ Music — так найдёте максимум.</p>
     </div>
   </div>

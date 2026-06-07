@@ -115,6 +115,34 @@
   .lines li{font-size:18px;color:var(--ink);line-height:1.45}
   .lines li::before{content:"› ";color:var(--navy);font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:600}
 
+  /* animated equalizer — «слушаю музыку» */
+  .eq{display:inline-flex;align-items:flex-end;gap:2.5px;height:.72em;margin-left:7px;vertical-align:-.07em}
+  .eq i{width:2.5px;height:100%;background:var(--navy);border-radius:1.5px;transform-origin:center bottom;transform:scaleY(.3);
+    animation:eqBar .9s ease-in-out infinite}
+  .eq i:nth-child(1){animation-duration:.7s}
+  .eq i:nth-child(2){animation-duration:1.05s;animation-delay:-.35s}
+  .eq i:nth-child(3){animation-duration:.8s;animation-delay:-.15s}
+  .eq i:nth-child(4){animation-duration:.95s;animation-delay:-.5s}
+  @keyframes eqBar{0%,100%{transform:scaleY(.22)}50%{transform:scaleY(1)}}
+  @media (prefers-reduced-motion: reduce){
+    .eq i{animation:none}
+    .eq i:nth-child(1){transform:scaleY(.45)} .eq i:nth-child(2){transform:scaleY(.85)}
+    .eq i:nth-child(3){transform:scaleY(.6)}  .eq i:nth-child(4){transform:scaleY(.75)}
+  }
+
+  /* sleeping — «сплю» (ночью по ЕКБ): всплывающие z */
+  .zzz{position:relative;display:inline-block;width:1.9em;height:1em;margin-left:5px;vertical-align:-.05em}
+  .zzz i{position:absolute;bottom:0;font-family:'JetBrains Mono',ui-monospace,monospace;font-style:normal;font-weight:700;
+    color:var(--navy);opacity:0;animation:zfloat 3.6s ease-in-out infinite}
+  .zzz i:nth-child(1){left:0;font-size:.62em;animation-delay:0s}
+  .zzz i:nth-child(2){left:.5em;font-size:.82em;animation-delay:1.2s}
+  .zzz i:nth-child(3){left:1.05em;font-size:1.02em;animation-delay:2.4s}
+  @keyframes zfloat{0%{opacity:0;transform:translateY(3px) rotate(0)}20%{opacity:1}55%{opacity:.85}100%{opacity:0;transform:translateY(-9px) rotate(10deg)}}
+  @media (prefers-reduced-motion: reduce){
+    .zzz{width:auto}
+    .zzz i{position:static;opacity:.85;animation:none;transform:none;font-size:.9em;margin-left:1px}
+  }
+
   .links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
   .links li{border-bottom:1px solid var(--hair)}
   .links li:last-child{border-bottom:none}
@@ -180,7 +208,7 @@
       <span class="greeting" id="greeting"></span>
       <span class="topright">
         <span class="pulse">live</span>
-        <a href="https://t.me/rensite" target="_blank" rel="noopener">@rensite</a>
+        <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
       </span>
     </header>
 
@@ -198,12 +226,17 @@
           <ul class="lines">
             <li>Собираю агентов для Bizdevim.</li>
             <li>Пишу книгу по «взлому».</li>
+            <li id="now-status">Слушаю музыку <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></li>
           </ul>
         </section>
 
         <section class="col anim d4" aria-label="Проекты">
           <div class="label">projects</div>
           <ul class="links">
+            <li><a href="/music/">
+              <span class="n">гиды по музыке <span class="arrow">→</span></span>
+              <span class="d">Michael Jackson · Jackie Chan · Eminem</span>
+            </a></li>
             <li><a href="#" target="_blank" rel="noopener">
               <span class="n">project one <span class="arrow">↗</span></span>
               <span class="d">AI-ассистент для поддержки</span>
@@ -215,10 +248,6 @@
             <li><a href="#" target="_blank" rel="noopener">
               <span class="n">project three <span class="arrow">↗</span></span>
               <span class="d">RAG поверх документов</span>
-            </a></li>
-            <li><a href="/music/">
-              <span class="n">муз гиды <span class="arrow">→</span></span>
-              <span class="d">Michael Jackson · Jackie Chan</span>
             </a></li>
           </ul>
           <a class="more" href="/projects/">показать все</a>
@@ -276,6 +305,25 @@
   function updateGreeting(){ const el = $('greeting'); if (el) el.textContent = greeting(); }
   updateGreeting();
   setInterval(updateGreeting, 60*1000);
+
+  /* now-статус: ночью по Екатеринбургу «сплю» + Zzz, иначе «слушаю музыку» + эквалайзер */
+  const EQ  = 'Слушаю музыку <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
+  const ZZZ = 'Сплю <span class="zzz" aria-hidden="true"><i>z</i><i>z</i><i>z</i></span>';
+  function ekbHour(){
+    try{ return parseInt(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Yekaterinburg',hour:'numeric',hour12:false}).format(new Date()),10); }
+    catch(e){ return new Date().getUTCHours() + 5 >= 24 ? new Date().getUTCHours()+5-24 : new Date().getUTCHours()+5; } // фолбэк: UTC+5
+  }
+  function isNightEkb(){ const h = ekbHour() % 24; return h >= 1 && h < 7; }   // окно сна 01:00–07:00 ЕКБ
+  let nightState = null;
+  function paintNow(){
+    const el = $('now-status'); if (!el) return;
+    const night = isNightEkb();
+    if (night === nightState) return;        // меняем DOM только при смене состояния — не рестартим анимацию каждую минуту
+    nightState = night;
+    el.innerHTML = night ? ZZZ : EQ;
+  }
+  paintNow();
+  setInterval(paintNow, 60*1000);
 
   /* Телеметрия — «кривая активности» суток */
   const DAILY = { commits: 7, hours: 5, coffee: 3 };

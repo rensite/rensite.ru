@@ -63,6 +63,9 @@
   ul.items .name{font-size:19px;font-weight:600;letter-spacing:-0.2px;flex-shrink:0}
   ul.items .desc{font-size:15.5px;color:var(--muted);font-weight:400;margin-left:auto;text-align:right;transition:color .15s ease;line-height:1.4}
   ul.items .arrow{display:inline-block;color:var(--soft);transition:transform .15s ease,color .15s ease;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px}
+  /* бейдж «скоро» для готовящихся гидов */
+  ul.items .badge{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.04em;text-transform:lowercase;
+    color:var(--soft);border:1px solid var(--hair);border-radius:30px;padding:2px 9px;margin-left:8px;vertical-align:middle;font-weight:400}
 
   footer.foot{
     margin-top:auto;padding-top:16px;border-top:1px solid var(--hair);
@@ -81,7 +84,7 @@
 
     <header class="top">
       <a class="back" href="/">← rensite</a>
-      <a href="https://t.me/rensite" target="_blank" rel="noopener">@rensite</a>
+      <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
     </header>
 
     <section class="hero">
@@ -102,6 +105,12 @@
           <a href="/music/jackie-chan/">
             <span class="name">Jackie Chan <span class="arrow">→</span></span>
             <span class="desc">дискография: 160+ песен на пяти языках</span>
+          </a>
+        </li>
+        <li>
+          <a href="/music/eminem/">
+            <span class="name">Eminem <span class="badge">скоро</span> <span class="arrow">→</span></span>
+            <span class="desc">маршрут сквозь альбомы — готовится</span>
           </a>
         </li>
       </ul>

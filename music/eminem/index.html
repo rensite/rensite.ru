@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)" />
+<title>Eminem — скоро · rensite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#1E3A8A;--ink:#0F172A;--muted:#64748B;--soft:#94A3B8;--hair:#E2E8F0;--bg:#FFFFFF;--accent:#3B82F6;}
+  @media (prefers-color-scheme: dark){:root{--navy:#93C5FD;--ink:#E2E8F0;--muted:#94A3B8;--soft:#64748B;--hair:#1E293B;--bg:#0B1220;--accent:#60A5FA;}}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",system-ui,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  :focus:not(:focus-visible){outline:none}
+  body{min-height:100vh;min-height:100dvh;display:flex;justify-content:center}
+  .app{width:100%;max-width:1120px;min-height:100vh;min-height:100dvh;
+    padding:clamp(16px,2.6vh,26px) clamp(20px,5vw,52px) calc(clamp(16px,2.6vh,26px) + env(safe-area-inset-bottom));
+    display:flex;flex-direction:column;gap:clamp(20px,3.5vh,40px);}
+  .top{display:flex;justify-content:space-between;align-items:center;
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--muted);
+    padding-bottom:14px;border-bottom:1px solid var(--hair);}
+  .top a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:color .15s ease,border-color .15s ease}
+  .top a:hover,.top a:focus-visible{color:var(--navy);border-bottom-color:var(--navy)}
+  .back{color:var(--navy)!important;font-weight:500}
+  main{flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px}
+  .badge{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;letter-spacing:.06em;text-transform:lowercase;
+    color:var(--accent);border:1px solid var(--hair);border-radius:30px;padding:6px 14px;}
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(59,130,246,.5);animation:bp 1.8s infinite}
+  @keyframes bp{0%{box-shadow:0 0 0 0 rgba(59,130,246,.5)}70%{box-shadow:0 0 0 7px rgba(59,130,246,0)}100%{box-shadow:0 0 0 0 rgba(59,130,246,0)}}
+  h1{margin:0;font-size:clamp(3rem,9vw,6rem);line-height:.95;letter-spacing:-.04em;font-weight:700;color:var(--ink)}
+  h1 span{color:var(--navy)}
+  p.lead{margin:0;font-size:clamp(16px,1.7vw,20px);color:var(--muted);line-height:1.5;max-width:46ch}
+  .foot{margin-top:auto;padding-top:16px;border-top:1px solid var(--hair);
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--soft);
+    display:flex;justify-content:space-between;gap:10px;}
+  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important}}
+</style>
+</head>
+<body>
+  <div class="app">
+
+    <header class="top">
+      <a class="back" href="/music/">← музыка</a>
+      <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
+    </header>
+
+    <main>
+      <span class="badge"><span class="dot"></span>скоро</span>
+      <h1>Eminem<br/><span>гид готовится</span></h1>
+      <p class="lead">Маршрут сквозь альбомы — от Slim Shady до наших дней, и «8 Mile». Загляните позже ♪</p>
+    </main>
+
+    <footer class="foot">
+      <span>$ ls ~/music/eminem</span>
+      <span>скоро · in progress</span>
+    </footer>
+
+  </div>
+</body>
+</html>

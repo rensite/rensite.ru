@@ -6,368 +6,252 @@
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)" />
 <title>rensite — AI Development</title>
+<script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#1E3A8A;
-    --navy-deep:#172554;
     --ink:#0F172A;
     --muted:#64748B;
     --soft:#94A3B8;
     --hair:#E2E8F0;
     --bg:#FFFFFF;
     --accent:#3B82F6;
-    --card:#FFFFFF;
-    --card-2:#F8FAFC;
-    --shadow:0 1px 2px rgba(15,23,42,.04), 0 8px 24px -12px rgba(15,23,42,.12);
-    --shadow-hover:0 2px 4px rgba(15,23,42,.06), 0 14px 32px -14px rgba(30,58,138,.22);
-    --glow:rgba(59,130,246,.10);
-    /* motion tokens */
-    --dur-fast:150ms; --dur-base:250ms; --dur-slow:400ms;
+    --glow:rgba(59,130,246,.12);
+    --grad-1:#2563EB; --grad-2:#6366F1; --grad-3:#3B82F6;
+
+    --dur-fast:150ms;
     --ease-snap:cubic-bezier(0.33,1,0.68,1);
+    --ease-out:cubic-bezier(0.16,1,0.3,1);
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --navy:#93C5FD;     /* акцент на тёмном — светлый синий */
-      --navy-deep:#BFDBFE;
+      --navy:#93C5FD;
       --ink:#E2E8F0;
       --muted:#94A3B8;
       --soft:#64748B;
       --hair:#1E293B;
-      --bg:#0B1220;       /* очень тёмный navy, не чисто чёрный */
+      --bg:#0B1220;
       --accent:#60A5FA;
-      --card:#0F172A;
-      --card-2:#111C33;
-      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
-      --shadow-hover:0 2px 6px rgba(0,0,0,.5), 0 16px 38px -16px rgba(96,165,250,.35);
-      --glow:rgba(96,165,250,.12);
+      --glow:rgba(96,165,250,.14);
+      --grad-1:#60A5FA; --grad-2:#818CF8; --grad-3:#93C5FD;
     }
   }
 
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",system-ui,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:5px}
   :focus:not(:focus-visible){outline:none}
-  body{
-    min-height:100vh;
-    min-height:100dvh;
-    display:flex;
-    justify-content:center;
-  }
+  a{color:inherit}
+
+  body{min-height:100vh;min-height:100dvh;display:flex;justify-content:center}
 
   .app{
-    width:100%;
-    max-width:430px;
-    min-height:100vh;
-    min-height:100dvh;
-    padding:18px 22px calc(14px + env(safe-area-inset-bottom));
-    display:flex;
-    flex-direction:column;
-    gap:24px;
+    width:100%;max-width:1120px;
+    min-height:100vh;min-height:100dvh;
+    padding:clamp(16px,2.6vh,26px) clamp(20px,5vw,52px) calc(clamp(16px,2.6vh,26px) + env(safe-area-inset-bottom));
+    display:flex;flex-direction:column;
+    gap:clamp(20px,3.5vh,40px);
   }
 
-  /* Top — лого + контакты */
-  .top{
-    display:flex;justify-content:space-between;align-items:center;
+  /* ── Top line (mono) ── */
+  .topline{
+    display:flex;justify-content:space-between;align-items:center;gap:14px;
     font-family:'JetBrains Mono',ui-monospace,monospace;
-    font-size:11.5px;
-    color:var(--muted);
-    padding-bottom:14px;
-    border-bottom:1px solid var(--hair);
+    font-size:11.5px;color:var(--muted);
   }
-  .logo{
-    color:var(--navy);
-    font-weight:600;
-    letter-spacing:-0.2px;
-    font-size:12.5px;
+  .greeting{color:var(--soft)}
+  .greeting::before{content:"// "}
+  .topright{display:flex;gap:14px;align-items:center}
+  .topright a{text-decoration:none;border-bottom:1px solid transparent;transition:color var(--dur-fast) ease,border-color var(--dur-fast) ease}
+  .topright a:hover,.topright a:focus-visible{color:var(--navy);border-bottom-color:var(--navy)}
+  .pulse{display:inline-flex;align-items:center;gap:6px;color:var(--navy)}
+  .pulse::before{
+    content:"";width:6px;height:6px;border-radius:50%;background:#22C55E;flex-shrink:0;
+    box-shadow:0 0 0 0 rgba(34,197,94,.55);animation:pulse 1.8s infinite;
   }
-  .logo .br{color:var(--soft);font-weight:400}
-  .contacts{display:flex;gap:14px;align-items:center}
-  .contacts a{
-    color:var(--ink);
-    text-decoration:none;
-    border-bottom:1px solid transparent;
-    transition:color .15s ease, border-color .15s ease;
-  }
-  .contacts a:hover,
-  .contacts a:focus-visible{color:var(--navy);border-bottom-color:var(--navy)}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}70%{box-shadow:0 0 0 6px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+
+  /* ── Main: vertically centred group ── */
+  .main{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(26px,5vh,56px);min-height:0}
 
   /* Hero */
-  .hero h1{
-    margin:0;
-    font-size:30px;
-    line-height:1.05;
-    letter-spacing:-1.2px;
-    font-weight:700;
-    color:var(--ink);
+  .hero{position:relative}
+  .hero::before{
+    content:"";position:absolute;left:-3%;top:-42%;z-index:-1;pointer-events:none;
+    width:min(560px,72vw);height:300px;border-radius:50%;
+    background:radial-gradient(ellipse at center,var(--glow),transparent 70%);filter:blur(18px);
   }
-  .hero h1 span{color:var(--navy)}
-  .hero p{
-    margin:8px 0 0;
-    font-size:14px;
-    color:var(--muted);
-    line-height:1.5;
-    max-width:34ch;
+  .hero-title{
+    margin:0;font-weight:600;
+    font-size:clamp(2.6rem,7vw,5.5rem);
+    line-height:.95;letter-spacing:-.035em;color:var(--ink);
   }
+  .grad{color:var(--navy)}
+  @supports ((-webkit-background-clip:text) or (background-clip:text)){
+    .grad{
+      background:linear-gradient(120deg,var(--grad-1),var(--grad-2) 50%,var(--grad-3));
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+    }
+  }
+  .hero-sub{margin:16px 0 0;font-size:clamp(16px,1.7vw,20px);color:var(--muted);line-height:1.45;max-width:50ch}
 
-  /* Greeting в шапке */
-  .greeting{
-    color:var(--soft);
-    font-weight:400;
-    margin-left:6px;
-    font-size:11px;
-    letter-spacing:-0.2px;
-  }
-  .greeting::before{content:"// "}
-
-  /* Now-секция */
-  .now{display:flex;flex-direction:column;gap:8px}
-  .now p{
-    margin:0;
-    font-size:14px;
-    color:var(--ink);
-    line-height:1.5;
-  }
-  .now p::before{
-    content:"› ";
-    color:var(--navy);
-    font-family:'JetBrains Mono',ui-monospace,monospace;
-    font-weight:600;
-  }
-
-  /* Section */
-  section.list{display:flex;flex-direction:column;gap:10px}
+  /* Content band — 3 dense columns */
+  .band{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3.4vw,52px)}
+  .col{display:flex;flex-direction:column;gap:12px;min-width:0}
   .label{
     font-family:'JetBrains Mono',ui-monospace,monospace;
-    font-size:11px;
-    color:var(--soft);
-    letter-spacing:.06em;
-    text-transform:lowercase;
+    font-size:15px;color:var(--soft);letter-spacing:.04em;text-transform:lowercase;
     display:flex;align-items:center;gap:8px;
   }
   .label::after{content:"";flex:1;height:1px;background:var(--hair)}
+  .label + .stack{margin-top:-2px}
 
-  ul.items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-  ul.items li{border-bottom:1px solid var(--hair)}
-  ul.items li:last-child{border-bottom:none}
-  ul.items a{
-    display:flex;align-items:baseline;gap:10px;
-    padding:11px 0;
-    text-decoration:none;
-    color:var(--ink);
-    transition:color .15s ease;
-  }
-  ul.items a:hover,
-  ul.items a:focus-visible{color:var(--navy)}
-  ul.items a:hover .desc,
-  ul.items a:focus-visible .desc{color:var(--ink)}
-  ul.items a:hover .arrow,
-  ul.items a:focus-visible .arrow{color:var(--navy);transform:translateX(2px)}
-  ul.items .name{font-size:15px;font-weight:500;letter-spacing:-0.2px;flex-shrink:0}
-  ul.items .desc{
-    font-size:13px;
-    color:var(--muted);
-    font-weight:400;
-    margin-left:auto;
-    text-align:right;
-    transition:color .15s ease;
-    line-height:1.35;
-  }
-  ul.items .arrow{
-    display:inline-block;
-    color:var(--soft);
-    transition:transform .15s ease, color .15s ease;
-    font-family:'JetBrains Mono',ui-monospace,monospace;
-    font-size:12px;
-  }
+  .lines{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+  .lines li{font-size:18px;color:var(--ink);line-height:1.45}
+  .lines li::before{content:"› ";color:var(--navy);font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:600}
 
-  /* Footer — телеметрия сеанса */
+  .links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+  .links li{border-bottom:1px solid var(--hair)}
+  .links li:last-child{border-bottom:none}
+  .links a{display:flex;flex-direction:column;gap:4px;padding:12px 0;text-decoration:none;color:var(--ink);transition:color var(--dur-fast) ease}
+  .links .n{font-size:19px;font-weight:500;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+  .links .arrow{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;color:var(--soft);transition:transform var(--dur-fast) var(--ease-snap),color var(--dur-fast) ease}
+  .links .d{font-size:15.5px;color:var(--muted);line-height:1.4}
+  .links a:hover .n,.links a:focus-visible .n{color:var(--navy)}
+  .links a:hover .d,.links a:focus-visible .d{color:var(--ink)}
+  .links a:hover .arrow,.links a:focus-visible .arrow{color:var(--navy);transform:translateX(2px)}
+
+  /* «показать все» → раздел */
+  .more{
+    display:inline-flex;align-items:center;gap:7px;margin-top:8px;padding-top:8px;align-self:flex-start;
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13.5px;color:var(--navy);
+    letter-spacing:.02em;text-decoration:none;transition:opacity var(--dur-fast) ease;
+  }
+  .more::after{content:"→";font-size:13px;transition:transform var(--dur-fast) var(--ease-snap)}
+  .more:hover,.more:focus-visible{opacity:.72}
+  .more:hover::after,.more:focus-visible::after{transform:translateX(3px)}
+
+  .col .label:not(:first-child){margin-top:6px}
+
+  /* Telemetry — thin footer strip */
   .telemetry{
-    margin-top:auto;
-    padding-top:16px;
-    border-top:1px solid var(--hair);
-    font-family:'JetBrains Mono',ui-monospace,monospace;
-    font-size:11px;
-    color:var(--muted);
-    display:flex;flex-direction:column;gap:8px;
+    border-top:1px solid var(--hair);padding-top:13px;
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--muted);
+    display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
   }
-  .telemetry .head{
-    display:flex;justify-content:space-between;align-items:center;
-    color:var(--soft);
-    letter-spacing:.06em;
+  .telemetry .head{color:var(--soft);letter-spacing:.04em}
+  .stats{display:flex;gap:20px;flex-wrap:wrap}
+  .stat{display:flex;gap:6px;align-items:baseline}
+  .stat .k{color:var(--soft)}
+  .stat .v{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+
+  /* ── Entrance (load) ── */
+  @keyframes rise{to{opacity:1;transform:none}}
+  html.js .anim{opacity:0;transform:translateY(12px);animation:rise .55s var(--ease-out) forwards}
+  html.js .d1{animation-delay:.04s} html.js .d2{animation-delay:.10s}
+  html.js .d3{animation-delay:.16s} html.js .d4{animation-delay:.22s}
+  html.js .d5{animation-delay:.28s}
+
+  /* ── Responsive ── */
+  @media (max-width:720px){
+    .band{grid-template-columns:1fr;gap:22px}
+    .hero-sub{max-width:none}
   }
-  .pulse{display:inline-flex;align-items:center;gap:6px;color:var(--navy);font-family:'JetBrains Mono',ui-monospace,monospace}
-  .pulse::before{
-    content:"";width:6px;height:6px;border-radius:50%;background:#22C55E;flex-shrink:0;
-    box-shadow:0 0 0 0 rgba(34,197,94,.55);
-    animation:pulse 1.8s infinite;
-  }
-  @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}
-    70%{box-shadow:0 0 0 6px rgba(34,197,94,0)}
-    100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}
-  }
-  .stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:6px 14px;
-    color:var(--muted);
-  }
-  .stat{display:flex;justify-content:space-between;gap:6px;min-width:0;align-items:baseline}
-  .stat .k{color:var(--soft);font-size:10.5px;flex-shrink:0}
-  .stat .v{
-    color:var(--ink);font-weight:500;
-    font-variant-numeric:tabular-nums;
-    font-size:11.5px;
-    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  @media (max-height:640px){
+    .hero-title{font-size:clamp(2.2rem,6vw,3.4rem)}
+    .main{gap:20px}
   }
 
-  @media (max-height:700px){
-    .app{gap:18px}
-    .hero h1{font-size:26px}
-    ul.items a{padding:9px 0}
-  }
-
-  /* Уважаем prefers-reduced-motion */
   @media (prefers-reduced-motion: reduce){
-    *,*::before,*::after{
-      animation-duration:.01ms !important;
-      animation-iteration-count:1 !important;
-      transition-duration:.01ms !important;
-    }
-  }
-
-  /* На мобильном колонки «прозрачны» — секции в обычном потоке */
-  .col{display:contents}
-
-  /* === Desktop === */
-  @media (min-width:860px){
-    body{align-items:flex-start}
-    .app{
-      max-width:960px;
-      min-height:100vh;
-      min-height:100dvh;
-      padding:48px 56px 40px;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      grid-template-rows:auto auto 1fr auto;
-      column-gap:64px;
-      row-gap:36px;
-      align-content:start;
-    }
-    /* Секции раскладываются напрямую в grid */
-    .col{display:contents}
-
-    /* Раскладка по ячейкам:
-       строка 1 — header (на всю ширину)
-       строка 2 — hero (слева) | projects (справа)
-       строка 3 — now (слева)  | notes (справа)  ← на одной строке
-       строка 4 — footer (на всю ширину) */
-    .top{grid-column:1 / -1;grid-row:1}
-    .hero{grid-column:1;grid-row:2}
-    .col-right > section.list:nth-of-type(1){grid-column:2;grid-row:2}
-    .now{grid-column:1;grid-row:3}
-    .col-right > section.list:nth-of-type(2){grid-column:2;grid-row:3}
-    .telemetry{grid-column:1 / -1;grid-row:4;margin-top:0}
-
-    .hero h1{font-size:44px;letter-spacing:-1.6px}
-    .hero p{font-size:15px;max-width:38ch}
-    .now p{font-size:15px}
-    ul.items .name{font-size:16px}
-    ul.items a{padding:13px 0}
-    /* stats рядом через отступ, без растягивания */
-    .stats{display:flex;flex-wrap:wrap;gap:0 36px}
-    .stat{justify-content:flex-start;gap:8px}
+    html.js .anim{opacity:1;transform:none;animation:none}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   }
 </style>
 </head>
 <body>
   <div class="app">
 
-    <header class="top">
-      <div class="logo"><span class="greeting" id="greeting"></span></div>
-      <div class="contacts">
+    <header class="topline">
+      <span class="greeting" id="greeting"></span>
+      <span class="topright">
         <span class="pulse">live</span>
         <a href="https://t.me/rensite" target="_blank" rel="noopener">@rensite</a>
-      </div>
+      </span>
     </header>
 
-    <div class="col col-left">
+    <main class="main">
 
-    <section class="hero">
-      <h1>Renat<br/><span>AI&nbsp;Development</span></h1>
-      <p>Собираю продукты на базе LLM: ассистенты, агенты, RAG-системы и автоматизации.</p>
-    </section>
+      <section class="hero">
+        <h1 class="hero-title anim d1">Renat<br/><span class="grad">AI&nbsp;Development</span></h1>
+        <p class="hero-sub anim d2">Собираю продукты на базе LLM: ассистенты, агенты, RAG-системы и автоматизации.</p>
+      </section>
 
-    <section class="now" aria-label="Сейчас">
-      <div class="label">now</div>
-      <p>Собираю агентов для Bizdevim.</p>
-      <p>Пишу книгу по «взлому».</p>
-    </section>
+      <div class="band">
 
-    </div>
+        <section class="col anim d3" aria-label="Сейчас">
+          <div class="label">now</div>
+          <ul class="lines">
+            <li>Собираю агентов для Bizdevim.</li>
+            <li>Пишу книгу по «взлому».</li>
+          </ul>
+        </section>
 
-    <div class="col col-right">
+        <section class="col anim d4" aria-label="Проекты">
+          <div class="label">projects</div>
+          <ul class="links">
+            <li><a href="#" target="_blank" rel="noopener">
+              <span class="n">project one <span class="arrow">↗</span></span>
+              <span class="d">AI-ассистент для поддержки</span>
+            </a></li>
+            <li><a href="#" target="_blank" rel="noopener">
+              <span class="n">project two <span class="arrow">↗</span></span>
+              <span class="d">Агент для веб-ресёрча</span>
+            </a></li>
+            <li><a href="#" target="_blank" rel="noopener">
+              <span class="n">project three <span class="arrow">↗</span></span>
+              <span class="d">RAG поверх документов</span>
+            </a></li>
+            <li><a href="/music/">
+              <span class="n">муз гиды <span class="arrow">→</span></span>
+              <span class="d">Michael Jackson · Jackie Chan</span>
+            </a></li>
+          </ul>
+          <a class="more" href="/projects/">показать все</a>
+        </section>
 
-    <section class="list" aria-label="Проекты">
-      <div class="label">projects</div>
-      <ul class="items">
-        <li>
-          <a href="#" target="_blank" rel="noopener">
-            <span class="name">project one <span class="arrow">↗</span></span>
-            <span class="desc">AI-ассистент для поддержки</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" target="_blank" rel="noopener">
-            <span class="name">project two <span class="arrow">↗</span></span>
-            <span class="desc">Агент для веб-ресёрча</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" target="_blank" rel="noopener">
-            <span class="name">project three <span class="arrow">↗</span></span>
-            <span class="desc">RAG поверх документов</span>
-          </a>
-        </li>
-      </ul>
-    </section>
+        <section class="col anim d5" aria-label="Заметки">
+          <div class="label">notes</div>
+          <ul class="links">
+            <li><a href="#" target="_blank" rel="noopener">
+              <span class="n">note one <span class="arrow">↗</span></span>
+              <span class="d">Как я строю агентов</span>
+            </a></li>
+            <li><a href="#" target="_blank" rel="noopener">
+              <span class="n">note two <span class="arrow">↗</span></span>
+              <span class="d">Промптинг на практике</span>
+            </a></li>
+            <li><a href="#" target="_blank" rel="noopener">
+              <span class="n">note three <span class="arrow">↗</span></span>
+              <span class="d">Стек для AI-продуктов</span>
+            </a></li>
+          </ul>
+          <a class="more" href="/notes/">показать все</a>
+        </section>
 
-    <section class="list" aria-label="Заметки">
-      <div class="label">notes</div>
-      <ul class="items">
-        <li>
-          <a href="#" target="_blank" rel="noopener">
-            <span class="name">note one <span class="arrow">↗</span></span>
-            <span class="desc">Как я строю агентов</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" target="_blank" rel="noopener">
-            <span class="name">note two <span class="arrow">↗</span></span>
-            <span class="desc">Промптинг на практике</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" target="_blank" rel="noopener">
-            <span class="name">note three <span class="arrow">↗</span></span>
-            <span class="desc">Стек для AI-продуктов</span>
-          </a>
-        </li>
-      </ul>
-    </section>
-
-    </div>
-
-    <footer class="telemetry" aria-label="Статистика разработчика">
-      <div class="head">
-        <span>$ dev.stats --today</span>
       </div>
+
+    </main>
+
+    <footer class="telemetry anim d5" aria-label="Статистика разработчика">
+      <span class="head">$ dev.stats --today</span>
       <div class="stats">
         <div class="stat"><span class="k">commits</span><span class="v" id="s-commits">0</span></div>
-        <div class="stat"><span class="k">hrs coded</span><span class="v" id="s-hours">0</span></div>
+        <div class="stat"><span class="k">hrs coded</span><span class="v" id="s-hours">0.0</span></div>
         <div class="stat"><span class="k">coffee</span><span class="v" id="s-coffee">0</span></div>
       </div>
     </footer>
@@ -377,64 +261,9 @@
 <script>
 (function(){
   const $ = id => document.getElementById(id);
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Целевые суточные значения (к концу дня в среднем такие)
-  const DAILY = {
-    commits: 7,
-    hours:   5,     // показываем с десятыми
-    coffee:  3,
-  };
-
-  // «Кривая активности» в течение суток: 0..1, площадь под кривой = 1.
-  // Спим 0–6, утром разгон, пик 10–13 и 16–19, вечерний спад, ночь — почти ноль.
-  // Возвращает накопленную долю прогресса от 0 (полночь) до 1 (полночь следующего дня).
-  function progressOfDay(now){
-    const t = now.getHours() + now.getMinutes()/60 + now.getSeconds()/3600; // 0..24
-    // Интенсивность (произвольный профиль)
-    function intensity(h){
-      if (h < 6)  return 0.02;
-      if (h < 9)  return 0.4 + (h-6)*0.2;       // разгон
-      if (h < 13) return 1.0;                    // утренний пик
-      if (h < 14) return 0.5;                    // обед
-      if (h < 19) return 0.95;                   // вечерний рабочий пик
-      if (h < 22) return 0.5 - (h-19)*0.1;       // спад
-      return 0.1;
-    }
-    // Интегрируем шагами по 6 минут
-    const step = 0.1;
-    let total = 0, upto = 0;
-    for (let h = 0; h < 24; h += step){
-      const v = intensity(h) * step;
-      total += v;
-      if (h + step <= t) upto += v;
-      else if (h <= t)   upto += v * ((t - h) / step);
-    }
-    return upto / total;
-  }
-
-  function fmt(n){
-    n = Math.floor(n);
-    if (n >= 1e6) return (n/1e6).toFixed(2) + 'M';
-    if (n >= 1e4) return (n/1e3).toFixed(1) + 'k';
-    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  }
-  function fmtFloat(n, d){
-    return n.toFixed(d).replace(/\.0+$/, '.0');
-  }
-
-  function render(){
-    const now = new Date();
-    const p = progressOfDay(now); // 0..1
-
-    $('s-commits').textContent  = fmt(DAILY.commits  * p);
-    $('s-hours').textContent    = fmtFloat(DAILY.hours * p, 1);
-    $('s-coffee').textContent   = fmt(DAILY.coffee   * p);
-  }
-
-  render();
-  setInterval(render, 1000);
-
-  // === Time-of-day greeting в шапке =====================================
+  /* Greeting по времени суток */
   function greeting(){
     const h = new Date().getHours();
     if (h < 5)  return 'deploying in dreams';
@@ -444,15 +273,64 @@
     if (h < 22) return 'still coding';
     return 'late night build';
   }
-  function updateGreeting(){
-    const el = $('greeting');
-    if (el) el.textContent = greeting();
-  }
+  function updateGreeting(){ const el = $('greeting'); if (el) el.textContent = greeting(); }
   updateGreeting();
   setInterval(updateGreeting, 60*1000);
+
+  /* Телеметрия — «кривая активности» суток */
+  const DAILY = { commits: 7, hours: 5, coffee: 3 };
+  function progressOfDay(now){
+    const t = now.getHours() + now.getMinutes()/60 + now.getSeconds()/3600;
+    function intensity(h){
+      if (h < 6)  return 0.02;
+      if (h < 9)  return 0.4 + (h-6)*0.2;
+      if (h < 13) return 1.0;
+      if (h < 14) return 0.5;
+      if (h < 19) return 0.95;
+      if (h < 22) return 0.5 - (h-19)*0.1;
+      return 0.1;
+    }
+    const step = 0.1; let total = 0, upto = 0;
+    for (let h = 0; h < 24; h += step){
+      const v = intensity(h) * step; total += v;
+      if (h + step <= t) upto += v;
+      else if (h <= t)   upto += v * ((t - h) / step);
+    }
+    return upto / total;
+  }
+  function fmt(n){
+    n = Math.floor(n);
+    if (n >= 1e6) return (n/1e6).toFixed(2) + 'M';
+    if (n >= 1e4) return (n/1e3).toFixed(1) + 'k';
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  }
+  function fmtFloat(n, d){ return n.toFixed(d).replace(/\.0+$/, '.0'); }
+  function values(){
+    const p = progressOfDay(new Date());
+    return { commits: DAILY.commits*p, hours: DAILY.hours*p, coffee: DAILY.coffee*p };
+  }
+  function paint(v){
+    $('s-commits').textContent = fmt(v.commits);
+    $('s-hours').textContent   = fmtFloat(v.hours, 1);
+    $('s-coffee').textContent  = fmt(v.coffee);
+  }
+  function startLive(){ paint(values()); setInterval(() => paint(values()), 1000); }
+
+  /* count-up один раз на загрузке, затем live */
+  if (reduce){ startLive(); }
+  else {
+    const target = values(); const DUR = 1100, t0 = performance.now();
+    (function frame(now){
+      let p = Math.min(1, (now - t0) / DUR); p = 1 - Math.pow(1 - p, 3);
+      $('s-commits').textContent = fmt(target.commits * p);
+      $('s-hours').textContent   = fmtFloat(target.hours * p, 1);
+      $('s-coffee').textContent  = fmt(target.coffee * p);
+      if (p < 1) requestAnimationFrame(frame); else startLive();
+    })(performance.now());
+  }
 })();
 
-// === Console-приветствие для тех, кто откроет DevTools ====================
+/* Console-приветствие */
 (function(){
   if (typeof console === 'undefined' || !console.log) return;
   const LOGO = [
@@ -463,10 +341,9 @@
     '  ╰───────────────────────────╯',
     ''
   ].join('\n');
-  const cBig  = 'color:#3B82F6; font-family:JetBrains Mono, monospace; font-size:12px; line-height:1.4;';
-  const cMute = 'color:#94A3B8; font-family:JetBrains Mono, monospace; font-size:11px;';
-  const cLink = 'color:#3B82F6; font-family:JetBrains Mono, monospace; font-size:11px; font-weight:600;';
-
+  const cBig  = 'color:#3B82F6; font-family:ui-monospace, SFMono-Regular, monospace; font-size:12px; line-height:1.4;';
+  const cMute = 'color:#94A3B8; font-family:ui-monospace, SFMono-Regular, monospace; font-size:11px;';
+  const cLink = 'color:#3B82F6; font-family:ui-monospace, SFMono-Regular, monospace; font-size:11px; font-weight:600;';
   console.log('%c'+LOGO, cBig);
   console.log('%chi, builder. you found the console.', cMute);
   console.log('%c// telegram: %ct.me/rensite', cMute, cLink);

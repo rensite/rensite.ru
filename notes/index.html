@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)" />
+<title>notes — rensite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Токены зеркалят основной сайт (index.html). */
+  :root{
+    --navy:#1E3A8A; --ink:#0F172A; --muted:#64748B; --soft:#94A3B8;
+    --hair:#E2E8F0; --bg:#FFFFFF; --accent:#3B82F6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --navy:#93C5FD; --ink:#E2E8F0; --muted:#94A3B8; --soft:#64748B;
+      --hair:#1E293B; --bg:#0B1220; --accent:#60A5FA;
+    }
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",system-ui,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  :focus:not(:focus-visible){outline:none}
+  body{min-height:100vh;min-height:100dvh;display:flex;justify-content:center}
+
+  .app{
+    width:100%;max-width:1120px;min-height:100vh;min-height:100dvh;
+    padding:clamp(16px,2.6vh,26px) clamp(20px,5vw,52px) calc(clamp(16px,2.6vh,26px) + env(safe-area-inset-bottom));
+    display:flex;flex-direction:column;gap:clamp(20px,3.5vh,40px);
+  }
+
+  .top{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--muted);
+    padding-bottom:14px;border-bottom:1px solid var(--hair);
+  }
+  .top a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:color .15s ease,border-color .15s ease}
+  .top a:hover,.top a:focus-visible{color:var(--navy);border-bottom-color:var(--navy)}
+  .back{color:var(--navy)!important;font-weight:500}
+
+  .hero h1{margin:0;font-size:clamp(2.4rem,6vw,4rem);line-height:1.0;letter-spacing:-.03em;font-weight:700;color:var(--ink)}
+  .hero h1 span{color:var(--navy)}
+  .hero p{margin:14px 0 0;font-size:clamp(16px,1.6vw,19px);color:var(--muted);line-height:1.45;max-width:46ch}
+
+  section.list{display:flex;flex-direction:column;gap:12px}
+  .label{
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:15px;color:var(--soft);
+    letter-spacing:.04em;text-transform:lowercase;display:flex;align-items:center;gap:8px;
+  }
+  .label::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+  ul.items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+  ul.items li{border-bottom:1px solid var(--hair)}
+  ul.items li:last-child{border-bottom:none}
+  ul.items a{display:flex;align-items:baseline;gap:10px;padding:15px 0;text-decoration:none;color:var(--ink);transition:color .15s ease}
+  ul.items a:hover,ul.items a:focus-visible{color:var(--navy)}
+  ul.items a:hover .desc,ul.items a:focus-visible .desc{color:var(--ink)}
+  ul.items a:hover .arrow,ul.items a:focus-visible .arrow{color:var(--navy);transform:translateX(2px)}
+  ul.items .name{font-size:19px;font-weight:600;letter-spacing:-0.2px;flex-shrink:0}
+  ul.items .desc{font-size:15.5px;color:var(--muted);font-weight:400;margin-left:auto;text-align:right;transition:color .15s ease;line-height:1.4}
+  ul.items .arrow{display:inline-block;color:var(--soft);transition:transform .15s ease,color .15s ease;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px}
+
+  footer.foot{
+    margin-top:auto;padding-top:16px;border-top:1px solid var(--hair);
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--soft);
+    display:flex;justify-content:space-between;gap:10px;
+  }
+  footer.foot .v{color:var(--muted)}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  }
+</style>
+</head>
+<body>
+  <div class="app">
+
+    <header class="top">
+      <a class="back" href="/">← rensite</a>
+      <a href="https://t.me/rensite" target="_blank" rel="noopener">@rensite</a>
+    </header>
+
+    <section class="hero">
+      <h1>Все<br/><span>заметки</span></h1>
+      <p>Заметки о разработке AI-продуктов — агенты, промптинг, стек. Полный список.</p>
+    </section>
+
+    <section class="list" aria-label="Заметки">
+      <div class="label">заметки</div>
+      <ul class="items">
+        <li>
+          <a href="#" target="_blank" rel="noopener">
+            <span class="name">note one <span class="arrow">↗</span></span>
+            <span class="desc">Как я строю агентов</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" target="_blank" rel="noopener">
+            <span class="name">note two <span class="arrow">↗</span></span>
+            <span class="desc">Промптинг на практике</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" target="_blank" rel="noopener">
+            <span class="name">note three <span class="arrow">↗</span></span>
+            <span class="desc">Стек для AI-продуктов</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <footer class="foot">
+      <span>$ ls ~/notes</span>
+      <span class="v">3 заметки · обновляется</span>
+    </footer>
+
+  </div>
+</body>
+</html>

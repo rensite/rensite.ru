@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MICHAEL — Гид к фильму</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0a08;--bg-deep:#13100c;--bg-dark:#070605;
+    --ink:#f4ecd8;--ink-soft:#cbbf9f;--ink-mute:#8a7d5c;--cream:#f4ecd8;
+    --gold:#d4af37;--gold-bright:#ffd86b;--accent:#c1121f;--rule:#d4af3722;
+
+    --fs-mega:clamp(3.2rem,12vw,13rem);
+    --fs-xl:clamp(2.2rem,6vw,5rem);
+    --fs-lg:clamp(1.7rem,3.6vw,3rem);
+    --fs-md:clamp(1.1rem,1.5vw,1.5rem);
+    --fs-body:1.0625rem;--fs-sm:0.8125rem;
+
+    --s-1:.5rem;--s-2:1rem;--s-3:1.5rem;--s-4:2rem;
+    --s-6:3rem;--s-8:4rem;--s-12:6rem;--s-16:8rem;--s-24:11rem;
+
+    --gutter:clamp(1.25rem,4vw,3rem);--max:1280px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font:400 var(--fs-body)/1.6 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  .serif{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;font-variation-settings:"SOFT" 100;}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.08em;}
+  .container{max-width:var(--max);margin:0 auto;padding-inline:var(--gutter);}
+  .rule{border:0;border-top:1px solid var(--rule);}
+  ::selection{background:var(--gold);color:var(--bg-dark);}
+  a{color:inherit;}
+
+  body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  /* topbar */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:50;padding-block:var(--s-3);color:var(--gold-bright);background:linear-gradient(180deg,rgba(12,10,8,.9),transparent);backdrop-filter:blur(3px);}
+  .topbar-inner{display:flex;justify-content:space-between;align-items:center;}
+  .topbar nav{display:flex;gap:var(--s-4);}
+  .topbar a{color:inherit;text-decoration:none;opacity:.85;transition:opacity .25s;}
+  .topbar a:hover{opacity:1;}
+  .wordmark{font-weight:400;letter-spacing:.18em;}
+
+  /* hero */
+  .hero{min-height:92vh;padding-block:var(--s-24) var(--s-12);display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:auto 1fr auto;gap:var(--s-4);align-items:start;}
+  .hero-meta{grid-column:1/-1;display:flex;justify-content:space-between;color:var(--ink-mute);}
+  .hero-display{grid-column:1/2;align-self:center;font-size:var(--fs-mega);font-weight:400;line-height:.86;letter-spacing:-.04em;text-wrap:balance;
+    background:linear-gradient(180deg,#fff 0%,var(--gold-bright) 50%,var(--gold) 78%,#8a6d1f 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .hero-display em{font-style:italic;font-variation-settings:"SOFT" 100,"WONK" 1;}
+  .hero-art{grid-column:2/3;grid-row:2/4;align-self:center;justify-self:center;width:min(100%,320px);}
+  .hero-art svg{width:100%;height:auto;display:block;filter:drop-shadow(0 0 40px #d4af3733);}
+  .hero-lead{grid-column:1/2;font-size:var(--fs-md);font-style:italic;max-width:44ch;color:var(--ink-soft);line-height:1.4;}
+
+  /* manifesto — now the first screen */
+  .manifesto{min-height:76vh;display:flex;align-items:center;padding-block:var(--s-16) var(--s-6);max-width:1100px;}
+  .manifesto p{font-size:var(--fs-xl);line-height:1.12;letter-spacing:-.025em;text-wrap:balance;
+    background:linear-gradient(180deg,#fff 0%,var(--gold-bright) 60%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .manifesto em{font-style:italic;-webkit-text-fill-color:var(--gold-bright);}
+
+  /* section heads — centered */
+  .sec-head{margin-bottom:var(--s-8);text-align:center;display:flex;flex-direction:column;align-items:center;}
+  .sec-head .mono{color:var(--gold);display:block;margin-bottom:var(--s-2);}
+  .sec-head h2{font-size:var(--fs-lg);font-weight:400;letter-spacing:-.02em;color:var(--gold-bright);}
+  .sec-icon{width:38px;height:38px;display:block;margin:0 auto var(--s-3);color:var(--gold);}
+  .sec-icon svg{width:100%;height:100%;display:block;}
+
+  /* ERAS — centered blocks with full tracklists */
+  .eras{padding-block:var(--s-6) var(--s-8);}
+  .era{padding-block:var(--s-8);text-align:center;}
+  .era-top{display:flex;align-items:baseline;justify-content:center;gap:var(--s-3);flex-wrap:wrap;margin-bottom:var(--s-2);}
+  .era-yr{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2.6rem,6vw,5rem);line-height:1;color:var(--gold-bright);letter-spacing:-.03em;}
+  .era-label{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2.6rem,6vw,5rem);line-height:1;color:var(--gold);letter-spacing:-.03em;text-transform:none;}
+  .era-name{display:block;font-family:'Fraunces',serif;font-size:var(--fs-lg);color:var(--cream);margin-bottom:var(--s-2);}
+  .era-desc{max-width:60ch;margin:0 auto var(--s-4);color:var(--ink-soft);}
+  .tracklist{display:flex;flex-direction:column;max-width:760px;margin:0 auto;text-align:left;}
+  a.trk{display:flex;align-items:center;gap:var(--s-4);text-decoration:none;color:inherit;
+    padding:18px 8px;border-bottom:1px solid var(--rule);transition:background .2s;}
+  a.trk:hover{background:#d4af370a;}
+  a.trk .tnum{font-family:'Fraunces',serif;font-size:clamp(2.4rem,5vw,3.4rem);font-weight:300;color:#d4af3733;line-height:1;min-width:1.8em;text-align:right;transition:color .25s;}
+  a.trk:hover .tnum{color:var(--gold);}
+  a.trk .tmid{flex:1;min-width:0;}
+  a.trk .tname{display:block;font-family:'Fraunces',serif;font-size:var(--fs-md);color:var(--cream);font-weight:500;line-height:1.1;}
+  a.trk .tnote{display:block;font-size:.9rem;color:var(--ink-mute);line-height:1.4;margin-top:4px;}
+  a.trk .tplay{font-family:'JetBrains Mono',monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);
+    opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s;white-space:nowrap;
+    border:1px solid #d4af3744;border-radius:30px;padding:8px 14px;}
+  a.trk:hover .tplay{opacity:1;transform:translateX(0);}
+  /* optional — не входит в саундтрек фильма / необязательно для понимания */
+  .topt{display:inline-block;vertical-align:middle;margin-left:.5em;font-family:'JetBrains Mono',monospace;font-size:.56rem;
+    text-transform:uppercase;letter-spacing:.14em;color:var(--ink-mute);border:1px solid var(--rule);border-radius:30px;
+    padding:3px 9px;line-height:1;white-space:nowrap;transform:translateY(-2px);}
+  /* dim inner content, not the <a> — GSAP animates the row's own opacity inline */
+  a.trk:has(.topt) .tnum,a.trk:has(.topt) .tmid{opacity:.5;transition:opacity .25s;}
+  a.trk:has(.topt):hover .tnum,a.trk:has(.topt):hover .tmid{opacity:1;}
+  .tl-item:has(.topt) .tl-text,.tl-item:has(.topt) .poster{opacity:.6;transition:opacity .25s;}
+  .tl-item:has(.topt):hover .tl-text,.tl-item:has(.topt):hover .poster{opacity:1;}
+  /* role tag for "ещё в фильме" — звучит в фильме (фон/титры/акапелла) */
+  .trole{display:inline-block;vertical-align:middle;margin-left:.5em;font-family:'JetBrains Mono',monospace;font-size:.56rem;
+    text-transform:uppercase;letter-spacing:.14em;color:var(--gold);border:1px solid #d4af3755;border-radius:30px;
+    padding:3px 9px;line-height:1;white-space:nowrap;transform:translateY(-2px);}
+  .era-film .trk{padding-left:2px;}
+  /* spoiler toggle for the "ещё в фильме" list (прячет описания сцен) */
+  .spoiler{margin-top:var(--s-3);}
+  .spoiler:not([open]) .era-desc,.spoiler:not([open]) .tracklist{display:none;}
+  .spoiler>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:var(--s-3);
+    font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-mute);
+    border:1px solid var(--rule);border-radius:30px;padding:10px 18px;transition:color .25s,border-color .25s;}
+  .spoiler>summary::-webkit-details-marker{display:none;}
+  .spoiler>summary:hover{color:var(--gold-bright);border-color:#d4af3766;}
+  .spoiler-warn{color:var(--gold);}
+  .spoiler-caret{display:inline-block;transition:transform .25s;}
+  .spoiler[open]>summary{margin-bottom:var(--s-4);}
+  .spoiler[open]>summary .spoiler-caret{transform:rotate(180deg);}
+  .spoiler[open] .reveal{opacity:1!important;transform:none!important;}
+
+  /* watch — timeline with poster placeholders */
+  .chapters{padding-block:var(--s-16);}
+  .timeline{position:relative;max-width:1000px;margin:var(--s-8) auto 0;}
+  /* one continuous central line; a mask block hides it below the finale dot */
+  .tl-line{position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);z-index:0;
+    background:linear-gradient(180deg,transparent,var(--gold) 4%,var(--gold) 100%);}
+  .tl-item{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:var(--s-8);align-items:center;padding-block:var(--s-6);}
+  .tl-dot{position:absolute;left:50%;top:50%;width:14px;height:14px;border-radius:50%;background:var(--gold-bright);
+    transform:translate(-50%,-50%);box-shadow:0 0 0 5px var(--bg),0 0 18px 3px #d4af3766;z-index:2;}
+  /* poster placeholder */
+  .poster{aspect-ratio:2/3;width:100%;max-width:230px;border-radius:10px;border:1px solid #d4af3733;overflow:hidden;
+    background:linear-gradient(150deg,#15110b,#0a0806);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s-3);
+    position:relative;transition:transform .3s,border-color .3s,box-shadow .3s;}
+  .poster img{width:100%;height:100%;object-fit:cover;display:block;}
+  .tl-item:hover .poster{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 14px 40px -14px #d4af3777;}
+  .tl-poster-cell{display:flex;}
+  .tl-item:nth-child(odd) .tl-poster-cell{justify-content:flex-end;}
+  .tl-item:nth-child(odd) .tl-text{text-align:left;}
+  .tl-item:nth-child(even){direction:rtl;}
+  .tl-item:nth-child(even) > *{direction:ltr;}
+  .tl-item:nth-child(even) .tl-poster-cell{justify-content:flex-start;}
+  .tl-item:nth-child(even) .tl-text{text-align:right;}
+  .tl-text .meta-line{color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--s-1);}
+  .tl-text h3{font-family:'Fraunces',serif;font-size:var(--fs-lg);font-weight:500;color:var(--cream);margin-bottom:var(--s-2);line-height:1.02;}
+  .tl-text p{color:var(--ink-soft);font-size:1rem;line-height:1.5;}
+  .tl-text a.watch{display:inline-block;margin-top:var(--s-2);color:var(--gold-bright);text-decoration:none;border-bottom:1px solid #d4af3755;padding-bottom:2px;font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;}
+  .tl-text a.watch:hover{border-color:var(--gold-bright);}
+  /* finale — centered climax */
+  /* finale has a solid bg that hides the through-line; a short stub redraws the line from the top edge to the dot */
+  .tl-finale{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;text-align:center;
+    padding-top:var(--s-12);margin-top:var(--s-8);background:var(--bg);}
+  .tl-finale::before{content:"";position:absolute;left:50%;top:0;height:calc(var(--s-12) + 12px);width:2px;transform:translateX(-50%);background:var(--gold);z-index:1;}
+  .tl-finale-dot{position:relative;z-index:2;width:24px;height:24px;border-radius:50%;background:var(--gold-bright);
+    box-shadow:0 0 0 7px var(--bg),0 0 30px 8px #d4af37aa;animation:pulseDot 2.2s ease-in-out infinite;margin-bottom:var(--s-6);}
+  @keyframes pulseDot{0%,100%{box-shadow:0 0 0 7px var(--bg),0 0 24px 5px #d4af3788;}50%{box-shadow:0 0 0 7px var(--bg),0 0 40px 12px #d4af37cc;}}
+  @media(prefers-reduced-motion:reduce){.tl-finale-dot{animation:none;}}
+  .finale-poster{aspect-ratio:2/3;width:min(72vw,280px);border-radius:14px;border:1px solid var(--gold);
+    background:#15110b;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s-3);
+    position:relative;z-index:2;box-shadow:0 20px 70px -18px #d4af37aa;margin-bottom:var(--s-6);
+    transition:transform .3s,box-shadow .3s;}
+  .finale-poster:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 28px 90px -18px #d4af37cc;}
+  .finale-poster img{width:100%;height:100%;object-fit:cover;display:block;}
+  .finale-title{font-size:var(--fs-xl);font-weight:400;letter-spacing:-.03em;line-height:.95;margin-bottom:var(--s-4);text-wrap:balance;
+    background:linear-gradient(180deg,#fff,var(--gold-bright) 55%,var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .finale-text{max-width:54ch;color:var(--ink-soft);font-size:var(--fs-md);line-height:1.5;}
+  .finale-kicker{color:var(--gold-bright);margin-top:var(--s-8);line-height:1.1;max-width:none;}
+  .finale-kicker .fk-big{display:block;font-family:'Caveat',cursive;font-size:clamp(1.35rem,3.3vw,2.65rem);font-weight:700;color:var(--gold-bright);margin-top:.1em;white-space:nowrap;}
+  /* clickable quote — проигрывает отрывок (эффект как на eminem.rensite.ru) */
+  .fk-play{appearance:none;-webkit-appearance:none;border:0;background:none;padding:0;color:inherit;text-align:inherit;
+    cursor:pointer;-webkit-tap-highlight-color:transparent;transition:filter .25s,text-shadow .3s;}
+  .fk-play:hover{filter:brightness(1.12);}
+  .fk-play:focus-visible{outline:2px solid var(--gold);outline-offset:5px;border-radius:4px;}
+  .fk-play .eq{display:inline-flex;align-items:flex-end;gap:2.5px;height:.62em;margin-left:.5rem;vertical-align:-.05em;opacity:0;transition:opacity .3s;}
+  .fk-play:hover .eq,.fk-play:focus-visible .eq{opacity:.55;}
+  .fk-play .eq i{width:3px;height:100%;background:currentColor;border-radius:1.5px;transform:scaleY(.28);transform-origin:center bottom;}
+  .fk-play.playing{filter:brightness(1.2);text-shadow:0 0 22px rgba(212,175,55,.55),0 0 6px rgba(212,175,55,.4);}
+  .fk-play.playing .eq{opacity:1;}
+  .fk-play.playing .eq i{animation:eqBar .85s ease-in-out infinite;}
+  .fk-play.playing .eq i:nth-child(1){animation-duration:.7s;}
+  .fk-play.playing .eq i:nth-child(2){animation-duration:1.05s;animation-delay:-.35s;}
+  .fk-play.playing .eq i:nth-child(3){animation-duration:.8s;animation-delay:-.15s;}
+  .fk-play.playing .eq i:nth-child(4){animation-duration:.95s;animation-delay:-.5s;}
+  .fk-play.jolt{animation:quoteJolt .42s cubic-bezier(.36,.07,.19,.97) both;}
+  @keyframes eqBar{0%,100%{transform:scaleY(.25);}50%{transform:scaleY(1);}}
+  @keyframes quoteJolt{
+    0%{transform:translate(0) rotate(0);}15%{transform:translate(-2px,1px) rotate(-.8deg);}
+    30%{transform:translate(3px,-1px) rotate(.9deg);}45%{transform:translate(-3px,1px) rotate(-.7deg);}
+    60%{transform:translate(2px,-1px) rotate(.5deg);}75%{transform:translate(-1px) rotate(-.3deg);}100%{transform:translate(0) rotate(0);}
+  }
+  @media(prefers-reduced-motion:reduce){.fk-play.playing .eq i{animation:none;transform:scaleY(.6);}.fk-play.jolt{animation:none;}}
+
+  /* pull quote */
+
+
+  /* footer — centered closing block */
+  .footer{padding-block:var(--s-16) var(--s-8);text-align:center;position:relative;}
+  .footer::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(90%,640px);height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold) 50%,transparent);}
+  .footer-glyph{width:46px;height:46px;margin:0 auto var(--s-4);border-radius:50%;border:1px solid #d4af3744;
+    display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1.3rem;color:var(--gold-bright);
+    box-shadow:0 0 24px -6px #d4af3766;}
+  .footer-mark{font-family:'Fraunces',serif;font-size:var(--fs-lg);font-weight:400;letter-spacing:.04em;
+    background:linear-gradient(180deg,#fff,var(--gold-bright),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .footer-tag{max-width:42ch;margin:var(--s-2) auto 0;color:var(--ink-soft);}
+  .footer-links{display:flex;justify-content:center;gap:var(--s-3);margin-top:var(--s-6);}
+  .footer-links a{font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;
+    color:var(--gold-bright);text-decoration:none;border:1px solid #d4af3744;border-radius:30px;padding:10px 20px;
+    transition:background .25s,border-color .25s,color .25s,transform .25s;}
+  .footer-links a:hover{background:var(--gold);border-color:var(--gold);color:var(--bg-dark);transform:translateY(-2px);}
+  .footer-fine{margin-top:var(--s-8);font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink-mute);opacity:.6;}
+  .footer-disc{max-width:90ch;margin:var(--s-4) auto 0;font-size:.72rem;line-height:1.6;color:rgba(138,125,92,.55);}
+  .footer-disc a{color:var(--gold);text-decoration:none;}
+  .footer-disc a:hover{text-decoration:underline;}
+
+  /* YouTube lightbox modal */
+  .ytmodal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;
+    padding:clamp(12px,4vw,44px);background:rgba(7,6,5,.82);backdrop-filter:blur(10px) saturate(.9);
+    opacity:0;transition:opacity .28s ease;}
+  .ytmodal.open{display:flex;}
+  .ytmodal.show{opacity:1;}
+  .ytmodal-dialog{position:relative;width:min(960px,100%);transform:translateY(16px) scale(.985);
+    transition:transform .34s cubic-bezier(.2,.8,.2,1);}
+  .ytmodal.show .ytmodal-dialog{transform:none;}
+  .ytmodal-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);
+    margin-bottom:var(--s-2);padding-inline:2px;}
+  .ytmodal-title{font-family:'Fraunces',serif;font-size:var(--fs-md);color:var(--cream);line-height:1.2;min-width:0;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .ytmodal-close{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid #d4af3744;background:rgba(12,10,8,.6);
+    color:var(--gold-bright);font-size:1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:background .2s,border-color .2s,color .2s;}
+  .ytmodal-close:hover{background:var(--gold);border-color:var(--gold);color:var(--bg-dark);}
+  .ytmodal-close:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+  .ytmodal-frame{position:relative;aspect-ratio:16/9;width:100%;border-radius:12px;overflow:hidden;
+    border:1px solid #d4af3744;background:#000;box-shadow:0 30px 90px -20px #000,0 0 44px -10px #d4af3733;}
+  .ytmodal-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+  .ytmodal-foot{display:flex;justify-content:flex-end;margin-top:var(--s-2);padding-inline:2px;}
+  .ytmodal-yt{font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;
+    color:var(--gold-bright);text-decoration:none;border-bottom:1px solid #d4af3755;padding-bottom:2px;transition:border-color .2s;}
+  .ytmodal-yt:hover{border-color:var(--gold-bright);}
+  body.modal-open{overflow:hidden;}
+  @media(prefers-reduced-motion:reduce){.ytmodal,.ytmodal-dialog{transition:opacity .01ms;}}
+
+  /* scroll progress bar */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
+    background:linear-gradient(90deg,#8a6d1f,var(--gold),var(--gold-bright));box-shadow:0 0 12px #d4af3788;transition:width .1s linear;}
+
+  /* dot navigation (right side) */
+  .dotnav{position:fixed;right:clamp(14px,2.5vw,32px);top:50%;transform:translateY(-50%);z-index:60;
+    display:flex;flex-direction:column;gap:18px;align-items:flex-end;}
+  .dotnav a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink-mute);
+    font-family:'JetBrains Mono',monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.12em;}
+  .dotnav .dn-label{opacity:.4;color:var(--ink-soft);transition:opacity .25s,color .25s;white-space:nowrap;}
+  .dotnav a:hover .dn-label{opacity:.8;color:var(--gold-bright);}
+  .dotnav .dn-dot{width:9px;height:9px;border-radius:50%;border:1px solid var(--ink-mute);background:transparent;
+    transition:background .25s,border-color .25s,transform .25s;flex:none;opacity:.55;}
+  .dotnav a:hover .dn-dot{opacity:1;}
+  .dotnav a.active .dn-dot{background:var(--gold-bright);border-color:var(--gold-bright);transform:scale(1.4);box-shadow:0 0 12px #d4af37aa;opacity:1;}
+  .dotnav a.active .dn-label{opacity:1;color:var(--gold-bright);}
+  @media(max-width:760px){.dotnav{display:none;}}
+
+  @media(max-width:760px){
+    .hero{grid-template-columns:1fr;}
+    .hero-display,.hero-lead{grid-column:1/-1;}
+    .hero-art{grid-column:1/-1;grid-row:auto;width:min(60%,220px);margin-block:var(--s-4);}
+    .topbar nav{display:none;}
+    .footer-grid{grid-template-columns:1fr;}
+    a.trk{flex-wrap:wrap;gap:var(--s-1) var(--s-2);}
+    a.trk .tnote{flex-basis:100%;}
+    a.trk .tplay{opacity:1;}
+    .tl-line{left:22px;}
+    .tl-item,.tl-item:nth-child(even){direction:ltr;grid-template-columns:1fr;gap:var(--s-3);padding-left:52px;}
+    .tl-dot,.tl-item:nth-child(even) .tl-dot{left:22px;top:46px;}
+    .tl-poster-cell,.tl-item:nth-child(odd) .tl-poster-cell,.tl-item:nth-child(even) .tl-poster-cell{justify-content:flex-start;}
+    .tl-text,.tl-item:nth-child(even) .tl-text{text-align:left;}
+    .poster{max-width:160px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="wordmark" href="/music/">← музыка</a>
+  </div>
+</header>
+
+<div class="progress" id="progress"></div>
+
+<nav class="dotnav" aria-label="Навигация по разделам">
+  <a href="#top" data-sec="top"><span class="dn-label">Пролог</span><span class="dn-dot"></span></a>
+  <a href="#eras" data-sec="eras"><span class="dn-label">Эпохи</span><span class="dn-dot"></span></a>
+  <a href="#watch" data-sec="watch"><span class="dn-label">Кино</span><span class="dn-dot"></span></a>
+  <a href="#film" data-sec="film"><span class="dn-label">Фильм</span><span class="dn-dot"></span></a>
+</nav>
+
+<section class="manifesto container" id="top">
+  <p class="serif reveal">Майкл пел <em>дыханием</em>, акцентами, паузами. Слушай по порядку — и услышишь, как с каждой эпохой голос всё больше становится <em>чем-то большим</em>, чем просто голос.</p>
+</section>
+
+<!-- ERAS WITH FULL TRACKLISTS -->
+<section class="eras container" id="eras">
+  <div class="sec-head reveal">
+    <span class="sec-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="20"/><circle cx="24" cy="24" r="6"/><circle cx="24" cy="24" r="1.5" fill="currentColor"/></svg></span>
+    <span class="mono">Что слушать · по порядку</span>
+    <h2 class="serif">Четыре эпохи, один путь</h2>
+  </div>
+
+  <!-- Era 1 -->
+  <div class="era reveal">
+    <div class="era-top"><span class="era-yr">1969</span><span class="era-label">· Motown</span></div><span class="era-name serif">The Jackson 5</span>
+    <p class="era-desc">Детство и прорыв. Голос 10-летнего ребёнка, что шокировал взрослых. Чистая формула Motown-попа — фундамент всего.</p>
+    <div class="tracklist">
+      <a class="trk" data-yt="N9U9A4_cgyI" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+Who%27s+Lovin%27+You"><span class="tnum">01</span><span class="tmid"><span class="tname">Who's Lovin' You</span><span class="tnote">в 10 лет спел блюз о потерянной любви так, что взрослые не поверили возрасту</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="y2bVIBwpCTA" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+I+Want+You+Back+official"><span class="tnum">02</span><span class="tmid"><span class="tname">I Want You Back</span><span class="tnote">дебютный сингл J5 и №1 — эталон Motown-попа, который до сих пор копируют</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="ho7796-au8U" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+ABC+official"><span class="tnum">03</span><span class="tmid"><span class="tname">ABC</span><span class="tnote">скинул The Beatles с вершины чарта — чистый детский драйв</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="OkuULWqF3AY" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+The+Love+You+Save"><span class="tnum">04</span><span class="tmid"><span class="tname">The Love You Save</span><span class="tnote">третий №1 подряд — рекорд, закрепивший J5 как феномен</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="Bjb5vhazFio" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+I%27ll+Be+There"><span class="tnum">05</span><span class="tmid"><span class="tname">I'll Be There</span><span class="tnote">четвёртый №1 — первая баллада, доказавшая, что он не только танцор</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="5Io8tfFDQJo" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+Never+Can+Say+Goodbye"><span class="tnum">06</span><span class="tmid"><span class="tname">Never Can Say Goodbye</span><span class="tnote">голос взрослеет на глазах — мостик к сольной карьере</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="cUpSiISuCd8" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Ben+1972"><span class="tnum">07</span><span class="tmid"><span class="tname">Ben</span><span class="tnote">первый сольный №1 и номинация на «Оскар» — в 14 лет</span></span><span class="tplay">▶ play</span></a>
+    </div>
+  </div>
+
+  <!-- Era 2 -->
+  <div class="era reveal">
+    <div class="era-top"><span class="era-yr">1979</span><span class="era-label">· сольный взлёт</span></div><span class="era-name serif">Off the Wall</span>
+    <p class="era-desc">С продюсером Куинси Джонсом Майкл впервые зазвучал как хозяин своего звука. Чистый диско-фанк, ощущение танца.</p>
+    <div class="tracklist">
+      <a class="trk" data-yt="MWnyCxva6bA" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Workin%27+Day+and+Night"><span class="tnum">08</span><span class="tmid"><span class="tname">Workin' Day and Night</span><span class="tnote">здесь дыхание и вздохи становятся перкуссией — ярче всего слышно фишку</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="yURRmWtbTbo" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Don%27t+Stop+%27Til+You+Get+Enough+official"><span class="tnum">09</span><span class="tmid"><span class="tname">Don't Stop 'Til You Get Enough</span><span class="tnote">первый сольный шедевр, который он спродюсировал сам — и первый Grammy</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="5X-Mrc2l1d0" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Rock+With+You+official"><span class="tnum">10</span><span class="tmid"><span class="tname">Rock With You <span class="topt">опционально</span></span><span class="tnote">эталон софт-диско — последний №1 эпохи диско вообще</span></span><span class="tplay">▶ play</span></a>
+    </div>
+  </div>
+
+  <!-- Era 3 -->
+  <div class="era reveal">
+    <div class="era-top"><span class="era-yr">1982</span><span class="era-label">· пик мира</span></div><span class="era-name serif">Thriller</span>
+    <p class="era-desc">Самый продаваемый альбом в истории. Поп, фанк, рок и R&amp;B в идеальном балансе. Лунная походка на Motown 25 — ключевая сцена фильма.</p>
+    <div class="tracklist">
+      <a class="trk" data-yt="1XMvPTFzgVU" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Wanna+Be+Startin%27+Somethin%27+official"><span class="tnum">11</span><span class="tmid"><span class="tname">Wanna Be Startin' Somethin'</span><span class="tnote">финал «ма-ма-се» стал одним из самых узнаваемых хуков в поп-музыке</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="ElN_4vUvTPs" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Human+Nature+audio"><span class="tnum">12</span><span class="tmid"><span class="tname">Human Nature</span><span class="tnote">самая нежная вещь альбома — её потом сэмплировали в хип-хопе сотни раз</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="Zi_XLOBDo_Y" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Billie+Jean+official+video"><span class="tnum">13</span><span class="tmid"><span class="tname">Billie Jean</span><span class="tnote">дебют лунной походки на Motown 25 — момент, ставший легендой</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="oRdxUFDoQe0" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Beat+It+official+video"><span class="tnum">14</span><span class="tmid"><span class="tname">Beat It</span><span class="tnote">соло Эдди Ван Халена — взлом расового разделения на MTV</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="sO4vI8P88NM" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Thriller+audio"><span class="tnum">15</span><span class="tmid"><span class="tname">Thriller</span><span class="tnote">14-минутный клип, превративший музыкальное видео в кино</span></span><span class="tplay">▶ play</span></a>
+    </div>
+  </div>
+
+  <!-- We Are the World -->
+  <div class="era reveal">
+    <div class="era-top"><span class="era-yr">1985</span><span class="era-label">· благотворительность</span></div><span class="era-name serif">We Are the World</span>
+    <p class="era-desc">Между Thriller и Bad — момент, когда Майкл стал не просто звездой, а голосом эпохи.</p>
+    <div class="tracklist">
+      <a class="trk" data-yt="9AjkUyX0rVw" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=USA+for+Africa+We+Are+the+World+official+video"><span class="tnum">16</span><span class="tmid"><span class="tname">We Are the World <span class="topt">опционально</span></span><span class="tnote">написал с Лайонелом Ричи; собрал 45 звёзд в одной студии и десятки млн $ для Африки</span></span><span class="tplay">▶ play</span></a>
+    </div>
+  </div>
+
+  <!-- Era 4 -->
+  <div class="era reveal">
+    <div class="era-top"><span class="era-yr">1987</span><span class="era-label">· на пике власти</span></div><span class="era-name serif">Bad</span>
+    <p class="era-desc">Майкл — продюсер, перфекционист, хозяин сцены. Звук плотнее и жёстче. Фильм заканчивается на старте Bad World Tour.</p>
+    <div class="tracklist">
+      <a class="trk" data-yt="-DlMoJ2V6uk" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Bad+audio"><span class="tnum">17</span><span class="tmid"><span class="tname">Bad</span><span class="tnote">короткометражка Скорсезе и пять синглов-№1 с одного альбома — рекорд</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="HzZ_urpj4As" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+The+Way+You+Make+Me+Feel+official"><span class="tnum">18</span><span class="tmid"><span class="tname">The Way You Make Me Feel <span class="topt">опционально</span></span><span class="tnote">свинг и фирменные восклицания — мастер-класс по груву</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="h_D3VFfhvs4" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Smooth+Criminal+official+video"><span class="tnum">19</span><span class="tmid"><span class="tname">Smooth Criminal <span class="topt">опционально</span></span><span class="tnote">антигравитационный наклон под 45° — Майкл его запатентовал</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="PivWY9wn5ps" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Man+in+the+Mirror+official"><span class="tnum">20</span><span class="tmid"><span class="tname">Man in the Mirror <span class="topt">опционально</span></span><span class="tnote">госпел-кульминация — его любимое живое исполнение</span></span><span class="tplay">▶ play</span></a>
+    </div>
+  </div>
+
+  <!-- Also in the film -->
+  <div class="era era-film reveal">
+    <div class="era-top"><span class="era-yr">1966–95</span><span class="era-label">· в фильме</span></div><span class="era-name serif">Ещё звучит в фильме</span>
+    <details class="spoiler">
+      <summary><span class="spoiler-warn">⚠ спойлеры: что и в какой сцене</span><span class="spoiler-cta">показать <span class="spoiler-caret">▾</span></span></summary>
+      <p class="era-desc">Не вошло в саундтрек-альбом, но звучит в самом фильме — акапеллой, фоном или в финальных титрах.</p>
+      <div class="tracklist">
+      <a class="trk" data-yt="9f4OIx5iSOU" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+Big+Boy+1968"><span class="tmid"><span class="tname">Big Boy <span class="trole">интро</span></span><span class="tnote">первая песня фильма — репетиция J5 в 1966-м, момент прощания с детством</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="TOy05ESF8f8" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+You%27ve+Changed+live"><span class="tmid"><span class="tname">You've Changed <span class="trole">акапелла</span></span><span class="tnote">джазовый стандарт — Майкл поёт его живьём в клубе (1967), не студийный оригинал MJ</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="z-OteAgvINc" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Rockin%27+Robin+1972"><span class="tmid"><span class="tname">Rockin' Robin <span class="trole">фоном</span></span><span class="tnote">сольный хит 1972-го — звучит, когда Майкл заводит шимпанзе Бабблза</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="7IsjqR1IlvE" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=The+Jacksons+Enjoy+Yourself+1976"><span class="tmid"><span class="tname">Enjoy Yourself <span class="trole">фоном</span></span><span class="tnote">The Jacksons, 1976 — сцена, где Майкл с Биллом покупают игрушки</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="nqxVMLVe62U" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=The+Jacksons+Blame+It+On+The+Boogie+1978"><span class="tmid"><span class="tname">Blame It On The Boogie <span class="trole">фоном</span></span><span class="tnote">The Jacksons, 1978 — Майкл и Бабблз играют в Twister</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="re3MOe1SBOs" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+I+Can%27t+Help+It+audio"><span class="tmid"><span class="tname">I Can't Help It <span class="trole">фоном</span></span><span class="tnote">Off the Wall, 1979 — перед записью «Don't Stop 'Til You Get Enough» с Куинси</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="8vfrbJZS1gw" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=The+Jacksons+This+Place+Hotel+Heartbreak+Hotel+live+1981"><span class="tmid"><span class="tname">This Place Hotel <span class="trole">титры</span></span><span class="tnote">The Jacksons, 1980 — в финальных титрах (живьём, тур 1981)</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="puQEcN_iI9o" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Childhood+1995"><span class="tmid"><span class="tname">Childhood <span class="trole">фоном</span></span><span class="tnote">1995 — звучит, когда Майкл читает «Питера Пэна» Бабблзу</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="e-J7_mu1bKo" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackie+Wilson+Doggin%27+Around"><span class="tmid"><span class="tname">Doggin' Around <span class="trole">фоном</span></span><span class="tnote">песня Джеки Уилсона (1960) — фоном по ходу фильма; источники расходятся, чьё исполнение</span></span><span class="tplay">▶ play</span></a>
+    </div>
+    </details>
+  </div>
+
+  <!-- Bonus -->
+  <div class="era reveal">
+    <div class="era-top"><span class="era-yr">1991+</span><span class="era-label">· deep cuts</span></div><span class="era-name serif">За рамками фильма</span>
+    <p class="era-desc">Не вошло в байопик, но обязательно к прослушиванию — поздний Майкл.</p>
+    <div class="tracklist">
+      <a class="trk" data-yt="F2AitTPI5U0" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Black+or+White+official+video"><span class="tnum">21</span><span class="tmid"><span class="tname">Black or White <span class="topt">опционально</span></span><span class="tnote">Dangerous · клип с морфингом лиц, который смотрел весь мир одновременно</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="LeiFF0gvqcc" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Remember+the+Time+official+video"><span class="tnum">22</span><span class="tmid"><span class="tname">Remember the Time <span class="topt">опционально</span></span><span class="tnote">Dangerous · нью-джек-свинг Тедди Райли — звук нового десятилетия</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="QNJL6nfu__Q" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+They+Don%27t+Care+About+Us+official"><span class="tnum">23</span><span class="tmid"><span class="tname">They Don't Care About Us <span class="topt">опционально</span></span><span class="tnote">HIStory · самый жёсткий протест-ритм в его карьере</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="XAi3VTSdTxU" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Earth+Song"><span class="tnum">24</span><span class="tmid"><span class="tname">Earth Song <span class="topt">опционально</span></span><span class="tnote">HIStory · грандиозная эко-баллада, №1 в Британии на Рождество</span></span><span class="tplay">▶ play</span></a>    </div>
+  </div>
+
+  <!-- Smile — closing "P.S." era -->
+  <div class="era reveal">
+    <div class="era-top"><span class="era-yr">P.S.</span><span class="era-label">· на десерт</span></div><span class="era-name serif">Smile</span>
+    <p class="era-desc">А ещё — просто послушайте вот это. Прикольная песня ♪</p>
+    <div class="tracklist">
+      <a class="trk" data-yt="tQTHBlf-Tvw" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Smile+Charlie+Chaplin+HIStory"><span class="tnum">♪</span><span class="tmid"><span class="tname">Smile</span><span class="tnote">кавер композиции Чарли Чаплина (Modern Times, 1936) — любимая песня Майкла</span></span><span class="tplay">▶ play</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- WATCH -->
+<section class="chapters container" id="watch">
+  <div class="sec-head reveal">
+    <span class="sec-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="12" width="38" height="26" rx="2"/><path d="M5 18h38"/><circle cx="11" cy="15" r="1.2" fill="currentColor"/><path d="M21 22l9 5-9 5z" fill="currentColor" stroke="none"/></svg></span>
+    <h2 class="serif">Что посмотреть</h2>
+  </div>
+
+  <div class="timeline">
+    <span class="tl-line" aria-hidden="true"></span>
+
+    <div class="tl-item reveal">
+      <span class="tl-dot"></span>
+      <div class="tl-poster-cell"><div class="poster"><img src="./posters/thriller.jpg" alt="Постер короткометражного фильма «Thriller» (1983)" loading="lazy" width="600" height="900"></div></div>
+      <div class="tl-text"><div class="meta-line">1983 · короткометражка</div><h3>Thriller</h3><p>14-минутный зомби-хоррор-мюзикл Джона Лэндиса с гримом Рика Бейкера и голосом Винсента Прайса. Первый клип в Национальном реестре фильмов США.</p><a class="watch" data-yt="sOnqjkJTMaA" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Thriller+short+film+1983">▶ Смотреть</a></div>
+    </div>
+
+    <div class="tl-item reveal">
+      <span class="tl-dot"></span>
+      <div class="tl-poster-cell"><div class="poster"><img src="./posters/bad.jpeg" alt="Обложка альбома и тура «Bad» (1987)" loading="lazy" width="600" height="900"></div></div>
+      <div class="tl-text"><div class="meta-line">1987 · режиссёр Скорсезе</div><h3>Bad</h3><p>18-минутная короткометражка Мартина Скорсезе в нью-йоркском метро. Чёрно-белое вступление переходит в цвет; в ролях молодой Уэсли Снайпс.</p><a class="watch" data-yt="MmOZ6ojey3s" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Bad+short+film+Martin+Scorsese+1987">▶ Смотреть</a></div>
+    </div>
+
+    <div class="tl-item reveal">
+      <span class="tl-dot"></span>
+      <div class="tl-poster-cell"><div class="poster"><img src="./posters/moonwalker.jpg" alt="Постер фильма «Moonwalker» (1988)" loading="lazy" width="600" height="900"></div></div>
+      <div class="tl-text"><div class="meta-line">1988 · фильм-эталон</div><h3>Moonwalker</h3><p>Антология-мюзикл эпохи Bad — тот самый формат «клип как мини-кино». Центр фильма — Smooth Criminal с Джо Пеши и легендарный наклон под 45°, который Майкл запатентовал. С этого стоит начать.</p><a class="watch" data-yt="-TSswR5Mnho" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Moonwalker+1988+Michael+Jackson+film">▶ Смотреть</a></div>
+    </div>
+
+    <div class="tl-item reveal">
+      <span class="tl-dot"></span>
+      <div class="tl-poster-cell"><div class="poster"><img src="./posters/remember-the-time.jpg" alt="Постер короткометражного фильма «Remember the Time» (1992)" loading="lazy" width="600" height="900"></div></div>
+      <div class="tl-text"><div class="meta-line">1992 · Древний Египет <span class="topt">опционально</span></div><h3>Remember the Time</h3><p>Мини-фильм Джона Синглтона. Фараон — Эдди Мёрфи, царица — Иман, в кадре Мэджик Джонсон. Майкл рассыпается в песок в финале.</p><a class="watch" data-yt="LeiFF0gvqcc" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Remember+the+Time+short+film+Eddie+Murphy">▶ Смотреть</a></div>
+    </div>
+
+    <div class="tl-item tl-item-last reveal">
+      <span class="tl-dot"></span>
+      <div class="tl-poster-cell"><div class="poster"><img src="./posters/ghost.jpg" alt="Постер короткометражного фильма «Ghosts» (1996)" loading="lazy" width="600" height="900"></div></div>
+      <div class="tl-text"><div class="meta-line">1996 · карта в рукаве <span class="topt">опционально</span></div><h3>Ghosts</h3><p>Почти 40-минутный фильм-мюзикл, сценарий Майкла со Стивеном Кингом, режиссёр — гримёр Стэн Уинстон. «Расширенный Moonwalker», мало кто его видел.</p><a class="watch" data-yt="TEet4nn2G_8" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Ghosts+1996+full+film+Stephen+King">▶ Смотреть</a></div>
+    </div>
+
+    <div class="tl-finale" id="film">
+      <span class="tl-finale-dot"></span>
+      <div class="finale-poster"><img src="./posters/micheal.jpeg" alt="Постер игрового фильма «Michael» (2025)" loading="lazy" width="600" height="900"></div>
+      <h3 class="finale-title serif">Наконец вы добрались</h3>
+      <p class="finale-text">Игровой фильм Антуана Фукуа охватывает путь от Jackson 5 до Bad World Tour. Всё, что ты только что прошёл по таймлайну, оживёт на экране — и каждая отсылка будет на месте.</p>
+      <p class="finale-kicker"><button type="button" class="fk-big fk-play" aria-pressed="false" aria-label="Проиграть отрывок «Wanna Be Startin' Somethin'»">«Wanna Be Startin' Somethin'»<span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button></p>
+      <audio id="wbss-audio" src="./Audio/wbssmth.mp3" preload="none"></audio>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-glyph reveal" aria-hidden="true">MJ</div>
+    <p class="footer-mark reveal">MICHAEL · ГИД</p>
+    <p class="footer-tag reveal">Маршрут сквозь музыку и кино Майкла Джексона — чтобы быть в теме.</p>
+    <div class="footer-links reveal">
+      <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson">YouTube</a>
+      <a data-yt="3zOLzsbOleM" data-title="Трейлер «Michael» (2026)" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+2026+film+trailer">Трейлер фильма</a>
+    </div>
+    <p class="footer-fine reveal">King of Pop · 1958—2009</p>
+    <p class="footer-disc reveal">Все права на оригинальные произведения — музыку, фильмы и изображения постеров — принадлежат их правообладателям. Этот сайт и подборка — независимый некоммерческий фан-проект автора (© 2026 rensite · <a href="https://renatgalin.pro" target="_blank" rel="noopener">renatgalin.pro</a>), не связанный с правообладателями.</p>
+  </div>
+</footer>
+
+<div class="ytmodal" id="ytmodal" role="dialog" aria-modal="true" aria-label="Видео">
+  <div class="ytmodal-dialog">
+    <div class="ytmodal-head">
+      <span class="ytmodal-title" id="ytmodal-title"></span>
+      <button class="ytmodal-close" type="button" aria-label="Закрыть видео">&#10005;</button>
+    </div>
+    <div class="ytmodal-frame"><div class="ytmodal-slot"></div></div>
+    <div class="ytmodal-foot"><a class="ytmodal-yt" target="_blank" rel="noopener" href="#">смотреть на YouTube ↗</a></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // auto-tag more elements for reveal so everything animates in on scroll
+  document.querySelectorAll('a.trk, .tl-item, .tl-finale, .era-desc').forEach(el=>el.classList.add('reveal'));
+
+  if(!reduced){
+    gsap.set('.reveal',{y:30,opacity:0});
+    gsap.to('.manifesto .reveal',{y:0,opacity:1,duration:1.3,ease:'expo.out',delay:.15});
+
+    // tracks animate in row-by-row within each era for a cascading feel
+    gsap.utils.toArray('.tracklist').forEach(list=>{
+      ScrollTrigger.batch(list.querySelectorAll('.trk'),{start:'top 92%',
+        onEnter:els=>gsap.to(els,{y:0,opacity:1,duration:.7,ease:'power3.out',stagger:.06,overwrite:true})});
+    });
+
+    // timeline items + finale slide in
+    ScrollTrigger.batch('.tl-item, .tl-finale',{start:'top 85%',
+      onEnter:els=>gsap.to(els,{y:0,opacity:1,duration:.9,ease:'expo.out',stagger:.12,overwrite:true})});
+
+    // dots pop in
+    gsap.utils.toArray('.tl-dot, .tl-finale-dot').forEach(dot=>{
+      gsap.from(dot,{scale:0,duration:.5,ease:'back.out(2)',
+        scrollTrigger:{trigger:dot,start:'top 88%'}});
+    });
+
+    // everything else (headings, descriptions, posters)
+    ScrollTrigger.batch('.reveal:not(.manifesto .reveal):not(.trk):not(.tl-item):not(.tl-finale)',{start:'top 88%',
+      onEnter:els=>gsap.to(els,{y:0,opacity:1,duration:.9,ease:'expo.out',stagger:.08,overwrite:true})});
+  }else{
+    gsap.set('.reveal',{y:0,opacity:1});
+  }
+
+
+  // progress bar + scroll-spy dot navigation
+  const bar=document.getElementById('progress');
+  const navLinks=Array.from(document.querySelectorAll('.dotnav a'));
+  const secs=navLinks.map(a=>document.getElementById(a.dataset.sec)).filter(Boolean);
+
+  function onScroll(){
+    const h=document.documentElement;
+    const max=h.scrollHeight-h.clientHeight;
+    const pct=max>0?(h.scrollTop/max)*100:0;
+    if(bar) bar.style.width=pct+'%';
+    // active section = the last one whose top has passed 40% of viewport
+    const mark=window.innerHeight*0.4;
+    let activeIdx=0;
+    secs.forEach((s,i)=>{ if(s.getBoundingClientRect().top<=mark) activeIdx=i; });
+    navLinks.forEach((a,i)=>a.classList.toggle('active',i===activeIdx));
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+
+  // smooth-scroll on dot/anchor click
+  navLinks.forEach(a=>a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.getElementById(a.dataset.sec);
+    if(t) t.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+  }));
+
+  document.fonts.ready.then(()=>ScrollTrigger.refresh());
+
+  // clickable quote → проигрывает отрывок (эффект как на eminem.rensite.ru)
+  (function(){
+    const btn = document.querySelector('.fk-play');
+    const audio = document.getElementById('wbss-audio');
+    if(!btn || !audio) return;
+    const setPlaying = on => { btn.classList.toggle('playing', on); btn.setAttribute('aria-pressed', on?'true':'false'); };
+    btn.addEventListener('click', () => {
+      if(!reduced){ btn.classList.remove('jolt'); void btn.offsetWidth; btn.classList.add('jolt'); }
+      if(audio.paused){ audio.currentTime = 0; audio.play().catch(()=>{}); }
+      else { audio.pause(); }
+    });
+    audio.addEventListener('play',  ()=>setPlaying(true));
+    audio.addEventListener('pause', ()=>setPlaying(false));
+    audio.addEventListener('ended', ()=>setPlaying(false));
+    btn.addEventListener('animationend', e=>{ if(e.animationName==='quoteJolt') btn.classList.remove('jolt'); });
+  })();
+
+  // клик по треку → YouTube во всплывающем оверлее-лайтбоксе
+  (function(){
+    const modal=document.getElementById('ytmodal');
+    if(!modal) return;
+    const slot=modal.querySelector('.ytmodal-slot');
+    const titleEl=modal.querySelector('.ytmodal-title');
+    const ytLink=modal.querySelector('.ytmodal-yt');
+    const closeBtn=modal.querySelector('.ytmodal-close');
+    const clipAudio=document.getElementById('wbss-audio');
+    let lastFocus=null;
+
+    function titleFor(a){
+      if(a.dataset.title) return a.dataset.title;            // явный заголовок (напр. трейлер)
+      const tn=a.querySelector('.tname');                    // трек
+      if(tn){ const c=tn.cloneNode(true); c.querySelectorAll('.topt,.trole').forEach(x=>x.remove()); return c.textContent.replace(/\s+/g,' ').trim(); }
+      const h3=a.closest('.tl-text')?.querySelector('h3');   // фильм из блока «Что посмотреть»
+      if(h3) return h3.textContent.replace(/\s+/g,' ').trim();
+      return a.textContent.replace(/[▶↗]/g,'').replace(/\s+/g,' ').trim();
+    }
+    function openModal(id,name,href){
+      lastFocus=document.activeElement;
+      titleEl.textContent=name;
+      ytLink.href=href||('https://www.youtube.com/watch?v='+id);
+      const f=document.createElement('iframe');
+      f.src='https://www.youtube.com/embed/'+encodeURIComponent(id)+'?autoplay=1&rel=0&modestbranding=1';
+      f.title=name||'YouTube';
+      f.allow='autoplay; encrypted-media; fullscreen; picture-in-picture';
+      f.setAttribute('allowfullscreen','');
+      slot.replaceChildren(f);
+      if(clipAudio && !clipAudio.paused) clipAudio.pause(); // не накладывать отрывок на видео
+      modal.classList.add('open');
+      document.body.classList.add('modal-open');
+      requestAnimationFrame(()=>modal.classList.add('show'));
+      closeBtn.focus();
+    }
+    function closeModal(){
+      if(!modal.classList.contains('open')) return;
+      modal.classList.remove('show');
+      document.body.classList.remove('modal-open');
+      let done=false;
+      const finish=()=>{ if(done) return; done=true; modal.classList.remove('open'); slot.replaceChildren(); };
+      if(reduced){ finish(); }
+      else { modal.addEventListener('transitionend',function te(e){ if(e.target===modal){ modal.removeEventListener('transitionend',te); finish(); } }); setTimeout(finish,400); }
+      if(lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    document.querySelectorAll('a[data-yt]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button!==0) return; // Cmd/Ctrl-клик → новая вкладка как раньше
+        e.preventDefault();
+        openModal(a.dataset.yt,titleFor(a),a.href);
+      });
+    });
+    closeBtn.addEventListener('click',closeModal);
+    modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+  })();
+</script>
+</body>
+</html>

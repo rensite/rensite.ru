@@ -121,6 +121,11 @@ hr{border:none;border-top:1px solid var(--rule)}
   .tl-item .tl-year{text-align:left;padding-right:0;padding-left:var(--s-6)}
   .tl-item .tl-body{padding-left:var(--s-6)}
   .tl-item .tl-body::before{top:.4em;left:2px}
+  /* заголовок альбома во всю ширину; счётчик и шеврон — строкой ниже */
+  .tl-head{flex-wrap:wrap;align-items:center;gap:6px var(--s-3)}
+  .tl-head h3{flex:1 1 100%}
+  .tl-head .tl-count{order:2}
+  .tl-head .tl-chev{order:3;margin-left:auto}
 }
 
 /* stats */
@@ -141,7 +146,8 @@ hr{border:none;border-top:1px solid var(--rule)}
 /* player / list */
 .cat-sub{margin:calc(-1 * var(--s-4)) 0 var(--s-8);color:var(--ink-mute);max-width:56ch;line-height:1.5}
 .cat-sub b{color:var(--ink-soft);font-weight:600}
-.player-controls{display:flex;flex-wrap:wrap;gap:var(--s-2);margin-bottom:var(--s-6);align-items:center}
+.player-controls{display:flex;flex-wrap:wrap;gap:var(--s-2);align-items:center;
+  position:sticky;top:76px;z-index:40;background:var(--bg);padding:var(--s-2) 0;margin-bottom:var(--s-4);border-bottom:1px solid var(--rule)}
 .player-controls input{font-family:"Inter",sans-serif;font-size:var(--fs-body);background:transparent;border:none;border-bottom:1px solid var(--ink);padding:.5rem .25rem;color:var(--ink);min-width:220px;flex:1}
 .player-controls input:focus{outline:none;border-color:var(--accent)}
 .filters{display:flex;gap:var(--s-2);flex-wrap:wrap}
@@ -149,8 +155,8 @@ hr{border:none;border-top:1px solid var(--rule)}
 .filt:hover{border-color:var(--ink)}
 .filt.active{background:var(--ink);color:var(--cream);border-color:var(--ink)}
 .track-list{border-top:1px solid var(--rule)}
-.track{display:grid;grid-template-columns:3.5rem 1fr auto;gap:var(--s-3);align-items:baseline;padding:var(--s-3) 0;border-bottom:1px solid var(--rule);text-decoration:none;transition:padding-left .25s,background .25s}
-.track:hover{padding-left:var(--s-3);background:var(--bg-deep)}
+.track{display:grid;grid-template-columns:3.5rem 1fr auto;gap:var(--s-3);align-items:baseline;padding:var(--s-3) 0;border-bottom:1px solid var(--rule);text-decoration:none;transition:background .25s}
+.track:hover{background:var(--bg-deep)}
 .track .tyr{font-family:"JetBrains Mono",monospace;font-size:var(--fs-sm);color:var(--ink-mute)}
 .track .tname{font-family:"Fraunces",serif;font-size:1.35rem;line-height:1.15}
 .track .tname .sub{display:block;font-family:"Inter",sans-serif;font-size:.9rem;color:var(--ink-mute);margin-top:.15rem}
@@ -180,6 +186,14 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
 @media(max-width:640px){
   .foot-cols{flex-direction:column;gap:var(--s-2)}
   .foot-top .foot-tip{text-align:left;max-width:none}
+  /* каталог: фильтры прячем, строку результата — как у MJ (год слева, текст во всю ширину, YouTube строкой ниже) */
+  .filters{display:none}
+  .track{grid-template-columns:auto 1fr;column-gap:14px;row-gap:8px;align-items:start;margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter)}
+  .track .tname{grid-column:2}
+  .track .tplay{grid-column:2;justify-self:start;opacity:1}
+  /* карточки хитов: меньше «воздуха», чтобы длинные тайтлы не переносились */
+  .start-card{padding:var(--s-4) var(--s-3)}
+  .start-card .ttl{font-size:1.5rem}
 }
 .foot-legal{margin-top:var(--s-8);padding-top:var(--s-6);border-top:1px solid var(--rule);color:var(--ink-mute);font-size:.85rem;line-height:1.6;max-width:none;opacity:.55}
 .foot-legal a{color:var(--accent);text-decoration:none}

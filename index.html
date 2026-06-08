@@ -153,6 +153,10 @@
   .links a:hover .n,.links a:focus-visible .n{color:var(--navy)}
   .links a:hover .d,.links a:focus-visible .d{color:var(--ink)}
   .links a:hover .arrow,.links a:focus-visible .arrow{color:var(--navy);transform:translateX(2px)}
+  /* «скоро»-карточка: некликабельная, вместо мёртвого href="#" */
+  .links .dead{display:flex;flex-direction:column;gap:4px;padding:12px 0;color:var(--muted);cursor:default}
+  .links .dead .n{color:var(--muted)}
+  .links .soon{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:500;color:var(--soft);border:1px solid var(--hair);border-radius:999px;padding:1px 7px;letter-spacing:.02em;text-transform:lowercase}
 
   /* «показать все» → раздел */
   .more{
@@ -195,7 +199,11 @@
     .main{gap:20px}
   }
 
+  /* ── Плавные переходы между страницами (cross-document View Transitions) ── */
+  @view-transition{navigation:auto}
+
   @media (prefers-reduced-motion: reduce){
+    ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
     html.js .anim{opacity:1;transform:none;animation:none}
     *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   }
@@ -237,18 +245,18 @@
               <span class="n">гиды по музыке <span class="arrow">→</span></span>
               <span class="d">Michael Jackson · Jackie Chan · Eminem</span>
             </a></li>
-            <li><a href="#" target="_blank" rel="noopener">
-              <span class="n">project one <span class="arrow">↗</span></span>
+            <li><span class="dead">
+              <span class="n">project one <span class="soon">скоро</span></span>
               <span class="d">AI-ассистент для поддержки</span>
-            </a></li>
-            <li><a href="#" target="_blank" rel="noopener">
-              <span class="n">project two <span class="arrow">↗</span></span>
+            </span></li>
+            <li><span class="dead">
+              <span class="n">project two <span class="soon">скоро</span></span>
               <span class="d">Агент для веб-ресёрча</span>
-            </a></li>
-            <li><a href="#" target="_blank" rel="noopener">
-              <span class="n">project three <span class="arrow">↗</span></span>
+            </span></li>
+            <li><span class="dead">
+              <span class="n">project three <span class="soon">скоро</span></span>
               <span class="d">RAG поверх документов</span>
-            </a></li>
+            </span></li>
           </ul>
           <a class="more" href="/projects/">показать все</a>
         </section>
@@ -256,18 +264,18 @@
         <section class="col anim d5" aria-label="Заметки">
           <div class="label">notes</div>
           <ul class="links">
-            <li><a href="#" target="_blank" rel="noopener">
-              <span class="n">note one <span class="arrow">↗</span></span>
+            <li><span class="dead">
+              <span class="n">note one <span class="soon">скоро</span></span>
               <span class="d">Как я строю агентов</span>
-            </a></li>
-            <li><a href="#" target="_blank" rel="noopener">
-              <span class="n">note two <span class="arrow">↗</span></span>
+            </span></li>
+            <li><span class="dead">
+              <span class="n">note two <span class="soon">скоро</span></span>
               <span class="d">Промптинг на практике</span>
-            </a></li>
-            <li><a href="#" target="_blank" rel="noopener">
-              <span class="n">note three <span class="arrow">↗</span></span>
+            </span></li>
+            <li><span class="dead">
+              <span class="n">note three <span class="soon">скоро</span></span>
               <span class="d">Стек для AI-продуктов</span>
-            </a></li>
+            </span></li>
           </ul>
           <a class="more" href="/notes/">показать все</a>
         </section>
@@ -287,6 +295,16 @@
 
   </div>
 
+<script src="/cards.js" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var cls = { name: 'n', desc: 'd', arrow: 'arrow', dead: 'dead', soon: 'soon' };
+    renderCards([
+      { sel: '[aria-label="Проекты"] .links', key: 'projects', limit: 4, cls: cls },
+      { sel: '[aria-label="Заметки"] .links', key: 'notes', limit: 3, cls: cls }
+    ]);
+  });
+</script>
 <script>
 (function(){
   const $ = id => document.getElementById(id);

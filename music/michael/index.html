@@ -277,6 +277,9 @@
     .tl-text,.tl-item:nth-child(even) .tl-text{text-align:left;}
     .poster{max-width:160px;}
   }
+  /* ── Плавные переходы между страницами (cross-document View Transitions) ── */
+  @view-transition{navigation:auto}
+  @media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
 </style>
 </head>
 <body>

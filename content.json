@@ -1,0 +1,13 @@
+{
+  "projects": [
+    { "name": "гиды по музыке", "desc": "Michael Jackson · Jackie Chan · Eminem", "url": "/music/" },
+    { "name": "project one", "desc": "AI-ассистент для поддержки" },
+    { "name": "project two", "desc": "Агент для веб-ресёрча" },
+    { "name": "project three", "desc": "RAG поверх документов" }
+  ],
+  "notes": [
+    { "name": "note one", "desc": "Как я строю агентов" },
+    { "name": "note two", "desc": "Промптинг на практике" },
+    { "name": "note three", "desc": "Стек для AI-продуктов" }
+  ]
+}

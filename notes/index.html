@@ -63,6 +63,10 @@
   ul.items .name{font-size:19px;font-weight:600;letter-spacing:-0.2px;flex-shrink:0}
   ul.items .desc{font-size:15.5px;color:var(--muted);font-weight:400;margin-left:auto;text-align:right;transition:color .15s ease;line-height:1.4}
   ul.items .arrow{display:inline-block;color:var(--soft);transition:transform .15s ease,color .15s ease;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px}
+  /* «скоро»-карточка: тот же лэйаут, но некликабельная (вместо мёртвого href="#") */
+  ul.items .dead{display:flex;align-items:baseline;gap:10px;padding:15px 0;color:var(--muted);cursor:default}
+  ul.items .dead .name{color:var(--muted)}
+  .soon{flex-shrink:0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:500;color:var(--soft);border:1px solid var(--hair);border-radius:999px;padding:1px 7px;letter-spacing:.02em;text-transform:lowercase}
 
   footer.foot{
     margin-top:auto;padding-top:16px;border-top:1px solid var(--hair);
@@ -71,7 +75,11 @@
   }
   footer.foot .v{color:var(--muted)}
 
+  /* ── Плавные переходы между страницами (cross-document View Transitions) ── */
+  @view-transition{navigation:auto}
+
   @media (prefers-reduced-motion: reduce){
+    ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
     *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
   }
 </style>
@@ -93,22 +101,22 @@
       <div class="label">заметки</div>
       <ul class="items">
         <li>
-          <a href="#" target="_blank" rel="noopener">
-            <span class="name">note one <span class="arrow">↗</span></span>
+          <span class="dead">
+            <span class="name">note one <span class="soon">скоро</span></span>
             <span class="desc">Как я строю агентов</span>
-          </a>
+          </span>
         </li>
         <li>
-          <a href="#" target="_blank" rel="noopener">
-            <span class="name">note two <span class="arrow">↗</span></span>
+          <span class="dead">
+            <span class="name">note two <span class="soon">скоро</span></span>
             <span class="desc">Промптинг на практике</span>
-          </a>
+          </span>
         </li>
         <li>
-          <a href="#" target="_blank" rel="noopener">
-            <span class="name">note three <span class="arrow">↗</span></span>
+          <span class="dead">
+            <span class="name">note three <span class="soon">скоро</span></span>
             <span class="desc">Стек для AI-продуктов</span>
-          </a>
+          </span>
         </li>
       </ul>
     </section>
@@ -119,5 +127,14 @@
     </footer>
 
   </div>
+
+  <script src="/cards.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      renderCards([
+        { sel: 'ul.items', key: 'notes', cls: { name: 'name', desc: 'desc', arrow: 'arrow', dead: 'dead', soon: 'soon' } }
+      ]);
+    });
+  </script>
 </body>
 </html>

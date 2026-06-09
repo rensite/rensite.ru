@@ -5,8 +5,8 @@
  * данными из content.json — единственного источника правды.
  *
  * Правила карточки:
- *   - item.url с http(s):// → внешняя ссылка (новая вкладка, стрелка ↗)
- *   - item.url без протокола (напр. "/music/") → внутренняя ссылка (стрелка →)
+ *   - item.url с http(s):// → внешняя ссылка (новая вкладка)
+ *   - item.url без протокола (напр. "/music/") → внутренняя ссылка
  *   - без item.url → некликабельная карточка с бейджем «скоро» (не мёртвый href="#")
  */
 (function () {
@@ -35,11 +35,9 @@
     }
 
     var ext = isExternal(item.url);
-    var arrow = ext ? '↗' : '→';
     var attrs = ext ? ' target="_blank" rel="noopener"' : '';
     return '<li><a href="' + esc(item.url) + '"' + attrs + '>'
-      + '<span class="' + cls.name + '">' + name
-      + ' <span class="' + cls.arrow + '">' + arrow + '</span></span>'
+      + '<span class="' + cls.name + '">' + name + '</span>'
       + '<span class="' + cls.desc + '">' + desc + '</span></a></li>';
   }
 

@@ -48,7 +48,7 @@
   :focus:not(:focus-visible){outline:none}
   a{color:inherit}
 
-  body{min-height:100vh;min-height:100dvh;display:flex;justify-content:center}
+  body{min-height:100vh;min-height:100dvh;display:flex;justify-content:center;background:transparent}
 
   .app{
     width:100%;max-width:1120px;
@@ -147,13 +147,9 @@
   .links li{border-bottom:1px solid var(--hair)}
   .links li:last-child{border-bottom:none}
   .links a{display:flex;flex-direction:column;gap:4px;padding:12px 0;text-decoration:none;color:var(--ink);transition:color var(--dur-fast) ease}
-  .links .n{font-size:19px;font-weight:500;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
-  .links .arrow{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;color:var(--soft);transition:transform var(--dur-fast) var(--ease-snap),color var(--dur-fast) ease}
-  .links .d{font-size:15.5px;color:var(--muted);line-height:1.4}
+  .links .n{font-size:19px;font-weight:500;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}  .links .d{font-size:15.5px;color:var(--muted);line-height:1.4}
   .links a:hover .n,.links a:focus-visible .n{color:var(--navy)}
-  .links a:hover .d,.links a:focus-visible .d{color:var(--ink)}
-  .links a:hover .arrow,.links a:focus-visible .arrow{color:var(--navy);transform:translateX(2px)}
-  /* «скоро»-карточка: некликабельная, вместо мёртвого href="#" */
+  .links a:hover .d,.links a:focus-visible .d{color:var(--ink)}  /* «скоро»-карточка: некликабельная, вместо мёртвого href="#" */
   .links .dead{display:flex;flex-direction:column;gap:4px;padding:12px 0;color:var(--muted);cursor:default}
   .links .dead .n{color:var(--muted)}
   .links .soon{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:500;color:var(--soft);border:1px solid var(--hair);border-radius:999px;padding:1px 7px;letter-spacing:.02em;text-transform:lowercase}
@@ -181,6 +177,12 @@
   .stat{display:flex;gap:6px;align-items:baseline}
   .stat .k{color:var(--soft)}
   .stat .v{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+
+  /* ── Пиксельная пыль по углам (1-bit, статика) ── */
+  .dust{position:fixed;inset:0;z-index:-1;pointer-events:none;color:var(--muted);opacity:.65}
+  .dust svg{position:absolute;width:clamp(70px,10vw,118px);height:auto;shape-rendering:crispEdges}
+  .dust .bl{bottom:0;left:0;transform:scaleY(-1)}
+  @media (prefers-color-scheme: dark){ .dust{opacity:.6} }
 
   /* ── Entrance (load) ── */
   @keyframes rise{to{opacity:1;transform:none}}
@@ -210,6 +212,40 @@
 </style>
 </head>
 <body>
+
+  <!-- Пиксельная пыль/снег по углам: кластер описан один раз, переиспользован 4× с флипами -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute" focusable="false">
+    <defs>
+      <g id="dust-cluster" fill="currentColor">
+        <rect x="1"  y="1"  width="4" height="4" opacity=".85"/>
+        <rect x="7"  y="3"  width="3" height="3" opacity=".7"/>
+        <rect x="3"  y="8"  width="3" height="3" opacity=".72"/>
+        <rect x="11" y="6"  width="2" height="2" opacity=".5"/>
+        <rect x="6"  y="14" width="2" height="2" opacity=".5"/>
+        <rect x="15" y="3"  width="2" height="2" opacity=".42"/>
+        <rect x="13" y="12" width="2" height="2" opacity=".46"/>
+        <rect x="9"  y="19" width="2" height="2" opacity=".36"/>
+        <rect x="19" y="9"  width="2" height="2" opacity=".34"/>
+        <rect x="17" y="17" width="3" height="3" opacity=".34"/>
+        <rect x="22" y="5"  width="2" height="2" opacity=".3"/>
+        <rect x="24" y="20" width="2" height="2" opacity=".24"/>
+        <rect x="20" y="26" width="2" height="2" opacity=".22"/>
+        <rect x="27" y="13" width="2" height="2" opacity=".24"/>
+        <rect x="29" y="27" width="2" height="2" opacity=".16"/>
+        <rect x="25" y="33" width="2" height="2" opacity=".13"/>
+        <rect x="33" y="23" width="2" height="2" opacity=".14"/>
+        <rect x="14" y="27" width="2" height="2" opacity=".2"/>
+        <rect x="31" y="10" width="2" height="2" opacity=".2"/>
+        <rect x="35" y="33" width="2" height="2" opacity=".1"/>
+        <rect x="12" y="33" width="2" height="2" opacity=".12"/>
+      </g>
+    </defs>
+  </svg>
+
+  <div class="dust" aria-hidden="true">
+    <svg class="bl" viewBox="0 0 40 40"><use href="#dust-cluster"/></svg>
+  </div>
+
   <div class="app">
 
     <header class="topline">
@@ -242,7 +278,7 @@
           <div class="label">projects</div>
           <ul class="links">
             <li><a href="/music/">
-              <span class="n">гиды по музыке <span class="arrow">→</span></span>
+              <span class="n">гиды по музыке</span>
               <span class="d">Michael Jackson · Jackie Chan · Eminem</span>
             </a></li>
             <li><span class="dead">

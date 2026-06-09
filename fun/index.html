@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)" />
+<title>приколюхи — rensite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Токены зеркалят основной сайт (index.html). */
+  :root{
+    --navy:#1E3A8A; --ink:#0F172A; --muted:#64748B; --soft:#94A3B8;
+    --hair:#E2E8F0; --bg:#FFFFFF; --accent:#3B82F6; --glow:rgba(59,130,246,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --navy:#93C5FD; --ink:#E2E8F0; --muted:#94A3B8; --soft:#64748B;
+      --hair:#1E293B; --bg:#0B1220; --accent:#60A5FA; --glow:rgba(96,165,250,.14);
+    }
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",system-ui,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  :focus:not(:focus-visible){outline:none}
+  body{min-height:100vh;min-height:100dvh;display:flex;justify-content:center;background:transparent}
+
+  .app{
+    width:100%;max-width:1120px;min-height:100vh;min-height:100dvh;
+    padding:clamp(16px,2.6vh,26px) clamp(20px,5vw,52px) calc(clamp(16px,2.6vh,26px) + env(safe-area-inset-bottom));
+    display:flex;flex-direction:column;gap:clamp(20px,3.5vh,40px);
+  }
+
+  .top{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--muted);
+    padding-bottom:14px;border-bottom:1px solid var(--hair);
+  }
+  .top a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:color .15s ease,border-color .15s ease}
+  .top a:hover,.top a:focus-visible{color:var(--navy);border-bottom-color:var(--navy)}
+  .back{color:var(--navy)!important;font-weight:500}
+
+  .hero h1{margin:0;font-size:clamp(2.4rem,6vw,4rem);line-height:1.0;letter-spacing:-.03em;font-weight:700;color:var(--ink)}
+  .hero h1 span{color:var(--navy)}
+  .hero p{margin:14px 0 0;font-size:clamp(16px,1.6vw,19px);color:var(--muted);line-height:1.45;max-width:52ch}
+
+  .label{
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:15px;color:var(--soft);
+    letter-spacing:.04em;text-transform:lowercase;display:flex;align-items:center;gap:8px;margin-bottom:18px;
+  }
+  .label::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+  /* Сетка экспонатов — масштабируется под будущие приколюхи */
+  .exhibits{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:clamp(20px,3vw,34px)}
+  .exhibit{display:flex;flex-direction:column;gap:12px;min-width:0}
+  .exhibit-meta{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--soft);display:flex;gap:8px;align-items:baseline}
+  .exhibit-meta .num{color:var(--navy);font-weight:500}
+  .exhibit-meta .cap{color:var(--muted)}
+
+  /* ── Терминальный виджет ── */
+  .term{
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+    background:var(--bg);border:1px solid var(--hair);border-radius:14px;overflow:hidden;
+    box-shadow:0 1px 2px rgba(15,23,42,.04),0 16px 34px -16px var(--glow);
+  }
+  .term-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--hair)}
+  .term-bar i{width:10px;height:10px;border-radius:50%;background:var(--hair)}
+  .term-bar .t{margin-left:7px;color:var(--soft);font-size:11.5px;letter-spacing:.01em}
+  .term-body{padding:14px 16px 16px;font-size:13px;line-height:1.72;min-height:148px;color:var(--ink)}
+  .term-body .l{white-space:pre-wrap;word-break:break-word;min-height:1.72em}
+  .term-body .p{color:var(--navy);font-weight:500}
+  .term-body .o{color:var(--muted)}
+  .term-body .c{display:inline-block;width:7px;height:1.05em;vertical-align:-2px;margin-left:1px;background:var(--navy);animation:tblink 1.05s steps(1) infinite}
+  @keyframes tblink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
+
+  footer.foot{
+    margin-top:auto;padding-top:16px;border-top:1px solid var(--hair);
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--soft);
+    display:flex;justify-content:space-between;gap:10px;
+  }
+  footer.foot .v{color:var(--muted)}
+
+  /* ── Пиксельная пыль в нижнем левом углу (1-bit, статика). Зеркалит index.html. ── */
+  .dust{position:fixed;inset:0;z-index:-1;pointer-events:none;color:var(--muted);opacity:.65}
+  .dust svg{position:absolute;width:clamp(70px,10vw,118px);height:auto;shape-rendering:crispEdges}
+  .dust .bl{bottom:0;left:0;transform:scaleY(-1)}
+  @media (prefers-color-scheme: dark){ .dust{opacity:.6} }
+
+  /* ── Плавные переходы между страницами (cross-document View Transitions) ── */
+  @view-transition{navigation:auto}
+
+  @media (prefers-reduced-motion: reduce){
+    ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
+    *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  }
+</style>
+</head>
+<body>
+
+  <!-- Пиксельная пыль/снег в нижнем левом углу (1-bit). Кластер описан один раз, переиспользован через <use>. -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute" focusable="false">
+    <defs>
+      <g id="dust-cluster" fill="currentColor">
+        <rect x="1"  y="1"  width="4" height="4" opacity=".85"/>
+        <rect x="7"  y="3"  width="3" height="3" opacity=".7"/>
+        <rect x="3"  y="8"  width="3" height="3" opacity=".72"/>
+        <rect x="11" y="6"  width="2" height="2" opacity=".5"/>
+        <rect x="6"  y="14" width="2" height="2" opacity=".5"/>
+        <rect x="15" y="3"  width="2" height="2" opacity=".42"/>
+        <rect x="13" y="12" width="2" height="2" opacity=".46"/>
+        <rect x="9"  y="19" width="2" height="2" opacity=".36"/>
+        <rect x="19" y="9"  width="2" height="2" opacity=".34"/>
+        <rect x="17" y="17" width="3" height="3" opacity=".34"/>
+        <rect x="22" y="5"  width="2" height="2" opacity=".3"/>
+        <rect x="24" y="20" width="2" height="2" opacity=".24"/>
+        <rect x="20" y="26" width="2" height="2" opacity=".22"/>
+        <rect x="27" y="13" width="2" height="2" opacity=".24"/>
+        <rect x="29" y="27" width="2" height="2" opacity=".16"/>
+        <rect x="25" y="33" width="2" height="2" opacity=".13"/>
+        <rect x="33" y="23" width="2" height="2" opacity=".14"/>
+        <rect x="14" y="27" width="2" height="2" opacity=".2"/>
+        <rect x="31" y="10" width="2" height="2" opacity=".2"/>
+        <rect x="35" y="33" width="2" height="2" opacity=".1"/>
+        <rect x="12" y="33" width="2" height="2" opacity=".12"/>
+      </g>
+    </defs>
+  </svg>
+
+  <div class="dust" aria-hidden="true">
+    <svg class="bl" viewBox="0 0 40 40"><use href="#dust-cluster"/></svg>
+  </div>
+
+  <div class="app">
+
+    <header class="top">
+      <a class="back" href="/">← rensite</a>
+      <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
+    </header>
+
+    <section class="hero">
+      <h1>При<span>колюхи</span></h1>
+      <p>Песочница мелких экспериментов и интерфейсных приколов. Страница не в навигации — только для своих.</p>
+    </section>
+
+    <section aria-label="Эксперименты">
+      <div class="label">эксперименты</div>
+      <div class="exhibits">
+
+        <article class="exhibit">
+          <div class="exhibit-meta"><span class="num">01</span><span class="cap">терминал с живыми часами по ЕКБ</span></div>
+          <aside class="term" aria-hidden="true">
+            <div class="term-bar"><i></i><i></i><i></i><span class="t">renat@dev — zsh</span></div>
+            <div class="term-body" id="term-body"></div>
+          </aside>
+        </article>
+
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span>$ ls ~/fun</span>
+      <span class="v">1 приколюха · копилка пополняется</span>
+    </footer>
+
+  </div>
+
+<script>
+(function(){
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Терминальный виджет: печать строк + живые часы по ЕКБ ── */
+  (function initTerm(){
+    const body = document.getElementById('term-body');
+    if (!body) return;
+    function ekbTime(){
+      try{ return new Intl.DateTimeFormat('ru-RU',{timeZone:'Asia/Yekaterinburg',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date()); }
+      catch(e){ return new Date().toLocaleTimeString('ru-RU',{hour12:false}); }
+    }
+    const liveOut = () => ekbTime() + '  ·  Yekaterinburg';
+    const LINES = [
+      { cmd:'whoami',        out:'renat · AI engineer' },
+      { cmd:'cat stack.txt', out:'LLM · agents · RAG · automation' },
+      { cmd:'date',          out:liveOut(), live:true },
+    ];
+
+    let liveSpan = null;
+    const rows = LINES.map(function(L){
+      const cmdRow = document.createElement('div'); cmdRow.className = 'l';
+      const p = document.createElement('span'); p.className = 'p'; p.textContent = '$ ';
+      const c = document.createElement('span'); c.className = 'cmd';
+      cmdRow.appendChild(p); cmdRow.appendChild(c);
+      const outRow = document.createElement('div'); outRow.className = 'l';
+      const o = document.createElement('span'); o.className = 'o';
+      outRow.appendChild(o);
+      body.appendChild(cmdRow); body.appendChild(outRow);
+      if (L.live) liveSpan = o;
+      return { c:c, o:o, L:L };
+    });
+    const cursor = document.createElement('span'); cursor.className = 'c';
+
+    function startClock(){
+      if (!liveSpan) return;
+      setInterval(function(){ liveSpan.textContent = liveOut(); }, 1000);
+    }
+
+    if (reduce){
+      rows.forEach(function(r){ r.c.textContent = r.L.cmd; r.o.textContent = r.L.out; });
+      body.appendChild(cursor); startClock(); return;
+    }
+
+    const steps = [];
+    rows.forEach(function(r){
+      r.L.cmd.split('').forEach(function(ch){ steps.push(function(){ r.c.textContent += ch; }); });
+      steps.push(function(){});                       // короткая пауза перед выводом
+      r.L.out.split('').forEach(function(ch){ steps.push(function(){ r.o.textContent += ch; }); });
+    });
+    let i = 0;
+    (function tick(){
+      if (i >= steps.length){ body.appendChild(cursor); startClock(); return; }
+      steps[i++]();
+      setTimeout(tick, 24 + Math.random()*30);
+    })();
+  })();
+})();
+</script>
+</body>
+</html>

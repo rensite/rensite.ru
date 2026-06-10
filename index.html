@@ -69,6 +69,8 @@
   .topright{display:flex;gap:14px;align-items:center}
   .topright a{text-decoration:none;border-bottom:1px solid transparent;transition:color var(--dur-fast) ease,border-color var(--dur-fast) ease}
   .topright a:hover,.topright a:focus-visible{color:var(--navy);border-bottom-color:var(--navy)}
+  .kbd{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;color:var(--soft);background:transparent;border:1px solid var(--hair);border-radius:6px;padding:2px 7px;cursor:pointer;transition:color var(--dur-fast) ease,border-color var(--dur-fast) ease}
+  .kbd:hover,.kbd:focus-visible{color:var(--navy);border-color:var(--navy)}
   .pulse{display:inline-flex;align-items:center;gap:6px;color:var(--navy)}
   .pulse::before{
     content:"";width:6px;height:6px;border-radius:50%;background:#22C55E;flex-shrink:0;
@@ -99,6 +101,15 @@
     }
   }
   .hero-sub{margin:16px 0 0;font-size:clamp(16px,1.7vw,20px);color:var(--muted);line-height:1.45;max-width:50ch}
+
+  /* ── Статус/инсайт недели под hero ── */
+  .insight{max-width:680px}
+  .insight ul{list-style:none;margin:0;padding:0}
+  .st-meta{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:var(--soft)}
+  .st-date{color:var(--muted)}
+  .st-tag{border:1px solid var(--hair);border-radius:999px;padding:1px 8px;letter-spacing:.03em;text-transform:lowercase}
+  .st-text{margin:8px 0 0;font-size:17.5px;line-height:1.5;color:var(--ink);max-width:62ch}
+  .insight .more{margin-top:10px;padding-top:0}
 
   /* Content band — 3 dense columns */
   .band{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3.4vw,52px)}
@@ -151,8 +162,17 @@
   .links a:hover .n,.links a:focus-visible .n{color:var(--navy)}
   .links a:hover .d,.links a:focus-visible .d{color:var(--ink)}  /* «скоро»-карточка: некликабельная, вместо мёртвого href="#" */
   .links .dead{display:flex;flex-direction:column;gap:4px;padding:12px 0;color:var(--muted);cursor:default}
-  .links .dead .n{color:var(--muted)}
+  .links .dead .n{color:var(--ink)}
   .links .soon{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:500;color:var(--soft);border:1px solid var(--hair);border-radius:999px;padding:1px 7px;letter-spacing:.02em;text-transform:lowercase}
+  .chip-live{color:#16A34A;border-color:#16A34A55}
+  .chip-wip{color:#D97706;border-color:#D9770655}
+  @media (prefers-color-scheme: dark){ .chip-live{color:#4ADE80;border-color:#4ADE8055} .chip-wip{color:#FBBF24;border-color:#FBBF2455} }
+  .links .m{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:var(--soft);letter-spacing:.02em}
+  /* статусы микроблога в колонке */
+  .col .feed-col{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+  .col .feed-col .st-row{border-bottom:1px solid var(--hair);padding:12px 0}
+  .col .feed-col .st-row:last-child{border-bottom:none}
+  .col .feed-col .st-text{font-size:15.5px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 
   /* «показать все» → раздел */
   .more{
@@ -163,6 +183,9 @@
   .more::after{content:"→";font-size:13px;transition:transform var(--dur-fast) var(--ease-snap)}
   .more:hover,.more:focus-visible{opacity:.72}
   .more:hover::after,.more:focus-visible::after{transform:translateX(3px)}
+  .more.more-end{color:var(--soft);cursor:default}
+  .more.more-end::after{content:""}
+  .more.more-end:hover{opacity:1}
 
   .col .label:not(:first-child){margin-top:6px}
 
@@ -177,6 +200,20 @@
   .stat{display:flex;gap:6px;align-items:baseline}
   .stat .k{color:var(--soft)}
   .stat .v{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+
+  /* ── Интерактивный терминал в футере ── */
+  .telemetry .head{background:none;border:none;padding:0;cursor:pointer;color:var(--soft);font:inherit;letter-spacing:.04em;display:inline-flex;align-items:center;transition:color var(--dur-fast) ease}
+  .telemetry .head:hover,.telemetry .head:focus-visible{color:var(--navy)}
+  .telemetry .head .cur{width:7px;height:13px;margin-left:7px;background:var(--navy);animation:shblink 1.1s steps(1) infinite}
+  @keyframes shblink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
+  @media (prefers-reduced-motion: reduce){ .telemetry .head .cur{animation:none} }
+  .shell{width:100%;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;line-height:1.7;color:var(--muted);border:1px solid var(--hair);border-radius:12px;padding:12px 14px;margin-top:4px}
+  .sh-out{max-height:220px;overflow:auto;white-space:pre-wrap;word-break:break-word}
+  .sh-out .in{color:var(--ink)}
+  .sh-out .nv{color:var(--navy)}
+  .sh-line{display:flex;gap:8px;align-items:center;margin-top:2px}
+  .sh-p{color:var(--navy);white-space:nowrap}
+  .sh-line input{flex:1;min-width:0;background:transparent;border:none;outline:none;color:var(--ink);font:inherit;padding:0}
 
   /* ── Пиксельная пыль по углам (1-bit, статика) ── */
   .dust{position:fixed;inset:0;z-index:-1;pointer-events:none;color:var(--muted);opacity:.65}
@@ -251,6 +288,7 @@
     <header class="topline">
       <span class="greeting" id="greeting"></span>
       <span class="topright">
+        <button class="kbd" type="button" title="Поиск по сайту" onclick="window.KPAL&&KPAL.open()">⌘K</button>
         <span class="pulse">live</span>
         <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
       </span>
@@ -263,10 +301,21 @@
         <p class="hero-sub anim d2">Собираю продукты на базе LLM: ассистенты, агенты, RAG-системы и автоматизации.</p>
       </section>
 
+      <section class="insight anim d2" aria-label="Инсайт недели">
+        <ul id="insight-feed">
+          <!-- фолбэк без JS; свежий статус рендерится из /content.json -->
+          <li class="st-row">
+            <span class="st-meta"><span class="st-date">10 июн</span><span class="st-tag">инсайт недели</span></span>
+            <p class="st-text">Лучший промпт — тот, который не понадобился: половина магии агентов делается нормальной декомпозицией задачи.</p>
+          </li>
+        </ul>
+        <a class="more" href="/status/">микроблог</a>
+      </section>
+
       <div class="band">
 
         <section class="col anim d3" aria-label="Сейчас">
-          <div class="label">now</div>
+          <div class="label">сейчас</div>
           <ul class="lines">
             <li>Собираю агентов для Bizdevim.</li>
             <li>Пишу книгу по «взлому».</li>
@@ -275,45 +324,37 @@
         </section>
 
         <section class="col anim d4" aria-label="Проекты">
-          <div class="label">projects</div>
+          <div class="label">проекты</div>
           <ul class="links">
             <li><a href="/music/">
-              <span class="n">гиды по музыке</span>
-              <span class="d">Michael Jackson · Jackie Chan · Eminem</span>
+              <span class="n">гиды по музыке <span class="soon chip-live">live</span></span>
+              <span class="d">разбор больших дискографий</span>
+              <span class="m">frontend · данные · 2025—</span>
             </a></li>
             <li><span class="dead">
-              <span class="n">project one <span class="soon">скоро</span></span>
-              <span class="d">AI-ассистент для поддержки</span>
+              <span class="n">агенты для Bizdevim <span class="soon chip-wip">в работе</span></span>
+              <span class="d">мультиагентная система: ресёрч, лиды, аутрич</span>
+              <span class="m">agents · LLM · 2026</span>
             </span></li>
             <li><span class="dead">
-              <span class="n">project two <span class="soon">скоро</span></span>
-              <span class="d">Агент для веб-ресёрча</span>
-            </span></li>
-            <li><span class="dead">
-              <span class="n">project three <span class="soon">скоро</span></span>
-              <span class="d">RAG поверх документов</span>
+              <span class="n">книга по «взлому» <span class="soon chip-wip">в работе</span></span>
+              <span class="d">о взломе как методе мышления — подробности позже ;)</span>
+              <span class="m">writing · 2026</span>
             </span></li>
           </ul>
-          <a class="more" href="/projects/">показать все</a>
+          <span class="more more-end" id="more-projects">остальное не покажу</span>
         </section>
 
-        <section class="col anim d5" aria-label="Заметки">
-          <div class="label">notes</div>
-          <ul class="links">
-            <li><span class="dead">
-              <span class="n">note one <span class="soon">скоро</span></span>
-              <span class="d">Как я строю агентов</span>
-            </span></li>
-            <li><span class="dead">
-              <span class="n">note two <span class="soon">скоро</span></span>
-              <span class="d">Промптинг на практике</span>
-            </span></li>
-            <li><span class="dead">
-              <span class="n">note three <span class="soon">скоро</span></span>
-              <span class="d">Стек для AI-продуктов</span>
-            </span></li>
+        <section class="col anim d5" aria-label="Микроблог">
+          <div class="label">микроблог</div>
+          <ul class="feed-col" id="feed-col">
+            <!-- фолбэк без JS; свежие статусы (после тизера) рендерятся из /content.json -->
+            <li class="st-row">
+              <span class="st-meta"><span class="st-date">3 июн</span><span class="st-tag">инсайт недели</span></span>
+              <p class="st-text">Агент с пятью инструментами надёжнее агента с пятьюдесятью. Каждый лишний tool — минус процент к точности.</p>
+            </li>
           </ul>
-          <a class="more" href="/notes/">показать все</a>
+          <a class="more" href="/status/">все статусы</a>
         </section>
 
       </div>
@@ -321,11 +362,15 @@
     </main>
 
     <footer class="telemetry anim d5" aria-label="Статистика разработчика">
-      <span class="head">$ dev.stats --today</span>
+      <button class="head" id="shellToggle" type="button" title="Открыть терминал">$ dev.stats --today<span class="cur" aria-hidden="true"></span></button>
       <div class="stats">
         <div class="stat"><span class="k">commits</span><span class="v" id="s-commits">0</span></div>
         <div class="stat"><span class="k">hrs coded</span><span class="v" id="s-hours">0.0</span></div>
         <div class="stat"><span class="k">coffee</span><span class="v" id="s-coffee">0</span></div>
+      </div>
+      <div class="shell" id="shell" hidden>
+        <div class="sh-out" id="shOut" aria-live="polite"></div>
+        <div class="sh-line"><label class="sh-p" for="shIn">renat@rensite ~ $</label><input id="shIn" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Командная строка"></div>
       </div>
     </footer>
 
@@ -334,10 +379,13 @@
 <script src="/cards.js" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    var cls = { name: 'n', desc: 'd', arrow: 'arrow', dead: 'dead', soon: 'soon' };
+    var cls = { name: 'n', desc: 'd', meta: 'm', arrow: 'arrow', dead: 'dead', soon: 'soon' };
     renderCards([
-      { sel: '[aria-label="Проекты"] .links', key: 'projects', limit: 4, cls: cls },
-      { sel: '[aria-label="Заметки"] .links', key: 'notes', limit: 3, cls: cls }
+      { sel: '[aria-label="Проекты"] .links', key: 'projects', limit: 4, cls: cls }
+    ]);
+    renderStatuses([
+      { sel: '#insight-feed', limit: 1 },
+      { sel: '#feed-col', limit: 3, skip: 1 }
     ]);
   });
 </script>
@@ -432,6 +480,73 @@
   }
 })();
 
+/* Интерактивный терминал в футере: ls -a находит скрытую /fun/ */
+(function(){
+  const tg=document.getElementById('shellToggle'), sh=document.getElementById('shell'),
+        out=document.getElementById('shOut'), inp=document.getElementById('shIn');
+  if(!tg||!sh) return;
+  const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const FILES={
+    'now.txt':'Собираю агентов для Bizdevim.\nПишу книгу по «взлому».\nСлушаю музыку.',
+    'book.txt':'Книга по «взлому» — в работе. Подробности позже ;)'
+  };
+  const DIRS={music:'/music/',projects:'/projects/',notes:'/status/',status:'/status/','~':'/','..':'/',fun:'/fun/'};
+  let hist=[],hi=0;
+  function line(html){const d=document.createElement('div');d.innerHTML=html;out.appendChild(d);out.scrollTop=out.scrollHeight;}
+  function run(raw){
+    const cmd=raw.trim(); if(!cmd) return;
+    line('<span class="nv">$</span> <span class="in">'+esc(cmd)+'</span>');
+    hist.push(cmd); hi=hist.length;
+    const parts=cmd.split(/\s+/), c=parts[0], args=parts.slice(1), a=args.join(' ');
+    switch(c){
+      case 'help':
+        line('команды: ls · cd &lt;dir&gt; · cat &lt;file&gt; · whoami · date · stats · clear · exit');
+        line('подсказки: у ls есть флаг -a · ⌘K — поиск по сайту и трекам'); break;
+      case 'ls':{
+        const vis='music/  projects/  status/  now.txt  book.txt  seed.txt  status.log';
+        if(args.indexOf('-a')!==-1){ line('<span class="nv">.fun/</span>  '+vis); line('// скрытая папка! cd fun'); }
+        else line(vis);
+        break;
+      }
+      case 'cd':{
+        const d=(a||'~').replace(/\/$/,'');
+        if(DIRS[d]){ line('→ '+DIRS[d]); setTimeout(()=>{location.href=DIRS[d];},250); }
+        else line('cd: нет такой папки: '+esc(d));
+        break;
+      }
+      case 'cat':
+        if(a==='status.log'){
+          if(window.loadContent) loadContent().then(d=>{(d.statuses||[]).slice(0,3).forEach(st=>line(esc(st.date+'  ['+(st.tag||'статус')+']  '+st.text)));}).catch(()=>line('cat: status.log: недоступен'));
+          else line('cat: status.log: недоступен');
+        }
+        else if(a==='seed.txt'){
+          fetch('/seed.txt').then(r=>r.ok?r.text():Promise.reject()).then(t=>{t.replace(/\s+$/,'').split(/\r?\n/).forEach(l=>line(esc(l)));}).catch(()=>line('cat: seed.txt: недоступен'));
+        }
+        else FILES[a]?line(esc(FILES[a])):line('cat: '+esc(a||'?')+': нет такого файла');
+        break;
+      case 'whoami': line('renat · AI engineer · собираю продукты на LLM'); break;
+      case 'date': line(new Date().toLocaleString('ru-RU')); break;
+      case 'stats': line('commits '+document.getElementById('s-commits').textContent+' · hrs '+document.getElementById('s-hours').textContent+' · coffee '+document.getElementById('s-coffee').textContent); break;
+      case 'sudo': line('nice try.'); break;
+      case 'clear': out.innerHTML=''; break;
+      case 'exit': toggle(false); break;
+      default: line('zsh: command not found: '+esc(c)+' — попробуй help');
+    }
+  }
+  function toggle(show){
+    const on=(show===undefined)?sh.hidden:show;
+    sh.hidden=!on;
+    if(on){ if(!out.childElementCount) line('интерактивный терминал · введи help'); inp.focus(); }
+  }
+  tg.addEventListener('click',()=>toggle());
+  inp.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){ run(inp.value); inp.value=''; }
+    else if(e.key==='ArrowUp'){ if(hi>0){hi--;inp.value=hist[hi]||'';e.preventDefault();} }
+    else if(e.key==='ArrowDown'){ if(hi<hist.length){hi++;inp.value=hist[hi]||'';} }
+    else if(e.key==='Escape'){ toggle(false); }
+  });
+})();
+
 /* Console-приветствие */
 (function(){
   if (typeof console === 'undefined' || !console.log) return;
@@ -453,5 +568,6 @@
   console.log('%c// open for AI projects — agents, RAG, LLM products', cMute);
 })();
 </script>
+<script src="/palette.js" defer></script>
 </body>
 </html>

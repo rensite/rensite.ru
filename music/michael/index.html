@@ -102,6 +102,19 @@
     text-transform:uppercase;letter-spacing:.14em;color:var(--gold);border:1px solid #d4af3755;border-radius:30px;
     padding:3px 9px;line-height:1;white-space:nowrap;transform:translateY(-2px);}
   .era-film .trk{padding-left:2px;}
+  /* прогресс прослушивания маршрута (нумерованные треки 01–24) */
+  .mj-progress{display:flex;align-items:center;gap:var(--s-3);max-width:760px;margin:var(--s-6) auto var(--s-2);
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-mute);white-space:nowrap;}
+  .mj-progress .bar{flex:1;height:3px;background:#d4af3722;border-radius:2px;overflow:hidden;}
+  .mj-progress .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#8a6d1f,var(--gold),var(--gold-bright));transition:width .55s cubic-bezier(.16,1,.3,1);}
+  .trkrow{display:grid;grid-template-columns:26px 1fr;align-items:center;gap:10px;border-bottom:1px solid var(--rule);}
+  .trkrow a.trk{border-bottom:none;}
+  .trkrow .tchk{width:20px;height:20px;flex:none;border:1px solid #d4af3755;background:transparent;color:var(--gold-bright);
+    border-radius:6px;cursor:pointer;font-size:12px;line-height:1;padding:0;transition:border-color .2s,background .2s;}
+  .trkrow .tchk:hover{border-color:var(--gold);}
+  .trkrow.done .tchk{border-color:var(--gold);background:#d4af3718;}
+  .trkrow.done a.trk .tname{color:var(--ink-mute);}
+  @media(max-width:760px){ .trkrow{grid-template-columns:22px 1fr;gap:8px;} }
   /* spoiler toggle for the "ещё в фильме" list (прячет описания сцен) */
   .spoiler{margin-top:var(--s-3);}
   .spoiler:not([open]) .era-desc,.spoiler:not([open]) .tracklist{display:none;}
@@ -200,7 +213,7 @@
   .footer-mark{font-family:'Fraunces',serif;font-size:var(--fs-lg);font-weight:400;letter-spacing:.04em;
     background:linear-gradient(180deg,#fff,var(--gold-bright),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
   .footer-tag{max-width:42ch;margin:var(--s-2) auto 0;color:var(--ink-soft);}
-  .footer-links{display:flex;justify-content:center;gap:var(--s-3);margin-top:var(--s-6);}
+  .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s-3);margin-top:var(--s-6);}
   .footer-links a{font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;
     color:var(--gold-bright);text-decoration:none;border:1px solid #d4af3744;border-radius:30px;padding:10px 20px;
     transition:background .25s,border-color .25s,color .25s,transform .25s;}
@@ -471,10 +484,12 @@
     <div class="footer-links">
       <a target="_blank" rel="noopener" href="https://www.youtube.com/@MichaelJackson">Оф. канал YouTube</a>
       <a data-yt="3zOLzsbOleM" data-title="Трейлер «Michael» (2026)" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+2026+film+trailer">Трейлер фильма</a>
+      <a href="/music/jackie-chan/">Гид: Jackie Chan</a>
+      <a href="/music/linkin-park/">Гид: Linkin Park</a>
     </div>
     <p class="footer-fine">King of Pop · 1958—2009</p>
     <p class="footer-note">Гид живой и наверняка неидеальный. Нашли ошибку, спорный факт или трек, который must — напишите <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>, поправим вместе. Спасибо, что уделили время ♪</p>
-    <p class="footer-disc">Все права на оригинальные произведения — музыку, фильмы и изображения постеров — принадлежат их правообладателям. Этот сайт и подборка — независимый некоммерческий фан-проект автора (© 2026 rensite · <a href="https://renatgalin.pro" target="_blank" rel="noopener">renatgalin.pro</a>), не связанный с правообладателями.</p>
+    <p class="footer-disc">Все права на оригинальные произведения — музыку, фильмы и изображения постеров — принадлежат их правообладателям. Этот сайт и подборка — независимый некоммерческий фан-проект автора (© 2026 rensite), не связанный с правообладателями.</p>
   </div>
 </footer>
 
@@ -491,12 +506,48 @@
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="/music/tracks.js"></script>
 <script>
   gsap.registerPlugin(ScrollTrigger);
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // auto-tag more elements for reveal so everything animates in on scroll
   document.querySelectorAll('a.trk, .tl-item, .tl-finale, .era-desc').forEach(el=>el.classList.add('reveal'));
+
+  // ── Прогресс прослушивания: чекбоксы на нумерованных треках маршрута (01–24) ──
+  // Оборачиваем до запуска ScrollTrigger, чтобы анимация .trk не сбилась.
+  (function(){
+    const M = window.RENSITE_MUSIC; if(!M || !M.progress) return;
+    const seen = M.progress('mj-listened');
+    const route = Array.prototype.filter.call(
+      document.querySelectorAll('#eras .tracklist a.trk[data-yt]'),
+      a => { const n=a.querySelector('.tnum'); return n && /^\d+$/.test(n.textContent.trim()); }
+    );
+    if(!route.length) return;
+    const total = route.length;
+    const head = document.querySelector('#eras .sec-head');
+    const pbar = document.createElement('div'); pbar.className='mj-progress';
+    pbar.innerHTML='<span id="mjp-label"></span><span class="bar"><i id="mjp-fill"></i></span>';
+    if(head) head.insertAdjacentElement('afterend', pbar);
+    const fill=pbar.querySelector('#mjp-fill'), label=pbar.querySelector('#mjp-label');
+    function paint(){ const n=route.filter(a=>seen.has(a.dataset.yt)).length;
+      label.textContent='прослушано '+n+' из '+total; fill.style.width=(n/total*100)+'%'; }
+    route.forEach(a=>{
+      const key=a.dataset.yt;
+      const row=document.createElement('div'); row.className='trkrow'+(seen.has(key)?' done':'');
+      a.parentNode.insertBefore(row,a);
+      const chk=document.createElement('button'); chk.type='button'; chk.className='tchk';
+      chk.setAttribute('aria-pressed', String(seen.has(key)));
+      chk.setAttribute('aria-label','Отметить прослушанным'); chk.textContent=seen.has(key)?'✓':'';
+      row.appendChild(chk); row.appendChild(a);
+      chk.addEventListener('click',e=>{ e.preventDefault();
+        const on=seen.toggle(key); row.classList.toggle('done',on);
+        chk.setAttribute('aria-pressed',String(on)); chk.textContent=on?'✓':''; paint(); });
+      a.addEventListener('click',()=>{ if(seen.add(key)){ row.classList.add('done');
+        chk.setAttribute('aria-pressed','true'); chk.textContent='✓'; paint(); } });  // ▶ открыл видео → засчитано
+    });
+    paint();
+  })();
 
   if(!reduced){
     gsap.set('.reveal',{y:30,opacity:0});
@@ -630,5 +681,6 @@
     document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
   })();
 </script>
+<script src="/palette.js" defer></script>
 </body>
 </html>

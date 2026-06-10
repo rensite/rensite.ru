@@ -41,27 +41,94 @@
   .top a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:color .15s ease,border-color .15s ease}
   .top a:hover,.top a:focus-visible{color:var(--navy);border-bottom-color:var(--navy)}
   .back{color:var(--navy)!important;font-weight:500}
+  .kbd{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;color:var(--soft);background:transparent;border:1px solid var(--hair);border-radius:6px;padding:2px 7px;cursor:pointer;transition:color .15s ease,border-color .15s ease}
+  .kbd:hover,.kbd:focus-visible{color:var(--navy);border-color:var(--navy)}
 
   .hero h1{margin:0;font-size:clamp(2.4rem,6vw,4rem);line-height:1.0;letter-spacing:-.03em;font-weight:700;color:var(--ink)}
   .hero h1 span{color:var(--navy)}
   .hero p{margin:14px 0 0;font-size:clamp(16px,1.6vw,19px);color:var(--muted);line-height:1.45;max-width:46ch}
 
-  section.list{display:flex;flex-direction:column;gap:12px}
+  section.list{display:flex;flex-direction:column;gap:14px}
   .label{
     font-family:'JetBrains Mono',ui-monospace,monospace;font-size:15px;color:var(--soft);
     letter-spacing:.04em;text-transform:lowercase;display:flex;align-items:center;gap:8px;
   }
   .label::after{content:"";flex:1;height:1px;background:var(--hair)}
 
-  ul.items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-  ul.items li{border-bottom:1px solid var(--hair)}
-  ul.items li:last-child{border-bottom:none}
-  ul.items a{display:flex;align-items:baseline;gap:10px;padding:15px 0;text-decoration:none;color:var(--ink);transition:color .15s ease}
-  ul.items a:hover,ul.items a:focus-visible{color:var(--navy)}
-  ul.items a:hover .desc,ul.items a:focus-visible .desc{color:var(--ink)}  ul.items .name{font-size:19px;font-weight:600;letter-spacing:-0.2px;flex-shrink:0}
-  ul.items .desc{font-size:15.5px;color:var(--muted);font-weight:400;margin-left:auto;text-align:right;transition:color .15s ease;line-height:1.4}  /* бейдж «скоро» для готовящихся гидов */
-  ul.items .badge{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.04em;text-transform:lowercase;
-    color:var(--soft);border:1px solid var(--hair);border-radius:30px;padding:2px 9px;margin-left:8px;vertical-align:middle;font-weight:400}
+  /* ── Панель хаба: случайный трек + сводный прогресс ── */
+  .hubbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:4px}
+  .rnd{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;letter-spacing:.03em;color:var(--navy);
+    background:transparent;border:1px solid var(--hair);border-radius:30px;padding:8px 16px;cursor:pointer;
+    transition:border-color .15s ease,color .15s ease,background .15s ease;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .rnd:hover,.rnd:focus-visible{border-color:var(--navy);background:var(--navy);color:var(--bg)}
+  .hubprog{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:var(--soft);white-space:nowrap}
+  .hubprog .bar{width:120px;height:3px;background:var(--hair);border-radius:2px;overflow:hidden}
+  .hubprog .bar i{display:block;height:100%;width:0;background:var(--navy);border-radius:2px;transition:width .55s cubic-bezier(.16,1,.3,1)}
+
+  /* ── Витрина гидов: карточка в цвете «мира» гида ── */
+  .guides{display:flex;flex-direction:column;gap:14px}
+  .gcard{
+    position:relative;display:flex;gap:20px;align-items:center;justify-content:space-between;
+    padding:20px 24px;border:1px solid var(--hair);border-radius:16px;overflow:hidden;
+    text-decoration:none;color:var(--ink);
+    transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease;
+  }
+  .gcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gc)}
+  .gcard::after{content:"";position:absolute;right:-50px;top:-50px;width:190px;height:190px;border-radius:50%;
+    background:radial-gradient(circle,var(--gc),transparent 70%);opacity:.08;pointer-events:none;z-index:1}
+  /* Тематический фон: постер (.gc-art[style]) или акцентная заливка «мира» (.tint).
+     В обоих случаях справа плотнее, слева плавно гаснет — текст остаётся читаем. */
+  .gc-art{position:absolute;inset:0;z-index:0;pointer-events:none;
+    background-size:cover;background-position:center right;opacity:.30;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,transparent 32%,#000 92%);
+            mask-image:linear-gradient(90deg,transparent 0%,transparent 32%,#000 92%);
+    transition:opacity .18s ease}
+  .gc-art.tint{opacity:.46;background:
+    radial-gradient(160% 160% at 100% 0%,var(--gc) 0%,transparent 62%),
+    linear-gradient(100deg,transparent 32%,var(--gc) 128%)}
+  /* Чёрный «мир» (mono) — заливка сдержаннее, чтобы текст справа читался */
+  .gcard.mono .gc-art.tint{opacity:.22}
+  /* Иероглиф/монограмма «мира» в акцентном цвете — крупно у правого края */
+  .gc-motif{position:absolute;z-index:0;right:18px;top:50%;transform:translateY(-50%);
+    font-family:"Hiragino Sans GB","PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+    font-weight:800;font-size:96px;line-height:.85;color:var(--gc);opacity:.26;
+    pointer-events:none;white-space:nowrap;letter-spacing:.02em;transition:opacity .18s ease;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 72%);
+            mask-image:linear-gradient(90deg,transparent 0%,#000 72%)}
+  a.gcard:hover .gc-art,a.gcard:focus-visible .gc-art{opacity:.40}
+  a.gcard:hover .gc-art.tint,a.gcard:focus-visible .gc-art.tint{opacity:.58}
+  a.gcard:hover .gcard.mono .gc-art.tint,.gcard.mono:hover .gc-art.tint,.gcard.mono:focus-visible .gc-art.tint{opacity:.30}
+  a.gcard:hover .gc-motif,a.gcard:focus-visible .gc-motif{opacity:.34}
+  /* Eminem — чёрный «мир»; в тёмной теме перекрашиваем в светлый, чтобы не пропал */
+  @media (prefers-color-scheme: dark){
+    .gcard.mono::before{background:#cbd5e1}
+    .gcard.mono .gc-motif{color:#cbd5e1}
+    .gcard.mono .gc-art.tint{opacity:.26;background:
+      radial-gradient(160% 160% at 100% 0%,#cbd5e1 0%,transparent 62%),
+      linear-gradient(100deg,transparent 32%,#cbd5e1 128%)}
+    .gcard.mono:hover,.gcard.mono:focus-visible{border-color:#cbd5e1}
+  }
+  a.gcard:hover,a.gcard:focus-visible{transform:translateY(-2px);border-color:var(--gc);box-shadow:0 14px 34px -18px var(--gc)}
+  .gc-main{position:relative;z-index:2;min-width:0;display:flex;flex-direction:column;gap:7px}
+  .gc-head{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap}
+  .gc-name{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+  .gc-native{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:var(--soft);letter-spacing:.05em}
+  .gc-badge{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:.05em;text-transform:lowercase;
+    display:inline-flex;align-items:center;gap:5px;border:1px solid var(--hair);border-radius:30px;padding:2px 9px;color:var(--soft)}
+  .gc-badge.live{color:#16A34A;border-color:#16A34A44}
+  .gc-badge.live::before{content:"";width:5px;height:5px;border-radius:50%;background:#16A34A}
+  .gc-hook{font-size:15px;color:var(--muted);line-height:1.45;max-width:56ch}
+  .gc-stats{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:var(--soft);letter-spacing:.02em}
+  .gcard.soon{opacity:.7}
+  .gcard.soon:hover,.gcard.soon:focus-visible{opacity:.88}
+  .gcard.soon::after{opacity:.04}
+  @media (prefers-color-scheme: dark){ .gc-badge.live{border-color:#22C55E55} .gc-art{opacity:.34} a.gcard:hover .gc-art{opacity:.44} .gc-art.tint{opacity:.58} .gc-motif{opacity:.34} }
+  @media(max-width:560px){
+    .gcard{flex-direction:column;align-items:stretch;gap:13px;padding:18px 20px}
+    .gc-art{opacity:.15;-webkit-mask-image:linear-gradient(90deg,transparent 0%,transparent 18%,#000 96%);mask-image:linear-gradient(90deg,transparent 0%,transparent 18%,#000 96%)}
+    .gc-art.tint{opacity:.16}
+    .gc-motif{font-size:72px;opacity:.11;right:12px}
+  }
 
   footer.foot{
     margin-top:auto;padding-top:16px;border-top:1px solid var(--hair);
@@ -124,7 +191,10 @@
 
     <header class="top">
       <a class="back" href="/">← rensite</a>
-      <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
+      <span style="display:flex;gap:14px;align-items:center">
+        <button class="kbd" type="button" title="Поиск по сайту и трекам" onclick="window.KPAL&&KPAL.open()">⌘K</button>
+        <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
+      </span>
     </header>
 
     <section class="hero">
@@ -132,35 +202,79 @@
       <p>Маршруты сквозь дискографии — что слушать и смотреть, по порядку. Я ещё и меломан ;)</p>
     </section>
 
-    <section class="list" aria-label="Артисты">
-      <div class="label">артисты</div>
-      <ul class="items">
-        <li>
-          <a href="/music/michael/">
-            <span class="name">Michael Jackson</span>
-            <span class="desc">гид к фильму: эпохи, треки и кино — слушать и смотреть прямо тут</span>
-          </a>
-        </li>
-        <li>
-          <a href="/music/jackie-chan/">
-            <span class="name">Jackie Chan</span>
-            <span class="desc">дискография: 160+ песен на пяти языках</span>
-          </a>
-        </li>
-        <li>
-          <a href="/music/eminem/">
-            <span class="name">Eminem <span class="badge">скоро</span></span>
-            <span class="desc">маршрут сквозь альбомы — готовится</span>
-          </a>
-        </li>
-      </ul>
+    <section class="list" aria-label="Гиды">
+      <div class="label">гиды</div>
+      <div class="hubbar">
+        <button class="rnd" id="rndTrack" type="button">▶ случайный трек</button>
+        <div class="hubprog" id="hubProg"></div>
+      </div>
+      <div class="guides" id="guides">
+        <!-- фолбэк без JS: ссылки на гиды; карточки с прогрессом рендерятся из реестра -->
+        <a class="gcard" href="/music/michael/" style="--gc:#d4af37"><span class="gc-art" style="background-image:url(/music/michael/posters/micheal.jpeg)"></span><div class="gc-main"><div class="gc-head"><span class="gc-name">Michael Jackson</span></div><p class="gc-hook">Маршрут от Jackson 5 до Bad — музыка и кино.</p></div></a>
+        <a class="gcard" href="/music/jackie-chan/" style="--gc:#cd2c24"><span class="gc-art tint"></span><span class="gc-motif">成龍</span><div class="gc-main"><div class="gc-head"><span class="gc-name">Jackie Chan</span></div><p class="gc-hook">166 песен на пяти языках за сорок лет.</p></div></a>
+        <a class="gcard mono" href="/music/linkin-park/" style="--gc:#16181d"><span class="gc-art tint"></span><span class="gc-motif">LP</span><div class="gc-main"><div class="gc-head"><span class="gc-name">Linkin Park</span></div><p class="gc-hook">Корни, сайд-проекты и возвращение — вся дуга.</p></div></a>
+        <a class="gcard soon mono" href="/music/eminem/" style="--gc:#16181d"><span class="gc-art tint"></span><span class="gc-motif">Ǝ</span><div class="gc-main"><div class="gc-head"><span class="gc-name">Eminem</span></div><p class="gc-hook">Маршрут сквозь альбомы — готовится.</p></div></a>
+      </div>
     </section>
 
     <footer class="foot">
       <span>$ ls ~/music</span>
-      <span class="v">2 коллекции · обновляется</span>
+      <span class="v" id="foot-count">обновляется</span>
     </footer>
 
   </div>
+<script src="/music/tracks.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var M = window.RENSITE_MUSIC; if (!M || !M.GUIDES) return;
+  var esc = function(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); };
+  var html = M.GUIDES.map(function(g){
+    var soon = g.status !== 'live';
+    var badge = soon
+      ? '<span class="gc-badge">скоро</span>'
+      : '<span class="gc-badge live">live</span>';
+    var art = g.img
+      ? '<span class="gc-art" style="background-image:url('+g.img+')"></span>'
+      : '<span class="gc-art tint"></span>';
+    if (g.motif) art += '<span class="gc-motif">'+esc(g.motif)+'</span>';
+    return '<a class="gcard'+(soon?' soon':'')+(g.mono?' mono':'')+'" href="'+g.url+'" style="--gc:'+g.accent+'">'
+      + art
+      + '<div class="gc-main"><div class="gc-head"><span class="gc-name">'+esc(g.name)+'</span>'
+      + '<span class="gc-native">'+esc(g.native)+'</span>'+badge+'</div>'
+      + '<p class="gc-hook">'+esc(g.hook)+'</p>'
+      + '<div class="gc-stats">'+esc(g.stats)+'</div></div>'
+      + '</a>';
+  }).join('');
+  document.getElementById('guides').innerHTML = html;
+  var liveGuides = M.GUIDES.filter(function(g){ return g.status==='live'; });
+  document.getElementById('foot-count').textContent = M.GUIDES.length+' гида · '+liveGuides.length+' готовы';
+
+  /* Сводный прогресс по всем готовым гидам */
+  var hp = document.getElementById('hubProg');
+  var total = liveGuides.reduce(function(s,g){ return s + g.total; }, 0);
+  var done  = liveGuides.reduce(function(s,g){ return s + M.progress(g.storage).size(); }, 0);
+  if (done > 0) {
+    var pct = Math.round(done / total * 100);
+    hp.innerHTML = '<span>пройдено '+done+' из '+total+'</span>'
+      + '<span class="bar"><i style="width:'+Math.min(pct,100)+'%"></i></span><span>'+pct+'%</span>';
+  } else {
+    hp.innerHTML = '<span>'+total+' треков · 3 мира</span>';
+  }
+
+  /* Случайный трек: грузим заранее, на клик — сразу YouTube (без потери жеста) */
+  var pool = M.LP_TRACKS.slice();                 // синхронный фолбэк
+  M.loadAll().then(function(ts){ if (ts && ts.length) pool = ts; });
+  var btn = document.getElementById('rndTrack'), reset;
+  btn.addEventListener('click', function(){
+    if (!pool.length) return;
+    var t = pool[Math.floor(Math.random() * pool.length)];
+    window.open(M.yt(t.q), '_blank', 'noopener');
+    btn.textContent = '▶ ' + t.n + ' — ' + t.artist;
+    clearTimeout(reset);
+    reset = setTimeout(function(){ btn.textContent = '▶ случайный трек'; }, 2800);
+  });
+});
+</script>
+<script src="/palette.js" defer></script>
 </body>
 </html>

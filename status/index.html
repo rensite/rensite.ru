@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<meta name="robots" content="noindex, nofollow" />
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)" />
-<title>приколюхи — rensite</title>
+<title>status — rensite</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -14,12 +13,12 @@
   /* Токены зеркалят основной сайт (index.html). */
   :root{
     --navy:#1E3A8A; --ink:#0F172A; --muted:#64748B; --soft:#94A3B8;
-    --hair:#E2E8F0; --bg:#FFFFFF; --accent:#3B82F6; --glow:rgba(59,130,246,.12);
+    --hair:#E2E8F0; --bg:#FFFFFF; --accent:#3B82F6;
   }
   @media (prefers-color-scheme: dark){
     :root{
       --navy:#93C5FD; --ink:#E2E8F0; --muted:#94A3B8; --soft:#64748B;
-      --hair:#1E293B; --bg:#0B1220; --accent:#60A5FA; --glow:rgba(96,165,250,.14);
+      --hair:#1E293B; --bg:#0B1220; --accent:#60A5FA;
     }
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -45,36 +44,23 @@
 
   .hero h1{margin:0;font-size:clamp(2.4rem,6vw,4rem);line-height:1.0;letter-spacing:-.03em;font-weight:700;color:var(--ink)}
   .hero h1 span{color:var(--navy)}
-  .hero p{margin:14px 0 0;font-size:clamp(16px,1.6vw,19px);color:var(--muted);line-height:1.45;max-width:52ch}
+  .hero p{margin:14px 0 0;font-size:clamp(16px,1.6vw,19px);color:var(--muted);line-height:1.45;max-width:46ch}
 
+  section.list{display:flex;flex-direction:column;gap:12px}
   .label{
     font-family:'JetBrains Mono',ui-monospace,monospace;font-size:15px;color:var(--soft);
-    letter-spacing:.04em;text-transform:lowercase;display:flex;align-items:center;gap:8px;margin-bottom:18px;
+    letter-spacing:.04em;text-transform:lowercase;display:flex;align-items:center;gap:8px;
   }
   .label::after{content:"";flex:1;height:1px;background:var(--hair)}
 
-  /* Сетка экспонатов — масштабируется под будущие приколюхи */
-  .exhibits{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:clamp(20px,3vw,34px)}
-  .exhibit{display:flex;flex-direction:column;gap:12px;min-width:0}
-  .exhibit-meta{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--soft);display:flex;gap:8px;align-items:baseline}
-  .exhibit-meta .num{color:var(--navy);font-weight:500}
-  .exhibit-meta .cap{color:var(--muted)}
-
-  /* ── Терминальный виджет ── */
-  .term{
-    font-family:'JetBrains Mono',ui-monospace,monospace;
-    background:var(--bg);border:1px solid var(--hair);border-radius:14px;overflow:hidden;
-    box-shadow:0 1px 2px rgba(15,23,42,.04),0 16px 34px -16px var(--glow);
-  }
-  .term-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--hair)}
-  .term-bar i{width:10px;height:10px;border-radius:50%;background:var(--hair)}
-  .term-bar .t{margin-left:7px;color:var(--soft);font-size:11.5px;letter-spacing:.01em}
-  .term-body{padding:14px 16px 16px;font-size:13px;line-height:1.72;min-height:148px;color:var(--ink)}
-  .term-body .l{white-space:pre-wrap;word-break:break-word;min-height:1.72em}
-  .term-body .p{color:var(--navy);font-weight:500}
-  .term-body .o{color:var(--muted)}
-  .term-body .c{display:inline-block;width:7px;height:1.05em;vertical-align:-2px;margin-left:1px;background:var(--navy);animation:tblink 1.05s steps(1) infinite}
-  @keyframes tblink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
+  /* ── Лента статусов ── */
+  ul.feed{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;max-width:680px}
+  .st-row{border-bottom:1px solid var(--hair);padding:18px 0}
+  .st-row:last-child{border-bottom:none}
+  .st-meta{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:var(--soft)}
+  .st-date{color:var(--muted)}
+  .st-tag{border:1px solid var(--hair);border-radius:999px;padding:1px 8px;letter-spacing:.03em;text-transform:lowercase}
+  .st-text{margin:9px 0 0;font-size:17.5px;line-height:1.55;color:var(--ink);max-width:62ch}
 
   footer.foot{
     margin-top:auto;padding-top:16px;border-top:1px solid var(--hair);
@@ -141,91 +127,39 @@
     </header>
 
     <section class="hero">
-      <h1>При<span>колюхи</span></h1>
-      <p>Песочница мелких экспериментов и интерфейсных приколов. Страница не в навигации — только для своих.</p>
+      <h1>Микро<span>блог</span></h1>
+      <p>Короткие статусы и инсайты недели — что понял, пока строил агентов. Без лонгридов.</p>
     </section>
 
-    <section aria-label="Эксперименты">
-      <div class="label">эксперименты</div>
-      <div class="exhibits">
-
-        <article class="exhibit">
-          <div class="exhibit-meta"><span class="num">01</span><span class="cap">терминал с живыми часами по ЕКБ</span></div>
-          <aside class="term" aria-hidden="true">
-            <div class="term-bar"><i></i><i></i><i></i><span class="t">renat@dev — zsh</span></div>
-            <div class="term-body" id="term-body"></div>
-          </aside>
-        </article>
-
-      </div>
+    <section class="list" aria-label="Статусы">
+      <div class="label">статусы</div>
+      <ul class="feed" id="feed">
+        <!-- фолбэк без JS: последний статус; полная лента рендерится из /content.json -->
+        <li class="st-row">
+          <span class="st-meta"><span class="st-date">10 июн</span><span class="st-tag">инсайт недели</span></span>
+          <p class="st-text">Лучший промпт — тот, который не понадобился: половина магии агентов делается нормальной декомпозицией задачи.</p>
+        </li>
+      </ul>
     </section>
 
     <footer class="foot">
-      <span>$ ls ~/fun</span>
-      <span class="v">1 приколюха · копилка пополняется</span>
+      <span>$ tail -f ~/status.log</span>
+      <span class="v" id="feedCount">обновляется</span>
     </footer>
 
   </div>
 
-<script>
-(function(){
-  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ── Терминальный виджет: печать строк + живые часы по ЕКБ ── */
-  (function initTerm(){
-    const body = document.getElementById('term-body');
-    if (!body) return;
-    function ekbTime(){
-      try{ return new Intl.DateTimeFormat('ru-RU',{timeZone:'Asia/Yekaterinburg',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date()); }
-      catch(e){ return new Date().toLocaleTimeString('ru-RU',{hour12:false}); }
-    }
-    const liveOut = () => ekbTime() + '  ·  Yekaterinburg';
-    const LINES = [
-      { cmd:'whoami',        out:'renat · AI engineer' },
-      { cmd:'cat stack.txt', out:'LLM · agents · RAG · automation' },
-      { cmd:'date',          out:liveOut(), live:true },
-    ];
-
-    let liveSpan = null;
-    const rows = LINES.map(function(L){
-      const cmdRow = document.createElement('div'); cmdRow.className = 'l';
-      const p = document.createElement('span'); p.className = 'p'; p.textContent = '$ ';
-      const c = document.createElement('span'); c.className = 'cmd';
-      cmdRow.appendChild(p); cmdRow.appendChild(c);
-      const outRow = document.createElement('div'); outRow.className = 'l';
-      const o = document.createElement('span'); o.className = 'o';
-      outRow.appendChild(o);
-      body.appendChild(cmdRow); body.appendChild(outRow);
-      if (L.live) liveSpan = o;
-      return { c:c, o:o, L:L };
+  <script src="/cards.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      renderStatuses([{ sel: '#feed' }]);
+      if (window.loadContent) loadContent().then(function (d) {
+        var n = (d.statuses || []).length;
+        if (n) document.getElementById('feedCount').textContent = n + ' ' +
+          (n % 10 === 1 && n % 100 !== 11 ? 'статус' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 'статуса' : 'статусов')) + ' · обновляется';
+      }).catch(function(){});
     });
-    const cursor = document.createElement('span'); cursor.className = 'c';
-
-    function startClock(){
-      if (!liveSpan) return;
-      setInterval(function(){ liveSpan.textContent = liveOut(); }, 1000);
-    }
-
-    if (reduce){
-      rows.forEach(function(r){ r.c.textContent = r.L.cmd; r.o.textContent = r.L.out; });
-      body.appendChild(cursor); startClock(); return;
-    }
-
-    const steps = [];
-    rows.forEach(function(r){
-      r.L.cmd.split('').forEach(function(ch){ steps.push(function(){ r.c.textContent += ch; }); });
-      steps.push(function(){});                       // короткая пауза перед выводом
-      r.L.out.split('').forEach(function(ch){ steps.push(function(){ r.o.textContent += ch; }); });
-    });
-    let i = 0;
-    (function tick(){
-      if (i >= steps.length){ body.appendChild(cursor); startClock(); return; }
-      steps[i++]();
-      setTimeout(tick, 24 + Math.random()*30);
-    })();
-  })();
-})();
-</script>
-<script src="/palette.js" defer></script>
+  </script>
+  <script src="/palette.js" defer></script>
 </body>
 </html>

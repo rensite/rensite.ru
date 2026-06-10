@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linkin Park — гид сквозь дискографию</title>
+<meta name="description" content="Linkin Park — маршрут сквозь дискографию и сайд-проекты: от корней (Grey Daze, Xero) через Hybrid Theory до возвращения с Эмили Армстронг. Что слушать и в каком порядке.">
+<meta name="theme-color" content="#0a0a0d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linkin Park — гид сквозь дискографию">
+<meta property="og:description" content="Схождение и ветвление: корни, ствол, сайд-проекты и возвращение. Слушай по порядку — услышишь всю дугу.">
+<!-- Прогрессивное улучшение: класс .js включает scroll-reveal-анимации. Без JS контент виден сразу. -->
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  --bg:#0a0a0d; --bg2:#101015; --line:#23232c; --line2:#33333f;
+  --txt:#efece5; --mut:#9b9aa3; --dim:#615f6b;
+  --accent:#ff4d2e; --gold:#e6b450; --blue:#5aa9ff; --side:#b06bff; --violet:#b06bff; --green:#3ecf8e;
+  --serif:"Georgia","Times New Roman",serif;
+  --mono:"SF Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+.narrow{max-width:760px;margin:0 auto;padding:0 24px}
+a{color:inherit}
+
+.topnav{position:sticky;top:0;z-index:50;background:rgba(10,10,13,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topnav .wrap{display:flex;align-items:center;gap:20px;height:52px;font-family:var(--mono);font-size:13px}
+.topnav a{color:var(--mut);text-decoration:none}.topnav a:hover{color:var(--txt)}
+.topnav .brand{color:var(--txt);font-weight:700;letter-spacing:.04em}.topnav .spacer{flex:1}
+.topnav .back{color:var(--accent)}.topnav .back:hover{color:var(--gold)}
+
+.hero{padding:96px 0 76px;border-bottom:1px solid var(--line);
+  background:radial-gradient(900px 460px at 80% -10%, rgba(255,77,46,.13), transparent 60%),
+             radial-gradient(700px 420px at 6% 120%, rgba(90,169,255,.09), transparent 55%);}
+.kicker{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.12em}
+.hero h1{font-family:var(--serif);font-size:clamp(34px,6vw,66px);line-height:1.06;font-weight:700;letter-spacing:-.02em;margin:18px 0 22px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero .manifesto{font-size:clamp(17px,2.2vw,21px);color:var(--mut);max-width:680px}
+.hero .manifesto b{color:var(--txt);font-weight:600}
+.hero .scrolltip{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:46px;letter-spacing:.1em}
+
+.chapter{padding:78px 0 8px}
+.chapnum{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.1em}
+.chapter h2{font-family:var(--serif);font-size:clamp(28px,4.4vw,46px);line-height:1.08;font-weight:700;letter-spacing:-.015em;margin:10px 0 6px}
+.chapter .ch-sub{color:var(--mut);font-size:16px;max-width:640px}
+
+/* ===== CENTRAL-AXIS INFOGRAPHIC ===== */
+.tl{position:relative;margin:46px auto 0;max-width:980px}
+.tl::before{content:"";position:absolute;left:50%;top:var(--axis-top,0);bottom:0;width:2px;transform:translateX(-50%);
+  background:linear-gradient(var(--accent),var(--blue) 25%,var(--violet) 50%,var(--gold) 74%,var(--green) 90%,rgba(62,207,142,0) 100%)}
+#rootfork{position:absolute;left:0;top:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
+/* era band marker centered on axis */
+/* эпоха — тихая ремарка у левого края, без «пилюли»; цвет эпохи остаётся коротким штрихом */
+.eband{position:relative;text-align:left;margin:18px 0 6px;z-index:3}
+.eband span{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--mut)}
+.eband span::before{content:"";width:18px;height:1px;background:var(--line2)}
+.e-accent span::before{background:var(--accent)}
+.e-blue span::before{background:var(--blue)}
+.e-violet span::before{background:var(--violet)}
+.e-gold span::before{background:var(--gold)}
+.e-green span::before{background:var(--green)}
+
+.row{position:relative;display:grid;grid-template-columns:1fr 64px 1fr;align-items:flex-start;margin:8px 0;z-index:2}
+.tl .row.gap-top{margin-top:-40px} /* PT и ниже подняты ещё на 90px */
+/* десктоп-чередование: узел поднимается внахлёст к узлу противоположной стороны оси.
+   il — стандартный подъём; il-sm — укороченный там, где сверху мешает сосед той же стороны. */
+.tl .row.il{margin-top:-150px}
+.tl .row.il-sm{margin-top:-90px}
+.tl .row.dn-dbs{margin-top:5px} /* Living Things держим на уровне Dead by Sunrise; компенсирует опускание STP на 50px */
+.tl .row.dn-stp{margin-top:-160px} /* STP опущен на 50px (-150 базово), плюс компенсация -40 за опускание The Hunting Party — STP остаётся на месте */
+.tl .row.dn-ats{margin-top:-20px} /* A Thousand Suns и всё ниже опущены на 100px (было -150) */
+.tl .row.dn-thp{margin-top:-30px} /* The Hunting Party опущен на 40px (было -90); STP компенсирован, чтобы низ не поехал */
+.tl .row.dn-met{margin-top:-187px} /* Meteora */
+.tl .row.dn-mtm{margin-top:-220px} /* Minutes to Midnight поднят на 70px (было -150) */
+.tl .row.dn-fm{margin-top:0} /* Fort Minor: margin-top:0 (убран базовый зазор) */
+.tl .row.dn-ds{margin-top:-150px} /* Dead Sara — фидер-карточка рядом с From Zero (подбор) */
+.tl .row.cardup .node{transform:translateY(-40px)} /* DBS: карточка выше на 40px; ветка при этом уходит ниже (off=120 в JS) — десктоп */
+.row .axis{grid-column:2;grid-row:1;display:flex;justify-content:center;padding-top:37px} /* кружок по центру заголовка (.nm), а не строки «код · год» */
+.row.big .axis{padding-top:34px} /* большой кружок крупнее — компенсация, чтобы центр совпал с заголовком */
+.row .dot{width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--blue);z-index:2}
+.row.kind-side .dot{opacity:0}
+.row.kind-root .dot{border-color:var(--gold)}
+.row.big .dot{width:20px;height:20px;background:var(--accent);border:none;box-shadow:0 0 0 5px rgba(255,77,46,.12)}
+/* connector stub from dot to the node */
+.row .stub{display:none}
+
+.node{padding:0}
+.cell-l{grid-column:1;grid-row:1;text-align:right;padding-right:26px}
+.raise-card{margin-top:0}
+.cell-r{grid-column:3;grid-row:1;text-align:left;padding-left:26px}
+.node-top{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.cell-l .node-top{justify-content:flex-end}
+.icon{width:26px;height:26px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-size:15px;
+  background:rgba(90,169,255,.12);color:var(--blue)}
+.icon .ic{width:15px;height:15px;display:block;color:inherit}
+.kind-side .icon{background:rgba(176,107,255,.13);color:var(--side)}
+.kind-root .icon{background:rgba(230,180,80,.13);color:var(--gold)}
+.code{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.05em;padding:2px 7px;border-radius:5px}
+.cc-trunk{color:var(--blue);background:rgba(90,169,255,.12)}
+.cc-side{color:var(--side);background:rgba(176,107,255,.13)}
+.cc-root{color:var(--gold);background:rgba(230,180,80,.13)}
+.yr{font-family:var(--mono);font-size:13px;color:var(--dim)}
+.nm{font-family:var(--serif);font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-.01em;line-height:1.12;margin-top:6px}
+.style{font-family:var(--mono);font-size:11px;color:var(--dim);text-transform:lowercase;letter-spacing:.04em;margin-top:3px}
+.metrics{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.cell-l .metrics{justify-content:flex-end}
+.metric{font-family:var(--mono);font-size:10.5px;color:var(--mut);border:1px solid var(--line2);border-radius:5px;padding:2px 7px}
+.quote{font-family:var(--serif);font-style:italic;font-size:clamp(15px,1.9vw,19px);color:var(--gold);margin:12px 0 4px;line-height:1.4}
+.desc{color:var(--mut);font-size:14px;margin-top:8px}
+.trks{margin-top:12px;display:flex;flex-direction:column;gap:7px}
+.cell-l .trks{align-items:flex-end}
+.trk{display:inline-flex;align-items:baseline;gap:9px;text-decoration:none}
+.cell-l .trk{flex-direction:row-reverse}
+.trk .tt{font-weight:600;font-size:14px;border-bottom:1px solid transparent;transition:border-color .15s}
+.trk:hover .tt{border-color:var(--accent)}
+.trk .tnote{color:var(--mut);font-size:12.5px}
+.trk .play{font-family:var(--mono);font-size:11px;color:var(--accent);opacity:.55;transition:opacity .15s}
+.trk:hover .play{opacity:1}
+.bnote{font-family:var(--mono);font-size:11px;letter-spacing:.03em;margin-top:10px;color:var(--side)}
+.kind-root .bnote{color:var(--gold)}
+.cell-l .bnote{text-align:right}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:30px}
+.stat{padding:30px 16px;text-align:center;border-left:1px solid var(--line)}
+.stat:first-child{border-left:none}
+.stat .v{font-family:var(--serif);font-size:42px;font-weight:700;color:var(--gold);line-height:1}
+.stat .l{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-top:8px}
+.arc{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin-top:26px}
+.arc .step{font-family:var(--serif);font-size:16px;color:var(--txt)}
+.arc .arr{color:var(--accent);font-family:var(--mono)}
+
+footer{border-top:1px solid var(--line);margin-top:80px;padding:50px 0 80px}
+footer .big{font-family:var(--serif);font-size:26px;color:var(--txt);max-width:680px}
+footer .meta{font-family:var(--mono);font-size:13px;color:var(--dim);margin-top:14px;line-height:1.8}
+footer .meta a{color:var(--blue);border-bottom:1px solid transparent;transition:border-color .15s}
+footer .meta a:hover{border-bottom-color:var(--blue)}
+footer .disc{font-size:12px;color:var(--dim);margin-top:22px;max-width:680px;line-height:1.6}
+
+/* Прогрессивное улучшение: скрываем под анимацию ТОЛЬКО когда есть JS (класс .js на <html>).
+   Без JS .reveal остаётся видимым — страница не зависит от скрипта. */
+.reveal{transition:opacity .7s,transform .7s}
+.js .reveal{opacity:0;transform:translateY(22px)}
+.js .reveal.in{opacity:1;transform:none}
+.tl .row.reveal{transform:none}
+.js .tl .row.reveal{opacity:0;transition:opacity .7s}
+.js .tl .row.reveal.in{opacity:1}
+
+@media(max-width:720px){
+  .tl::before{left:26px} /* рельс ближе к краю; слева узкий жёлоб под ветку */
+  /* мобайл — одна колонка: чередование/гэпы выключаем; единый воздух между вехами 30px */
+  .tl .row{margin-top:50px}
+  .tl .row.il,.tl .row.il-sm,.tl .row.gap-top,.tl .row.dn-dbs,.tl .row.dn-stp,.tl .row.dn-ats,.tl .row.dn-thp,.tl .row.dn-mtm,.tl .row.dn-met,.tl .row.dn-fm,.tl .row.dn-ds{margin-top:50px}
+    .tl .row.cardup .node{transform:none}
+  .row{grid-template-columns:44px 1fr;}
+  .row .axis{grid-column:1;justify-content:flex-start;padding-left:19px} /* точка по центру рельса x26 */
+  .cell-l,.cell-r{grid-column:2;text-align:left;padding-left:18px;padding-right:0}
+  .cell-l .node-top,.cell-l .metrics,.cell-l .trks{justify-content:flex-start;align-items:flex-start}
+  .cell-l .trk{flex-direction:row}
+  .cell-l .bnote{text-align:left}
+  .row .stub{display:none}
+}
+/* ── 04 · каталог треков (база) ── */
+.cat-controls{position:sticky;top:52px;z-index:5;background:var(--bg);padding:14px 0;margin-top:26px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.cat-search{flex:1;min-width:200px;font-family:var(--serif);font-size:16px;background:transparent;border:none;border-bottom:1px solid var(--line2);color:var(--txt);padding:7px 2px}
+.cat-search::placeholder{color:var(--dim)}
+.cat-search:focus{outline:none;border-color:var(--accent)}
+.cat-filters{display:flex;flex-wrap:wrap;gap:7px}
+.cat-filt{font-family:var(--mono);font-size:11px;letter-spacing:.05em;background:transparent;border:1px solid var(--line2);color:var(--mut);padding:5px 11px;border-radius:999px;cursor:pointer;transition:all .15s}
+.cat-filt:hover{border-color:var(--mut);color:var(--txt)}
+.cat-filt.active{background:var(--txt);color:var(--bg);border-color:var(--txt)}
+.cat-list{border-top:1px solid var(--line)}
+.cat-progress{display:flex;align-items:center;gap:14px;margin-top:14px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--mut);white-space:nowrap}
+.cat-progress .bar{flex:1;height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.cat-progress .bar i{display:block;height:100%;background:var(--green);width:0;transition:width .35s ease}
+.trackrow{display:grid;grid-template-columns:30px 1fr;align-items:center;border-bottom:1px solid var(--line);transition:background .2s}
+.trackrow:hover{background:var(--bg2)}
+.tchk{width:18px;height:18px;justify-self:start;border:1px solid var(--line2);background:transparent;border-radius:5px;color:var(--green);font-size:11px;line-height:1;cursor:pointer;padding:0;transition:border-color .15s}
+.tchk:hover{border-color:var(--mut)}
+.trackrow.done .tchk{border-color:var(--green)}
+.trackrow.done .tnm{color:var(--mut)}
+.tgo{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:baseline;padding:11px 4px 11px 0;text-decoration:none}
+.trackrow .tyr{font-family:var(--mono);font-size:12px;color:var(--dim)}
+.trackrow .tnm{font-family:var(--serif);font-size:18px;color:var(--txt);line-height:1.2}
+.trackrow .talb{display:block;font-family:var(--mono);font-size:11px;color:var(--mut);margin-top:3px;letter-spacing:.02em}
+.trackrow .tplay{font-family:var(--mono);font-size:11px;letter-spacing:.07em;color:var(--accent);white-space:nowrap;opacity:0;transition:opacity .15s}
+.trackrow:hover .tplay{opacity:1}
+@media(max-width:720px){
+  .trackrow{grid-template-columns:26px 1fr}
+  .tgo{grid-template-columns:auto 1fr;column-gap:12px;row-gap:5px}
+  .tgo .tnm{grid-column:2}
+  .tgo .tplay{grid-column:2;opacity:1;justify-self:start}
+}
+.cat-count{margin-top:14px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+@media(max-width:720px){
+  .cat-controls{top:0}
+}
+</style></head><body>
+
+<!-- Иконки узлов (Tabler Outline, заинлайнены спрайтом — без внешнего CDN). Описаны один раз, переиспользуются через <use>. -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute"><defs>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <g id="i-rotate"><path d="M19.95 11a8 8 0 1 0 -.5 4m.5 5v-5h-5"/></g>
+    <g id="i-user"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></g>
+    <g id="i-bulb"><path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7"/><path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3"/><path d="M9.7 17l4.6 0"/></g>
+    <g id="i-bolt"><path d="M13 3l0 7l6 0l-8 11l0 -7l-6 0l8 -11"/></g>
+    <g id="i-microphone"><path d="M9 2m0 3a3 3 0 0 1 3 -3h0a3 3 0 0 1 3 3v5a3 3 0 0 1 -3 3h0a3 3 0 0 1 -3 -3z"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M8 21l8 0"/><path d="M12 17l0 4"/></g>
+    <g id="i-arrows-join"><path d="M3 7h5l3.5 5h9.5"/><path d="M3 17h5l3.495 -5"/><path d="M18 15l3 -3l-3 -3"/></g>
+    <g id="i-flame"><path d="M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z"/></g>
+    <g id="i-wave-sine"><path d="M21 12h-2c-.894 0 -1.662 -.857 -1.761 -2c-.296 -3.45 -.749 -6 -2.749 -6s-2.5 3.582 -2.5 8s-.5 8 -2.5 8s-2.452 -2.547 -2.749 -6c-.1 -1.147 -.867 -2 -1.763 -2h-2"/></g>
+    <g id="i-arrow-fork"><path d="M16 3h5v5"/><path d="M8 3h-5v5"/><path d="M21 3l-7.536 7.536a5 5 0 0 0 -1.464 3.534v6.93"/><path d="M3 3l7.536 7.536a5 5 0 0 1 1.464 3.534v.93"/></g>
+    <g id="i-microphone-2"><path d="M15 12.9a5 5 0 1 0 -3.902 -3.9"/><path d="M15 12.9l-3.902 -3.899l-7.513 8.584a2 2 0 1 0 2.827 2.83l8.588 -7.515z"/></g>
+    <g id="i-mountain"><path d="M3 20h18l-6.921 -14.612a2.3 2.3 0 0 0 -4.158 0l-6.921 14.612z"/><path d="M7.5 11l2 2.5l2.5 -2.5l2 3l2.5 -2"/></g>
+    <g id="i-disc"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path d="M7 12a5 5 0 0 1 5 -5"/><path d="M12 17a5 5 0 0 0 5 -5"/></g>
+    <g id="i-seeding"><path d="M12 10a6 6 0 0 0 -6 -6h-3v2a6 6 0 0 0 6 6h3"/><path d="M12 14a6 6 0 0 1 6 -6h3v1a6 6 0 0 1 -6 6h-3"/><path d="M12 20l0 -10"/></g>
+    <g id="i-history"><path d="M12 8l0 4l2 2"/><path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5"/></g>
+  </g>
+</defs></svg>
+
+<nav class="topnav"><div class="wrap">
+  <a href="/music/" class="back">← музыка</a>
+  <span class="brand">LP</span>
+  <a href="#path">путь</a><a href="#stats">цифры</a><a href="#listen">как слушать</a>
+  <span class="spacer"></span><span style="color:var(--dim)">гид · 1994—2024</span>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="kicker">маршрут сквозь дискографию</div>
+  <h1>Один голос родился из <em>двух</em>.<br>А потом снова разошёлся.</h1>
+  <p class="manifesto">Пока вы слушали хиты нулевых, мимо прошло другое: <b>Linkin Park — это схождение и ветвление</b>. Разные корни слились в одну группу, из неё выросли сайд-проекты, а после паузы пришёл новый голос. Слушай по порядку — и услышишь всю дугу.</p>
+  <div class="scrolltip">↓ листайте · сверху вниз, от сегодня к корням</div>
+</div></header>
+
+<section id="path" class="wrap"><div class="chapter narrow reveal" style="padding-left:0">
+  <div class="chapnum">01 — путь группы</div>
+  <h2>От возвращения к корням</h2>
+  <p class="ch-sub">Центральная ось — время от 2024 вглубь к 1994. Альбомы чередуются по сторонам; цвет узла и иконка показывают тип, полосы — эпохи. ▶ — поиск трека на YouTube.</p>
+</div>
+<div class="tl">
+<svg id="rootfork" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+<div class="row kind-trunk side-L big reveal"><div class="cell-l"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-rotate"/></svg></span><span class="code cc-trunk">FZ</span><span class="yr">2024</span></div><div class="nm">From Zero</div><div class="style">возрождение</div><div class="metrics"><span class="metric">11 треков</span><span class="metric">#1 чарты</span><span class="metric">новый вокал</span></div><div class="quote">«Guess who&#x27;s back»</div><div class="desc">Семь лет тишины — и возвращение с Эмили Армстронг. Новый голос связывает современный звук с корнями.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+The+Emptiness+Machine+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">The Emptiness Machine</span> <span class="tnote">— мгновенный хит</span></span></a><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+Heavy+Is+the+Crown+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Heavy Is the Crown</span> <span class="tnote">— ярость и мелодия</span></span></a></div><div class="bnote">← вливается ветка Dead Sara</div></div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div></div></div><div class="row kind-root side-R reveal dn-ds"><div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div class="cell-r"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-microphone"/></svg></span><span class="code cc-root">DS</span><span class="yr">2008–</span></div><div class="nm">Dead Sara</div><div class="style">эмили армстронг · хард-рок</div><div class="metrics"><span class="metric">LA-рок</span><span class="metric">вокал Эмили</span></div><div class="quote">«голос, что станет From Zero»</div><div class="desc">Лос-анджелесская рок-группа Эмили Армстронг. Здесь сформировался голос, который в 2024-м станет голосом Linkin Park.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Dead+Sara+Weatherman+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Weatherman</span> <span class="tnote">— визитная карточка, 2012</span></span></a><a class="trk" href="https://www.youtube.com/results?search_query=Dead+Sara+Mona+Lisa" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Mona Lisa</span> <span class="tnote">— ещё один сингл</span></span></a></div><div class="bnote">→ вливается в From Zero (2024)</div></div></div></div><div class="row kind-side side-L reveal gap-top"><div class="cell-l"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-user"/></svg></span><span class="code cc-side">PT</span><span class="yr">2018</span></div><div class="nm">Post Traumatic</div><div class="style">майк · соло</div><div class="metrics"><span class="metric">16 треков</span><span class="metric">соло-дебют</span></div><div class="quote">«Watching as I fall»</div><div class="desc">Сольная ветка Майка Шиноды — личный ответ на потерю Честера.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Mike+Shinoda+Crossing+a+Line+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Crossing a Line</span> <span class="tnote">— шаг наружу из горя</span></span></a><a class="trk" href="https://www.youtube.com/results?search_query=Mike+Shinoda+Over+Again+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Over Again</span> <span class="tnote">— о сцене без друга</span></span></a></div><div class="bnote">ветка: сайд-проект</div></div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div></div></div><div class="eband e-blue reveal"><span>Эпоха экспериментов · 2009–2017</span></div><div class="row kind-trunk side-R reveal il"><div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div class="cell-r"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bulb"/></svg></span><span class="code cc-trunk">OML</span><span class="yr">2017</span></div><div class="nm">One More Light</div><div class="style">поп · прощание</div><div class="metrics"><span class="metric">10 треков</span><span class="metric">#1 США</span><span class="metric">последний с Честером</span></div><div class="quote">«Who cares if one more light goes out?»</div><div class="desc">Самый поп- и эмоциональный альбом. Последний с Честером — он ушёл из жизни в июле 2017.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+One+More+Light+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">One More Light</span> <span class="tnote">— каждый человек важен</span></span></a><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+Heavy+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Heavy</span> <span class="tnote">— дуэт с Kiiara</span></span></a></div></div></div></div><div class="row kind-trunk side-L reveal dn-thp"><div class="cell-l"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bolt"/></svg></span><span class="code cc-trunk">THP</span><span class="yr">2014</span></div><div class="nm">The Hunting Party</div><div class="style">тяжёлый рок</div><div class="metrics"><span class="metric">12 треков</span><span class="metric">возврат к тяжести</span></div><div class="quote">«I&#x27;ll face myself to cross out what I&#x27;ve become»</div><div class="desc">Сознательный возврат к гитарам и агрессии — ответ скучавшим по раннему звуку.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+Final+Masquerade+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Final Masquerade</span> <span class="tnote">— мелодичная вершина</span></span></a><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+Guilty+All+the+Same+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Guilty All the Same</span> <span class="tnote">— монолит с Rakim</span></span></a></div></div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div></div></div><div class="row kind-side side-R reveal dn-stp"><div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div class="cell-r"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-microphone"/></svg></span><span class="code cc-side">STP</span><span class="yr">2013</span></div><div class="nm">Stone Temple Pilots</div><div class="style">честер · фронтмен</div><div class="metrics"><span class="metric">EP · 5 треков</span></div><div class="quote">«We&#x27;re out of time»</div><div class="desc">Честер на время становится фронтменом STP. Вышел EP High Rise.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Stone+Temple+Pilots+Out+of+Time+Chester" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Out of Time</span> <span class="tnote">— дебют Честера с группой</span></span></a><a class="trk" href="https://www.youtube.com/results?search_query=Stone+Temple+Pilots+Black+Heart" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Black Heart</span> <span class="tnote">— второй сингл EP</span></span></a></div><div class="bnote">ветка: параллельный проект</div></div></div></div><div class="row kind-trunk side-L reveal dn-dbs"><div class="cell-l"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrows-join"/></svg></span><span class="code cc-trunk">LT</span><span class="yr">2012</span></div><div class="nm">Living Things</div><div class="style">синтез</div><div class="metrics"><span class="metric">12 треков</span><span class="metric">#1 США</span></div><div class="quote">«I&#x27;m lost in the echo»</div><div class="desc">Группа сводит вместе всё: тяжесть ранних работ и электронику поздних.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+Burn+It+Down+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Burn It Down</span> <span class="tnote">— большие припевы</span></span></a><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+Castle+of+Glass+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Castle of Glass</span> <span class="tnote">— вокал Майка · Medal of Honor</span></span></a></div></div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div></div></div><div class="row kind-side side-R reveal il cardup"><div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div class="cell-r"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-flame"/></svg></span><span class="code cc-side">DBS</span><span class="yr">2009</span></div><div class="nm">Dead by Sunrise</div><div class="style">честер · электро-рок</div><div class="metrics"><span class="metric">12 треков</span></div><div class="quote">«I crawl back in»</div><div class="desc">Электро-рок проект Честера — альбом Out of Ashes.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Dead+by+Sunrise+Crawl+Back+In+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Crawl Back In</span> <span class="tnote">— главный сингл</span></span></a><a class="trk" href="https://www.youtube.com/results?search_query=Dead+by+Sunrise+Let+Down" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Let Down</span> <span class="tnote">— мелодичная вершина</span></span></a></div><div class="bnote">ветка: сайд-проект Честера</div></div></div></div><div class="row kind-trunk side-L reveal dn-ats"><div class="cell-l"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wave-sine"/></svg></span><span class="code cc-trunk">ATS</span><span class="yr">2010</span></div><div class="nm">A Thousand Suns</div><div class="style">электроника · концепт</div><div class="metrics"><span class="metric">15 треков</span><span class="metric">концепт-альбом</span></div><div class="quote">«God save us everyone»</div><div class="desc">Самый дерзкий, концептуальный альбом. Электроника, эмбиент, почти прог.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+The+Catalyst+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">The Catalyst</span> <span class="tnote">— электронный гимн</span></span></a><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+Waiting+for+the+End+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Waiting for the End</span> <span class="tnote">— надежда сквозь потерю</span></span></a></div></div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div></div></div><div class="eband e-violet reveal"><span>Поворот · 2005–2007</span></div><div class="row kind-trunk side-R reveal dn-mtm"><div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div class="cell-r"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-fork"/></svg></span><span class="code cc-trunk">MTM</span><span class="yr">2007</span></div><div class="nm">Minutes to Midnight</div><div class="style">альт-рок</div><div class="metrics"><span class="metric">12 треков</span><span class="metric">#1 США</span></div><div class="quote">«Forgive me for what I&#x27;ve done»</div><div class="desc">Резкий разворот прочь от ню-метала. Шире, взрослее, появляется политика.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+What+I%27ve+Done+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">What I&#x27;ve Done</span> <span class="tnote">— тема «Трансформеров»</span></span></a><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+Shadow+of+the+Day+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Shadow of the Day</span> <span class="tnote">— баллада в духе U2</span></span></a></div></div></div></div><div class="row kind-side side-L reveal cardup dn-fm"><div class="cell-l"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-microphone-2"/></svg></span><span class="code cc-side">FM</span><span class="yr">2005</span></div><div class="nm">Fort Minor</div><div class="style">майк · хип-хоп</div><div class="metrics"><span class="metric">16 треков</span></div><div class="quote">«Remember the name»</div><div class="desc">Хип-хоп проект Майка Шиноды — The Rising Tied при участии Jay-Z.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Fort+Minor+Where%27d+You+Go+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Where&#x27;d You Go</span> <span class="tnote">— главный хит</span></span></a><a class="trk" href="https://www.youtube.com/results?search_query=Fort+Minor+Remember+the+Name+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Remember the Name</span> <span class="tnote">— мотивационный гимн</span></span></a></div><div class="bnote">ветка: хип-хоп Майка</div></div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div></div></div><div class="row kind-trunk side-R reveal dn-met"><div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div class="cell-r"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mountain"/></svg></span><span class="code cc-trunk">MET</span><span class="yr">2003</span></div><div class="nm">Meteora</div><div class="style">ню-метал · пик</div><div class="metrics"><span class="metric">13 треков</span><span class="metric">мультиплатина</span></div><div class="quote">«I&#x27;ve become so numb»</div><div class="desc">То же ДНК, отточенное до бритвы. Многие считают это вершиной группы.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+Numb+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Numb</span> <span class="tnote">— гимн поколения</span></span></a><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+Breaking+the+Habit+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Breaking the Habit</span> <span class="tnote">— на разрыв</span></span></a></div></div></div></div><div class="row kind-trunk side-L big reveal"><div class="cell-l"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-disc"/></svg></span><span class="code cc-trunk">HT</span><span class="yr">2000</span></div><div class="nm">Hybrid Theory</div><div class="style">ню-метал · дебют</div><div class="metrics"><span class="metric">12 треков</span><span class="metric">диамант</span><span class="metric">Grammy</span></div><div class="quote">«In the end, it doesn&#x27;t even matter»</div><div class="desc">Дебют, определивший звук эпохи. Здесь сливаются две корневые линии — рождение Linkin Park.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+In+the+End+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">In the End</span> <span class="tnote">— гимн нулевых</span></span></a><a class="trk" href="https://www.youtube.com/results?search_query=Linkin+Park+Crawling+official" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Crawling</span> <span class="tnote">— Grammy</span></span></a></div><div class="bnote">две линии корней сходятся здесь</div></div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div></div></div><div class="eband e-green reveal"><span>Корни · до LP · 1994–1999</span></div><div class="row kind-root side-R reveal il"><div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div class="cell-r"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-seeding"/></svg></span><span class="code cc-root">XERO</span><span class="yr">1996–99</span></div><div class="nm">Xero</div><div class="style">корень · майк + брэд</div><div class="metrics"><span class="metric">демо · 1997</span></div><div class="quote">«My pen and paper cause a chain reaction»</div><div class="desc">Первое имя группы, вокалист Марк Уэйкфилд. Эта линия становится стволом LP.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Xero+Reading+My+Eyes+Linkin+Park+demo" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Reading My Eyes</span> <span class="tnote">— трек с демо-кассеты</span></span></a></div><div class="bnote">корень: ядро ствола</div></div></div></div><div class="row kind-root side-L reveal il-sm"><div class="cell-l"><div class="node"><div class="node-top"><span class="icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-history"/></svg></span><span class="code cc-root">GD</span><span class="yr">1994–97</span></div><div class="nm">Grey Daze</div><div class="style">корень · честер до lp</div><div class="metrics"><span class="metric">2 альбома</span><span class="metric">+ Amends 2020</span></div><div class="quote">«What&#x27;s in the eye?»</div><div class="desc">Пост-гранж группа Честера до Linkin Park. Вторая корневая линия — сливается с Xero.</div><div class="trks"><a class="trk" href="https://www.youtube.com/results?search_query=Grey+Daze+What%27s+in+the+Eye" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">What&#x27;s in the Eye</span> <span class="tnote">— ранний Честер</span></span></a><a class="trk" href="https://www.youtube.com/results?search_query=Grey+Daze+Sickness+Amends" target="_blank" rel="noopener"><span class="play">▶</span><span><span class="tt">Sickness</span> <span class="tnote">— перезапись Amends</span></span></a></div><div class="bnote">корень: голос со стороны</div></div></div><div class="axis"><span class="dot"></span></div><div class="stub"></div><div></div></div>
+</div></section>
+
+<section id="stats" class="narrow"><div class="chapter reveal" style="padding-left:0">
+  <div class="chapnum">02 — в цифрах</div>
+  <h2>Масштаб</h2>
+</div>
+<div class="stats reveal">
+  <div class="stat"><div class="v">8</div><div class="l">студийных альбомов</div></div>
+  <div class="stat"><div class="v">4</div><div class="l">сайд-проекта</div></div>
+  <div class="stat"><div class="v">3</div><div class="l">корневые группы</div></div>
+  <div class="stat"><div class="v">2</div><div class="l">эпохи вокала</div></div>
+  <div class="stat"><div class="v">97</div><div class="l">треков в базе</div></div>
+</div></section>
+
+<section id="listen" class="narrow"><div class="chapter reveal" style="padding-left:0">
+  <div class="chapnum">03 — как слушать</div>
+  <h2>Полная дуга за одно прослушивание</h2>
+  <p class="ch-sub">Если идти снизу вверх — от корней к сегодня — услышишь весь путь.</p>
+</div>
+<div class="arc reveal">
+  <span class="step">пост-гранж Честера</span><span class="arr">→</span>
+  <span class="step">рождение ню-метала</span><span class="arr">→</span>
+  <span class="step">хип-хоп Майка</span><span class="arr">→</span>
+  <span class="step">электроника и поп</span><span class="arr">→</span>
+  <span class="step">пауза</span><span class="arr">→</span>
+  <span class="step">возвращение с Эмили</span>
+</div></section>
+
+<section id="tracks" class="narrow"><div class="chapter reveal" style="padding-left:0">
+  <div class="chapnum">04 — все треки</div>
+  <h2>База треков</h2>
+  <p class="ch-sub" id="catSub"></p>
+</div>
+<div class="cat-controls reveal">
+  <input type="text" class="cat-search" id="catSearch" placeholder="Поиск по треку или альбому…" aria-label="Поиск трека">
+  <div class="cat-filters" id="catFilters"></div>
+</div>
+<div class="cat-progress reveal" id="catProg"></div>
+<div class="cat-list" id="catList"></div>
+<div class="cat-count" id="catCount"></div>
+</section>
+
+<script src="/music/tracks.js"></script>
+<script>
+(function(){
+  const M=window.RENSITE_MUSIC;
+  const yt=M.yt;
+  const pl=(n,f)=>{const a=Math.abs(n)%100,b=a%10;return f[(a>10&&a<20)?2:(b>1&&b<5)?1:(b===1?0:2)];};
+  const ALBUMS=M.LP_ALBUMS;
+  const TRACKS=[];
+  ALBUMS.forEach(a=>a.tr.forEach(n=>TRACKS.push({yr:a.yr,alb:a.alb,n:n,k:a.alb+'|'+n})));
+  const seen=M.progress('lp-listened');
+  let active="Все", q="";
+  const listEl=document.getElementById('catList'),cntEl=document.getElementById('catCount'),filtEl=document.getElementById('catFilters'),subEl=document.getElementById('catSub'),progEl=document.getElementById('catProg');
+  if(!listEl)return;
+  subEl.textContent=TRACKS.length+" "+pl(TRACKS.length,['трек','трека','треков'])+" восьми студийных альбомов — от Hybrid Theory до From Zero. ▶ ведёт на поиск YouTube, галочка отмечает прослушанное — прогресс хранится в этом браузере. Сайд-проекты и корни — в таймлайне выше.";
+  filtEl.innerHTML=['Все',...ALBUMS.map(a=>a.alb)].map((t,i)=>`<button class="cat-filt${i===0?' active':''}" data-f="${t}">${t}</button>`).join('');
+  filtEl.addEventListener('click',e=>{const b=e.target.closest('.cat-filt');if(!b)return;filtEl.querySelectorAll('.cat-filt').forEach(x=>x.classList.remove('active'));b.classList.add('active');active=b.dataset.f;render();});
+  document.getElementById('catSearch').addEventListener('input',e=>{q=e.target.value.trim().toLowerCase();render();});
+  function paintProgress(){
+    const n=TRACKS.filter(t=>seen.has(t.k)).length;
+    progEl.innerHTML=`<span>прослушано ${n} из ${TRACKS.length}</span><span class="bar"><i style="width:${(n/TRACKS.length*100).toFixed(1)}%"></i></span>`;
+  }
+  function markDone(row){
+    row.classList.add('done');
+    const b=row.querySelector('.tchk');
+    b.setAttribute('aria-pressed','true'); b.textContent='✓';
+  }
+  function render(){
+    const f=TRACKS.filter(t=>(active==="Все"||t.alb===active)&&(!q||(t.n+" "+t.alb).toLowerCase().includes(q)));
+    listEl.innerHTML=f.map(t=>{
+      const done=seen.has(t.k);
+      return `<div class="trackrow${done?' done':''}" data-k="${t.k}"><button class="tchk" type="button" aria-pressed="${done}" aria-label="Прослушано: ${t.n}">${done?'✓':''}</button><a class="tgo" href="${yt('Linkin Park '+t.n)}" target="_blank" rel="noopener"><span class="tyr">${t.yr}</span><span class="tnm">${t.n}<span class="talb">${t.alb}</span></span><span class="tplay">▶ YouTube</span></a></div>`;
+    }).join('')||'<p style="padding:18px 0;color:var(--dim)">Ничего не найдено.</p>';
+    cntEl.textContent="Показано "+f.length+" из "+TRACKS.length+" треков";
+    paintProgress();
+  }
+  listEl.addEventListener('click',e=>{
+    const row=e.target.closest('.trackrow'); if(!row)return;
+    const k=row.dataset.k;
+    if(e.target.closest('.tchk')){
+      const on=seen.toggle(k);
+      row.classList.toggle('done',on);
+      const b=row.querySelector('.tchk');
+      b.setAttribute('aria-pressed',String(on)); b.textContent=on?'✓':'';
+      paintProgress();
+    } else if(e.target.closest('.tgo')){
+      if(seen.add(k)){ markDone(row); paintProgress(); }   // клик по ▶ тоже засчитывает прослушивание
+    }
+  });
+  render();
+})();
+</script>
+
+<footer><div class="wrap">
+  <div class="big">Слушай по порядку — и услышишь, как группа стала чем-то большим, чем просто звук.</div>
+  <div class="meta">ещё гиды: <a href="/music/michael/">Michael Jackson</a> · <a href="/music/jackie-chan/">Jackie Chan</a></div>
+  <div class="meta">Linkin Park · гид сквозь дискографию и сайд-проекты<br>данные на 2026 · ▶ ведёт на поиск YouTube<br>© 2026 rensite</div>
+  <div class="disc">Все права на оригинальные произведения принадлежат правообладателям. Это независимый некоммерческий фан-проект автора, не связанный с правообладателями; ссылки ведут на поиск YouTube. Цитаты — фрагменты текстов песен в порядке цитирования.</div>
+</div></footer>
+
+<script>
+const obs=new IntersectionObserver((es)=>{es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}})},{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ---- branches (variant 5e): side branch up; Emily = same branch mirrored down ----
+(function(){
+  const SIDE='#b06bff', GOLD='#e6b450', BG='#0a0a0d';
+  function dotCenter(row, box){const d=row.querySelector('.dot');if(!d)return null;const b=d.getBoundingClientRect();return {x:b.left-box.left+b.width/2,y:b.top-box.top+b.height/2};}
+  function draw(){
+    const tl=document.querySelector('.tl');const svg=document.getElementById('rootfork');if(!tl||!svg)return;
+    const box=tl.getBoundingClientRect();const rows=[...tl.querySelectorAll('.row')];
+    const W=box.width,H=box.height;
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('width',W);svg.setAttribute('height',H);svg.innerHTML='';
+    const NS='http://www.w3.org/2000/svg';
+    const add=(t,a)=>{const el=document.createElementNS(NS,t);for(const k in a)el.setAttribute(k,a[k]);svg.appendChild(el);return el;};
+    const defs=add('defs',{});
+    let gradN=0;
+    // make a userSpaceOnUse gradient along (x,y1)->(x,y2): solid at y1, transparent at y2
+    function fadeGrad(x,y1,y2,color){
+      const id='fg'+(gradN++);
+      const g=document.createElementNS(NS,'linearGradient');g.setAttribute('id',id);
+      g.setAttribute('gradientUnits','userSpaceOnUse');
+      g.setAttribute('x1',x);g.setAttribute('y1',y1);g.setAttribute('x2',x);g.setAttribute('y2',y2);
+      // soft multi-stop fade so it dissolves gradually rather than tapering to a point
+      [['0%','1'],['35%','0.7'],['65%','0.3'],['85%','0.1'],['100%','0']].forEach(([off,op])=>{
+        const s=document.createElementNS(NS,'stop');s.setAttribute('offset',off);
+        s.setAttribute('stop-color',color);s.setAttribute('stop-opacity',op);g.appendChild(s);
+      });
+      defs.appendChild(g);
+      return id;
+    }
+    // lane gradient along (x1,y1)->(x2,y2): solid plateau for the first part (RISE), then a gentle fade
+    function laneGrad(x1,y1,x2,y2,color){
+      const id='lg'+(gradN++);
+      const g=document.createElementNS(NS,'linearGradient');g.setAttribute('id',id);
+      g.setAttribute('gradientUnits','userSpaceOnUse');
+      g.setAttribute('x1',x1);g.setAttribute('y1',y1);g.setAttribute('x2',x2);g.setAttribute('y2',y2);
+      const total=Math.hypot(x2-x1,y2-y1)||1; const solidFrac=Math.min(0.55, RISE/total);
+      const sp=Math.round(solidFrac*100);
+      const stops=[[0,'1'],[sp,'1'],[Math.round(sp+(100-sp)*0.4),'0.55'],[Math.round(sp+(100-sp)*0.75),'0.2'],[100,'0']];
+      stops.forEach(([off,op])=>{const s=document.createElementNS(NS,'stop');s.setAttribute('offset',off+'%');
+        s.setAttribute('stop-color',color);s.setAttribute('stop-opacity',op);g.appendChild(s);});
+      defs.appendChild(g);
+      return id;
+    }
+    let axisX=W/2; const firstDot=tl.querySelector('.row .dot');
+    if(firstDot){const b=firstDot.getBoundingClientRect();axisX=b.left-box.left+b.width/2;}
+    const MOBILE=window.matchMedia('(max-width:720px)').matches; // на телефоне ветки уходят ВЛЕВО, в жёлоб
+    const LANE=MOBILE?16:30, R=16, RISE=100, TAIL=100, ANGLE=26;
+
+    // draw one branch. sign=+1 → milestone below the axis point; sign=-1 → above.
+    // The lane is one long vertical line through the milestone, extending 80px past BOTH ends
+    // (each end fades out). It connects to the axis with a small curve at the axis level.
+    function branch(py, sign, axisNode, color, side, label, endMark, lenScale){
+      color=color||SIDE;
+      const dir=(side||-1), lx=axisX+dir*LANE;
+      const mileY  = py - sign*RISE;         // milestone, RISE px from the axis level
+      const elbowY = py - sign*R;            // where the curve meets the lane
+      // connector: axis point → curve into lane (short), solid
+      add('path',{d:`M${axisX},${py} L${axisX+dir*R},${py} Q${lx},${py} ${lx},${elbowY}`,
+        fill:'none',stroke:color,'stroke-width':2.5,'stroke-linejoin':'round'});
+      // ONE vertical lane line, constant width, solid near the elbow → fades to clear at the far end
+      const farEndRaw = mileY - sign*TAIL;
+      const farEnd = elbowY + (farEndRaw - elbowY)*(lenScale||1); // lenScale<1 укорачивает лейн (и маркер на конце)
+      // ветки с маркером на конце (лёд/крест) не затухают — сплошная линия до маркера
+      const laneStroke = endMark ? color : `url(#${laneGrad(lx, elbowY, lx, farEnd, color)})`;
+      add('line',{x1:lx,y1:elbowY,x2:lx,y2:farEnd,stroke:laneStroke,'stroke-width':2.5,'stroke-linecap':'butt'});
+      // small intersection ring on the axis (only for side projects)
+      if(axisNode) add('circle',{cx:axisX,cy:py,r:5,fill:BG,stroke:color,'stroke-width':3});
+      // тематический маркер на дальнем конце ветки: лёд (заморожен) / крест (памяти)
+      if(endMark){ const X=lx, Y=farEnd;
+        if(endMark==='ice'){ const s=6,ice='#a9d6ff',frost='rgba(169,214,255,.16)';
+          const A=[X,Y-s],B=[X+s,Y-s/2],C=[X,Y],D=[X-s,Y-s/2],C2=[X,Y+s],D2=[X-s,Y+s/2],B2=[X+s,Y+s/2];
+          const P=(...p)=>p.map((q,i)=>(i?'L':'M')+q[0]+','+q[1]).join(' ')+' Z';
+          add('path',{d:P(A,B,C,D),fill:frost,stroke:ice,'stroke-width':1.6,'stroke-linejoin':'round'});
+          add('path',{d:P(D,C,C2,D2),fill:'none',stroke:ice,'stroke-width':1.6,'stroke-linejoin':'round'});
+          add('path',{d:P(B,C,C2,B2),fill:'none',stroke:ice,'stroke-width':1.6,'stroke-linejoin':'round'});
+        } else if(endMark==='cross'){ const a=5.5; // крест в виде X (диагонали)
+          add('line',{x1:X-a,y1:Y-a,x2:X+a,y2:Y+a,stroke:color,'stroke-width':2.4,'stroke-linecap':'round'});
+          add('line',{x1:X-a,y1:Y+a,x2:X+a,y2:Y-a,stroke:color,'stroke-width':2.4,'stroke-linecap':'round'});
+        }
+      }
+      // optional label near the milestone (two lines: name + sub)
+      if(label){
+        const tx=lx+dir*12, anchor=dir>0?'start':'end';
+        const t1=add('text',{x:tx,y:mileY-3,'font-size':'12.5',fill:color,'font-weight':'700','text-anchor':anchor,'font-family':'monospace'});
+        t1.textContent=label.name;
+        if(label.sub){const t2=add('text',{x:tx,y:mileY+13,'font-size':'11',fill:'#9b9aa3','text-anchor':anchor,'font-family':'monospace'});t2.textContent=label.sub;}
+      }
+    }
+
+    // SIDE projects — branch downward, with their own intersection ring
+    rows.forEach(r=>{
+      if(!r.classList.contains('kind-side'))return;
+      const p=dotCenter(r,box);if(!p)return;
+      // Post Traumatic ветвится на 100px ниже своей точки (больше воздуха под From Zero)
+      const code=r.querySelector('.code'); const c=code&&code.textContent.trim();
+      // PT — на 100px ниже точки; STP — на высоту ветки ниже (RISE+TAIL)
+      const off = c==='PT' ? 100 : (c==='STP' ? RISE+TAIL : (c==='DBS' ? 170 : (c==='FM' ? 70 : 0)));
+      const endMark = c==='FM' ? 'ice' : ((c==='DBS'||c==='STP') ? 'cross' : null); // лёд у Fort Minor (заморожен), крест у проектов Честера
+      const dir=MOBILE?-1:(r.classList.contains('side-R')?1:-1); // на десктопе — в свою сторону, на телефоне всегда влево
+      const lenScale = c==='FM' ? 0.5 : 1; // линия FM короче на 50%
+      branch(p.y+off,+1,true,SIDE,dir,null,endMark,lenScale);
+    });
+
+    // EMILY — mirrored upward; merges INTO the existing From Zero node (no extra ring)
+    let fzRow=null, ptRow=null;
+    rows.forEach(r=>{const c=r.querySelector('.code');if(!c)return;const t=c.textContent.trim();if(t==='FZ')fzRow=r;if(t==='PT')ptRow=r;});
+    if(fzRow){const fz=dotCenter(fzRow,box);if(fz){
+      tl.style.setProperty('--axis-top', Math.max(0,fz.y)+'px'); // axis starts at the red From Zero node
+      // Dead Sara merges into the axis centered between From Zero and Post Traumatic (right side, gold)
+      const pt=ptRow?dotCenter(ptRow,box):null;
+      // Dead Sara теперь полноценная фидер-карточка (kind-root): ветку якорим на её точку, метку-текст убираем — имя несёт карточка
+      let dsRow=null; rows.forEach(r=>{const c=r.querySelector('.code');if(c&&c.textContent.trim()==='DS')dsRow=r;});
+      const ds=dsRow?dotCenter(dsRow,box):null;
+      const mergeY=ds?ds.y:(pt?(fz.y+pt.y)/2:fz.y+40);
+      if(dsRow){const d=dsRow.querySelector('.dot');if(d)d.style.opacity='0';}
+      branch(mergeY, -1, false, GOLD, MOBILE?-1:1);
+      add('circle',{cx:axisX,cy:mergeY,r:4,fill:GOLD,stroke:BG,'stroke-width':2}); // жёлтая точка слияния на оси
+    }}
+
+    // GREY DAZE — incoming root branch on the RIGHT, merging UP into the Xero node (gold)
+    let xeroRow=null,gdRow=null;
+    rows.forEach(r=>{const c=r.querySelector('.code');if(!c)return;const t=c.textContent.trim();if(t==='XERO')xeroRow=r;if(t==='GD')gdRow=r;});
+    if(gdRow){const gdDot=gdRow.querySelector('.dot');if(gdDot)gdDot.style.opacity='0';}
+    if(xeroRow){const xe=dotCenter(xeroRow,box);if(xe){branch(xe.y, -1, false, GOLD, MOBILE?-1:1);}} // milestone above-right, mirrored vertically
+  }
+  function run(){try{draw();}catch(e){console.error(e);}}
+  if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+  window.addEventListener('load',run);
+  // redraw after reveal animations settle (transforms shift row geometry while animating)
+  [300,700,1200].forEach(d=>setTimeout(run,d));
+  // and whenever a row finishes its reveal transition
+  document.querySelectorAll('.tl .row').forEach(r=>r.addEventListener('transitionend',run));
+  let t;window.addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(run,150);});
+})();
+</script>
+<script src="/palette.js" defer></script>
+</body></html>

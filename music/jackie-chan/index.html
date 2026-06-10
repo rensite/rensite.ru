@@ -155,8 +155,16 @@ hr{border:none;border-top:1px solid var(--rule)}
 .filt:hover{border-color:var(--ink)}
 .filt.active{background:var(--ink);color:var(--cream);border-color:var(--ink)}
 .track-list{border-top:1px solid var(--rule)}
-.track{display:grid;grid-template-columns:3.5rem 1fr auto;gap:var(--s-3);align-items:baseline;padding:var(--s-3) 0;border-bottom:1px solid var(--rule);text-decoration:none;transition:background .25s}
+.cat-progress{display:flex;align-items:center;gap:var(--s-3);margin-bottom:var(--s-4);font-family:"JetBrains Mono",monospace;font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-mute);white-space:nowrap}
+.cat-progress .bar{flex:1;height:3px;background:var(--rule);overflow:hidden}
+.cat-progress .bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .35s ease}
+.track{display:grid;grid-template-columns:34px 1fr;align-items:center;border-bottom:1px solid var(--rule);transition:background .25s}
 .track:hover{background:var(--bg-deep)}
+.tchk{width:19px;height:19px;justify-self:start;border:1px solid var(--rule);background:transparent;color:var(--accent);font-size:12px;line-height:1;cursor:pointer;padding:0;transition:border-color .2s}
+.tchk:hover{border-color:var(--ink)}
+.track.done .tchk{border-color:var(--accent)}
+.track.done .tname{color:var(--ink-mute)}
+.tgo{display:grid;grid-template-columns:3.5rem 1fr auto;gap:var(--s-3);align-items:baseline;padding:var(--s-3) 0;text-decoration:none}
 .track .tyr{font-family:"JetBrains Mono",monospace;font-size:var(--fs-sm);color:var(--ink-mute)}
 .track .tname{font-family:"Fraunces",serif;font-size:1.35rem;line-height:1.15}
 .track .tname .sub{display:block;font-family:"Inter",sans-serif;font-size:.9rem;color:var(--ink-mute);margin-top:.15rem}
@@ -188,9 +196,10 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
   .foot-top .foot-tip{text-align:left;max-width:none}
   /* каталог: фильтры прячем, строку результата — как у MJ (год слева, текст во всю ширину, YouTube строкой ниже) */
   .filters{display:none}
-  .track{grid-template-columns:auto 1fr;column-gap:14px;row-gap:8px;align-items:start;margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter)}
-  .track .tname{grid-column:2}
-  .track .tplay{grid-column:2;justify-self:start;opacity:1}
+  .track{grid-template-columns:28px 1fr;margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter)}
+  .tgo{grid-template-columns:auto 1fr;column-gap:14px;row-gap:8px;align-items:start}
+  .tgo .tname{grid-column:2}
+  .tgo .tplay{grid-column:2;justify-self:start;opacity:1}
   /* карточки хитов: меньше «воздуха», чтобы длинные тайтлы не переносились */
   .start-card{padding:var(--s-4) var(--s-3)}
   .start-card .ttl{font-size:1.5rem}
@@ -211,10 +220,10 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
 </head>
 <body>
 <!--
-  © 2026 rensite · renatgalin.pro
+  © 2026 rensite
   Авторская компиляция, переводы и тексты — лицензия CC BY-NC 4.0
   (используйте с указанием автора, без коммерческого использования).
-  Сигнатура происхождения: rensite·renatgalin.pro·jc-curation·9f3a2c
+  Сигнатура происхождения: rensite·jc-curation·9f3a2c
 -->
 
 <div class="topbar">
@@ -275,6 +284,7 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
     <input type="text" id="search" placeholder="Поиск по названию или фильму…">
     <div class="filters" id="filters"></div>
   </div>
+  <div class="cat-progress reveal" id="catProg"></div>
   <div class="track-list" id="trackList"></div>
   <div class="list-count" id="listCount"></div>
 </section>
@@ -294,13 +304,14 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
     <div class="foot-cols">
       <div class="foot-lead">
         <p>Jackie Chan — путеводитель по дискографии</p>
+        <p class="foot-note">Ещё гиды: <a href="/music/michael/">Michael Jackson</a> · <a href="/music/linkin-park/">Linkin Park</a></p>
         <p class="foot-note">Гид живой и наверняка неидеальный. Нашли ошибку, спорный факт или трек, который must — напишите <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>, поправим вместе. Спасибо, что уделили время ♪</p>
       </div>
       <p class="foot-tip"><span class="mono">Совет:</span> ищите по иероглифам 成龙 / 成龍 в YouTube Music, Spotify или QQ Music — так найдёте максимум.</p>
     </div>
   </div>
   <div class="wrap foot-legal">
-    © 2026 rensite · <a href="https://renatgalin.pro" target="_blank" rel="noopener">renatgalin.pro</a>.
+    © 2026 rensite.
     Авторская компиляция, переводы и тексты — <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC&nbsp;BY-NC&nbsp;4.0</a>:
     делитесь с указанием автора, без коммерции. Факты дискографии собраны из открытых фан-архивов.
     Все права на оригинальные произведения — музыку, фильмы и изображения — принадлежат их правообладателям.
@@ -308,6 +319,7 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
   </div>
 </footer>
 
+<script src="/music/tracks.js"></script>
 <script>
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -369,7 +381,8 @@ function renderStats(){
   const rec = DATA.tracks.length;
   document.getElementById('catSub').innerHTML =
     `<b>${rec}</b> ${plural(rec,['песня','песни','песен'])} по отдельности — треки альбомов, `
-    + `саундтреки, синглы и прочее. Фильтруй по типу или ищи по названию.`;
+    + `саундтреки, синглы и прочее. Фильтруй по типу или ищи по названию. `
+    + `Галочка отмечает прослушанное — прогресс хранится в этом браузере.`;
 }
 
 const filtersEl = document.getElementById('filters');
@@ -388,20 +401,47 @@ filtersEl.addEventListener('click',e=>{
 });
 document.getElementById('search').addEventListener('input',e=>{query=e.target.value.toLowerCase();renderTracks();});
 
+const seen = window.RENSITE_MUSIC.progress('jc-listened');
+function paintProgress(){
+  const total = DATA.tracks.length;
+  const n = DATA.tracks.filter(t=>seen.has(t.q)).length;
+  document.getElementById('catProg').innerHTML =
+    `<span>прослушано ${n} из ${total}</span><span class="bar"><i style="width:${(n/total*100).toFixed(1)}%"></i></span>`;
+}
 function renderTracks(){
   const filtered = DATA.tracks.filter(t=>{
     const okType = activeType==="Все" || (activeType==="Значимые" ? t.significant : t.type===activeType);
     const okQ = !query || (t.n+" "+(t.s||"")+" "+(t.why||"")).toLowerCase().includes(query);
     return okType && okQ;
   });
-  document.getElementById('trackList').innerHTML = filtered.map(t=>`
-    <a class="track${t.significant?' is-sig':''}" href="${yt(t.q)}" target="_blank">
-      <span class="tyr">${t.yr}</span>
-      <span class="tname">${t.n}${t.s?`<span class="sub">${t.s}</span>`:''}${t.why?`<span class="twhy">${t.why}</span>`:''}</span>
-      <span class="tplay">▶ YouTube</span>
-    </a>`).join('') || '<p style="padding:var(--s-6) 0;color:var(--ink-mute)">Ничего не найдено.</p>';
+  document.getElementById('trackList').innerHTML = filtered.map(t=>{
+    const done = seen.has(t.q);
+    return `
+    <div class="track${t.significant?' is-sig':''}${done?' done':''}" data-k="${t.q}">
+      <button class="tchk" type="button" aria-pressed="${done}" aria-label="Прослушано: ${t.n}">${done?'✓':''}</button>
+      <a class="tgo" href="${yt(t.q)}" target="_blank">
+        <span class="tyr">${t.yr}</span>
+        <span class="tname">${t.n}${t.s?`<span class="sub">${t.s}</span>`:''}${t.why?`<span class="twhy">${t.why}</span>`:''}</span>
+        <span class="tplay">▶ YouTube</span>
+      </a>
+    </div>`;
+  }).join('') || '<p style="padding:var(--s-6) 0;color:var(--ink-mute)">Ничего не найдено.</p>';
   document.getElementById('listCount').textContent = `Показано ${filtered.length} из ${DATA.tracks.length} песен`;
+  paintProgress();
 }
+document.getElementById('trackList').addEventListener('click', e=>{
+  const row = e.target.closest('.track'); if(!row) return;
+  const k = row.dataset.k;
+  const b = row.querySelector('.tchk');
+  if(e.target.closest('.tchk')){
+    const on = seen.toggle(k);
+    row.classList.toggle('done', on);
+    b.setAttribute('aria-pressed', String(on)); b.textContent = on?'✓':'';
+    paintProgress();
+  } else if(e.target.closest('.tgo')){
+    if(seen.add(k)){ row.classList.add('done'); b.setAttribute('aria-pressed','true'); b.textContent='✓'; paintProgress(); }  // ▶ тоже засчитывает
+  }
+});
 
 // ---------- MOTION (hero — сразу, не ждёт данных) ----------
 gsap.registerPlugin(ScrollTrigger);
@@ -456,5 +496,6 @@ fetch('./data.json',{cache:'no-store'})
     if(tl) tl.innerHTML='<p style="padding:var(--s-6) 0;color:var(--ink-mute)">Не удалось загрузить данные ('+err.message+'). Откройте страницу через локальный сервер, а не как файл.</p>';
   });
 </script>
+<script src="/palette.js" defer></script>
 </body>
 </html>

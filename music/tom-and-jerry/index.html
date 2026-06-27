@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#E5202B">
+<title>Том и Джерри — Музыкальный выпуск</title>
+<meta name="description" content="Комикс-гид по музыкальным короткометражкам «Тома и Джерри»: у каждой серии — своя обложка и раскадровка. Классика MGM, где музыка и есть сюжет.">
+<meta property="og:title" content="Том и Джерри — Музыкальный выпуск">
+<meta property="og:description" content="Каждая музыкальная серия как выпуск комикса: обложка, раскадровка, оригинал на плёнке.">
+<meta property="og:image" content="/music/tom-and-jerry/img/title-card.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700;800;900&family=Bangers&family=Caveat:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<noscript><style>.cover-intro{display:none!important}</style></noscript>
+<style>
+  :root{
+    --ink:#15110D; --ink-soft:#3a2c20;
+    --paper:#F2E7C9; --paper-2:#FBF3DD; --paper-edge:#E7D8B0;
+    --red:#E5202B; --red-deep:#B3121B;
+    --yellow:#FFD21E; --yellow-hi:#FFE873;
+    --blue:#1FA6E0; --blue-deep:#0E6FA8;
+    --tom:#7494A8; --tom-deep:#42627A;
+    --jerry:#9A5B33; --jerry-soft:#C68A55;
+    --cream:#FBEFD6; --gold:#D9A521;
+
+    --gutter:clamp(1.1rem,4vw,3rem); --max:1180px;
+    --s1:.5rem; --s2:1rem; --s3:1.5rem; --s4:2rem; --s6:3rem; --s8:4rem; --s12:6rem; --s16:8rem;
+    --disp:'Rubik',system-ui,'Segoe UI',sans-serif;
+    --sfx:'Bangers','Rubik',system-ui,sans-serif;
+    --hand:'Caveat','Comic Sans MS',cursive;
+    --body:'Nunito',system-ui,sans-serif;
+    --shadow:5px 5px 0 var(--ink);
+    --shadow-lg:8px 8px 0 var(--ink);
+    /* комикс-звезда (онопопея) */
+    --burst:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,1 59,26 80,11 72,35 98,35 77,50 98,65 72,65 80,89 59,74 50,99 41,74 20,89 28,65 2,65 23,50 2,35 28,35 20,11 41,26' fill='%23FFD21E' stroke='%2315110D' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E");
+    --burst-red:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,1 59,26 80,11 72,35 98,35 77,50 98,65 72,65 80,89 59,74 50,99 41,74 20,89 28,65 2,65 23,50 2,35 28,35 20,11 41,26' fill='%23E5202B' stroke='%2315110D' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    background:var(--paper); color:var(--ink);
+    font:400 1.05rem/1.6 var(--body);
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;
+    background-image:
+      radial-gradient(rgba(21,17,13,.06) 1.1px, transparent 1.3px),
+      radial-gradient(120% 80% at 50% -6%, var(--paper-2) 0%, var(--paper) 46%, var(--paper-edge) 100%);
+    background-size:6px 6px, 100% 100%;
+    background-attachment:fixed;
+  }
+  .disp{font-family:var(--disp);font-weight:900}
+  .hand{font-family:var(--hand)}
+  ::selection{background:var(--yellow);color:var(--ink)}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+  :focus:not(:focus-visible){outline:none}
+  img{max-width:100%;display:block}
+  .container{max-width:var(--max);margin:0 auto;padding-inline:var(--gutter)}
+
+  /* зерно газетной бумаги */
+  body::after{content:"";position:fixed;inset:0;z-index:200;pointer-events:none;opacity:.045;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  .skip{position:fixed;left:50%;top:-60px;transform:translateX(-50%);z-index:1000;
+    background:var(--yellow);color:var(--ink);font-family:var(--disp);font-weight:800;
+    padding:10px 18px;border:3px solid var(--ink);border-radius:0 0 12px 12px;text-decoration:none;transition:top .2s}
+  .skip:focus{top:0}
+
+  /* ── ВЕРХНЯЯ ПАНЕЛЬ ── */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:120;display:flex;justify-content:space-between;align-items:center;
+    padding:10px clamp(12px,4vw,26px);background:linear-gradient(180deg,rgba(242,231,201,.92),rgba(242,231,201,0));backdrop-filter:blur(2px)}
+  .topbar a.back,.mute{font-family:var(--disp);font-weight:800;font-size:.8rem;color:var(--ink);
+    background:var(--yellow);border:3px solid var(--ink);border-radius:30px;box-shadow:3px 3px 0 var(--ink);
+    text-decoration:none;cursor:pointer;transition:transform .12s,box-shadow .12s}
+  .topbar a.back{padding:7px 15px;letter-spacing:.02em}
+  .topbar a.back:hover{transform:translate(-2px,-1px);box-shadow:4px 4px 0 var(--ink)}
+  .mute{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 10px}
+  .mute:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+  .mute:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .mute svg{width:20px;height:20px;display:block}
+  .mute .lbl{white-space:nowrap}
+  .mute[aria-pressed="true"]{background:var(--paper-2);color:var(--jerry)}
+
+  /* ── ОБЛОЖКА-ИНТРО (раскрытие выпуска) ── */
+  .cover-intro{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:clamp(12px,4vw,40px);
+    background:repeating-linear-gradient(45deg,var(--red) 0 22px,var(--red-deep) 22px 44px);
+    transition:transform 1s cubic-bezier(.7,0,.2,1),opacity .5s}
+  .cover-intro.up{transform:translateY(-104%);opacity:0;pointer-events:none}
+  .ci-book{position:relative;width:min(92vw,440px);background:var(--paper-2);border:5px solid var(--ink);box-shadow:12px 12px 0 rgba(0,0,0,.45);
+    transform:rotate(-1.4deg)}
+  .ci-top{display:flex;justify-content:space-between;align-items:center;background:var(--ink);color:var(--yellow-hi);
+    padding:8px 12px;font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:.72rem;letter-spacing:.04em}
+  .ci-art{position:relative;aspect-ratio:3/4;overflow:hidden;background:radial-gradient(circle at 50% 38%,var(--yellow) 0%,var(--red) 46%,var(--red-deep) 100%)}
+  .ci-art img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;opacity:.92}
+  .ci-burst{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:18px}
+  .ci-logo{font-family:var(--disp);font-weight:900;text-transform:uppercase;line-height:.92;color:var(--yellow);
+    -webkit-text-stroke:3px var(--ink);paint-order:stroke;text-shadow:5px 5px 0 var(--red-deep);font-size:clamp(2.1rem,9vw,3.4rem)}
+  .ci-logo .amp{display:block;font-family:var(--hand);font-weight:700;-webkit-text-stroke:2px var(--ink);font-size:.62em;margin:.05em 0}
+  .ci-tag{display:inline-block;margin-top:14px;background:var(--yellow);color:var(--ink);border:3px solid var(--ink);
+    font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:.78rem;letter-spacing:.06em;padding:6px 14px;box-shadow:3px 3px 0 var(--ink);transform:rotate(-2deg)}
+  .ci-price{position:absolute;top:-16px;right:-16px;width:78px;height:78px;display:grid;place-items:center;z-index:3;
+    background:var(--burst);background-size:100% 100%;font-family:var(--disp);font-weight:900;color:var(--ink);
+    font-size:.78rem;text-align:center;line-height:1;transform:rotate(9deg)}
+  .ci-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border-top:4px solid var(--ink);background:var(--paper)}
+  .ci-foot .mgm{font-family:var(--disp);font-weight:800;font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;color:var(--red)}
+  .ci-open{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:.82rem;letter-spacing:.04em;
+    color:var(--ink);background:var(--yellow);border:3px solid var(--ink);border-radius:30px;padding:9px 18px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);
+    transition:transform .12s,box-shadow .12s;animation:nudge 1.8s ease-in-out infinite}
+  .ci-open:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+  @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+  @media(prefers-reduced-motion:reduce){.ci-open{animation:none}}
+
+  /* ── #top МАСТХЕД ── */
+  .mast{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;gap:var(--s4);
+    padding:clamp(74px,12vh,120px) var(--gutter) var(--s8);overflow:hidden;isolation:isolate}
+  .mast-burst{position:absolute;inset:-12% -12% 0;z-index:-2;
+    background:radial-gradient(circle at 50% 36%,var(--yellow-hi) 0%,var(--yellow) 12%,var(--red) 44%,var(--red-deep) 100%)}
+  .mast-halftone{position:absolute;inset:0;z-index:-1;pointer-events:none;color:var(--ink);opacity:.16;mix-blend-mode:multiply;
+    background-image:radial-gradient(currentColor 1.7px,transparent 2px);background-size:9px 9px}
+  .mast-rays{position:absolute;inset:0;z-index:-2;display:grid;place-items:center;pointer-events:none}
+  .mast-rays svg{width:200vmax;height:200vmax;opacity:.22;mix-blend-mode:multiply;animation:spin 220s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){.mast-rays svg{animation:none}}
+
+  .mast-meta{display:flex;justify-content:space-between;gap:var(--s2);flex-wrap:wrap;
+    font-family:var(--disp);font-weight:800;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink);text-shadow:1px 1px 0 var(--yellow-hi);padding-right:clamp(120px,14vw,188px)}
+  .mast-meta span{background:var(--yellow);border:3px solid var(--ink);padding:5px 12px;box-shadow:2px 2px 0 var(--ink)}
+  .mast-stage{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s3);position:relative}
+  .lockup{position:relative;width:min(94vw,940px)}
+  .lockup .wm{width:100%;height:auto;overflow:visible;display:block;filter:drop-shadow(0 10px 0 rgba(0,0,0,.18))}
+  .lockup .sub{display:block;text-align:center;font-family:var(--hand);font-weight:700;font-size:clamp(1.2rem,3.6vw,2.1rem);
+    color:var(--paper-2);margin-top:.05em;text-shadow:2px 2px 0 var(--red-deep)}
+  .cameo{position:absolute;bottom:-4%;z-index:2;width:clamp(92px,15vw,172px);filter:drop-shadow(4px 8px 8px rgba(0,0,0,.4));pointer-events:none}
+  .cameo.tom{left:-2%}
+  .cameo.jerry{right:-1%;width:clamp(72px,11vw,130px)}
+  /* на узких экранах камео налезают на буквы логотипа — прячем, логотип читается сам */
+  @media(max-width:560px){.cameo{display:none}}
+  /* настоящая винтажная обложка комикса, «приколота» в углу мастхеда */
+  .mast-archive{position:absolute;left:clamp(14px,3vw,42px);bottom:clamp(22px,6vh,72px);z-index:1;width:clamp(120px,12vw,170px);
+    transform:rotate(-7deg);background:var(--paper-2);border:4px solid var(--ink);box-shadow:var(--shadow);padding:7px 7px 5px}
+  .mast-archive img{width:100%;border:2px solid var(--ink);display:block}
+  .mast-archive figcaption{font-family:var(--disp);font-weight:800;font-size:.54rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink);text-align:center;margin-top:5px}
+  @media(max-width:1100px){.mast-archive{display:none}}
+
+  .mast-foot{display:flex;flex-direction:column;align-items:center;gap:var(--s3);text-align:center}
+  .ribbon{display:inline-block;font-family:var(--disp);font-weight:900;text-transform:uppercase;letter-spacing:.05em;
+    color:var(--yellow-hi);background:var(--ink);border:4px solid var(--ink);padding:8px 22px;box-shadow:var(--shadow);
+    font-size:clamp(1rem,2.6vw,1.5rem);transform:rotate(-1.5deg);-webkit-text-stroke:.5px var(--red)}
+  .lead-box{max-width:52ch;font-size:clamp(1rem,1.5vw,1.16rem);line-height:1.5;color:var(--ink);
+    background:var(--paper-2);border:3px solid var(--ink);box-shadow:var(--shadow);padding:14px 20px;position:relative}
+  .lead-box::before{content:"СЛОВО РЕДАКТОРА";position:absolute;top:-13px;left:16px;background:var(--red);color:var(--yellow-hi);
+    font-family:var(--disp);font-weight:900;font-size:.6rem;letter-spacing:.1em;padding:3px 9px;border:2px solid var(--ink)}
+  .cue{font-family:var(--disp);font-weight:900;font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--ink);background:var(--yellow);border:3px solid var(--ink);border-radius:30px;
+    padding:10px 22px;text-decoration:none;box-shadow:var(--shadow);transition:transform .14s,box-shadow .14s;animation:nudge 2.2s ease-in-out infinite}
+  .cue:hover{transform:translateY(2px);box-shadow:3px 3px 0 var(--ink)}
+  @media(prefers-reduced-motion:reduce){.cue{animation:none}}
+
+  /* ── БАННЕР СЕКЦИИ ── */
+  .sec{padding:var(--s12) var(--gutter)}
+  .banner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;margin:0 auto var(--s8);max-width:760px}
+  .banner h2{display:inline-block;font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(1.3rem,4.4vw,2.4rem);
+    line-height:1;color:var(--yellow-hi);background:var(--red);border:4px solid var(--ink);box-shadow:var(--shadow);
+    padding:10px 22px;transform:rotate(-1.5deg);-webkit-text-stroke:.6px var(--ink)}
+  .banner p{max-width:60ch;color:var(--ink);font-size:1.04rem;line-height:1.55}
+  .banner p b{color:var(--red-deep)}
+
+  /* ── ВЫПУСК (issue) — галерея обложек ── */
+  #issues1,#issues2{display:grid;grid-template-columns:repeat(auto-fill,minmax(264px,1fr));
+    gap:clamp(34px,4.5vw,60px) clamp(26px,3.5vw,46px);max-width:1180px;margin:0 auto;align-items:start}
+  .issue{display:flex;flex-direction:column;gap:13px}
+
+  /* обложка серии */
+  .cover{position:relative;background:var(--paper-2);border:4px solid var(--ink);box-shadow:var(--shadow-lg);overflow:hidden;
+    transform:rotate(-1deg);cursor:pointer}
+  .cover:focus-visible{box-shadow:var(--shadow-lg),0 0 0 4px var(--blue)}
+  .issue:nth-child(even) .cover{transform:rotate(1deg)}
+  .cov-art{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--tom)}
+  .cov-art img{width:100%;height:100%;object-fit:cover;object-position:center;filter:contrast(1.1) saturate(1.18)}
+  .cov-art::after{content:"";position:absolute;inset:0;pointer-events:none;color:var(--ink);opacity:.14;mix-blend-mode:multiply;
+    background-image:radial-gradient(currentColor 1px,transparent 1.4px);background-size:5px 5px}
+  .cov-no{position:absolute;top:-10px;left:-10px;width:74px;height:74px;display:grid;place-items:center;z-index:4;
+    background:var(--burst-red);background-size:100% 100%;transform:rotate(-10deg);
+    font-family:var(--disp);font-weight:900;color:var(--yellow);line-height:.9;text-align:center;
+    -webkit-text-stroke:.6px var(--ink);font-size:.66rem}
+  .cov-no b{display:block;font-size:1.5rem}
+  .cov-oscar{position:absolute;top:30px;right:6px;z-index:6;margin:0;display:flex;flex-direction:column;align-items:center;gap:5px;
+    transform:rotate(4deg);pointer-events:none}
+  .cov-oscar::before{content:"";position:absolute;top:4%;left:50%;width:190%;aspect-ratio:1;transform:translateX(-50%);z-index:-1;
+    background:radial-gradient(circle,rgba(255,228,110,.72),rgba(255,210,30,.26) 44%,transparent 70%)}
+  .cov-oscar img{height:clamp(118px,17vw,152px);width:auto;display:block;
+    filter:drop-shadow(0 0 13px rgba(255,205,20,.85)) drop-shadow(3px 7px 6px rgba(10,7,4,.5))}
+  .cov-oscar figcaption{font-family:var(--disp);font-weight:900;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;
+    color:var(--ink);background:linear-gradient(160deg,var(--yellow-hi),var(--gold));border:2.5px solid var(--ink);
+    border-radius:14px;padding:3px 12px;box-shadow:3px 3px 0 var(--ink);line-height:1;text-align:center}
+  .cov-oscar figcaption span{display:block;font-size:.56rem;font-weight:800;letter-spacing:.02em;margin-top:2px}
+  .cov-title{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:30px 12px 10px;
+    background:linear-gradient(0deg,rgba(10,7,4,.86) 30%,transparent);
+    font-family:var(--disp);font-weight:900;text-transform:uppercase;line-height:.96;color:#fff;
+    font-size:clamp(1.05rem,2vw,1.32rem);text-shadow:2px 2px 0 var(--red-deep)}
+  .cov-title .yr{display:block;font-size:.62em;color:var(--yellow);margin-top:3px;-webkit-text-stroke:0}
+  .cov-blurb{font-family:var(--hand);font-weight:600;font-size:1.12rem;line-height:1.15;color:var(--ink);
+    background:var(--yellow);border-top:4px solid var(--ink);padding:9px 12px}
+  .cov-work{font-family:var(--body);font-weight:800;font-style:italic;font-size:.82rem;color:var(--tom-deep);
+    background:var(--paper-2);border-top:3px solid var(--ink);padding:7px 12px}
+  .issue.jazz .cov-work{color:var(--jerry)}
+  /* печать «ЧИТАНО» */
+  .stamp{position:absolute;top:64%;left:50%;z-index:1;transform:translate(-50%,-50%) rotate(-16deg) scale(1.1);
+    font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:1.06rem;letter-spacing:.02em;
+    color:var(--red);border:4px solid var(--red);border-radius:8px;padding:4px 14px;
+    box-shadow:0 0 0 2px rgba(229,32,43,.25);opacity:0;pointer-events:none;mix-blend-mode:multiply}
+  .issue.read .stamp{opacity:.92;animation:slam .45s cubic-bezier(.3,1.7,.5,1)}
+  @keyframes slam{0%{transform:translate(-50%,-50%) rotate(-16deg) scale(2.4);opacity:0}60%{opacity:.95}100%{transform:translate(-50%,-50%) rotate(-16deg) scale(1.1);opacity:.92}}
+  @media(prefers-reduced-motion:reduce){.issue.read .stamp{animation:none}}
+
+
+  /* наведение на обложку → затемнение картинки + кнопка ▶ */
+  .cov-play{position:absolute;inset:0;z-index:5;display:grid;place-items:center;opacity:0;
+    background:rgba(10,7,4,.52);transition:opacity .22s;pointer-events:none}
+  .cover:hover .cov-play,.cover:focus-visible .cov-play{opacity:1}
+  .cov-play b{width:clamp(48px,17%,68px);aspect-ratio:1;border-radius:50%;background:var(--yellow);border:3px solid var(--ink);
+    box-shadow:3px 3px 0 var(--ink);display:grid;place-items:center;color:var(--ink);font-size:1.5rem;line-height:1;padding-left:5px;
+    transform:scale(.82);transition:transform .22s cubic-bezier(.3,1.7,.5,1)}
+  .cover:hover .cov-play b,.cover:focus-visible .cov-play b{transform:scale(1)}
+  @media(prefers-reduced-motion:reduce){.cov-play,.cov-play b{transition:none}}
+
+
+  /* ── READ-O-METER (счётчик прочитанных) ── */
+  .meter{position:fixed;top:60px;right:14px;z-index:115;width:150px;background:var(--paper-2);color:var(--ink);
+    border:4px solid var(--ink);border-radius:14px;padding:9px 10px 7px;box-shadow:var(--shadow);text-align:center;transform:rotate(2deg)}
+  .meter .mlabel{font-family:var(--disp);font-weight:900;font-size:.56rem;text-transform:uppercase;letter-spacing:.08em;color:var(--red)}
+  .meter .dial{width:100%;height:60px;display:block}
+  .meter .needle{transform-box:fill-box;transform-origin:bottom center;transform:rotate(calc(-46deg + var(--read,0)*9.2deg));
+    transition:transform .5s cubic-bezier(.34,1.56,.5,1)}
+  .meter.spring .needle{transition:transform .7s cubic-bezier(.2,2.2,.3,1)}
+  @media(prefers-reduced-motion:reduce){.meter .needle{transition:transform .2s linear}}
+  .meter .read{font-family:var(--disp);font-weight:900;font-size:.62rem;text-transform:uppercase;color:var(--red);margin-top:1px}
+  .meter .cnt{font-family:var(--sfx);font-size:1.05rem;color:var(--ink);letter-spacing:.04em}
+  @media(max-width:620px){.meter{width:112px;top:54px;right:8px}.meter .dial{height:46px}.meter .read{font-size:.54rem}}
+
+  /* ── ПРОЕКТОР (видео) ── */
+  .projector{position:fixed;left:14px;bottom:14px;z-index:118;width:min(92vw,420px);
+    background:var(--paper-2);color:var(--ink);border:4px solid var(--ink);border-radius:16px;box-shadow:var(--shadow-lg);
+    transform:translateY(calc(100% + 26px));opacity:0;transition:transform .5s cubic-bezier(.34,1.3,.5,1),opacity .3s;pointer-events:none}
+  .projector.open{transform:translateY(0);opacity:1;pointer-events:auto}
+  .pj-top{display:flex;align-items:center;gap:12px;padding:11px 14px 8px}
+  .pj-reel{position:relative;width:50px;height:50px;flex:none;border-radius:50%;border:3px solid var(--ink);background:
+    repeating-conic-gradient(var(--ink) 0 30deg,#3a2c20 30deg 60deg);animation:spin 1.4s linear infinite}
+  .projector.paused .pj-reel{animation-play-state:paused}
+  .pj-reel::after{content:"";position:absolute;inset:38%;border-radius:50%;background:var(--yellow);border:2px solid var(--ink)}
+  .pj-meta{min-width:0;flex:1}
+  .pj-meta .now{font-family:var(--disp);font-weight:900;font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--red)}
+  .pj-meta .ttl{font-family:var(--disp);font-weight:900;font-size:1rem;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pj-meta .wrk{font-family:var(--body);font-weight:700;font-style:italic;font-size:.82rem;color:var(--tom-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pj-close{flex:none;width:34px;height:34px;border-radius:50%;border:3px solid var(--ink);background:var(--yellow);color:var(--ink);
+    font-size:1rem;cursor:pointer;display:grid;place-items:center;box-shadow:2px 2px 0 var(--ink)}
+  .pj-frame{margin:0 12px 12px;border:3px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--ink);aspect-ratio:16/9;position:relative}
+  .pj-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+  .pj-frame .nofilm{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:14px;
+    background:radial-gradient(circle at 50% 42%,var(--red) 0%,var(--red-deep) 100%)}
+  .pj-frame .nofilm .big{font-family:var(--disp);font-weight:900;font-size:2.6rem;color:var(--yellow);-webkit-text-stroke:3px var(--ink);line-height:1}
+  .pj-frame .nofilm .sr{display:inline-block;margin-top:10px;font-family:var(--disp);font-weight:900;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;
+    color:var(--ink);background:var(--yellow);border:3px solid var(--ink);border-radius:30px;padding:8px 15px;text-decoration:none;box-shadow:2px 2px 0 var(--ink)}
+  .pj-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:0 14px 12px}
+  .pj-foot a{font-family:var(--disp);font-weight:900;font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--red);text-decoration:none}
+  .pj-foot .hint{font-family:var(--body);font-weight:700;font-size:.72rem;color:var(--jerry)}
+  @media(max-width:620px){.projector{left:8px;right:8px;width:auto;bottom:8px}}
+
+  /* ── #antrakt ВЕРСИИ ── */
+  .eras{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1000px;margin:0 auto}
+  .era{background:var(--paper-2);color:var(--ink);border:4px solid var(--ink);box-shadow:var(--shadow);overflow:hidden;transition:transform .18s}
+  .era:hover{transform:translateY(-4px) rotate(-.6deg)}
+  .era img{width:100%;height:170px;object-fit:cover;object-position:center top;border-bottom:4px solid var(--ink);filter:grayscale(.15) contrast(1.05)}
+  .era .ebody{padding:14px 16px 18px}
+  .era .eyr{font-family:var(--disp);font-weight:900;font-size:.68rem;letter-spacing:.05em;color:var(--red)}
+  .era h3{font-family:var(--disp);font-weight:900;font-size:1.12rem;line-height:1.05;margin:4px 0 8px}
+  .era p{font-size:.9rem;line-height:1.45;color:var(--ink);opacity:.88}
+  .era em{font-style:italic;color:var(--tom-deep)}
+  .era.core{border-color:var(--gold);box-shadow:5px 5px 0 var(--gold)}
+  .era.core .ebadge{display:inline-block;margin-top:10px;font-family:var(--disp);font-weight:900;font-size:.58rem;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--ink);background:linear-gradient(160deg,var(--yellow-hi),var(--gold));border:2px solid var(--ink);border-radius:20px;padding:4px 11px;box-shadow:2px 2px 0 var(--ink)}
+  .canon{max-width:64ch;margin:var(--s8) auto 0;text-align:center;color:var(--ink);font-size:1.02rem;line-height:1.6;
+    background:var(--paper-2);border:3px solid var(--ink);box-shadow:var(--shadow);padding:18px 22px}
+  .canon b{color:var(--red-deep)}
+  @media(max-width:760px){.eras{grid-template-columns:1fr}}
+
+  /* ── #finale ФИНАЛ ── */
+  .finale{position:relative;padding:var(--s16) var(--gutter) var(--s12);text-align:center;overflow:hidden;color:var(--paper-2)}
+  .finale-burst{position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 50% 28%,var(--red) 0%,var(--red-deep) 60%,#6e0a10 100%)}
+  .finale-burst::after{content:"";position:absolute;inset:0;color:#000;opacity:.14;background-image:radial-gradient(currentColor 1.5px,transparent 2px);background-size:9px 9px}
+  .finale h2{font-family:var(--disp);font-weight:900;font-size:clamp(2rem,6.5vw,4.2rem);line-height:.96;color:var(--yellow);
+    -webkit-text-stroke:2px var(--ink);paint-order:stroke;text-shadow:5px 6px 0 #6e0a10;letter-spacing:-.01em;margin-bottom:var(--s3)}
+  .finale p{max-width:56ch;margin:0 auto;color:var(--paper-2);font-size:1.08rem;line-height:1.5}
+  .finale em{font-style:italic;color:var(--yellow-hi)}
+  .finale .kicker{font-family:var(--hand);font-weight:700;font-size:clamp(1.5rem,3.8vw,2.4rem);color:var(--yellow-hi);margin-top:var(--s6);line-height:1.15}
+  .finale .wc{display:inline-block;margin-top:var(--s4);font-family:var(--disp);font-weight:900;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;
+    color:var(--ink);background:var(--yellow);border:3px solid var(--ink);border-radius:30px;padding:10px 18px;text-decoration:none;box-shadow:var(--shadow)}
+
+  /* ── ФУТЕР ── */
+  .foot{background:var(--ink);color:var(--paper-2);border-top:6px solid var(--ink);padding:var(--s12) var(--gutter) var(--s8);text-align:center}
+  .foot .fmark{font-family:var(--disp);font-weight:900;font-size:clamp(1.4rem,4vw,2.2rem);color:var(--yellow)}
+  .foot .ftag{max-width:48ch;margin:8px auto 0;color:var(--paper-2);opacity:.85}
+  .foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:var(--s6)}
+  .foot-links a{font-family:var(--disp);font-weight:900;font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink);
+    background:var(--yellow);border:3px solid var(--paper-2);border-radius:30px;padding:9px 18px;text-decoration:none;box-shadow:3px 3px 0 var(--red);transition:transform .14s,box-shadow .14s}
+  .foot-links a:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--red)}
+  .foot-fine{margin-top:var(--s6);font-family:var(--disp);font-weight:800;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--jerry-soft)}
+  .foot-disc{max-width:92ch;margin:var(--s3) auto 0;font-size:.72rem;line-height:1.6;color:rgba(251,243,221,.55)}
+  .foot-disc a{color:var(--yellow);text-decoration:none;border-bottom:1px solid var(--gold)}
+
+  /* всплывающие нотки/звёзды */
+  .note-pop{position:fixed;z-index:130;font-family:var(--sfx);pointer-events:none;color:var(--red);
+    text-shadow:1px 1px 0 var(--ink);animation:notePop 1s ease-out forwards}
+  @keyframes notePop{0%{opacity:1;transform:translateY(0) scale(.6)}100%{opacity:0;transform:translateY(-60px) scale(1.2)}}
+
+  .reveal{opacity:0;transform:translateY(28px)}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+
+  @view-transition{navigation:auto}
+  @media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#program">К выпускам →</a>
+
+<!-- ── ВЕРХНЯЯ ПАНЕЛЬ ── -->
+<header class="topbar">
+  <a class="back" href="/music/">← музыка</a>
+  <button class="mute" id="mute" type="button" aria-pressed="false" aria-label="Выключить звук">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 14l8-9v18l-8-9z" fill="currentColor"/><path d="M14 8s3 1 3 4-3 4-3 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="lbl" id="mute-lbl">звук</span>
+  </button>
+</header>
+
+<!-- ── ОБЛОЖКА-ИНТРО ── -->
+<div class="cover-intro" id="coverIntro" aria-hidden="false">
+  <div class="ci-book">
+    <div class="ci-top"><span>Том и Джерри</span><span>Музыкальный выпуск</span></div>
+    <div class="ci-art">
+      <img src="img/title-card.jpeg" alt="" aria-hidden="true">
+      <div class="ci-burst">
+        <div>
+          <span class="ci-logo">ТОМ<span class="amp">и</span>ДЖЕРРИ</span>
+          <span class="ci-tag">10 серий, где поёт музыка</span>
+        </div>
+      </div>
+      <div class="ci-price">10¢<br>No.1</div>
+    </div>
+    <div class="ci-foot">
+      <span class="mgm">A Metro-Goldwyn-Mayer Comic</span>
+      <button class="ci-open" id="openIssue" type="button" aria-label="Открыть выпуск">Открыть выпуск ▸</button>
+    </div>
+  </div>
+</div>
+
+<main>
+<!-- ── #top МАСТХЕД ── -->
+<section class="mast" id="top">
+  <div class="mast-burst" aria-hidden="true"></div>
+  <div class="mast-rays" aria-hidden="true">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="#15110D"><path d="M50 50 L52 0 L48 0Z"/><path d="M50 50 L75 3 L71 1Z"/><path d="M50 50 L97 25 L95 21Z"/><path d="M50 50 L100 52 L100 48Z"/><path d="M50 50 L97 75 L99 71Z"/><path d="M50 50 L75 97 L71 99Z"/><path d="M50 50 L52 100 L48 100Z"/><path d="M50 50 L25 97 L29 99Z"/><path d="M50 50 L3 75 L1 71Z"/><path d="M50 50 L0 52 L0 48Z"/><path d="M50 50 L3 25 L1 29Z"/><path d="M50 50 L25 3 L29 1Z"/></g></svg>
+  </div>
+  <div class="mast-halftone" aria-hidden="true"></div>
+
+  <figure class="mast-archive" aria-hidden="true">
+    <img src="img/cover-vintage-2.jpg" alt="" loading="lazy">
+    <figcaption>из архива · Dell · 1953</figcaption>
+  </figure>
+
+  <div class="mast-meta">
+    <span>rensite · музыкальный гид</span>
+    <span>No.1 · MGM · 1944—1967</span>
+  </div>
+
+  <div class="mast-stage">
+    <div class="lockup">
+      <img class="cameo tom" src="img/tom.png" alt="" aria-hidden="true" loading="lazy">
+      <img class="cameo jerry" src="img/jerry.png" alt="" aria-hidden="true" loading="lazy">
+      <svg class="wm" viewBox="0 0 1540 330" role="img" aria-label="Том и Джерри">
+        <defs>
+          <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FFE873"/><stop offset="0.45" stop-color="#FFD21E"/><stop offset="1" stop-color="#F2A916"/>
+          </linearGradient>
+          <text id="wmtext" x="770" y="238" text-anchor="middle" font-family="Rubik, sans-serif" font-weight="900" font-size="196" letter-spacing="-5">ТОМ<tspan font-family="Caveat, cursive" font-weight="700" font-size="134" dx="4" dy="-6"> и </tspan><tspan dx="0" dy="6">ДЖЕРРИ</tspan></text>
+        </defs>
+        <use href="#wmtext" x="8" y="12" fill="#15110D"/>
+        <use href="#wmtext" fill="url(#sheen)" stroke="#15110D" stroke-width="14" stroke-linejoin="round" paint-order="stroke"/>
+        <use href="#wmtext" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+      <span class="sub">музыкальный выпуск · 10 серий</span>
+    </div>
+  </div>
+
+  <div class="mast-foot">
+    <span class="ribbon">10 серий, где поёт музыка</span>
+    <p class="lead-box">У Тома и Джерри почти нет реплик. За них говорит музыка — и в этих выпусках она не сопровождает погоню, а сама ею становится. Каждой серии — своя обложка и раскадровка.</p>
+    <a class="cue" href="#program">▼ Открыть программу</a>
+  </div>
+</section>
+
+<!-- ── #program ГЛАВНЫЕ ВЫПУСКИ ── -->
+<section class="sec" id="program">
+  <div class="banner reveal">
+    <h2>Выпуски 01–06 · концертное ядро</h2>
+    <p>Шесть «партитурных» короткометражек, где музыка — сам сюжет; <b>две из них принесли франшизе оба «Оскара»</b>. У каждой — обложка, раскадровка и оригинал на плёнке.</p>
+  </div>
+  <div id="issues1"></div>
+</section>
+
+<!-- ── #encore НА БИС ── -->
+<section class="sec" id="encore">
+  <div class="banner reveal">
+    <h2>На бис · 07–10 · джаз и свинг</h2>
+    <p>Не классика, но музыка снова ведёт сюжет: контрабас, свинг и песни, которые герои поют сами.</p>
+  </div>
+  <div id="issues2"></div>
+</section>
+
+<!-- ── #antrakt АНТРАКТ ── -->
+<section class="sec" id="antrakt">
+  <div class="banner reveal">
+    <h2>Антракт · кто это нарисовал</h2>
+    <p>Единой «вселенной» у «Тома и Джерри» нет — это самостоятельные выпуски, снятые разными студиями в разные эпохи.</p>
+  </div>
+  <div class="eras">
+    <article class="era core reveal">
+      <img src="img/era-hanna-barbera.jpg" alt="Билл Ханна и Джозеф Барбера — создатели классической эпохи MGM/Hanna-Barbera, 1940–1958" loading="lazy">
+      <div class="ebody">
+        <div class="eyr">1940—1958</div>
+        <h3>MGM · Ханна и Барбера</h3>
+        <p>Оригинальные театральные короткометражки Уильяма Ханны и Джозефа Барберы. Они задали характеры, динамику погони и весь визуальный язык.</p>
+        <span class="ebadge">ядро · канон</span>
+      </div>
+    </article>
+    <article class="era reveal">
+      <img src="img/era-deitch.jpg" alt="Джин Дейч — режиссёр восточноевропейской эры «Том и Джерри», 1961–1962" loading="lazy">
+      <div class="ebody">
+        <div class="eyr">1961—1962</div>
+        <h3>Джин Дейч</h3>
+        <p>Короткометражки, снятые в Восточной Европе. Визуально и по звуку заметно отличаются — их часто называют самыми странными во франшизе. Сюда относится и музыкальный выпуск <em>Carmen Get It!</em> (1962).</p>
+      </div>
+    </article>
+    <article class="era reveal">
+      <img src="img/era-jones.jpg" alt="Чак Джонс — режиссёр эры Sib Tower 12, 1963–1967 (другой дизайн, брови Тома)" loading="lazy">
+      <div class="ebody">
+        <div class="eyr">1963—1967</div>
+        <h3>Чак Джонс · Sib Tower 12</h3>
+        <p>Другой дизайн персонажей — более выразительные брови у Тома. Сюда же поздние выпуски: <em>The Cat Above…</em> и <em>Cat and Dupli-cat</em>.</p>
+      </div>
+    </article>
+  </div>
+  <p class="canon reveal">Строгого канона у франшизы нет. Но <b>эталоном считаются оригинальные короткометражки MGM 1940—1958 годов</b> — на них ориентируются все последующие версии; всё остальное (телесериалы, полнометражки, кроссоверы) — самостоятельные интерпретации в той же традиции.</p>
+</section>
+
+<!-- ── #finale ФИНАЛ ── -->
+<section class="finale" id="finale">
+  <div class="finale-burst" aria-hidden="true"></div>
+  <h2 class="reveal">Два «Оскара».<br>Ни одной реплики.</h2>
+  <p class="reveal">Главная партитурная линия — это первые шесть выпусков. Именно классические концертные короткометражки принесли «Тому и Джерри» обе статуэтки «Оскар»: <em>The Cat Concerto</em> и <em>Johann Mouse</em>. Мультфильм построен целиком на музыке, а не на словах.</p>
+  <p class="kicker reveal">Сначала просто послушайте. Картинка договорит сама.</p>
+  <a class="wc reveal" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Tom+and+Jerry+Warner+Classics+The+Cat+Concerto">Warner Classics ↗</a>
+</section>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="foot">
+  <div class="fmark">Том и Джерри · музыкальный выпуск</div>
+  <p class="ftag">Комикс-гид по сериям, где музыка и есть сюжет. Десять выпусков, две статуэтки, ноль реплик.</p>
+  <div class="foot-links">
+    <a href="/music/">← Все музыкальные гиды</a>
+    <a href="/">На главную</a>
+  </div>
+  <div class="foot-fine">rensite · сделано с любовью к классике MGM</div>
+  <p class="foot-disc">Кадры и обложки — собственность Metro-Goldwyn-Mayer / Warner Bros. и приводятся в образовательных целях. Видео встроено с YouTube. Это некоммерческий фанатский гид.</p>
+</footer>
+
+<!-- ── READ-O-METER ── -->
+<aside class="meter" id="meter" role="meter" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" aria-valuetext="прослушано: 0 из 10" aria-label="Сколько выпусков прослушано">
+  <div class="mlabel">Прослушано</div>
+  <svg class="dial" viewBox="0 0 100 56" aria-hidden="true">
+    <path d="M8 50 A42 42 0 0 1 92 50" fill="none" stroke="#15110D" stroke-width="2"/>
+    <g stroke="#15110D" stroke-width="1.5"><line x1="8" y1="50" x2="13" y2="50"/><line x1="50" y1="8" x2="50" y2="13"/><line x1="92" y1="50" x2="87" y2="50"/></g>
+    <line class="needle" x1="50" y1="50" x2="50" y2="16" stroke="#E5202B" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="50" cy="50" r="4" fill="#15110D"/>
+  </svg>
+  <div class="read" id="meterRead">не слушали</div>
+  <div class="cnt" id="meterCnt">0 / 10</div>
+</aside>
+
+<!-- ── ПРОЕКТОР ── -->
+<aside class="projector paused" id="projector" aria-live="polite" aria-label="Проектор — сейчас на плёнке">
+  <div class="pj-top">
+    <div class="pj-reel" aria-hidden="true"></div>
+    <div class="pj-meta">
+      <div class="now">Сейчас на плёнке</div>
+      <div class="ttl" id="pjTtl">—</div>
+      <div class="wrk" id="pjWrk">—</div>
+    </div>
+    <button class="pj-close" id="pjClose" type="button" aria-label="Остановить и закрыть">✕</button>
+  </div>
+  <div class="pj-frame" id="pjFrame"></div>
+  <div class="pj-foot">
+    <a id="pjYt" target="_blank" rel="noopener" href="#">смотреть на YouTube ↗</a>
+    <span class="hint">+1 к коллекции</span>
+  </div>
+</aside>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasGSAP = !!window.gsap;
+  if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
+
+  /* ═══════════ ДАННЫЕ ВЫПУСКОВ ═══════════ */
+  // panels[].sfx — латиница/символы (шрифт Bangers без кириллицы); cap — кириллица (Caveat)
+  var ISSUES=[
+    {no:'01',slug:'manhattan',key:'mouse-manhattan',title:'Mouse in Manhattan',year:'1945',studio:'MGM',
+     work:'Луис Алтер · «Manhattan Serenade»',yt:'ItxS2SsjQro',cover:'manhattan-1',
+     blurb:'Джерри один на один с большим городом — и ни одного слова.',
+     panels:[
+       {img:'manhattan-4',who:'jerry',cap:'Прибыл! Город встречает вывеской «GRAND CENTRAL».',sfx:'TOOT TOOT!'},
+       {img:'manhattan-1',who:'jerry',cap:'Фрак, дама в платье и танец на крыше Манхэттена.',sfx:'♪ SWING'},
+       {img:'manhattan-5',who:'jerry',cap:'Витрина «Jewelers»: Джерри прилип носом к стеклу.',sfx:'OOOH!'},
+       {img:'manhattan-2',who:'jerry',cap:'Один-одинёшенек на гигантском мосту под звёздами.',sfx:'GULP...'},
+       {img:'manhattan-3',who:'jerry',cap:'А в метро — синий вагон прямо на тебя!',sfx:'SCREECH!'}
+     ]},
+    {no:'02',slug:'concerto',key:'cat-concerto',title:'The Cat Concerto',year:'1947',studio:'MGM',oscar:true,
+     work:'Ференц Лист · Венгерская рапсодия №2',yt:'meN_XQ4PQMI',cover:'still-cat-concerto',
+     blurb:'Маэстро Том даёт концерт — а Джерри живёт прямо в рояле.',
+     panels:[
+       {img:'still-cat-concerto',who:'tom',cap:'Плакат MGM: Том над клавишами, Джерри с молотком!',sfx:'TA-DA!'},
+       {img:'concerto-2',who:'tom',cap:'Маэстро Том кланяется публике. Сейчас будет рапсодия.',sfx:'AHEM!'},
+       {img:'concerto-3',who:'jerry',cap:'Молоточки лупят Джерри прямо внутри рояля!',sfx:'BONK BONK!'},
+       {img:'concerto-4',who:'tom',cap:'Оба выдохлись: Том размазан, Джерри в отключке.',sfx:'THUD!'}
+     ]},
+    {no:'03',slug:'bowl',key:'hollywood-bowl',title:'Hollywood Bowl',year:'1950',studio:'MGM',
+     work:'Иоганн Штраус II · увертюра «Летучая мышь»',yt:'DIWTbRxRuqA',cover:'still-hollywood-bowl',
+     blurb:'Сто котов, одна увертюра — и две палочки на один пульт.',
+     panels:[
+       {img:'bowl-1',who:'tom',cap:'Тихий вечер. Голливудская чаша ждёт оркестр…',sfx:'♪'},
+       {img:'bowl-2',who:'tom',cap:'Том во фраке берётся за палочку — маэстро вышел.',sfx:'TAP TAP'},
+       {img:'bowl-3',who:'jerry',cap:'Мышиный оркестр расселся: арфы, виолончели, смокинги.',sfx:'♪ TUNE UP'},
+       {img:'bowl-4',who:'jerry',cap:'Джерри один на пульте — самозабвенно машет палочкой.',sfx:'SWISH!'}
+     ]},
+    {no:'04',slug:'johann',key:'johann-mouse',title:'Johann Mouse',year:'1953',studio:'MGM',oscar:true,
+     work:'Иоганн Штраус · вальсы («Голубой Дунай»)',yt:'_mAj7RAR7hU',cover:'still-johann-mouse',
+     blurb:'Вена: стоит заиграть вальс — и лапки сами идут в пляс.',
+     panels:[
+       {img:'still-johann-mouse',who:'jerry',cap:'«Johann Mouse»: открываем книгу-сказку из старой Вены.',sfx:'♪'},
+       {img:'johann-2',who:'tom',cap:'Том зубрит урок III по нотам. Кот идёт в пианисты.',sfx:'PLINK!'},
+       {img:'johann-3',who:'jerry',cap:'Том играет, Джерри отплясывает на рояле. Аншлаг!',sfx:'WHIRL!'},
+       {img:'johann-4',who:'tom',cap:'Концерт окончен: Том сцапал артиста за шкирку.',sfx:'GOTCHA!'}
+     ]},
+    {no:'05',slug:'carmen',key:'carmen-get-it',title:'Carmen Get It!',year:'1962',studio:'Джин Дейч',
+     work:'Жорж Бизе · опера «Кармен»',yt:'3Wsx22WxWOc',
+     blurb:'Метрополитен-опера, «Кармен» — и один очень музыкальный муравей.',
+     panels:[
+       {img:'carmen-1',who:'tom',cap:'Ночной город под фонарями. Тишина перед спектаклем.',sfx:'SHHH...'},
+       {img:'carmen-2',who:'tom',cap:'Том во фраке с контрабасом. Маэстро готов.',sfx:'TA-DA!'},
+       {img:'carmen-3',who:'jerry',cap:'Джерри у контрабаса строит муравьёв в шеренгу.',sfx:'TICK TICK'},
+       {img:'carmen-4',who:'tom',cap:'Том листает партитуру, а Джерри уселся на ноты.',sfx:'FLIP!'}
+     ]},
+    {no:'06',slug:'catabove',key:'cat-above',title:'The Cat Above and the Mouse Below',year:'1964',studio:'Чак Джонс',
+     work:'Россини · «Largo al factotum» («Севильский цирюльник»)',yt:'Cf2WckMuVNU',cover:'catabove-cover',
+     blurb:'Том наверху поёт арию, Джерри внизу пытается поспать.',
+     panels:[
+       {img:'catabove-1',who:'tom',cap:'Том — оперный баритон. «Largo al factotum!»',sfx:'♪ FIGARO'},
+       {img:'catabove-2',who:'tom',cap:'Руки во фраке сжимают на сцене жёлтый колокольчик.',sfx:'CLANG!'},
+       {img:'catabove-3',who:'jerry',cap:'Джерри в фраке выходит на сцену и сам поёт.',sfx:'♪ LA~'},
+       {img:'catabove-4',who:'jerry',cap:'Под колосниками: тросы, балка и оранжевый противовес.',sfx:'CREAK...'}
+     ]},
+    {no:'07',slug:'zoot',key:'zoot-cat',title:'Zoot Cat',year:'1944',studio:'MGM',jazz:true,
+     work:'джаз · свинг',search:'Tom and Jerry Zoot Cat 1944',cover:'zoot-cover',
+     blurb:'Том шьёт зут-костюм и идёт охмурять кошку под свинг.',
+     panels:[
+       {img:'zoot-1',who:'tom',cap:'«Dear Toots… OH YOU KID» — записка с сердечками.',sfx:'SMOOCH!'},
+       {img:'zoot-2',who:'tom',cap:'Том намыливает лапы и прихорашивается ловеласом.',sfx:'SPLISH!'},
+       {img:'zoot-3',who:'tom',cap:'Том зубами растягивает полосатую ткань во всю веранду.',sfx:'STRETCH!'},
+       {img:'zoot-4',who:'tom',cap:'Ой! Том запутался в собственной полосатой ткани.',sfx:'OW!'}
+     ]},
+    {no:'08',slug:'serenade',key:'solid-serenade',title:'Solid Serenade',year:'1946',studio:'MGM',jazz:true,
+     work:'«Is You Is or Is You Ain’t My Baby»',search:'Tom and Jerry Solid Serenade 1946',cover:'serenade-cover',
+     blurb:'Том с контрабасом поёт серенаду — и будит не ту собаку.',
+     panels:[
+       {img:'serenade-1',who:'tom',cap:'Том, контрабас и лунная ночь — серенада началась.',sfx:'♪ BOM BOM'},
+       {img:'serenade-2',who:'tom',cap:'«Is You Is or Is You Ain’t My Baby…» — Том поёт ей.',sfx:'CROON~'},
+       {img:'serenade-3',who:'tom',cap:'Будка «KILLER». Внутри спит пёс. Пока спит.',sfx:'ZZZ...'},
+       {img:'serenade-4',who:'tom',cap:'Кошка на балконе ждёт продолжения серенады.',sfx:'♪ SIGH'}
+     ]},
+    {no:'09',slug:'pecos',key:'pecos-pest',title:'Pecos Pest',year:'1955',studio:'MGM',jazz:true,
+     work:'«Froggy Went A-Courtin’»',search:'Tom and Jerry Pecos Pest 1955',cover:'pecos-cover',
+     blurb:'Дядюшка Пекос дёргает усы Тома вместо струн банджо.',
+     panels:[
+       {img:'pecos-1',who:'jerry',cap:'Дядюшка Пекос с гитарой заявился к Джерри в гости.',sfx:'HOWDY!'},
+       {img:'pecos-2',who:'jerry',cap:'Пекос наяривает на гитаре — крупным планом.',sfx:'♪ PLUNK'},
+       {img:'pecos-3',who:'tom',cap:'Том дуется на диване, Джерри рядом у телика.',sfx:'GRR...'},
+       {img:'pecos-4',who:'tom',cap:'Пекос семенит по плитке, Том провожает взглядом.',sfx:'TIP-TOE'}
+     ]},
+    {no:'10',slug:'duplicat',key:'dupli-cat',title:'Cat and Dupli-cat',year:'1967',studio:'Чак Джонс',jazz:true,
+     work:'«Santa Lucia» · неаполитанская баллада',yt:'g_X_lhSS-V4',cover:'duplicat-cover',
+     blurb:'Два кота-баритона поют «Santa Lucia» — каждый за Джерри.',
+     panels:[
+       {img:'duplicat-1',who:'tom',cap:'Том в смокинге зажмурился и горланит песню под луной.',sfx:'♪ O~'},
+       {img:'duplicat-2',who:'tom',cap:'Том крадётся по сваям причала с чем-то тёмным в лапах.',sfx:'SNEAK...'},
+       {img:'duplicat-3',who:'tom',cap:'Корабль у пирса под луной, на сходнях — фигурка.',sfx:'♪ ECHO'},
+       {img:'duplicat-4',who:'jerry',cap:'Джерри на шляпе нос к носу с подозрительным псом.',sfx:'GULP!'}
+     ]}
+  ];
+
+  /* ═══════════ ЗВУК (Web Audio, ленивый, с mute) ═══════════ */
+  var Sound = (function(){
+    var ctx=null, master=null, muted=false;
+    function ensure(){
+      if(ctx){ if(ctx.state==='suspended') ctx.resume(); return true; }
+      var AC = window.AudioContext||window.webkitAudioContext; if(!AC) return false;
+      ctx = new AC(); master = ctx.createGain();
+      master.gain.value = muted?0:0.9; master.connect(ctx.destination); return true;
+    }
+    function note(freq, dur, type, peak){
+      if(muted||!ensure()) return;
+      var t=ctx.currentTime, o=ctx.createOscillator(), g=ctx.createGain();
+      o.type=type||'triangle'; o.frequency.value=freq;
+      g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(peak||0.26,t+0.012);
+      g.gain.exponentialRampToValueAtTime(0.0008,t+(dur||0.7));
+      o.connect(g); g.connect(master); o.start(t); o.stop(t+(dur||0.7)+0.05);
+    }
+    function noiseSwell(dur, freq){
+      if(muted||!ensure()) return;
+      var t=ctx.currentTime, n=Math.floor(ctx.sampleRate*dur), buf=ctx.createBuffer(1,n,ctx.sampleRate), d=buf.getChannelData(0);
+      for(var i=0;i<n;i++) d[i]=(Math.random()*2-1);
+      var src=ctx.createBufferSource(); src.buffer=buf;
+      var bp=ctx.createBiquadFilter(); bp.type='bandpass'; bp.frequency.value=freq||1400; bp.Q.value=0.7;
+      var g=ctx.createGain(); g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(0.5,t+dur*0.35);
+      g.gain.exponentialRampToValueAtTime(0.001,t+dur);
+      src.connect(bp); bp.connect(g); g.connect(master); src.start(t); src.stop(t+dur);
+    }
+    // короткий комикс-удар (для онопопеи): «боинг»/«бонк»
+    function boing(){
+      if(muted||!ensure()) return;
+      var t=ctx.currentTime, o=ctx.createOscillator(), g=ctx.createGain();
+      o.type='triangle'; o.frequency.setValueAtTime(180+Math.random()*200,t);
+      o.frequency.exponentialRampToValueAtTime(520,t+0.10); o.frequency.exponentialRampToValueAtTime(150,t+0.22);
+      g.gain.setValueAtTime(0.0001,t); g.gain.linearRampToValueAtTime(0.3,t+0.01); g.gain.exponentialRampToValueAtTime(0.0008,t+0.26);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t+0.3);
+    }
+    function bonk(){
+      if(!ensure()) return; if(muted) return;
+      var t=ctx.currentTime, o=ctx.createOscillator(), g=ctx.createGain();
+      o.type='sine'; o.frequency.setValueAtTime(420,t); o.frequency.exponentialRampToValueAtTime(60,t+0.18);
+      g.gain.setValueAtTime(0.4,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.22);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t+0.24);
+    }
+    return {
+      ensure:ensure, note:note, noiseSwell:noiseSwell, boing:boing, bonk:bonk,
+      toggle:function(){ muted=!muted; if(master) master.gain.value=muted?0:0.9; return muted; },
+      isMuted:function(){ return muted; }
+    };
+  })();
+
+  /* нотка/звезда у элемента */
+  function notePop(x,y,ch){
+    var s=document.createElement('span'); s.className='note-pop'; s.textContent=ch||'♪';
+    s.style.left=x+'px'; s.style.top=y+'px'; s.style.fontSize=(14+Math.random()*14)+'px';
+    document.body.appendChild(s); setTimeout(function(){ s.remove(); }, 1000);
+  }
+  function starBurst(el){
+    if(reduce) return; var r=el.getBoundingClientRect();
+    for(var i=0;i<5;i++) notePop(r.left+r.width/2+(Math.random()*40-20), r.top+(Math.random()*20-10), Math.random()<.5?'♪':'★');
+  }
+
+  /* ═══════════ РЕНДЕР ВЫПУСКОВ ═══════════ */
+  function issueHTML(it){
+    var coverImg = it.cover || it.panels[0].img;
+    var cov =
+      '<div class="issue-cover"><div class="cover" role="button" tabindex="0" aria-label="Открыть оригинал «'+it.title+'»">'+
+        '<div class="cov-no"><span>No</span><b>'+it.no+'</b></div>'+
+        (it.oscar?'<figure class="cov-oscar"><img src="img/oscar.png" alt="Премия «Оскар»" loading="lazy"><figcaption>«Оскар»<span>'+it.year+'</span></figcaption></figure>':'')+
+        '<div class="cov-art" data-who="'+(it.panels[0].who||'tom')+'"><img src="img/'+coverImg+'.jpg" alt="Обложка выпуска «'+it.title+'»" data-fallback loading="lazy">'+
+          '<div class="cov-title">'+it.title+'<span class="yr">'+it.studio+' · '+it.year+'</span></div>'+
+          '<div class="cov-play" aria-hidden="true"><b>▶</b></div>'+
+          '<div class="stamp" aria-hidden="true">Прослушано</div>'+
+        '</div>'+
+        '<div class="cov-blurb">'+it.blurb+'</div>'+
+        '<div class="cov-work">'+it.work+'</div>'+
+      '</div></div>';
+    var art = document.createElement('article');
+    art.className='issue reveal'+(it.jazz?' jazz':'')+(it.oscar?' oscar':'');
+    art.dataset.key=it.key; art.dataset.no=it.no; art.dataset.title=it.title; art.dataset.work=it.work;
+    if(it.yt) art.dataset.yt=it.yt; if(it.search) art.dataset.search=it.search;
+    art.innerHTML = cov;
+    return art;
+  }
+  var box1=document.getElementById('issues1'), box2=document.getElementById('issues2');
+  ISSUES.forEach(function(it){ (it.jazz?box2:box1).appendChild(issueHTML(it)); });
+
+  /* кадры приходили из разных источников с разным расширением — пробуем .jpg↔.png,
+     и только потом рисуем набросок-заглушку */
+  document.querySelectorAll('img[data-fallback]').forEach(function(img){
+    img.addEventListener('error', function(){
+      var src=img.getAttribute('src')||'';
+      if(!img.dataset.alt2){
+        img.dataset.alt2='1';
+        if(/\.jpg$/i.test(src)){ img.src=src.replace(/\.jpg$/i,'.png'); return; }
+        if(/\.png$/i.test(src)){ img.src=src.replace(/\.png$/i,'.jpg'); return; }
+      }
+      var box=img.parentElement; if(!box) return;
+      var who=box.dataset.who==='jerry'?'jerry':'tom';
+      box.classList.add('noimg'); img.remove();
+      var w=document.createElement('img'); w.className='who'; w.src='img/'+who+'.png'; w.alt=''; w.setAttribute('aria-hidden','true');
+      box.appendChild(w);
+    });
+  });
+
+  /* ═══════════ MUTE ═══════════ */
+  var muteBtn=document.getElementById('mute'), muteLbl=document.getElementById('mute-lbl');
+  muteBtn.addEventListener('click', function(){
+    var m=Sound.toggle();
+    if(!m) Sound.bonk();
+    muteBtn.setAttribute('aria-pressed', String(m));
+    muteBtn.setAttribute('aria-label', m?'Включить звук':'Выключить звук');
+    muteLbl.textContent = m?'тихо':'звук';
+    starBurst(muteBtn);
+  });
+
+  /* ═══════════ ОБЛОЖКА-ИНТРО ═══════════ */
+  (function(){
+    var ci=document.getElementById('coverIntro'), open=document.getElementById('openIssue');
+    if(!ci) return;
+    var raised=false, autoT;
+    function raise(){
+      if(raised) return; raised=true; clearTimeout(autoT);
+      try{ sessionStorage.setItem('tj-cover','1'); }catch(e){}
+      Sound.ensure(); if(!reduce){ Sound.note(523,0.16,'triangle',0.14); setTimeout(function(){ Sound.note(784,0.3,'triangle',0.12); },110); }
+      ci.classList.add('up'); ci.setAttribute('aria-hidden','true');
+      setTimeout(function(){ ci.style.display='none'; }, reduce?20:1050);
+      if(hasGSAP) heroIntro();
+    }
+    var seen=false; try{ seen=sessionStorage.getItem('tj-cover')==='1'; }catch(e){}
+    if(seen || reduce){
+      ci.classList.add('up'); ci.style.display='none'; ci.setAttribute('aria-hidden','true'); raised=true;
+      if(hasGSAP && !reduce) heroIntro();
+    } else {
+      open.addEventListener('click', raise);
+      open.focus({preventScroll:true});
+      document.addEventListener('keydown', function(e){ if(!raised && (e.key==='Enter'||e.key==='Escape'||e.key===' ')) raise(); });
+      autoT=setTimeout(raise, 4200);
+    }
+  })();
+
+  /* появление мастхеда */
+  var heroTL=null;
+  function heroIntro(){
+    if(reduce||!hasGSAP||document.hidden) return; if(heroTL) return;  // вкладка в фоне → rAF спит, не прячем контент
+    heroTL=gsap.timeline();
+    heroTL.from('.lockup .wm',{scale:.45,y:60,opacity:0,duration:.7,ease:'back.out(1.7)'})
+      .from('.cameo.tom',{x:-120,rotate:-18,opacity:0,duration:.55,ease:'back.out(1.5)'},'-=.3')
+      .from('.cameo.jerry',{x:120,rotate:18,opacity:0,duration:.55,ease:'back.out(1.5)'},'<')
+      .from('.lockup .sub',{opacity:0,y:14,duration:.4},'-=.2')
+      .from('.mast-foot > *',{opacity:0,y:20,duration:.5,stagger:.12},'-=.1');
+  }
+  document.addEventListener('visibilitychange', function(){ if(document.hidden && heroTL) heroTL.progress(1); });
+
+  /* ═══════════ READ-O-METER ═══════════ */
+  var ReadMeter=(function(){
+    var box=document.getElementById('meter'), readEl=document.getElementById('meterRead'), cntEl=document.getElementById('meterCnt');
+    var total=ISSUES.length, read=new Set();
+    try{ JSON.parse(sessionStorage.getItem('tj-read')||'[]').forEach(function(k){ read.add(k); }); }catch(e){}
+    var READS=['не слушали','+1','слушаем','ещё!','почти треть','полпути','шесть!','семь','восемь','девять','КОЛЛЕКЦИЯ!'];
+    function save(){ try{ sessionStorage.setItem('tj-read',JSON.stringify(Array.from(read))); }catch(e){} }
+    function paint(spring){
+      var n=Math.min(read.size,total);
+      box.style.setProperty('--read',n);
+      readEl.textContent=READS[n]||'КОЛЛЕКЦИЯ!'; cntEl.textContent=n+' / '+total;
+      box.setAttribute('aria-valuenow',n); box.setAttribute('aria-valuetext','прослушано: '+n+' из '+total);
+      if(spring && !reduce){ box.classList.add('spring'); setTimeout(function(){ box.classList.remove('spring'); },720); }
+      if(n>=total && spring) finale();
+    }
+    function finale(){
+      Sound.noiseSwell(1.4,1600);
+      if(reduce) return; var r=box.getBoundingClientRect();
+      for(var i=0;i<16;i++) (function(d){ setTimeout(function(){ notePop(r.left+Math.random()*r.width, r.top+r.height, Math.random()<.5?'★':'♪'); }, d); })(i*60);
+    }
+    function add(key){ if(read.has(key)) return false; read.add(key); save(); Sound.noiseSwell(0.5,1500); paint(true); return true; }
+    // восстановить печати «Читано»
+    paint(false);
+    return { add:add, has:function(k){ return read.has(k); }, restore:function(){
+      document.querySelectorAll('.issue').forEach(function(a){ if(read.has(a.dataset.key)) a.classList.add('read'); });
+    } };
+  })();
+  ReadMeter.restore();
+
+  /* ═══════════ ПРОЕКТОР ═══════════ */
+  var Projector=(function(){
+    var el=document.getElementById('projector'), ttl=document.getElementById('pjTtl'), wrk=document.getElementById('pjWrk'),
+        frame=document.getElementById('pjFrame'), ytLink=document.getElementById('pjYt'), closeBtn=document.getElementById('pjClose');
+    var lastBtn=null;
+    function searchUrl(q){ return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q); }
+    function open(art, btn){
+      var d=art.dataset;
+      ttl.textContent=d.title||''; wrk.textContent=d.work||'';
+      frame.innerHTML='';
+      if(d.yt){
+        var f=document.createElement('iframe');
+        f.src='https://www.youtube.com/embed/'+encodeURIComponent(d.yt)+'?autoplay=1&rel=0&modestbranding=1';
+        f.title=d.title||'YouTube'; f.allow='autoplay; encrypted-media; fullscreen; picture-in-picture'; f.setAttribute('allowfullscreen','');
+        frame.appendChild(f);
+        ytLink.href='https://www.youtube.com/watch?v='+d.yt;
+      } else {
+        var q=d.search||(d.title+' Tom and Jerry');
+        frame.innerHTML='<div class="nofilm"><div><div class="big">No.'+d.no+'</div>'+
+          '<a class="sr" target="_blank" rel="noopener" href="'+searchUrl(q)+'">▶ найти на YouTube</a></div></div>';
+        ytLink.href=searchUrl(q);
+      }
+      el.classList.add('open'); el.classList.remove('paused');
+      Sound.ensure(); if(!reduce){ Sound.note(659,0.16,'triangle',0.14); setTimeout(function(){ Sound.note(880,0.22,'triangle',0.12); },120); }
+      lastBtn=btn||null;
+      if(d.key && ReadMeter.add(d.key)) art.classList.add('read');
+    }
+    function close(){ el.classList.remove('open'); el.classList.add('paused'); frame.innerHTML=''; if(lastBtn) lastBtn.focus(); }
+    closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && el.classList.contains('open')) close(); });
+    return { open:open };
+  })();
+
+  /* клик или Enter/Пробел по обложке → проектор */
+  document.querySelectorAll('.issue').forEach(function(art){
+    var cover=art.querySelector('.cover');
+    if(!cover) return;
+    cover.addEventListener('click', function(){ Projector.open(art, cover); });
+    cover.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); Projector.open(art, cover); } });
+  });
+
+
+  /* ═══════════ reveal + «впечатывание» кадров ═══════════ */
+  if(hasGSAP && !reduce && !document.hidden){
+    ScrollTrigger.batch('.reveal',{start:'top 90%',
+      onEnter:function(els){ gsap.to(els,{opacity:1,y:0,duration:.7,ease:'power3.out',stagger:.06,overwrite:true}); }});
+    document.fonts && document.fonts.ready.then(function(){ ScrollTrigger.refresh(); });
+  } else {
+    // reduced-motion ИЛИ вкладка открыта в фоне (rAF спит) — показываем контент без анимации
+    document.querySelectorAll('.reveal').forEach(function(el){ el.style.opacity=1; el.style.transform='none'; });
+  }
+})();
+</script>
+<script src="/palette.js" defer></script>
+</body>
+</html>

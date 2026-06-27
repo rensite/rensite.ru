@@ -1,82 +1,896 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
-<meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)" />
-<title>Eminem — скоро · rensite</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0b">
+<title>EMINEM — Гид · маршрут сквозь альбомы</title>
+<meta name="description" content="Слушательский гид по Эминему: пять эпох от рождения Slim Shady до его символической смерти, по одному треку за раз, и финал — «8 Mile».">
+<link rel="icon" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--navy:#1E3A8A;--ink:#0F172A;--muted:#64748B;--soft:#94A3B8;--hair:#E2E8F0;--bg:#FFFFFF;--accent:#3B82F6;}
-  @media (prefers-color-scheme: dark){:root{--navy:#93C5FD;--ink:#E2E8F0;--muted:#94A3B8;--soft:#64748B;--hair:#1E293B;--bg:#0B1220;--accent:#60A5FA;}}
-  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",system-ui,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-  :focus:not(:focus-visible){outline:none}
-  body{min-height:100vh;min-height:100dvh;display:flex;justify-content:center}
-  .app{width:100%;max-width:1120px;min-height:100vh;min-height:100dvh;
-    padding:clamp(16px,2.6vh,26px) clamp(20px,5vw,52px) calc(clamp(16px,2.6vh,26px) + env(safe-area-inset-bottom));
-    display:flex;flex-direction:column;gap:clamp(20px,3.5vh,40px);}
-  .top{display:flex;justify-content:space-between;align-items:center;
-    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--muted);
-    padding-bottom:14px;border-bottom:1px solid var(--hair);}
-  .top a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:color .15s ease,border-color .15s ease}
-  .top a:hover,.top a:focus-visible{color:var(--navy);border-bottom-color:var(--navy)}
-  .back{color:var(--navy)!important;font-weight:500}
-  main{flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px}
-  .badge{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;
-    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;letter-spacing:.06em;text-transform:lowercase;
-    color:var(--accent);border:1px solid var(--hair);border-radius:30px;padding:6px 14px;}
-  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(59,130,246,.5);animation:bp 1.8s infinite}
-  @keyframes bp{0%{box-shadow:0 0 0 0 rgba(59,130,246,.5)}70%{box-shadow:0 0 0 7px rgba(59,130,246,0)}100%{box-shadow:0 0 0 0 rgba(59,130,246,0)}}
-  h1{margin:0;font-size:clamp(3rem,9vw,6rem);line-height:.95;letter-spacing:-.04em;font-weight:700;color:var(--ink)}
-  h1 span{color:var(--navy)}
-  p.lead{margin:0;font-size:clamp(16px,1.7vw,20px);color:var(--muted);line-height:1.5;max-width:46ch}
-  .cross{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:6px;
-    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:var(--soft)}
-  .cross a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;color:var(--ink);
-    border:1px solid var(--hair);border-radius:24px;padding:6px 13px;transition:border-color .15s ease,color .15s ease}
-  .cross a:hover,.cross a:focus-visible{color:var(--navy);border-color:var(--navy)}
-  .cross a .gd{width:7px;height:7px;border-radius:50%}
-  .foot{margin-top:auto;padding-top:16px;border-top:1px solid var(--hair);
-    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--soft);
-    display:flex;justify-content:space-between;gap:10px;}
-  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important}}
-  /* ── Плавные переходы между страницами (cross-document View Transitions) ── */
+  :root{
+    --bg:#0a0a0b;--bg-deep:#101013;--bg-dark:#050506;
+    --ink:#ece9e3;--ink-soft:#b7b3aa;--ink-mute:#76726a;--bone:#ece9e3;
+    --steel:#c7ccd1;--steel-bright:#eef1f4;--steel-dim:#8a9097;--accent:#c7ccd1;
+    --rule:#ffffff12;--rule-2:#ffffff1f;
+
+    --fs-mega:clamp(3.4rem,15vw,15rem);
+    --fs-xl:clamp(2.1rem,6vw,4.6rem);
+    --fs-lg:clamp(1.6rem,3.6vw,2.9rem);
+    --fs-md:clamp(1.05rem,1.5vw,1.45rem);
+    --fs-body:1.0625rem;--fs-sm:0.8125rem;
+
+    --s-1:.5rem;--s-2:1rem;--s-3:1.5rem;--s-4:2rem;
+    --s-6:3rem;--s-8:4rem;--s-12:6rem;--s-16:8rem;--s-24:11rem;
+
+    --gutter:clamp(1.25rem,4vw,3rem);--max:1240px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font:400 var(--fs-body)/1.6 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  .display{font-family:'Anton',Impact,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+  .cond{font-family:'Oswald','Inter',sans-serif;}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.12em;}
+  .container{max-width:var(--max);margin:0 auto;padding-inline:var(--gutter);}
+  ::selection{background:var(--bone);color:var(--bg-dark);}
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--steel);outline-offset:3px;border-radius:3px;}
+  :focus:not(:focus-visible){outline:none;}
+
+  /* film grain */
+  body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  /* topbar */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:50;padding-block:var(--s-3);color:var(--ink);
+    background:linear-gradient(180deg,rgba(10,10,11,.92),transparent);backdrop-filter:blur(4px);}
+  .topbar-inner{display:flex;justify-content:space-between;align-items:center;}
+  .topbar a{color:inherit;text-decoration:none;opacity:.82;transition:opacity .25s;}
+  .topbar a:hover{opacity:1;}
+  .topbar .at{font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.06em;}
+
+  /* hero */
+  .hero{min-height:96vh;padding-block:var(--s-24) var(--s-12);display:flex;flex-direction:column;justify-content:center;gap:var(--s-4);}
+  .hero-kicker{display:flex;gap:var(--s-3);align-items:center;color:var(--steel-dim);}
+  .hero-kicker::before{content:"";width:42px;height:1px;background:var(--steel-dim);}
+  .hero-word{font-size:var(--fs-mega);line-height:.82;letter-spacing:-.01em;
+    background:linear-gradient(176deg,#ffffff 0%,var(--steel-bright) 38%,var(--steel) 68%,#5b6066 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 4px 30px rgba(199,204,209,.10));}
+  .hero-word .rev{display:inline-block;transform:scaleX(-1);
+    background:linear-gradient(176deg,#ffffff 0%,var(--steel-bright) 38%,var(--steel) 68%,#5b6066 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .hero-lead{font-size:var(--fs-md);max-width:50ch;color:var(--ink-soft);line-height:1.45;}
+  .hero-lead em{font-style:normal;color:var(--bone);}
+  .hero-foot{display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-4);color:var(--ink-mute);}
+  .hero-foot span{display:inline-flex;align-items:center;gap:8px;}
+  .hero-foot span::before{content:"";width:5px;height:5px;background:var(--steel-dim);border-radius:50%;}
+
+  /* section heads */
+  .sec-head{margin-bottom:var(--s-8);text-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--s-2);}
+  .sec-head .mono{color:var(--steel-dim);}
+  .sec-head h2{font-size:var(--fs-lg);font-weight:600;letter-spacing:.01em;color:var(--bone);text-transform:uppercase;}
+  .sec-icon{width:34px;height:34px;color:var(--steel);}
+  .sec-icon svg{width:100%;height:100%;display:block;}
+
+  /* eras */
+  .eras{padding-block:var(--s-8) var(--s-8);}
+  .era{padding-block:var(--s-8);text-align:center;}
+  .era-top{display:flex;align-items:baseline;justify-content:center;gap:var(--s-2);flex-wrap:wrap;margin-bottom:var(--s-1);}
+  .era-yr{font-family:'Anton',sans-serif;font-size:clamp(2.8rem,7vw,5.4rem);line-height:1;color:var(--steel-bright);letter-spacing:0;}
+  .era-label{font-family:'JetBrains Mono',monospace;font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;color:var(--steel-dim);}
+  .era-name{display:block;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.02em;
+    font-size:var(--fs-lg);color:var(--bone);margin-bottom:var(--s-2);}
+  .era-desc{max-width:62ch;margin:0 auto var(--s-3);color:var(--ink-soft);}
+  .era-quote{margin:0 auto var(--s-4);}
+
+  /* clickable signature quote — plays a snippet (как «озвученные цитаты» в Артефакте) */
+  .fk-play{appearance:none;-webkit-appearance:none;border:1px solid var(--rule-2);background:rgba(255,255,255,.02);
+    border-radius:40px;padding:10px 20px;color:var(--ink-soft);font-family:'Oswald',sans-serif;font-weight:500;
+    font-size:1.05rem;letter-spacing:.01em;cursor:pointer;-webkit-tap-highlight-color:transparent;
+    transition:border-color .25s,color .25s,background .25s;display:inline-flex;align-items:center;}
+  .fk-play:hover{color:var(--bone);border-color:var(--steel);background:rgba(255,255,255,.04);}
+  .fk-play .eq{display:inline-flex;align-items:flex-end;gap:2.5px;height:.7em;margin-left:.6rem;vertical-align:-.05em;opacity:.35;transition:opacity .3s;}
+  .fk-play:hover .eq{opacity:.6;}
+  .fk-play .eq i{width:3px;height:100%;background:currentColor;border-radius:1.5px;transform:scaleY(.28);transform-origin:center bottom;}
+  .fk-play.playing{color:var(--bone);border-color:var(--steel-bright);background:rgba(255,255,255,.06);box-shadow:0 0 28px -8px rgba(199,204,209,.5);}
+  .fk-play.playing .eq{opacity:1;}
+  .fk-play.playing .eq i{animation:eqBar .85s ease-in-out infinite;}
+  .fk-play.playing .eq i:nth-child(1){animation-duration:.7s;}
+  .fk-play.playing .eq i:nth-child(2){animation-duration:1.05s;animation-delay:-.35s;}
+  .fk-play.playing .eq i:nth-child(3){animation-duration:.8s;animation-delay:-.15s;}
+  .fk-play.playing .eq i:nth-child(4){animation-duration:.95s;animation-delay:-.5s;}
+  .fk-play.jolt{animation:quoteJolt .42s cubic-bezier(.36,.07,.19,.97) both;}
+  @keyframes eqBar{0%,100%{transform:scaleY(.25);}50%{transform:scaleY(1);}}
+  @keyframes quoteJolt{0%{transform:translate(0) rotate(0);}15%{transform:translate(-2px,1px) rotate(-.8deg);}
+    30%{transform:translate(3px,-1px) rotate(.9deg);}45%{transform:translate(-3px,1px) rotate(-.7deg);}
+    60%{transform:translate(2px,-1px) rotate(.5deg);}75%{transform:translate(-1px) rotate(-.3deg);}100%{transform:translate(0) rotate(0);}}
+  @media(prefers-reduced-motion:reduce){.fk-play.playing .eq i{animation:none;transform:scaleY(.6);}.fk-play.jolt{animation:none;}}
+
+  /* tracklist */
+  .tracklist{display:flex;flex-direction:column;max-width:780px;margin:0 auto;text-align:left;}
+  a.trk{display:flex;align-items:center;gap:var(--s-4);text-decoration:none;color:inherit;
+    padding:17px 8px;border-bottom:1px solid var(--rule);transition:background .2s;}
+  a.trk:hover{background:rgba(255,255,255,.025);}
+  a.trk .tnum{font-family:'Anton',sans-serif;font-size:clamp(2rem,4.4vw,3rem);color:#ffffff1c;line-height:1;min-width:1.7em;text-align:right;transition:color .25s;}
+  a.trk:hover .tnum{color:var(--steel);}
+  a.trk .tmid{flex:1;min-width:0;}
+  a.trk .tname{display:block;font-family:'Oswald',sans-serif;font-weight:500;font-size:var(--fs-md);color:var(--bone);line-height:1.12;}
+  a.trk .tyr{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--ink-mute);letter-spacing:.06em;margin-left:.5em;vertical-align:.12em;}
+  a.trk .tnote{display:block;font-size:.92rem;color:var(--ink-mute);line-height:1.45;margin-top:4px;}
+  a.trk .tplay{font-family:'JetBrains Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:var(--steel);
+    opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s;white-space:nowrap;
+    border:1px solid var(--rule-2);border-radius:30px;padding:8px 13px;}
+  a.trk:hover .tplay{opacity:1;transform:translateX(0);}
+  .topt{display:inline-block;vertical-align:middle;margin-left:.5em;font-family:'JetBrains Mono',monospace;font-size:.54rem;
+    text-transform:uppercase;letter-spacing:.14em;color:var(--ink-mute);border:1px solid var(--rule-2);border-radius:30px;
+    padding:3px 9px;line-height:1;white-space:nowrap;transform:translateY(-2px);}
+  a.trk:has(.topt) .tnum,a.trk:has(.topt) .tname{opacity:.62;transition:opacity .25s;}
+  a.trk:has(.topt):hover .tnum,a.trk:has(.topt):hover .tname{opacity:1;}
+
+  /* listening progress */
+  .em-progress{display:flex;align-items:center;gap:var(--s-3);max-width:780px;margin:0 auto var(--s-4);
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-mute);white-space:nowrap;}
+  .em-progress .bar{flex:1;height:3px;background:#ffffff14;border-radius:2px;overflow:hidden;}
+  .em-progress .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#5b6066,var(--steel),var(--steel-bright));transition:width .55s cubic-bezier(.16,1,.3,1);}
+  .trkrow{display:grid;grid-template-columns:26px 1fr;align-items:center;gap:10px;border-bottom:1px solid var(--rule);}
+  .trkrow a.trk{border-bottom:none;}
+  .trkrow .tchk{width:20px;height:20px;flex:none;border:1px solid var(--rule-2);background:transparent;color:var(--steel-bright);
+    border-radius:6px;cursor:pointer;font-size:12px;line-height:1;padding:0;transition:border-color .2s,background .2s;}
+  .trkrow .tchk:hover{border-color:var(--steel);}
+  .trkrow.done .tchk{border-color:var(--steel);background:#ffffff16;}
+  .trkrow.done a.trk .tname{color:var(--ink-mute);}
+  @media(max-width:760px){.trkrow{grid-template-columns:22px 1fr;gap:8px;}}
+
+  /* finale — 8 Mile */
+  .film{padding-block:var(--s-16) var(--s-8);}
+  .finale{display:flex;flex-direction:column;align-items:center;text-align:center;}
+  .finale-poster{aspect-ratio:2/3;width:min(74vw,300px);border-radius:12px;border:1px solid var(--rule-2);overflow:hidden;
+    background:linear-gradient(165deg,#151517,#08080a);position:relative;margin-bottom:var(--s-6);
+    box-shadow:0 30px 80px -24px #000,0 0 60px -22px rgba(199,204,209,.25);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+    transition:transform .3s,box-shadow .3s,border-color .3s;}
+  .finale-poster:hover{transform:translateY(-5px);border-color:var(--steel);box-shadow:0 36px 100px -24px #000,0 0 70px -18px rgba(199,204,209,.4);}
+  .finale-poster::before{content:"";position:absolute;inset:0;opacity:.06;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .fp-big{font-family:'Anton',sans-serif;font-size:clamp(3.4rem,12vw,5rem);line-height:.82;color:var(--bone);text-transform:uppercase;}
+  .fp-mid{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.42em;text-indent:.42em;font-size:1.05rem;color:var(--steel);text-transform:uppercase;}
+  .fp-sub{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:var(--ink-mute);margin-top:14px;text-transform:uppercase;}
+  .fp-rule{width:46px;height:1px;background:var(--steel-dim);margin:12px 0;}
+  .finale-meta{font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--steel-dim);margin-bottom:var(--s-2);}
+  .finale-title{font-size:var(--fs-xl);letter-spacing:-.01em;line-height:.92;margin-bottom:var(--s-3);text-wrap:balance;
+    background:linear-gradient(176deg,#fff,var(--steel-bright) 55%,var(--steel));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .finale-text{max-width:56ch;color:var(--ink-soft);font-size:var(--fs-md);line-height:1.5;}
+  .finale-fact{max-width:50ch;margin:var(--s-4) auto 0;color:var(--ink-mute);font-size:.95rem;}
+  .finale-fact b{color:var(--bone);font-weight:600;}
+  .finale-watch{display:inline-flex;align-items:center;gap:8px;margin-top:var(--s-6);
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;
+    color:var(--bone);text-decoration:none;border:1px solid var(--rule-2);border-radius:40px;padding:13px 24px;
+    transition:background .25s,border-color .25s,color .25s,transform .25s;}
+  .finale-watch:hover{background:var(--bone);border-color:var(--bone);color:var(--bg-dark);transform:translateY(-2px);}
+
+  /* footer */
+  .footer{padding-block:var(--s-16) var(--s-8);text-align:center;position:relative;}
+  .footer::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(90%,640px);height:1px;
+    background:linear-gradient(90deg,transparent,var(--steel-dim) 50%,transparent);}
+  .footer-glyph{width:48px;height:48px;margin:0 auto var(--s-4);border-radius:50%;border:1px solid var(--rule-2);
+    display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:1.5rem;color:var(--bone);}
+  .footer-glyph .rev{display:inline-block;transform:scaleX(-1);}
+  .footer-mark{font-family:'Anton',sans-serif;font-size:var(--fs-lg);letter-spacing:.04em;text-transform:uppercase;
+    background:linear-gradient(176deg,#fff,var(--steel-bright),var(--steel));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .footer-tag{max-width:46ch;margin:var(--s-2) auto 0;color:var(--ink-soft);}
+  .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s-3);margin-top:var(--s-6);}
+  .footer-links a{font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;
+    color:var(--bone);text-decoration:none;border:1px solid var(--rule-2);border-radius:40px;padding:11px 20px;
+    transition:background .25s,border-color .25s,color .25s,transform .25s;}
+  .footer-links a:hover{background:var(--bone);border-color:var(--bone);color:var(--bg-dark);transform:translateY(-2px);}
+  .footer-links a.primary{border-color:var(--steel);color:var(--steel-bright);}
+  .footer-fine{margin-top:var(--s-8);font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink-mute);opacity:.7;}
+  .footer-note{max-width:58ch;margin:var(--s-6) auto 0;font-size:.92rem;line-height:1.6;color:var(--ink-soft);}
+  .footer-note a{color:var(--bone);text-decoration:none;border-bottom:1px solid var(--rule-2);padding-bottom:1px;transition:border-color .2s;}
+  .footer-note a:hover{border-color:var(--bone);}
+  .footer-disc{max-width:92ch;margin:var(--s-4) auto 0;font-size:.72rem;line-height:1.6;color:rgba(118,114,106,.7);}
+  .footer-disc a{color:var(--steel);text-decoration:none;}
+  .footer-disc a:hover{text-decoration:underline;}
+
+  /* scroll progress */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
+    background:linear-gradient(90deg,#5b6066,var(--steel),var(--steel-bright));box-shadow:0 0 12px rgba(199,204,209,.5);transition:width .1s linear;}
+
+  /* dot navigation */
+  .dotnav{position:fixed;right:clamp(14px,2.5vw,32px);top:50%;transform:translateY(-50%);z-index:60;
+    display:flex;flex-direction:column;gap:18px;align-items:flex-end;}
+  .dotnav a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink-mute);
+    font-family:'JetBrains Mono',monospace;font-size:.64rem;text-transform:uppercase;letter-spacing:.12em;}
+  .dotnav .dn-label{opacity:.4;color:var(--ink-soft);transition:opacity .25s,color .25s;white-space:nowrap;}
+  .dotnav a:hover .dn-label{opacity:.85;color:var(--bone);}
+  .dotnav .dn-dot{width:9px;height:9px;border-radius:50%;border:1px solid var(--ink-mute);background:transparent;
+    transition:background .25s,border-color .25s,transform .25s;flex:none;opacity:.55;}
+  .dotnav a:hover .dn-dot{opacity:1;}
+  .dotnav a.active .dn-dot{background:var(--steel-bright);border-color:var(--steel-bright);transform:scale(1.4);box-shadow:0 0 12px rgba(199,204,209,.7);opacity:1;}
+  .dotnav a.active .dn-label{opacity:1;color:var(--bone);}
+  @media(max-width:760px){.dotnav{display:none;}}
+
+  /* YouTube lightbox */
+  .ytmodal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;
+    padding:clamp(12px,4vw,44px);background:rgba(5,5,6,.86);backdrop-filter:blur(10px) saturate(.9);opacity:0;transition:opacity .28s ease;}
+  .ytmodal.open{display:flex;}
+  .ytmodal.show{opacity:1;}
+  .ytmodal-dialog{position:relative;width:min(960px,100%);transform:translateY(16px) scale(.985);transition:transform .34s cubic-bezier(.2,.8,.2,1);}
+  .ytmodal.show .ytmodal-dialog{transform:none;}
+  .ytmodal-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);margin-bottom:var(--s-2);padding-inline:2px;}
+  .ytmodal-title{font-family:'Oswald',sans-serif;font-weight:500;font-size:var(--fs-md);color:var(--bone);line-height:1.2;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .ytmodal-close{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--rule-2);background:rgba(10,10,11,.6);
+    color:var(--bone);font-size:1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s,color .2s;}
+  .ytmodal-close:hover{background:var(--bone);border-color:var(--bone);color:var(--bg-dark);}
+  .ytmodal-frame{position:relative;aspect-ratio:16/9;width:100%;border-radius:12px;overflow:hidden;border:1px solid var(--rule-2);background:#000;box-shadow:0 30px 90px -20px #000;}
+  .ytmodal-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+  .ytmodal-foot{display:flex;justify-content:flex-end;margin-top:var(--s-2);padding-inline:2px;}
+  .ytmodal-yt{font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--bone);text-decoration:none;border-bottom:1px solid var(--rule-2);padding-bottom:2px;transition:border-color .2s;}
+  .ytmodal-yt:hover{border-color:var(--bone);}
+  body.modal-open{overflow:hidden;}
+  @media(prefers-reduced-motion:reduce){.ytmodal,.ytmodal-dialog{transition:opacity .01ms;}}
+
+  @media(max-width:760px){
+    .topbar nav{display:none;}
+    a.trk{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:9px;align-items:start;padding:15px 2px;}
+    a.trk .tnum{min-width:auto;text-align:left;font-size:2rem;}
+    a.trk .tmid{grid-column:2;}
+    a.trk .tplay{grid-column:2;justify-self:start;opacity:1;transform:none;margin-top:2px;}
+  }
+
+  /* ===== Карьерный таймлайн «следственная доска» — точный порт из «Артефакта» (emall) ===== */
+  .cboard{
+    --bg:#0a0a0b;--fg:#f5f2ec;--mute:#8e8b85;--faint:#837e76;--dim:#3d3d3a;--accent:#c4ad82;
+    --serif:'Cormorant Garamond',Georgia,serif;--hand:'Caveat','Comic Sans MS',cursive;
+    --ease-snap:cubic-bezier(.33,1,.68,1);--ease-flow:cubic-bezier(.45,0,.55,1);--dur-base:250ms;--dur-slow:400ms;
+    position:relative;width:100%;max-width:1100px;margin:0 auto;font-family:var(--serif);font-weight:300;color:var(--fg);
+    opacity:0;transform:translateY(20px);transition:opacity var(--dur-slow) var(--ease-flow),transform var(--dur-slow) var(--ease-snap);}
+  .cboard.is-visible{opacity:1;transform:none;}
+  .cboard .mono{font-family:var(--mono);text-transform:none;letter-spacing:normal;}
+  .cboard .board{position:relative;padding:.5rem 0;width:100%;}
+  .cboard .board-list{list-style:none;margin:0;padding:0;}
+  .cboard .board-axis{position:absolute;left:50%;top:0;bottom:0;width:3px;transform:translateX(-50%);opacity:.5;}
+  .cboard .board-cap{display:flex;justify-content:center;position:relative;z-index:2;}
+  .cboard .board-cap.top{margin-bottom:1rem;}
+  .cboard .board-cap.bottom{margin-top:1rem;}
+  .cboard .board-cap span{background:var(--bg);padding:.3rem .9rem;border:1px solid var(--dim);border-radius:13px;font-size:.74rem;letter-spacing:.16em;color:var(--accent);}
+  .cboard .board-cap.top span{color:var(--fg);border-color:var(--accent);}
+  .cboard .board-cap.bottom span{border-color:var(--accent);}
+  .cboard .board-terminus{width:9px;height:9px;border-radius:50%;margin:1.1rem auto 0;background:var(--accent);opacity:.55;box-shadow:0 0 0 5px var(--bg),0 0 12px var(--accent);}
+  .cboard .era-chapter{display:flex;justify-content:center;margin:2.6rem 0 .8rem;position:relative;z-index:2;}
+  .cboard .era-chapter span{background:var(--bg);padding:.34rem 1.1rem;color:var(--era);font-size:.94rem;letter-spacing:.24em;text-transform:uppercase;}
+  .cboard .ev{position:relative;width:50%;box-sizing:border-box;padding:1rem 2.8rem 1rem 0;display:flex;justify-content:flex-end;}
+  .cboard .ev.right{margin-left:50%;padding:1rem 0 1rem 2.8rem;justify-content:flex-start;}
+  .cboard .ev-node{position:absolute;top:1.5rem;width:15px;height:15px;border-radius:50%;background:var(--era,var(--accent));box-shadow:0 0 0 5px var(--bg);z-index:1;transition:transform .3s var(--ease-snap),box-shadow .3s ease;}
+  .cboard .ev-title{transition:color .3s ease;}
+  .cboard .ev:hover .ev-node,.cboard .ev:focus-visible .ev-node{transform:scale(1.5);box-shadow:0 0 0 5px var(--bg),0 0 18px 2px var(--era,var(--accent));}
+  .cboard .ev:hover .ev-title,.cboard .ev:focus-visible .ev-title{color:var(--era,var(--accent));}
+  .cboard .ev:focus-visible{outline:none;}
+  .cboard .ev.left .ev-node{right:-7.5px;}
+  .cboard .ev.right .ev-node{left:-7.5px;}
+  .cboard .ev.beef .ev-node{width:13px;height:13px;border-radius:2px;transform:rotate(45deg);}
+  .cboard .ev.beef:hover .ev-node,.cboard .ev.beef:focus-visible .ev-node{transform:rotate(45deg) scale(1.4);}
+  .cboard .ev.milestone .ev-node{width:13px;height:13px;background:var(--bg);border:2px solid var(--era,var(--mute));}
+  .cboard .ev.beef.left .ev-node{right:-6.5px;}
+  .cboard .ev.beef.right .ev-node{left:-6.5px;}
+  .cboard .ev-chip{display:inline-flex;flex-direction:column;gap:.3rem;max-width:26rem;}
+  .cboard .ev.left .ev-chip{align-items:flex-end;text-align:right;}
+  .cboard .ev-chip-top{display:flex;align-items:baseline;gap:.6rem;}
+  .cboard .ev.left .ev-chip-top{flex-direction:row-reverse;}
+  .cboard .ev-year{font-family:var(--serif);font-weight:500;font-style:italic;line-height:.92;color:var(--era,var(--accent));}
+  .cboard .ev.album .ev-year{font-size:clamp(3.2rem,7vw,6rem);}
+  .cboard .ev.beef .ev-year{font-size:1.85rem;}
+  .cboard .ev.milestone .ev-year{font-size:2.5rem;}
+  .cboard .ev-mono{font-size:.74rem;letter-spacing:.1em;color:var(--era,var(--accent));border:1px solid var(--dim);border-radius:3px;padding:.16rem .46rem;}
+  .cboard .ev-mono-beef{border:0;font-size:1.4rem;color:#b5654a;padding:0;}
+  .cboard .ev-title{font-size:1.75rem;color:var(--fg);line-height:1.12;}
+  .cboard .ev.beef .ev-title{font-size:1.25rem;color:var(--mute);font-style:italic;}
+  .cboard .ev-vs{font-style:normal;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#c77c63;}
+  .cboard .ev-meta{font-size:.92rem;color:var(--faint);letter-spacing:.03em;}
+  .cboard .ev-facts{list-style:none;margin-top:.5rem;display:flex;flex-direction:column;gap:.22rem;font-size:.94rem;color:var(--mute);letter-spacing:.02em;}
+  .cboard .ev-quote{font-family:var(--hand);font-size:2.15rem;line-height:1.05;color:var(--era,var(--accent));margin-top:.65rem;}
+  .cboard .ev-quote-src{font-family:var(--mono);font-size:.64rem;color:var(--faint);letter-spacing:.06em;}
+  .cboard .ev-quote-btn{display:block;padding:0;border:0;background:none;-webkit-appearance:none;appearance:none;text-align:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:filter .25s ease,text-shadow .3s ease;}
+  .cboard .ev-quote-btn:hover{filter:brightness(1.18);}
+  .cboard .ev-quote-btn:focus-visible{outline:2px solid var(--era,var(--accent));outline-offset:5px;border-radius:3px;}
+  .cboard .ev-quote-btn:hover .ev-eq,.cboard .ev-quote-btn:focus-visible .ev-eq{opacity:.55;}
+  .cboard .ev-eq{display:inline-flex;align-items:flex-end;gap:2.5px;height:.7em;margin-left:.5rem;vertical-align:-.05em;opacity:0;transition:opacity .3s ease;}
+  .cboard .ev-eq i{width:3px;height:100%;background:currentColor;border-radius:1.5px;transform:scaleY(.28);transform-origin:bottom;}
+  .cboard .ev-quote-btn.playing{filter:brightness(1.25);text-shadow:0 0 22px rgba(196,173,130,.5),0 0 6px rgba(196,173,130,.35);}
+  .cboard .ev-quote-btn.playing .ev-eq{opacity:1;}
+  .cboard .ev-quote-btn.playing .ev-eq i{animation:eqBar .85s ease-in-out infinite;}
+  .cboard .ev-quote-btn.playing .ev-eq i:nth-child(1){animation-duration:.7s;}
+  .cboard .ev-quote-btn.playing .ev-eq i:nth-child(2){animation-duration:1.05s;animation-delay:-.35s;}
+  .cboard .ev-quote-btn.playing .ev-eq i:nth-child(3){animation-duration:.8s;animation-delay:-.15s;}
+  .cboard .ev-quote-btn.playing .ev-eq i:nth-child(4){animation-duration:.95s;animation-delay:-.5s;}
+  .cboard .ev-quote-btn.jolt{animation:quoteJolt .42s cubic-bezier(.36,.07,.19,.97) both;}
+  .cboard .ev-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.65rem;}
+  .cboard .ev.left .ev-tags{justify-content:flex-end;}
+  .cboard .ev-tag{font-size:.84rem;letter-spacing:.02em;color:var(--mute);border:1px solid var(--dim);border-radius:11px;padding:.2rem .72rem;}
+  .cboard .ev-tag::before{content:'\266A \0020';color:var(--era,var(--accent));}
+  .cboard .doodle{width:100%;height:100%;display:block;}
+  .cboard .ev-doodle{position:absolute;top:.5rem;width:54px;height:54px;color:var(--mute);opacity:.3;pointer-events:none;transform:rotate(-6deg);}
+  .cboard .ev.left .ev-doodle{left:calc(100% + 1.6rem);}
+  .cboard .ev.right .ev-doodle{right:calc(100% + 1.6rem);transform:rotate(6deg);}
+  .cboard .board .ev{opacity:0;transform:translateY(14px);}
+  .cboard .board.drawn .ev{opacity:1;transform:none;transition:opacity var(--dur-base) var(--ease-flow),transform var(--dur-slow) var(--ease-snap);transition-delay:calc(min(var(--i,0),12) * 50ms);}
+  /* переключатель «подробно / компактно» */
+  .cboard .board-controls{display:flex;justify-content:center;margin:.2rem 0 1.7rem;position:relative;z-index:2;}
+  .cboard .board-toggle{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:none;border:1px solid var(--dim);border-radius:20px;padding:.5rem 1.15rem;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .25s ease,color .25s ease;}
+  .cboard .board-toggle:hover{border-color:var(--accent);color:var(--fg);}
+  .cboard .board-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .cboard .board-toggle .ti{display:inline-block;margin-right:.5rem;transition:transform .3s var(--ease-snap);}
+  .cboard.compact .board-toggle .ti{transform:rotate(-90deg);}
+  .cboard.compact .ev{padding-top:.45rem;padding-bottom:.45rem;}
+  .cboard.compact .ev-facts,.cboard.compact .ev-quote-btn,.cboard.compact .ev-tags,.cboard.compact .ev-doodle{display:none;}
+  .cboard.compact .ev.album .ev-year{font-size:clamp(2.4rem,5vw,3.6rem);}
+  .cboard.compact .era-chapter{margin:1.8rem 0 .6rem;}
+  @media(max-width:640px){
+    .cboard .board-axis{left:7px;}
+    .cboard .board-cap{justify-content:flex-start;}
+    .cboard .board-terminus{margin-left:2.5px;margin-right:auto;}
+    .cboard .ev,.cboard .ev.right{width:100%;margin-left:0;padding:1.1rem 0 2.4rem 1.8rem;justify-content:flex-start;}
+    .cboard .ev.left .ev-chip,.cboard .ev-chip{align-items:flex-start;text-align:left;}
+    .cboard .ev.left .ev-chip-top{flex-direction:row;}
+    .cboard .ev.left .ev-node,.cboard .ev.right .ev-node{left:2px;right:auto;}
+    .cboard .ev.beef.left .ev-node,.cboard .ev.beef.right .ev-node{left:3px;right:auto;}
+    .cboard .ev.album .ev-node{top:2.75rem;}
+    .cboard .ev.milestone .ev-node{top:2.47rem;}
+    .cboard .ev.beef .ev-node{top:1.77rem;}
+    .cboard .ev-doodle{display:none;}
+    .cboard .ev-chip{max-width:none;}
+    .cboard .ev-quote{font-size:1.5rem;}
+    .cboard .ev-tags,.cboard .ev.left .ev-tags{justify-content:flex-start;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .cboard,.cboard.is-visible{transition:none;transform:none;opacity:1;}
+    .cboard .board .ev{opacity:1;transform:none;}
+    .cboard .board.drawn .ev{transition:none;transition-delay:0s;}
+    .cboard .ev-quote-btn.jolt{animation:none;}
+    .cboard .ev-quote-btn.playing .ev-eq i{animation:none;transform:scaleY(.6);}
+  }
+
   @view-transition{navigation:auto}
-  @media (prefers-reduced-motion: reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+  @media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
+    *,*::before,*::after{animation-duration:.01ms!important;}}
 </style>
 </head>
 <body>
-  <div class="app">
 
-    <header class="top">
-      <a class="back" href="/music/">← музыка</a>
-      <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
-    </header>
-
-    <main>
-      <span class="badge"><span class="dot"></span>скоро</span>
-      <h1>Eminem<br/><span>гид готовится</span></h1>
-      <p class="lead">Маршрут сквозь альбомы — от Slim Shady до наших дней, и «8 Mile». Загляните позже ♪</p>
-      <div class="cross">
-        <span>а пока — готовые гиды:</span>
-        <a href="/music/michael/"><span class="gd" style="background:#d4af37"></span>Michael Jackson</a>
-        <a href="/music/jackie-chan/"><span class="gd" style="background:#cd2c24"></span>Jackie Chan</a>
-        <a href="/music/linkin-park/"><span class="gd" style="background:#ff4d2e"></span>Linkin Park</a>
-      </div>
-    </main>
-
-    <footer class="foot">
-      <span>$ ls ~/music/eminem</span>
-      <span>скоро · in progress</span>
-    </footer>
-
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="/music/">← музыка</a>
+    <a class="at" href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
   </div>
+</header>
+
+<div class="progress" id="progress"></div>
+
+<nav class="dotnav" aria-label="Навигация по разделам">
+  <a href="#top" data-sec="top"><span class="dn-label">Пролог</span><span class="dn-dot"></span></a>
+  <a href="#board" data-sec="board"><span class="dn-label">Карьера</span><span class="dn-dot"></span></a>
+  <a href="#film" data-sec="film"><span class="dn-label">8 Mile</span><span class="dn-dot"></span></a>
+</nav>
+
+<!-- HERO -->
+<section class="hero container" id="top">
+  <div class="hero-kicker mono reveal">Гид · Detroit · маршрут сквозь альбомы</div>
+  <h1 class="hero-word display reveal">EMIN<span class="rev">E</span>M</h1>
+  <p class="hero-lead reveal">Эминем берёт английский и ломает его об колено — <em>внутренние рифмы</em>, многосложные созвучия, скорость на грани разборчивости. Этот маршрут ведёт сквозь альбомы по одному треку за раз: от подвалов Детройта и рождения <em>Slim Shady</em> до его символической смерти.</p>
+  <div class="hero-foot mono reveal"><span>13 альбомов</span><span>5 эпох</span><span>финал — «8 Mile»</span></div>
+</section>
+
+<!-- CAREER BOARD — «следственная доска» (порт таймлайна из «Артефакта») -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute" focusable="false"><defs>
+  <filter id="dood-wobble" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <g id="dood-mic" filter="url(#dood-wobble)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="24" y="7" width="16" height="28" rx="8"/><line x1="27" y1="13" x2="37" y2="13"/><line x1="27" y1="18" x2="37" y2="18"/><line x1="27" y1="23" x2="37" y2="23"/><line x1="27" y1="28" x2="37" y2="28"/><line x1="32" y1="9" x2="32" y2="33"/><line x1="28.5" y1="10" x2="28.5" y2="32"/><line x1="35.5" y1="10" x2="35.5" y2="32"/><path d="M17 27 a15 15 0 0 0 30 0"/><line x1="32" y1="42" x2="32" y2="53"/><path d="M23 56 q9 -5 18 0"/></g>
+  <g id="dood-cassette" filter="url(#dood-wobble)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="16" width="48" height="32" rx="3"/><rect x="14" y="20" width="36" height="9" rx="1.5"/><circle cx="23" cy="38" r="5"/><circle cx="41" cy="38" r="5"/><circle cx="23" cy="38" r="1.3"/><circle cx="41" cy="38" r="1.3"/><line x1="28" y1="38" x2="36" y2="38"/><line x1="18" y1="45" x2="46" y2="45"/></g>
+  <g id="dood-mask" filter="url(#dood-wobble)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 10 C21 10 18 22 18 33 C18 45 25 53 32 53 C39 53 46 45 46 33 C46 22 43 10 32 10 Z"/><circle cx="26" cy="29" r="2.2"/><circle cx="38" cy="29" r="2.2"/><circle cx="32" cy="23" r="1.4"/><circle cx="26" cy="38" r="1.4"/><circle cx="38" cy="38" r="1.4"/><path d="M27 45 h10"/><path d="M28.5 48 h7"/></g>
+  <g id="dood-chainsaw" filter="url(#dood-wobble)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="26" width="17" height="14" rx="3"/><path d="M11 26 q5 -8 14 -3"/><circle cx="16.5" cy="33" r="1.4"/><path d="M25 28 h27 a4.5 4.5 0 0 1 0 10 H25 Z"/><path d="M27 38 l3 3.5 3 -3.5 3 3.5 3 -3.5 3 3.5 3 -3.5 3 3.5"/></g>
+  <g id="dood-crown" filter="url(#dood-wobble)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 41 L17 23 L25 32 L32 18 L39 32 L47 23 L51 41 Z"/><line x1="13" y1="45" x2="51" y2="45"/><circle cx="17" cy="21" r="1.3"/><circle cx="32" cy="16" r="1.5"/><circle cx="47" cy="21" r="1.3"/><circle cx="32" cy="41" r="1.6"/></g>
+  <g id="dood-pills" filter="url(#dood-wobble)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="20" width="26" height="12" rx="6" transform="rotate(-20 23 26)"/><line x1="23" y1="17" x2="23" y2="35" transform="rotate(-20 23 26)"/><circle cx="43" cy="43" r="9"/><line x1="36.5" y1="43" x2="49.5" y2="43"/></g>
+  <g id="dood-rise" filter="url(#dood-wobble)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="32" y1="16" x2="32" y2="50"/><path d="M20 28 L32 15 L44 28"/><path d="M22 38 L20 38"/><path d="M44 38 L42 38"/><path d="M24 46 L22 46"/><path d="M42 46 L40 46"/></g>
+  <g id="dood-plane" filter="url(#dood-wobble)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 31 L55 11 L37 53 Z"/><path d="M9 31 L37 53 L34 36 Z"/><line x1="34" y1="36" x2="55" y2="11"/></g>
+  <g id="dood-hat" filter="url(#dood-wobble)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 44 q21 9 42 0"/><path d="M20 44 q-1 -20 12 -20 q13 0 12 20"/><path d="M20 39 q12 5 24 0"/><path d="M29 25 q3 -3 6 0"/></g>
+  <g id="dood-tombstone" filter="url(#dood-wobble)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 53 V31 a13 13 0 0 1 26 0 V53 Z"/><line x1="32" y1="27" x2="32" y2="40"/><line x1="26" y1="32" x2="38" y2="32"/><path d="M13 53 q4 -4 8 0 q4 -4 8 0 q4 -4 8 0 q4 -4 8 0"/></g>
+</defs></svg>
+
+<section class="board-section container" id="board">
+  <div class="sec-head reveal">
+    <span class="sec-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="24" y1="5" x2="24" y2="43"/><circle cx="24" cy="11" r="3.2"/><rect x="20.8" y="20.8" width="6.4" height="6.4" transform="rotate(45 24 24)"/><circle cx="24" cy="37" r="3.2"/><path d="M27 11h11M10 24h11M27 37h9"/></svg></span>
+    <span class="mono">Вся карьера · по годам</span>
+    <h2 class="cond">Следственная доска</h2>
+  </div>
+
+  <div class="cboard">
+    <div class="board-controls">
+      <button type="button" class="board-toggle mono" aria-pressed="false"><span class="ti" aria-hidden="true">▾</span><span class="tlabel">Свернуть подробности</span></button>
+    </div>
+    <div class="board">
+      <div class="board-axis" style="background:linear-gradient(180deg,#9a9aa8,#a6a86b,#c77c63,#c4ad82,#7e8a96)" aria-hidden="true"></div>
+      <div class="board-cap top" aria-hidden="true"><span class="mono" id="board-top">2026 · сейчас</span></div>
+
+      <ol class="board-list">
+        <li class="era-chapter mono" role="presentation" style="--era:#9a9aa8"><span>Смерть Slim Shady</span></li>
+        <li class="ev album left" style="--i:0;--era:#9a9aa8" aria-label="2024 · альбом · The Death of Slim Shady (Coup de Grâce)">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-tombstone"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2024</span><span class="ev-mono mono">TDOSS</span></div>
+            <span class="ev-title">The Death of Slim Shady (Coup de Grâce)</span>
+            <span class="ev-meta mono">23 треков · 112 отсылок</span>
+            <ul class="ev-facts mono"><li>«убийство» альтер-эго Slim Shady</li><li>#1 в США</li></ul>
+            <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/hdni.mp3" aria-pressed="false">«Guess who's back, back again»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+            <div class="ev-tags"><span class="ev-tag mono">Houdini</span><span class="ev-tag mono">Tobey</span><span class="ev-tag mono">Somebody Save Me</span></div>
+          </div>
+        </li>
+        <li class="ev beef right" style="--i:1;--era:#9a9aa8" aria-label="2024 · бифф · Benzino">
+          <span class="ev-node" aria-hidden="true"></span>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2024</span><span class="ev-mono ev-mono-beef mono">⚔</span></div>
+            <span class="ev-title"><span class="ev-vs mono">бифф · </span>Benzino</span>
+            <span class="ev-meta mono">возобновление</span>
+          </div>
+        </li>
+
+        <li class="era-chapter mono" role="presentation" style="--era:#a6a86b"><span>Rap God</span></li>
+        <li class="ev album left" style="--i:2;--era:#a6a86b" aria-label="2020 · альбом · Music To Be Murdered By">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-hat"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2020</span><span class="ev-mono mono">MTBMB</span></div>
+            <span class="ev-title">Music To Be Murdered By</span>
+            <span class="ev-meta mono">19 треков · 376 отсылок</span>
+            <ul class="ev-facts mono"><li>внезапный релиз</li><li>концепт по мотивам Хичкока</li><li>#1 в США</li></ul>
+            <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/gdzll.mp3" aria-pressed="false">«I'll feel like Godzilla»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+            <div class="ev-tags"><span class="ev-tag mono">Godzilla</span><span class="ev-tag mono">Darkness</span><span class="ev-tag mono">Gnat</span></div>
+          </div>
+        </li>
+        <li class="ev album right" style="--i:3;--era:#a6a86b" aria-label="2018 · альбом · Kamikaze">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-plane"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2018</span><span class="ev-mono mono">KMKZ</span></div>
+            <span class="ev-title">Kamikaze</span>
+            <span class="ev-meta mono">17 треков · 451 отсылок</span>
+            <ul class="ev-facts mono"><li>внезапный релиз</li><li>ответ критикам</li><li>#1 в США</li></ul>
+            <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/vnm.mp3" aria-pressed="false">«Knock knock, let the devil in…»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+            <div class="ev-tags"><span class="ev-tag mono">The Ringer</span><span class="ev-tag mono">Lucky You</span><span class="ev-tag mono">Killshot</span></div>
+          </div>
+        </li>
+        <li class="ev beef left" style="--i:4;--era:#a6a86b" aria-label="2018 · бифф · Machine Gun Kelly">
+          <span class="ev-node" aria-hidden="true"></span>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2018</span><span class="ev-mono ev-mono-beef mono">⚔</span></div>
+            <span class="ev-title"><span class="ev-vs mono">бифф · </span>Machine Gun Kelly</span>
+            <span class="ev-meta mono">Killshot</span>
+          </div>
+        </li>
+        <li class="ev album right" style="--i:5;--era:#a6a86b" aria-label="2017 · альбом · Revival">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-mic"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2017</span><span class="ev-mono mono">RVL</span></div>
+            <span class="ev-title">Revival</span>
+            <span class="ev-meta mono">24 треков · 302 отсылок</span>
+            <ul class="ev-facts mono"><li>#1 в США</li><li>смешанные отзывы</li></ul>
+            <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/blv.mp3" aria-pressed="false">«Started from the bottom like a snowman, oh man…»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+            <div class="ev-tags"><span class="ev-tag mono">River</span><span class="ev-tag mono">Walk on Water</span><span class="ev-tag mono">Believe</span></div>
+          </div>
+        </li>
+        <li class="ev album left" style="--i:6;--era:#a6a86b" aria-label="2013 · альбом · The Marshall Mathers LP 2">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-crown"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2013</span><span class="ev-mono mono">MMLP2</span></div>
+            <span class="ev-title">The Marshall Mathers LP 2</span>
+            <span class="ev-meta mono">24 треков · 766 отсылок</span>
+            <ul class="ev-facts mono"><li>Grammy — лучший рэп-альбом</li><li>«Rap God» — рекорд по числу слов в хит-песне</li></ul>
+            <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/rpgd.mp3" aria-pressed="false">«I'm beginning to feel like a Rap God»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+            <div class="ev-tags"><span class="ev-tag mono">Rap God</span><span class="ev-tag mono">Berzerk</span><span class="ev-tag mono">The Monster</span></div>
+          </div>
+        </li>
+
+        <li class="era-chapter mono" role="presentation" style="--era:#c77c63"><span>Срыв и восстановление</span></li>
+        <li class="ev album right" style="--i:7;--era:#c77c63" aria-label="2010 · альбом · Recovery">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-rise"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2010</span><span class="ev-mono mono">RCV</span></div>
+            <span class="ev-title">Recovery</span>
+            <span class="ev-meta mono">22 треков · 499 отсылок</span>
+            <ul class="ev-facts mono"><li>#1 в 19 странах</li><li>Grammy — лучший рэп-альбом</li></ul>
+            <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/ntafrd.mp3" aria-pressed="false">«I'm not afraid to take a stand»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+            <div class="ev-tags"><span class="ev-tag mono">Not Afraid</span><span class="ev-tag mono">Love the Way You Lie</span><span class="ev-tag mono">Space Bound</span></div>
+          </div>
+        </li>
+        <li class="ev album left" style="--i:8;--era:#c77c63" aria-label="2009 · альбом · Relapse">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-pills"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2009</span><span class="ev-mono mono">RLP</span></div>
+            <span class="ev-title">Relapse</span>
+            <span class="ev-meta mono">24 треков · 450 отсылок</span>
+            <ul class="ev-facts mono"><li>возвращение после паузы и зависимости</li><li>Grammy — лучший рэп-альбом</li></ul>
+            <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/bfl.mp3" aria-pressed="false">«In my shoes, just to see what it's like to be me»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+            <div class="ev-tags"><span class="ev-tag mono">We Made You</span><span class="ev-tag mono">Beautiful</span><span class="ev-tag mono">3 a.m.</span></div>
+          </div>
+        </li>
+        <li class="ev beef right" style="--i:9;--era:#c77c63" aria-label="2009 · бифф · Nick Cannon">
+          <span class="ev-node" aria-hidden="true"></span>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2009</span><span class="ev-mono ev-mono-beef mono">⚔</span></div>
+            <span class="ev-title"><span class="ev-vs mono">бифф · </span>Nick Cannon</span>
+          </div>
+        </li>
+        <li class="ev album left" style="--i:10;--era:#c77c63" aria-label="2004 · альбом · Encore">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-mic"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2004</span><span class="ev-mono mono">ENC</span></div>
+            <span class="ev-title">Encore</span>
+            <span class="ev-meta mono">21 треков · 376 отсылок</span>
+            <ul class="ev-facts mono"><li>11× платина в мире</li></ul>
+            <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/mckbd.mp3" aria-pressed="false">«Hush little baby, don't you cry»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+            <div class="ev-tags"><span class="ev-tag mono">Mockingbird</span><span class="ev-tag mono">Just Lose It</span><span class="ev-tag mono">Like Toy Soldiers</span></div>
+          </div>
+        </li>
+        <li class="ev beef right" style="--i:11;--era:#c77c63" aria-label="2003 · бифф · Ja Rule / Murder Inc.">
+          <span class="ev-node" aria-hidden="true"></span>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2003</span><span class="ev-mono ev-mono-beef mono">⚔</span></div>
+            <span class="ev-title"><span class="ev-vs mono">бифф · </span>Ja Rule / Murder Inc.</span>
+          </div>
+        </li>
+
+        <li class="era-chapter mono" role="presentation" style="--era:#c4ad82"><span>Рождение Slim Shady</span></li>
+        <li class="ev album left" style="--i:12;--era:#c4ad82" aria-label="2002 · альбом · The Eminem Show">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-mic"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2002</span><span class="ev-mono mono">TES</span></div>
+            <span class="ev-title">The Eminem Show</span>
+            <span class="ev-meta mono">22 треков · 536 отсылок</span>
+            <ul class="ev-facts mono"><li>самый продаваемый альбом 2002 в США</li><li>Grammy — лучший рэп-альбом</li></ul>
+            <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/wthtm.mp3" aria-pressed="false">«Now this looks like a job for me!»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+            <div class="ev-tags"><span class="ev-tag mono">Without Me</span><span class="ev-tag mono">Cleanin' Out My Closet</span><span class="ev-tag mono">Sing for the Moment</span></div>
+          </div>
+        </li>
+        <li class="ev beef right" style="--i:13;--era:#c4ad82" aria-label="2002 · бифф · Benzino / The Source">
+          <span class="ev-node" aria-hidden="true"></span>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2002</span><span class="ev-mono ev-mono-beef mono">⚔</span></div>
+            <span class="ev-title"><span class="ev-vs mono">бифф · </span>Benzino / The Source</span>
+          </div>
+        </li>
+        <li class="ev album left" style="--i:14;--era:#c4ad82" aria-label="2000 · альбом · The Marshall Mathers LP">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-chainsaw"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2000</span><span class="ev-mono mono">MMLP</span></div>
+            <span class="ev-title">The Marshall Mathers LP</span>
+            <span class="ev-meta mono">18 треков · 416 отсылок</span>
+            <ul class="ev-facts mono"><li>самый быстро продаваемый рэп-альбом в США</li><li>диамантовая сертификация</li></ul>
+            <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/stn.mp3" aria-pressed="false">«Dear Slim, I wrote you but you still ain't callin'»<span class="ev-quote-src mono"> — Stan</span><span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+            <div class="ev-tags"><span class="ev-tag mono">Stan</span><span class="ev-tag mono">The Real Slim Shady</span><span class="ev-tag mono">The Way I Am</span></div>
+          </div>
+        </li>
+        <li class="ev beef right" style="--i:15;--era:#c4ad82" aria-label="2000 · бифф · Everlast">
+          <span class="ev-node" aria-hidden="true"></span>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">2000</span><span class="ev-mono ev-mono-beef mono">⚔</span></div>
+            <span class="ev-title"><span class="ev-vs mono">бифф · </span>Everlast</span>
+          </div>
+        </li>
+        <li class="ev album left" style="--i:16;--era:#c4ad82" aria-label="1999 · альбом · The Slim Shady LP">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-mask"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">1999</span><span class="ev-mono mono">SSLP</span></div>
+            <span class="ev-title">The Slim Shady LP</span>
+            <span class="ev-meta mono">19 треков · 645 отсылок</span>
+            <ul class="ev-facts mono"><li>2× платина</li><li>Grammy — лучший рэп-альбом</li></ul>
+            <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/mnis.mp3" aria-pressed="false">«Hi! My name is… Slim Shady»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+            <div class="ev-tags"><span class="ev-tag mono">My Name Is</span><span class="ev-tag mono">Guilty Conscience</span><span class="ev-tag mono">'97 Bonnie &amp; Clyde</span></div>
+          </div>
+        </li>
+        <li class="ev beef right" style="--i:17;--era:#c4ad82" aria-label="1999 · бифф · Insane Clown Posse">
+          <span class="ev-node" aria-hidden="true"></span>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">1999</span><span class="ev-mono ev-mono-beef mono">⚔</span></div>
+            <span class="ev-title"><span class="ev-vs mono">бифф · </span>Insane Clown Posse</span>
+            <span class="ev-meta mono">давняя детройтская вражда</span>
+          </div>
+        </li>
+        <li class="ev album left" style="--i:18;--era:#c4ad82" aria-label="1997 · альбом · The Slim Shady EP">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-mask"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">1997</span><span class="ev-mono mono">SSEP</span></div>
+            <span class="ev-title">The Slim Shady EP</span>
+            <span class="ev-meta mono">10 треков · 263 отсылок</span>
+            <ul class="ev-facts mono"><li>привлёк внимание Dr. Dre</li></ul>
+            <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/noill.mp3" aria-pressed="false">«Down a fifth, crack open a six. I'm on my seventh 8-Ball…»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+            <div class="ev-tags"><span class="ev-tag mono">Just the Two of Us</span></div>
+          </div>
+        </li>
+        <li class="ev album right" style="--i:19;--era:#c4ad82" aria-label="1996 · альбом · Infinite">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-cassette"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">1996</span><span class="ev-mono mono">INF</span></div>
+            <span class="ev-title">Infinite</span>
+            <span class="ev-meta mono">11 треков · 334 отсылок</span>
+            <ul class="ev-facts mono"><li>тираж ~1000 копий</li><li>коммерчески провалился</li></ul>
+            <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/nfnte.mp3" aria-pressed="false">«My pen and paper cause a chain reaction»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+            <div class="ev-tags"><span class="ev-tag mono">Infinite</span><span class="ev-tag mono">It's OK</span></div>
+          </div>
+        </li>
+
+        <li class="era-chapter mono" role="presentation" style="--era:#7e8a96"><span>Детройт · до дебюта</span></li>
+        <li class="ev milestone left" style="--i:20;--era:#7e8a96" aria-label="1995 · веха · Рождение дочери Hailie Jade">
+          <span class="ev-node" aria-hidden="true"></span>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">1995</span></div>
+            <span class="ev-title"><span class="ev-vs mono">веха · </span>Рождение дочери Hailie Jade</span>
+            <span class="ev-meta mono">25 декабря</span>
+          </div>
+        </li>
+        <li class="ev milestone right" style="--i:21;--era:#7e8a96" aria-label="1991 · веха · Бросил школу">
+          <span class="ev-node" aria-hidden="true"></span>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">1991</span></div>
+            <span class="ev-title"><span class="ev-vs mono">веха · </span>Бросил школу</span>
+            <span class="ev-meta mono">после трёх попыток окончить 9-й класс</span>
+          </div>
+        </li>
+        <li class="ev milestone left" style="--i:22;--era:#7e8a96" aria-label="1989 · веха · Soul Intent">
+          <span class="ev-node" aria-hidden="true"></span>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">1989</span></div>
+            <span class="ev-title"><span class="ev-vs mono">веха · </span>Soul Intent</span>
+            <span class="ev-meta mono">первая группа; дебютный винил — 1995</span>
+          </div>
+        </li>
+        <li class="ev milestone right" style="--i:23;--era:#7e8a96" aria-label="1988 · веха · Bassmint Productions">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-cassette"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">1988</span></div>
+            <span class="ev-title"><span class="ev-vs mono">веха · </span>Bassmint Productions</span>
+            <span class="ev-meta mono">ранняя рэп-команда Детройта</span>
+            <ul class="ev-facts mono"><li>рэп-баттлы Детройта</li></ul>
+          </div>
+        </li>
+        <li class="ev milestone left" style="--i:24;--era:#7e8a96" aria-label="1986 · веха · Первые рифмы под именем M&amp;M">
+          <span class="ev-node" aria-hidden="true"></span>
+          <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-mic"/></svg>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">1986</span></div>
+            <span class="ev-title"><span class="ev-vs mono">веха · </span>Первые рифмы под именем M&amp;M</span>
+            <span class="ev-meta mono">начал читать рэп в ~14 лет</span>
+          </div>
+        </li>
+        <li class="ev milestone right" style="--i:25;--era:#7e8a96" aria-label="1972 · веха · Рождение Маршалла Брюса Мэзерса III">
+          <span class="ev-node" aria-hidden="true"></span>
+          <div class="ev-chip">
+            <div class="ev-chip-top"><span class="ev-year">1972</span></div>
+            <span class="ev-title"><span class="ev-vs mono">веха · </span>Рождение Маршалла Брюса Мэзерса III</span>
+            <span class="ev-meta mono">17 октября · Сент-Джозеф, Миссури</span>
+            <ul class="ev-facts mono"><li>частые переезды между Миссури и Детройтом</li></ul>
+          </div>
+        </li>
+      </ol>
+
+      <div class="board-cap bottom"><span class="mono">1972 · начало</span></div>
+      <div class="board-terminus" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINALE — 8 MILE -->
+<section class="film container" id="film">
+  <div class="sec-head reveal">
+    <span class="sec-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="12" width="38" height="26" rx="2"/><path d="M5 18h38"/><circle cx="11" cy="15" r="1.2" fill="currentColor"/><path d="M21 22l9 5-9 5z" fill="currentColor" stroke="none"/></svg></span>
+    <span class="mono">Что посмотреть</span>
+    <h2 class="cond">Финал маршрута</h2>
+  </div>
+
+  <div class="finale reveal">
+    <div class="finale-poster" aria-hidden="true">
+      <span class="fp-big">8</span>
+      <span class="fp-mid">Mile</span>
+      <span class="fp-rule"></span>
+      <span class="fp-sub">Detroit · 2002</span>
+    </div>
+    <div class="finale-meta">2002 · реж. Кёртис Хэнсон</div>
+    <h3 class="finale-title display">8 Mile</h3>
+    <p class="finale-text">Полуавтобиографическая драма: Джимми «Кролик» Смит пробивается через рэп-баттлы Детройта, разделённого магистралью 8 Mile. Всё, что ты прошёл по маршруту — гнев, бедность, заикание и взрыв таланта — здесь оживает на экране.</p>
+    <p class="finale-fact">А «Lose Yourself» из саундтрека стал <b>первым хип-хоп-треком, получившим «Оскар»</b> за лучшую оригинальную песню (2003).</p>
+    <a class="finale-watch" data-yt="axGVrfwm9L4" data-title="Трейлер «8 Mile» (2002)" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=8+Mile+2002+official+trailer">▶ смотреть трейлер</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-glyph" aria-hidden="true">EMIN<span class="rev">E</span>M</div>
+    <p class="footer-mark">EMINEM · ГИД</p>
+    <p class="footer-tag">Маршрут сквозь альбомы Маршалла Мэзерса — от рождения Slim Shady до его смерти, по одному треку за раз.</p>
+    <div class="footer-links">
+      <a class="primary" href="https://eminem.rensite.ru" target="_blank" rel="noopener">Артефакт: разбор 14 000 отсылок ↗</a>
+      <a href="https://www.youtube.com/@Eminem" target="_blank" rel="noopener">Оф. канал YouTube</a>
+      <a href="/music/michael/">Гид: Michael Jackson</a>
+      <a href="/music/linkin-park/">Гид: Linkin Park</a>
+    </div>
+    <p class="footer-fine">Marshall Bruce Mathers III · Detroit · 1972 —</p>
+    <p class="footer-note">Гид живой и наверняка неидеальный. Нашли ошибку, спорный факт или трек, который must — напишите <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>, поправим вместе. Спасибо, что уделили время ♪</p>
+    <p class="footer-disc">Все права на оригинальные произведения — музыку, фильмы и изображения — принадлежат их правообладателям. Этот сайт и подборка — независимый некоммерческий фан-проект (© 2026 rensite), не связанный с правообладателями. Короткие аудио-отрывки — фрагменты для цели иллюстрации.</p>
+  </div>
+</footer>
+
+<!-- YouTube lightbox -->
+<div class="ytmodal" id="ytmodal" role="dialog" aria-modal="true" aria-label="Видео">
+  <div class="ytmodal-dialog">
+    <div class="ytmodal-head">
+      <span class="ytmodal-title" id="ytmodal-title"></span>
+      <button class="ytmodal-close" type="button" aria-label="Закрыть видео">&#10005;</button>
+    </div>
+    <div class="ytmodal-frame"><div class="ytmodal-slot"></div></div>
+    <div class="ytmodal-foot"><a class="ytmodal-yt" target="_blank" rel="noopener" href="#">смотреть на YouTube ↗</a></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="/music/tracks.js"></script>
+<script>
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // авто-пометка элементов для reveal-анимации
+  document.querySelectorAll('.finale').forEach(el=>el.classList.add('reveal'));
+
+  // ── GSAP scroll-reveal ──
+  gsap.registerPlugin(ScrollTrigger);
+  if(!reduced){
+    gsap.set('.reveal',{y:28,opacity:0});
+    gsap.to('.hero .reveal',{y:0,opacity:1,duration:1.1,ease:'expo.out',stagger:.12,delay:.1});
+    gsap.utils.toArray('.tracklist').forEach(list=>{
+      ScrollTrigger.batch(list.querySelectorAll('.trk'),{start:'top 94%',
+        onEnter:els=>gsap.to(els,{y:0,opacity:1,duration:.7,ease:'power3.out',stagger:.05,overwrite:true})});
+    });
+    ScrollTrigger.batch('.reveal:not(.hero .reveal):not(.trk)',{start:'top 88%',
+      onEnter:els=>gsap.to(els,{y:0,opacity:1,duration:.9,ease:'expo.out',stagger:.08,overwrite:true})});
+  }else{
+    gsap.set('.reveal',{y:0,opacity:1});
+  }
+
+  // ── scroll progress + dot scroll-spy ──
+  const bar=document.getElementById('progress');
+  const navLinks=Array.from(document.querySelectorAll('.dotnav a'));
+  const secs=navLinks.map(a=>document.getElementById(a.dataset.sec)).filter(Boolean);
+  function onScroll(){
+    const h=document.documentElement;
+    const max=h.scrollHeight-h.clientHeight;
+    const pct=max>0?(h.scrollTop/max)*100:0;
+    if(bar) bar.style.width=pct+'%';
+    const mark=window.innerHeight*0.4; let activeIdx=0;
+    secs.forEach((s,i)=>{ if(s.getBoundingClientRect().top<=mark) activeIdx=i; });
+    navLinks.forEach((a,i)=>a.classList.toggle('active',i===activeIdx));
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+  navLinks.forEach(a=>a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.getElementById(a.dataset.sec);
+    if(t) t.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+  }));
+  document.fonts && document.fonts.ready.then(()=>ScrollTrigger.refresh());
+
+  // ── Кликабельные аудио-цитаты (один общий клип за раз) ──
+  let stopClips = ()=>{};
+  (function(){
+    const btns=Array.from(document.querySelectorAll('.fk-play[data-audio], .ev-quote-btn[data-audio]'));
+    if(!btns.length) return;
+    let current=null;
+    const items=btns.map(btn=>{
+      const audio=new Audio(btn.dataset.audio); audio.preload='auto';
+      const setPlaying=on=>{ btn.classList.toggle('playing',on); btn.setAttribute('aria-pressed',on?'true':'false'); };
+      btn.addEventListener('click',()=>{
+        if(!reduced){ btn.classList.remove('jolt'); void btn.offsetWidth; btn.classList.add('jolt'); }
+        if(audio.paused){ if(current && current!==audio) current.pause(); current=audio; audio.currentTime=0; audio.play().catch(()=>{}); }
+        else { audio.pause(); }
+      });
+      audio.addEventListener('play',()=>setPlaying(true));
+      audio.addEventListener('pause',()=>setPlaying(false));
+      audio.addEventListener('ended',()=>setPlaying(false));
+      btn.addEventListener('animationend',e=>{ if(e.animationName==='quoteJolt') btn.classList.remove('jolt'); });
+      return audio;
+    });
+    stopClips=()=>{ if(current) current.pause(); };
+  })();
+
+  // ── Карьерная доска: появление (stagger), актуальный год капы, переключатель «подробно/компактно» ──
+  (function(){
+    const board=document.querySelector('.cboard'); if(!board) return;
+    const inner=board.querySelector('.board');
+    const cap=document.getElementById('board-top');
+    if(cap){ const y=Math.max(new Date().getFullYear(),2024); cap.textContent=y+' · сейчас'; }
+
+    // переключатель подробно/компактно — выбор запоминается между визитами
+    const btn=board.querySelector('.board-toggle');
+    if(btn){
+      const lbl=btn.querySelector('.tlabel'), KEY='em-board-compact';
+      let compact=false; try{ compact = localStorage.getItem(KEY)==='1'; }catch(e){}
+      const applyMode=()=>{ board.classList.toggle('compact', compact);
+        btn.setAttribute('aria-pressed', String(compact));
+        if(lbl) lbl.textContent = compact ? 'Развернуть подробности' : 'Свернуть подробности'; };
+      applyMode();
+      btn.addEventListener('click',()=>{ compact=!compact;
+        try{ localStorage.setItem(KEY, compact?'1':'0'); }catch(e){} applyMode(); });
+    }
+
+    function show(){ board.classList.add('is-visible'); if(inner) inner.classList.add('drawn'); }
+    if(reduced || !('IntersectionObserver' in window)){ show(); return; }
+    const io=new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ show(); io.disconnect(); } }); }, {threshold:0.06});
+    io.observe(board);
+  })();
+
+  // ── YouTube lightbox (клик по треку/трейлеру с data-yt) ──
+  (function(){
+    const modal=document.getElementById('ytmodal'); if(!modal) return;
+    const slot=modal.querySelector('.ytmodal-slot');
+    const titleEl=modal.querySelector('.ytmodal-title');
+    const ytLink=modal.querySelector('.ytmodal-yt');
+    const closeBtn=modal.querySelector('.ytmodal-close');
+    let lastFocus=null;
+    function titleFor(a){
+      if(a.dataset.title) return a.dataset.title;
+      const tn=a.querySelector('.tname');
+      if(tn){ const c=tn.cloneNode(true); c.querySelectorAll('.topt,.tyr').forEach(x=>x.remove()); return c.textContent.replace(/\s+/g,' ').trim(); }
+      return a.textContent.replace(/[▶↗]/g,'').replace(/\s+/g,' ').trim();
+    }
+    function openModal(id,name,href){
+      lastFocus=document.activeElement;
+      titleEl.textContent=name;
+      ytLink.href=href||('https://www.youtube.com/watch?v='+id);
+      const f=document.createElement('iframe');
+      f.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?autoplay=1&rel=0&modestbranding=1';
+      f.title=name||'YouTube'; f.allow='autoplay; encrypted-media; fullscreen; picture-in-picture'; f.setAttribute('allowfullscreen','');
+      slot.replaceChildren(f);
+      stopClips();
+      modal.classList.add('open'); document.body.classList.add('modal-open');
+      requestAnimationFrame(()=>modal.classList.add('show'));
+      closeBtn.focus();
+    }
+    function closeModal(){
+      if(!modal.classList.contains('open')) return;
+      modal.classList.remove('show'); document.body.classList.remove('modal-open');
+      let done=false;
+      const finish=()=>{ if(done) return; done=true; modal.classList.remove('open'); slot.replaceChildren(); };
+      if(reduced){ finish(); }
+      else { modal.addEventListener('transitionend',function te(e){ if(e.target===modal){ modal.removeEventListener('transitionend',te); finish(); } }); setTimeout(finish,420); }
+      if(lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    document.querySelectorAll('a[data-yt]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button!==0) return;
+        e.preventDefault();
+        openModal(a.dataset.yt,titleFor(a),a.href);
+      });
+    });
+    closeBtn.addEventListener('click',closeModal);
+    modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+  })();
+</script>
 <script src="/palette.js" defer></script>
 </body>
 </html>

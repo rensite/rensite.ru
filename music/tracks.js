@@ -45,10 +45,10 @@ window.RENSITE_MUSIC = (function(){
       hook:'Корни, ствол, сайд-проекты и возвращение с Эмили — вся дуга по порядку.',
       stats:'97 треков · 8 альбомов · 4 сайд-проекта' },
     { key:'em', name:'Eminem', native:'Slim Shady', url:'/music/eminem/',
-      accent:'#16181d', status:'soon', total:0, storage:'em-listened',
+      accent:'#16181d', status:'live', total:0, storage:'em-listened',
       motif:'Ǝ', mono:true,
-      hook:'Маршрут сквозь альбомы — от Slim Shady до наших дней, и «8 Mile».',
-      stats:'готовится' }
+      hook:'Вся карьера на одной оси — от рождения Slim Shady до его смерти, и «8 Mile».',
+      stats:'13 альбомов · 5 эпох · 8 Mile' }
   ];
 
   /* Все треки всех гидов. Джеки Чан тянется из data.json;

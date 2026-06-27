@@ -770,9 +770,9 @@
   var ReadMeter=(function(){
     var box=document.getElementById('meter'), readEl=document.getElementById('meterRead'), cntEl=document.getElementById('meterCnt');
     var total=ISSUES.length, read=new Set();
-    try{ JSON.parse(sessionStorage.getItem('tj-read')||'[]').forEach(function(k){ read.add(k); }); }catch(e){}
+    try{ JSON.parse(localStorage.getItem('tj-listened')||'[]').forEach(function(k){ read.add(k); }); }catch(e){}
     var READS=['не слушали','+1','слушаем','ещё!','почти треть','полпути','шесть!','семь','восемь','девять','КОЛЛЕКЦИЯ!'];
-    function save(){ try{ sessionStorage.setItem('tj-read',JSON.stringify(Array.from(read))); }catch(e){} }
+    function save(){ try{ localStorage.setItem('tj-listened',JSON.stringify(Array.from(read))); }catch(e){} }
     function paint(spring){
       var n=Math.min(read.size,total);
       box.style.setProperty('--read',n);

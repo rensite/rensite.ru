@@ -45,26 +45,36 @@ window.RENSITE_MUSIC = (function(){
       hook:'Корни, ствол, сайд-проекты и возвращение с Эмили — вся дуга по порядку.',
       stats:'97 треков · 8 альбомов · 4 сайд-проекта' },
     { key:'em', name:'Eminem', native:'Slim Shady', url:'/music/eminem/',
-      accent:'#16181d', status:'live', total:0, storage:'em-listened',
+      accent:'#16181d', status:'live', total:858, storage:'em-listened',
       motif:'Ǝ', mono:true,
       hook:'Вся карьера на одной оси — от рождения Slim Shady до его смерти, и «8 Mile».',
-      stats:'13 альбомов · 5 эпох · 8 Mile' }
+      stats:'858 треков · вся дискография · 8 Mile' },
+    { key:'tj', name:'Том и Джерри', native:'MGM · 1944—1967', url:'/music/tom-and-jerry/',
+      accent:'#e5202b', status:'live', total:10, storage:'tj-listened',
+      img:'/music/tom-and-jerry/img/title-card.jpeg',
+      hook:'Десять короткометражек, где музыка не фон, а сам сюжет. Комикс-выпуск с обложками и двумя «Оскарами».',
+      stats:'10 серий · 2 «Оскара» · 1944—1967' }
   ];
 
-  /* Все треки всех гидов. Джеки Чан тянется из data.json;
-     если файл недоступен (открыто как file://) — живём на треках LP. */
+  /* Все треки всех гидов для ⌘K. LP — из LP_ALBUMS (синхронно), Джеки Чан и
+     Eminem — из своих data.json (лениво); если файл недоступен — гид просто
+     выпадает из палитры, остальные работают. */
   var allPromise = null;
+  function grab(url, map){
+    return fetch(url)
+      .then(function(r){ if (!r.ok) throw new Error(url+' '+r.status); return r.json(); })
+      .then(function(d){ return (d.tracks||[]).map(map); })
+      .catch(function(){ return []; });
+  }
   function loadAll(){
     if (allPromise) return allPromise;
-    allPromise = fetch('/music/jackie-chan/data.json')
-      .then(function(r){ if (!r.ok) throw new Error('data.json '+r.status); return r.json(); })
-      .then(function(d){
-        return d.tracks.map(function(t){
-          return {artist:'Jackie Chan', yr:t.yr, alb:t.s||t.type, n:t.n, q:t.q, guide:'/music/jackie-chan/'};
-        });
-      })
-      .catch(function(){ return []; })
-      .then(function(jc){ return LP_TRACKS.concat(jc); });
+    var jc = grab('/music/jackie-chan/data.json', function(t){
+      return {artist:'Jackie Chan', yr:t.yr, alb:t.s||t.type, n:t.n, q:t.q, guide:'/music/jackie-chan/'};
+    });
+    var em = grab('/music/eminem/data.json', function(t){
+      return {artist:'Eminem', yr:t.yr, alb:t.s||t.type, n:t.n, q:t.q, guide:'/music/eminem/'};
+    });
+    allPromise = Promise.all([jc, em]).then(function(r){ return LP_TRACKS.concat(r[0], r[1]); });
     return allPromise;
   }
 

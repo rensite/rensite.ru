@@ -290,8 +290,8 @@
   .cboard .ev-title{font-size:1.75rem;color:var(--fg);line-height:1.12;}
   .cboard .ev.beef .ev-title{font-size:1.25rem;color:var(--mute);font-style:italic;}
   .cboard .ev-vs{font-style:normal;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#c77c63;}
-  .cboard .ev-meta{font-size:.92rem;color:var(--faint);letter-spacing:.03em;}
-  .cboard .ev-facts{list-style:none;margin-top:.5rem;display:flex;flex-direction:column;gap:.22rem;font-size:.94rem;color:var(--mute);letter-spacing:.02em;}
+  .cboard .ev-meta{font-size:1.05rem;color:var(--faint);letter-spacing:.03em;}
+  .cboard .ev-facts{list-style:none;margin-top:.55rem;display:flex;flex-direction:column;gap:.26rem;font-size:1.08rem;color:var(--mute);letter-spacing:.01em;}
   .cboard .ev-quote{font-family:var(--hand);font-size:2.15rem;line-height:1.05;color:var(--era,var(--accent));margin-top:.65rem;}
   .cboard .ev-quote-src{font-family:var(--mono);font-size:.64rem;color:var(--faint);letter-spacing:.06em;}
   .cboard .ev-quote-btn{display:block;padding:0;border:0;background:none;-webkit-appearance:none;appearance:none;text-align:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:filter .25s ease,text-shadow .3s ease;}
@@ -310,7 +310,9 @@
   .cboard .ev-quote-btn.jolt{animation:quoteJolt .42s cubic-bezier(.36,.07,.19,.97) both;}
   .cboard .ev-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.65rem;}
   .cboard .ev.left .ev-tags{justify-content:flex-end;}
-  .cboard .ev-tag{font-size:.84rem;letter-spacing:.02em;color:var(--mute);border:1px solid var(--dim);border-radius:11px;padding:.2rem .72rem;}
+  .cboard .ev-tag{font-size:1rem;letter-spacing:.02em;color:var(--mute);border:1px solid var(--dim);border-radius:12px;padding:.26rem .82rem;text-decoration:none;cursor:pointer;transition:border-color .2s ease,color .2s ease;}
+  .cboard a.ev-tag:hover{border-color:var(--accent);color:var(--fg);}
+  .cboard a.ev-tag:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-color:var(--accent);color:var(--fg);}
   .cboard .ev-tag::before{content:'\266A \0020';color:var(--era,var(--accent));}
   .cboard .doodle{width:100%;height:100%;display:block;}
   .cboard .ev-doodle{position:absolute;top:.5rem;width:54px;height:54px;color:var(--mute);opacity:.3;pointer-events:none;transform:rotate(-6deg);}
@@ -354,6 +356,44 @@
     .cboard .ev-quote-btn.playing .ev-eq i{animation:none;transform:scaleY(.6);}
   }
 
+  /* ===== База треков — полный каталог (как у LP/JC) ===== */
+  .base-section{padding-block:var(--s-16) var(--s-8);}
+  .tb{max-width:880px;margin:0 auto;}
+  .tb-sub{max-width:62ch;margin:calc(-1 * var(--s-6)) auto var(--s-4);text-align:center;color:var(--ink-mute);font-size:.92rem;line-height:1.55;letter-spacing:.01em;}
+  .tb-controls{position:sticky;top:70px;z-index:20;background:var(--bg);padding:13px 0;border-bottom:1px solid rgba(255,255,255,.08);display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+  .tb-search{flex:1;min-width:200px;font-family:'Inter',sans-serif;font-size:1rem;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.16);color:var(--ink);padding:8px 2px;}
+  .tb-search::placeholder{color:var(--ink-mute);}
+  .tb-search:focus{outline:none;border-color:var(--steel);}
+  .tb-filters{display:flex;flex-wrap:wrap;gap:7px;}
+  .tb-filt{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.05em;background:transparent;border:1px solid rgba(255,255,255,.16);color:var(--ink-mute);padding:5px 12px;border-radius:999px;cursor:pointer;transition:border-color .15s ease,color .15s ease,background .15s ease;}
+  .tb-filt:hover{border-color:var(--steel-dim);color:var(--ink);}
+  .tb-filt.active{background:var(--bone);color:var(--bg-dark);border-color:var(--bone);}
+  .tb-progress{display:flex;align-items:center;gap:14px;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.04em;color:var(--ink-mute);white-space:nowrap;}
+  .tb-progress .bar{flex:1;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;}
+  .tb-progress .bar i{display:block;height:100%;background:var(--steel);width:0;transition:width .35s ease;}
+  .tb-list{border-top:1px solid rgba(255,255,255,.08);margin-top:14px;}
+  .tb-row{display:grid;grid-template-columns:30px 1fr;align-items:center;border-bottom:1px solid rgba(255,255,255,.06);transition:background .2s;}
+  .tb-row:hover{background:rgba(255,255,255,.03);}
+  .tb-chk{width:18px;height:18px;justify-self:start;border:1px solid rgba(255,255,255,.2);background:transparent;border-radius:5px;color:var(--steel);font-size:11px;line-height:1;cursor:pointer;padding:0;transition:border-color .15s;}
+  .tb-chk:hover{border-color:var(--steel-dim);}
+  .tb-row.done .tb-chk{border-color:var(--steel);}
+  .tb-row.done .tb-nm{color:var(--ink-mute);}
+  .tb-go{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:baseline;padding:11px 4px 11px 0;text-decoration:none;}
+  .tb-yr{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--ink-mute);}
+  .tb-nm{font-family:'Oswald',sans-serif;font-weight:500;font-size:1.06rem;color:var(--bone);line-height:1.22;}
+  .tb-cat{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.07em;text-transform:uppercase;color:var(--steel-dim);border:1px solid rgba(255,255,255,.13);border-radius:4px;padding:1px 5px;margin-left:.5em;vertical-align:.16em;white-space:nowrap;}
+  .tb-src{display:block;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--ink-mute);margin-top:4px;letter-spacing:.02em;}
+  .tb-play{font-family:'JetBrains Mono',monospace;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--steel);white-space:nowrap;opacity:0;transition:opacity .15s;}
+  .tb-row:hover .tb-play{opacity:1;}
+  .tb-count{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);}
+  @media(max-width:720px){
+    .tb-controls{top:58px;}
+    .tb-row{grid-template-columns:26px 1fr;}
+    .tb-go{grid-template-columns:auto 1fr;column-gap:12px;row-gap:5px;}
+    .tb-go .tb-nm{grid-column:2;}
+    .tb-go .tb-play{grid-column:2;opacity:1;justify-self:start;}
+  }
+
   @view-transition{navigation:auto}
   @media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
     *,*::before,*::after{animation-duration:.01ms!important;}}
@@ -374,6 +414,7 @@
   <a href="#top" data-sec="top"><span class="dn-label">Пролог</span><span class="dn-dot"></span></a>
   <a href="#board" data-sec="board"><span class="dn-label">Карьера</span><span class="dn-dot"></span></a>
   <a href="#film" data-sec="film"><span class="dn-label">8 Mile</span><span class="dn-dot"></span></a>
+  <a href="#base" data-sec="base"><span class="dn-label">База</span><span class="dn-dot"></span></a>
 </nav>
 
 <!-- HERO -->
@@ -428,7 +469,7 @@
             <span class="ev-meta mono">23 треков · 112 отсылок</span>
             <ul class="ev-facts mono"><li>«убийство» альтер-эго Slim Shady</li><li>#1 в США</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/hdni.mp3" aria-pressed="false">«Guess who's back, back again»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><span class="ev-tag mono">Houdini</span><span class="ev-tag mono">Tobey</span><span class="ev-tag mono">Somebody Save Me</span></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Houdini" target="_blank" rel="noopener" aria-label="Искать «Houdini» на YouTube">Houdini</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Tobey" target="_blank" rel="noopener" aria-label="Искать «Tobey» на YouTube">Tobey</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Somebody+Save+Me" target="_blank" rel="noopener" aria-label="Искать «Somebody Save Me» на YouTube">Somebody Save Me</a></div>
           </div>
         </li>
         <li class="ev beef right" style="--i:1;--era:#9a9aa8" aria-label="2024 · бифф · Benzino">
@@ -450,7 +491,7 @@
             <span class="ev-meta mono">19 треков · 376 отсылок</span>
             <ul class="ev-facts mono"><li>внезапный релиз</li><li>концепт по мотивам Хичкока</li><li>#1 в США</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/gdzll.mp3" aria-pressed="false">«I'll feel like Godzilla»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><span class="ev-tag mono">Godzilla</span><span class="ev-tag mono">Darkness</span><span class="ev-tag mono">Gnat</span></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Godzilla" target="_blank" rel="noopener" aria-label="Искать «Godzilla» на YouTube">Godzilla</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Darkness" target="_blank" rel="noopener" aria-label="Искать «Darkness» на YouTube">Darkness</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Gnat" target="_blank" rel="noopener" aria-label="Искать «Gnat» на YouTube">Gnat</a></div>
           </div>
         </li>
         <li class="ev album right" style="--i:3;--era:#a6a86b" aria-label="2018 · альбом · Kamikaze">
@@ -462,7 +503,7 @@
             <span class="ev-meta mono">17 треков · 451 отсылок</span>
             <ul class="ev-facts mono"><li>внезапный релиз</li><li>ответ критикам</li><li>#1 в США</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/vnm.mp3" aria-pressed="false">«Knock knock, let the devil in…»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><span class="ev-tag mono">The Ringer</span><span class="ev-tag mono">Lucky You</span><span class="ev-tag mono">Killshot</span></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+The+Ringer" target="_blank" rel="noopener" aria-label="Искать «The Ringer» на YouTube">The Ringer</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Lucky+You" target="_blank" rel="noopener" aria-label="Искать «Lucky You» на YouTube">Lucky You</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Killshot" target="_blank" rel="noopener" aria-label="Искать «Killshot» на YouTube">Killshot</a></div>
           </div>
         </li>
         <li class="ev beef left" style="--i:4;--era:#a6a86b" aria-label="2018 · бифф · Machine Gun Kelly">
@@ -482,7 +523,7 @@
             <span class="ev-meta mono">24 треков · 302 отсылок</span>
             <ul class="ev-facts mono"><li>#1 в США</li><li>смешанные отзывы</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/blv.mp3" aria-pressed="false">«Started from the bottom like a snowman, oh man…»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><span class="ev-tag mono">River</span><span class="ev-tag mono">Walk on Water</span><span class="ev-tag mono">Believe</span></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+River" target="_blank" rel="noopener" aria-label="Искать «River» на YouTube">River</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Walk+on+Water" target="_blank" rel="noopener" aria-label="Искать «Walk on Water» на YouTube">Walk on Water</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Believe" target="_blank" rel="noopener" aria-label="Искать «Believe» на YouTube">Believe</a></div>
           </div>
         </li>
         <li class="ev album left" style="--i:6;--era:#a6a86b" aria-label="2013 · альбом · The Marshall Mathers LP 2">
@@ -494,7 +535,7 @@
             <span class="ev-meta mono">24 треков · 766 отсылок</span>
             <ul class="ev-facts mono"><li>Grammy — лучший рэп-альбом</li><li>«Rap God» — рекорд по числу слов в хит-песне</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/rpgd.mp3" aria-pressed="false">«I'm beginning to feel like a Rap God»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><span class="ev-tag mono">Rap God</span><span class="ev-tag mono">Berzerk</span><span class="ev-tag mono">The Monster</span></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Rap+God" target="_blank" rel="noopener" aria-label="Искать «Rap God» на YouTube">Rap God</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Berzerk" target="_blank" rel="noopener" aria-label="Искать «Berzerk» на YouTube">Berzerk</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+The+Monster" target="_blank" rel="noopener" aria-label="Искать «The Monster» на YouTube">The Monster</a></div>
           </div>
         </li>
 
@@ -508,7 +549,7 @@
             <span class="ev-meta mono">22 треков · 499 отсылок</span>
             <ul class="ev-facts mono"><li>#1 в 19 странах</li><li>Grammy — лучший рэп-альбом</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/ntafrd.mp3" aria-pressed="false">«I'm not afraid to take a stand»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><span class="ev-tag mono">Not Afraid</span><span class="ev-tag mono">Love the Way You Lie</span><span class="ev-tag mono">Space Bound</span></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Not+Afraid" target="_blank" rel="noopener" aria-label="Искать «Not Afraid» на YouTube">Not Afraid</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Love+the+Way+You+Lie" target="_blank" rel="noopener" aria-label="Искать «Love the Way You Lie» на YouTube">Love the Way You Lie</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Space+Bound" target="_blank" rel="noopener" aria-label="Искать «Space Bound» на YouTube">Space Bound</a></div>
           </div>
         </li>
         <li class="ev album left" style="--i:8;--era:#c77c63" aria-label="2009 · альбом · Relapse">
@@ -520,7 +561,7 @@
             <span class="ev-meta mono">24 треков · 450 отсылок</span>
             <ul class="ev-facts mono"><li>возвращение после паузы и зависимости</li><li>Grammy — лучший рэп-альбом</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/bfl.mp3" aria-pressed="false">«In my shoes, just to see what it's like to be me»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><span class="ev-tag mono">We Made You</span><span class="ev-tag mono">Beautiful</span><span class="ev-tag mono">3 a.m.</span></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+We+Made+You" target="_blank" rel="noopener" aria-label="Искать «We Made You» на YouTube">We Made You</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Beautiful" target="_blank" rel="noopener" aria-label="Искать «Beautiful» на YouTube">Beautiful</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+3+a.m." target="_blank" rel="noopener" aria-label="Искать «3 a.m.» на YouTube">3 a.m.</a></div>
           </div>
         </li>
         <li class="ev beef right" style="--i:9;--era:#c77c63" aria-label="2009 · бифф · Nick Cannon">
@@ -539,7 +580,7 @@
             <span class="ev-meta mono">21 треков · 376 отсылок</span>
             <ul class="ev-facts mono"><li>11× платина в мире</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/mckbd.mp3" aria-pressed="false">«Hush little baby, don't you cry»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><span class="ev-tag mono">Mockingbird</span><span class="ev-tag mono">Just Lose It</span><span class="ev-tag mono">Like Toy Soldiers</span></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Mockingbird" target="_blank" rel="noopener" aria-label="Искать «Mockingbird» на YouTube">Mockingbird</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Just+Lose+It" target="_blank" rel="noopener" aria-label="Искать «Just Lose It» на YouTube">Just Lose It</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Like+Toy+Soldiers" target="_blank" rel="noopener" aria-label="Искать «Like Toy Soldiers» на YouTube">Like Toy Soldiers</a></div>
           </div>
         </li>
         <li class="ev beef right" style="--i:11;--era:#c77c63" aria-label="2003 · бифф · Ja Rule / Murder Inc.">
@@ -560,7 +601,7 @@
             <span class="ev-meta mono">22 треков · 536 отсылок</span>
             <ul class="ev-facts mono"><li>самый продаваемый альбом 2002 в США</li><li>Grammy — лучший рэп-альбом</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/wthtm.mp3" aria-pressed="false">«Now this looks like a job for me!»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><span class="ev-tag mono">Without Me</span><span class="ev-tag mono">Cleanin' Out My Closet</span><span class="ev-tag mono">Sing for the Moment</span></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Without+Me" target="_blank" rel="noopener" aria-label="Искать «Without Me» на YouTube">Without Me</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Cleanin%27+Out+My+Closet" target="_blank" rel="noopener" aria-label="Искать «Cleanin' Out My Closet» на YouTube">Cleanin' Out My Closet</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Sing+for+the+Moment" target="_blank" rel="noopener" aria-label="Искать «Sing for the Moment» на YouTube">Sing for the Moment</a></div>
           </div>
         </li>
         <li class="ev beef right" style="--i:13;--era:#c4ad82" aria-label="2002 · бифф · Benzino / The Source">
@@ -579,7 +620,7 @@
             <span class="ev-meta mono">18 треков · 416 отсылок</span>
             <ul class="ev-facts mono"><li>самый быстро продаваемый рэп-альбом в США</li><li>диамантовая сертификация</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/stn.mp3" aria-pressed="false">«Dear Slim, I wrote you but you still ain't callin'»<span class="ev-quote-src mono"> — Stan</span><span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><span class="ev-tag mono">Stan</span><span class="ev-tag mono">The Real Slim Shady</span><span class="ev-tag mono">The Way I Am</span></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Stan" target="_blank" rel="noopener" aria-label="Искать «Stan» на YouTube">Stan</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+The+Real+Slim+Shady" target="_blank" rel="noopener" aria-label="Искать «The Real Slim Shady» на YouTube">The Real Slim Shady</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+The+Way+I+Am" target="_blank" rel="noopener" aria-label="Искать «The Way I Am» на YouTube">The Way I Am</a></div>
           </div>
         </li>
         <li class="ev beef right" style="--i:15;--era:#c4ad82" aria-label="2000 · бифф · Everlast">
@@ -598,7 +639,7 @@
             <span class="ev-meta mono">19 треков · 645 отсылок</span>
             <ul class="ev-facts mono"><li>2× платина</li><li>Grammy — лучший рэп-альбом</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/mnis.mp3" aria-pressed="false">«Hi! My name is… Slim Shady»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><span class="ev-tag mono">My Name Is</span><span class="ev-tag mono">Guilty Conscience</span><span class="ev-tag mono">'97 Bonnie &amp; Clyde</span></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+My+Name+Is" target="_blank" rel="noopener" aria-label="Искать «My Name Is» на YouTube">My Name Is</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Guilty+Conscience" target="_blank" rel="noopener" aria-label="Искать «Guilty Conscience» на YouTube">Guilty Conscience</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+%2797+Bonnie+%26+Clyde" target="_blank" rel="noopener" aria-label="Искать «'97 Bonnie &amp; Clyde» на YouTube">'97 Bonnie &amp; Clyde</a></div>
           </div>
         </li>
         <li class="ev beef right" style="--i:17;--era:#c4ad82" aria-label="1999 · бифф · Insane Clown Posse">
@@ -618,7 +659,7 @@
             <span class="ev-meta mono">10 треков · 263 отсылок</span>
             <ul class="ev-facts mono"><li>привлёк внимание Dr. Dre</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/noill.mp3" aria-pressed="false">«Down a fifth, crack open a six. I'm on my seventh 8-Ball…»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><span class="ev-tag mono">Just the Two of Us</span></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Just+the+Two+of+Us" target="_blank" rel="noopener" aria-label="Искать «Just the Two of Us» на YouTube">Just the Two of Us</a></div>
           </div>
         </li>
         <li class="ev album right" style="--i:19;--era:#c4ad82" aria-label="1996 · альбом · Infinite">
@@ -630,7 +671,7 @@
             <span class="ev-meta mono">11 треков · 334 отсылок</span>
             <ul class="ev-facts mono"><li>тираж ~1000 копий</li><li>коммерчески провалился</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/nfnte.mp3" aria-pressed="false">«My pen and paper cause a chain reaction»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><span class="ev-tag mono">Infinite</span><span class="ev-tag mono">It's OK</span></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Infinite" target="_blank" rel="noopener" aria-label="Искать «Infinite» на YouTube">Infinite</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+It%27s+OK" target="_blank" rel="noopener" aria-label="Искать «It's OK» на YouTube">It's OK</a></div>
           </div>
         </li>
 
@@ -700,7 +741,6 @@
   <div class="sec-head reveal">
     <span class="sec-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="12" width="38" height="26" rx="2"/><path d="M5 18h38"/><circle cx="11" cy="15" r="1.2" fill="currentColor"/><path d="M21 22l9 5-9 5z" fill="currentColor" stroke="none"/></svg></span>
     <span class="mono">Что посмотреть</span>
-    <h2 class="cond">Финал маршрута</h2>
   </div>
 
   <div class="finale reveal">
@@ -715,6 +755,25 @@
     <p class="finale-text">Полуавтобиографическая драма: Джимми «Кролик» Смит пробивается через рэп-баттлы Детройта, разделённого магистралью 8 Mile. Всё, что ты прошёл по маршруту — гнев, бедность, заикание и взрыв таланта — здесь оживает на экране.</p>
     <p class="finale-fact">А «Lose Yourself» из саундтрека стал <b>первым хип-хоп-треком, получившим «Оскар»</b> за лучшую оригинальную песню (2003).</p>
     <a class="finale-watch" data-yt="axGVrfwm9L4" data-title="Трейлер «8 Mile» (2002)" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=8+Mile+2002+official+trailer">▶ смотреть трейлер</a>
+  </div>
+</section>
+
+<!-- БАЗА ТРЕКОВ — полный каталог (как у LP/JC) -->
+<section class="base-section container" id="base">
+  <div class="sec-head reveal">
+    <span class="sec-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="9" width="34" height="30" rx="3"/><path d="M7 17h34M16 9v30"/><path d="M22 24h13M22 30.5h13"/><circle cx="11.5" cy="13" r="1.1" fill="currentColor"/></svg></span>
+    <span class="mono">Вся дискография</span>
+    <h2 class="cond">База треков</h2>
+  </div>
+  <div class="tb">
+    <p class="tb-sub" id="tbSub">Загрузка базы треков…</p>
+    <div class="tb-controls reveal">
+      <input type="text" class="tb-search" id="tbSearch" placeholder="Поиск по треку, альбому, фиту…" aria-label="Поиск трека">
+      <div class="tb-filters" id="tbFilters"></div>
+    </div>
+    <div class="tb-progress reveal" id="tbProg"></div>
+    <div class="tb-list" id="tbList"></div>
+    <div class="tb-count" id="tbCount"></div>
   </div>
 </section>
 
@@ -841,6 +900,69 @@
     if(reduced || !('IntersectionObserver' in window)){ show(); return; }
     const io=new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ show(); io.disconnect(); } }); }, {threshold:0.06});
     io.observe(board);
+  })();
+
+  // ── База треков: полный каталог из data.json (поиск + фильтры по категории + прогресс) ──
+  (function(){
+    const M=window.RENSITE_MUSIC;
+    const listEl=document.getElementById('tbList'); if(!listEl) return;
+    const searchEl=document.getElementById('tbSearch'), filtEl=document.getElementById('tbFilters'),
+          subEl=document.getElementById('tbSub'), progEl=document.getElementById('tbProg'), cntEl=document.getElementById('tbCount');
+    const yt=(M&&M.yt)?M.yt:function(q){return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q);};
+    const seen=(M&&M.progress)?M.progress('em-listened'):{has:function(){return false;},toggle:function(){return false;},add:function(){return false;},size:function(){return 0;}};
+    const ORDER=['Все','Соло','Фиты','Фристайлы','Скиты','Утечки'];
+    let TRACKS=[], active='Все', q='';
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    function paintProgress(){
+      const n=TRACKS.filter(function(t){return seen.has(t.q);}).length;
+      progEl.innerHTML='<span>прослушано '+n+' из '+TRACKS.length+'</span><span class="bar"><i style="width:'+(TRACKS.length?(n/TRACKS.length*100).toFixed(1):0)+'%"></i></span>';
+    }
+    function render(){
+      const f=TRACKS.filter(function(t){
+        return (active==='Все'||t.type===active) && (!q || (t.n+' '+(t.s||'')+' '+(t.ft||'')).toLowerCase().indexOf(q)>=0);
+      });
+      listEl.innerHTML=f.map(function(t){
+        const done=seen.has(t.q), href=t.y||yt(t.q);
+        const src=[t.s,(t.ft?('ft. '+t.ft):'')].filter(Boolean).join(' · ');
+        return '<div class="tb-row'+(done?' done':'')+'" data-k="'+esc(t.q)+'">'
+          +'<button class="tb-chk" type="button" aria-pressed="'+done+'" aria-label="Отметить прослушанным">'+(done?'✓':'')+'</button>'
+          +'<a class="tb-go" href="'+esc(href)+'" target="_blank" rel="noopener">'
+          +'<span class="tb-yr">'+(t.yr||'—')+'</span>'
+          +'<span class="tb-nm">'+esc(t.n)+'<span class="tb-cat">'+esc(t.type)+'</span>'+(src?'<span class="tb-src">'+esc(src)+'</span>':'')+'</span>'
+          +'<span class="tb-play">▶ YouTube</span></a></div>';
+      }).join('')||'<p style="padding:18px 0;color:var(--ink-mute)">Ничего не найдено.</p>';
+      cntEl.textContent='Показано '+f.length+' из '+TRACKS.length+' треков';
+      paintProgress();
+    }
+    listEl.addEventListener('click',function(e){
+      const row=e.target.closest('.tb-row'); if(!row) return;
+      const k=row.dataset.k, b=row.querySelector('.tb-chk');
+      if(e.target.closest('.tb-chk')){
+        const on=seen.toggle(k); row.classList.toggle('done',on);
+        b.setAttribute('aria-pressed',String(on)); b.textContent=on?'✓':''; paintProgress();
+      }else if(e.target.closest('.tb-go')){
+        if(seen.add(k)){ row.classList.add('done'); b.setAttribute('aria-pressed','true'); b.textContent='✓'; paintProgress(); }
+      }
+    });
+    searchEl.addEventListener('input',function(e){ q=e.target.value.trim().toLowerCase(); render(); });
+    fetch('./data.json',{cache:'no-store'})
+      .then(function(r){ if(!r.ok) throw new Error('data.json '+r.status); return r.json(); })
+      .then(function(d){
+        TRACKS=d.tracks||[];
+        subEl.textContent=TRACKS.length+' записей — соло, фиты, фристайлы, скиты и утечки, 1988—2025. ▶ ведёт на поиск YouTube, галочка отмечает прослушанное (хранится в этом браузере).';
+        const present=ORDER.filter(function(t){ return t==='Все'||TRACKS.some(function(x){return x.type===t;}); });
+        filtEl.innerHTML=present.map(function(t,i){
+          const c=(t==='Все')?TRACKS.length:TRACKS.filter(function(x){return x.type===t;}).length;
+          return '<button class="tb-filt'+(i===0?' active':'')+'" data-f="'+t+'">'+t+' '+c+'</button>';
+        }).join('');
+        filtEl.addEventListener('click',function(e){
+          const b=e.target.closest('.tb-filt'); if(!b) return;
+          filtEl.querySelectorAll('.tb-filt').forEach(function(x){x.classList.remove('active');});
+          b.classList.add('active'); active=b.dataset.f; render();
+        });
+        render();
+      })
+      .catch(function(err){ subEl.textContent='Не удалось загрузить базу треков.'; if(cntEl) cntEl.textContent=''; console.error(err); });
   })();
 
   // ── YouTube lightbox (клик по треку/трейлеру с data-yt) ──

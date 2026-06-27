@@ -10,7 +10,7 @@
 shared /music/tracks.js loadAll() подмешивает эти треки в ⌘K-палитру.
 Зависимостей нет: только стандартная библиотека (sqlite3).
 """
-import sqlite3, json, os, sys
+import sqlite3, json, os, sys, re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT  = os.path.join(HERE, "data.json")
@@ -34,17 +34,47 @@ TYPE_RU = {
 
 EMPTY_RELEASE = {"", "unknown"}  # release == 'Unknown'/'' → секцию-альбом не показываем
 
+TITLE_SEP = " – "  # en dash: «Артист[ ft. Фиты] – Название»
+FEAT_RE = re.compile(r"\s+(?:ft\.|feat\.|featuring)\s+", re.I)
+SPLIT_FEATS_RE = re.compile(r",\s*|\s+&\s+")
+
+
+def credits_from_title(title):
+    """«Lead ft. F1, F2 – Песня» → (primary, [артисты кроме Eminem, по порядку]).
+
+    У гостевых треков (studio_featured) ведущий артист есть только в текстовом
+    `title`, а структурированный `other_artists` хранит лишь вторичные фиты (и
+    бывает зашумлён названиями альбомов). Поэтому кредиты берём из чистого title.
+    Возвращает (None, None), если формат не распознан (нет разделителя ' – ')."""
+    if not title or TITLE_SEP not in title:
+        return None, None
+    credit_part = title.split(TITLE_SEP, 1)[0]
+    parts = FEAT_RE.split(credit_part, maxsplit=1)
+    primary = parts[0].strip()
+    feats = []
+    if len(parts) > 1:
+        feats = [a.strip() for a in SPLIT_FEATS_RE.split(parts[1]) if a.strip()]
+    seen, others = set(), []
+    for a in [primary] + feats:
+        if a.lower() == "eminem":
+            continue
+        if a.lower() in seen:
+            continue
+        seen.add(a.lower())
+        others.append(a)
+    return primary, others
+
 
 def build_tracks(conn):
     """Возвращает список треков в порядке год↓, значимость↓, название."""
     cur = conn.execute("""
         SELECT COALESCE(NULLIF(song_title, ''), title) AS n,
-               type, year, release, other_artists, youtube_url
+               title, type, year, release, other_artists, youtube_url
         FROM tracks
         ORDER BY year DESC, significance DESC, n COLLATE NOCASE
     """)
     out = []
-    for n, typ, year, release, other_artists, youtube_url in cur:
+    for n, title, typ, year, release, other_artists, youtube_url in cur:
         ru = TYPE_RU.get(typ)
         if ru is None:
             raise SystemExit(f"Неизвестный type в БД: {typ!r} (трек {n!r}). "
@@ -55,12 +85,18 @@ def build_tracks(conn):
         except (ValueError, TypeError):
             others = []
 
-        # Для гостевых треков (Фиты — Эминем приглашён) песня «принадлежит» другому
-        # артисту, поэтому в YouTube-запрос ставим впереди имя ведущего исполнителя,
-        # иначе «Eminem <название>» может не найти трек. Остальные категории — без префикса.
-        if typ == "studio_featured" and others:
-            q = "Eminem " + others[0] + " " + n
+        if typ == "studio_featured":
+            # Гостевой трек: ведущий артист — в title, а other_artists ненадёжен.
+            # Кредиты берём из title; ведущего ставим впереди YouTube-запроса, чтобы
+            # «Eminem <название>» находило трек на чужом альбоме.
+            primary, ft_list = credits_from_title(title)
+            if primary is None:  # title не распознан — запасной путь по other_artists
+                ft_list = [a for a in others if a.lower() != "eminem"]
+                primary = ft_list[0] if ft_list else "Eminem"
+            q = "Eminem " + n if primary.lower() == "eminem" else "Eminem " + primary + " " + n
         else:
+            # Соло/Фристайлы/Скиты/Утечки: ведущий — сам Eminem, ft = другие артисты.
+            ft_list = others
             q = "Eminem " + n
         t = {"n": n, "type": ru, "q": q}
 
@@ -71,8 +107,8 @@ def build_tracks(conn):
         if rel.lower() not in EMPTY_RELEASE:
             t["s"] = rel
 
-        if others:
-            t["ft"] = ", ".join(others)
+        if ft_list:
+            t["ft"] = ", ".join(ft_list)
 
         yurl = (youtube_url or "").strip()
         if yurl:

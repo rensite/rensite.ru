@@ -72,7 +72,7 @@ window.RENSITE_MUSIC = (function(){
       return {artist:'Jackie Chan', yr:t.yr, alb:t.s||t.type, n:t.n, q:t.q, guide:'/music/jackie-chan/'};
     });
     var em = grab('/music/eminem/data.json', function(t){
-      return {artist:'Eminem', yr:t.yr, alb:t.s||t.type, n:t.n, q:t.q, guide:'/music/eminem/'};
+      return {artist:'Eminem', yr:t.yr, alb:t.s||t.type, n:t.n, q:t.q, ft:t.ft, guide:'/music/eminem/'};
     });
     allPromise = Promise.all([jc, em]).then(function(r){ return LP_TRACKS.concat(r[0], r[1]); });
     return allPromise;

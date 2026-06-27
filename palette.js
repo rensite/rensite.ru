@@ -11,6 +11,8 @@
     {t:'Linkin Park',       d:'гид: корни, сайд-проекты, возвращение',url:'/music/linkin-park/',  k:'линкин парк lp честер майк'},
     {t:'Jackie Chan',       d:'дискография: 160+ песен',              url:'/music/jackie-chan/',  k:'джеки чан 成龍'},
     {t:'Michael Jackson',   d:'гид к фильму: эпохи и треки',          url:'/music/michael/',      k:'майкл джексон mj'},
+    {t:'Eminem',            d:'гид: вся карьера и «8 Mile»',          url:'/music/eminem/',       k:'эминем eminem slim shady marshall маршалл'},
+    {t:'Том и Джерри',      d:'комикс-выпуск: музыка как сюжет',      url:'/music/tom-and-jerry/',k:'том джерри tom and jerry мультфильм оскар'},
     {t:'Микроблог',         d:'статусы и инсайты недели',             url:'/status/',             k:'status статус инсайт blog заметки notes'},
     {t:'Проекты',           d:'агенты, гиды и этот сайт',             url:'/projects/',           k:'projects агенты'}
   ];
@@ -87,7 +89,7 @@
       return !q || (p.t + ' ' + p.d + ' ' + p.url + ' ' + p.k).toLowerCase().indexOf(q) !== -1;
     });
     var trs = (q && tracks) ? tracks.filter(function(t){
-      return (t.n + ' ' + t.alb + ' ' + t.artist).toLowerCase().indexOf(q) !== -1;
+      return (t.n + ' ' + t.alb + ' ' + t.artist + ' ' + (t.ft || '')).toLowerCase().indexOf(q) !== -1;
     }).slice(0, TRACK_LIMIT) : [];
 
     flat = []; sel = 0;

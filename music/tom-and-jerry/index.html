@@ -170,7 +170,11 @@
   /* ── ВЫПУСК (issue) — галерея обложек ── */
   #issues1,#issues2{display:grid;grid-template-columns:repeat(auto-fill,minmax(264px,1fr));
     gap:clamp(34px,4.5vw,60px) clamp(26px,3.5vw,46px);max-width:1180px;margin:0 auto;align-items:start}
+  /* рождественский разворот — пара обложек по центру */
+  #issues3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,300px));
+    gap:clamp(34px,4.5vw,60px) clamp(26px,3.5vw,46px);justify-content:center;max-width:720px;margin:0 auto;align-items:start}
   .issue{display:flex;flex-direction:column;gap:13px}
+  .cov-no.bonus b{font-size:2rem;line-height:1}
 
   /* обложка серии */
   .cover{position:relative;background:var(--paper-2);border:4px solid var(--ink);box-shadow:var(--shadow-lg);overflow:hidden;
@@ -419,6 +423,15 @@
   <div id="issues2"></div>
 </section>
 
+<!-- ── #holiday НОВОГОДНИЙ БОНУС ── -->
+<section class="sec" id="holiday">
+  <div class="banner reveal">
+    <h2>Рождественский разворот</h2>
+    <p>Две серии вне музыкальной программы — здесь главное не партитура, а <b>Рождество</b>. Классика 1941 года под хор и колядки (номинант на «Оскар») и праздничный мюзикл 2007-го на «Щелкунчика» Чайковского.</p>
+  </div>
+  <div id="issues3"></div>
+</section>
+
 <!-- ── #antrakt АНТРАКТ ── -->
 <section class="sec" id="antrakt">
   <div class="banner reveal">
@@ -610,7 +623,15 @@
        {img:'duplicat-2',who:'tom',cap:'Том крадётся по сваям причала с чем-то тёмным в лапах.',sfx:'SNEAK...'},
        {img:'duplicat-3',who:'tom',cap:'Корабль у пирса под луной, на сходнях — фигурка.',sfx:'♪ ECHO'},
        {img:'duplicat-4',who:'jerry',cap:'Джерри на шляпе нос к носу с подозрительным псом.',sfx:'GULP!'}
-     ]}
+     ]},
+    {no:'12',slug:'night-xmas',key:'night-before-christmas',title:'The Night Before Christmas',year:'1941',studio:'MGM',holiday:true,
+     work:'«’Twas the night before Christmas…»',search:'Tom and Jerry The Night Before Christmas 1941 Warner Classics',cover:'night-xmas-cover',
+     blurb:'Ёлка, подарки и леденец — пока ссора не уступит духу Рождества. Номинант на «Оскар».',
+     panels:[{img:'night-xmas-cover',who:'tom'}]},
+    {no:'11',slug:'nutcracker',key:'nutcracker-tale',title:'A Nutcracker Tale',year:'2007',studio:'Warner Bros.',holiday:true,
+     work:'Чайковский · балет «Щелкунчик»',yt:'t8dFcGPTjOY',cover:'nutcracker-cover',
+     blurb:'Рождество, балет и Джерри в роли Щелкунчика — под музыку Чайковского.',
+     panels:[{img:'nutcracker-cover',who:'jerry'}]}
   ];
 
   /* ═══════════ ЗВУК (Web Audio, ленивый, с mute) ═══════════ */
@@ -679,7 +700,7 @@
     var coverImg = it.cover || it.panels[0].img;
     var cov =
       '<div class="issue-cover"><div class="cover" role="button" tabindex="0" aria-label="Открыть оригинал «'+it.title+'»">'+
-        '<div class="cov-no"><span>No</span><b>'+it.no+'</b></div>'+
+        '<div class="cov-no'+(it.holiday?' bonus':'')+'">'+(it.holiday?'<b>❄</b>':'<span>No</span><b>'+it.no+'</b>')+'</div>'+
         (it.oscar?'<figure class="cov-oscar"><img src="img/oscar.png" alt="Премия «Оскар»" loading="lazy"><figcaption>«Оскар»<span>'+it.year+'</span></figcaption></figure>':'')+
         '<div class="cov-art" data-who="'+(it.panels[0].who||'tom')+'"><img src="img/'+coverImg+'.jpg" alt="Обложка выпуска «'+it.title+'»" data-fallback loading="lazy">'+
           '<div class="cov-title">'+it.title+'<span class="yr">'+it.studio+' · '+it.year+'</span></div>'+
@@ -690,14 +711,14 @@
         '<div class="cov-work">'+it.work+'</div>'+
       '</div></div>';
     var art = document.createElement('article');
-    art.className='issue reveal'+(it.jazz?' jazz':'')+(it.oscar?' oscar':'');
+    art.className='issue reveal'+(it.jazz?' jazz':'')+(it.oscar?' oscar':'')+(it.holiday?' holiday':'');
     art.dataset.key=it.key; art.dataset.no=it.no; art.dataset.title=it.title; art.dataset.work=it.work;
-    if(it.yt) art.dataset.yt=it.yt; if(it.search) art.dataset.search=it.search;
+    if(it.yt) art.dataset.yt=it.yt; if(it.search) art.dataset.search=it.search; if(it.holiday) art.dataset.bonus='1';
     art.innerHTML = cov;
     return art;
   }
-  var box1=document.getElementById('issues1'), box2=document.getElementById('issues2');
-  ISSUES.forEach(function(it){ (it.jazz?box2:box1).appendChild(issueHTML(it)); });
+  var box1=document.getElementById('issues1'), box2=document.getElementById('issues2'), box3=document.getElementById('issues3');
+  ISSUES.forEach(function(it){ (it.holiday?box3:it.jazz?box2:box1).appendChild(issueHTML(it)); });
 
   /* кадры приходили из разных источников с разным расширением — пробуем .jpg↔.png,
      и только потом рисуем набросок-заглушку */
@@ -769,7 +790,7 @@
   /* ═══════════ READ-O-METER ═══════════ */
   var ReadMeter=(function(){
     var box=document.getElementById('meter'), readEl=document.getElementById('meterRead'), cntEl=document.getElementById('meterCnt');
-    var total=ISSUES.length, read=new Set();
+    var total=ISSUES.filter(function(it){ return !it.holiday; }).length, read=new Set();
     try{ JSON.parse(localStorage.getItem('tj-listened')||'[]').forEach(function(k){ read.add(k); }); }catch(e){}
     var READS=['не слушали','+1','слушаем','ещё!','почти треть','полпути','шесть!','семь','восемь','девять','КОЛЛЕКЦИЯ!'];
     function save(){ try{ localStorage.setItem('tj-listened',JSON.stringify(Array.from(read))); }catch(e){} }
@@ -813,14 +834,15 @@
         ytLink.href='https://www.youtube.com/watch?v='+d.yt;
       } else {
         var q=d.search||(d.title+' Tom and Jerry');
-        frame.innerHTML='<div class="nofilm"><div><div class="big">No.'+d.no+'</div>'+
+        frame.innerHTML='<div class="nofilm"><div><div class="big">'+(d.bonus?'❄':'No.'+d.no)+'</div>'+
           '<a class="sr" target="_blank" rel="noopener" href="'+searchUrl(q)+'">▶ найти на YouTube</a></div></div>';
         ytLink.href=searchUrl(q);
       }
       el.classList.add('open'); el.classList.remove('paused');
       Sound.ensure(); if(!reduce){ Sound.note(659,0.16,'triangle',0.14); setTimeout(function(){ Sound.note(880,0.22,'triangle',0.12); },120); }
       lastBtn=btn||null;
-      if(d.key && ReadMeter.add(d.key)) art.classList.add('read');
+      if(d.bonus){ art.classList.add('read'); }
+      else if(d.key && ReadMeter.add(d.key)){ art.classList.add('read'); }
     }
     function close(){ el.classList.remove('open'); el.classList.add('paused'); frame.innerHTML=''; if(lastBtn) lastBtn.focus(); }
     closeBtn.addEventListener('click', close);

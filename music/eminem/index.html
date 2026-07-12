@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0b">
-<title>EMINEM — Гид · маршрут сквозь альбомы</title>
-<meta name="description" content="Слушательский гид по Эминему: пять эпох от рождения Slim Shady до его символической смерти, по одному треку за раз, и финал — «8 Mile».">
+<title>EMINEM — Guide · a route through the albums</title>
+<script>try{var _l=localStorage.getItem('rensite:lang');if(_l==='ru'||_l==='en')document.documentElement.lang=_l;}catch(e){}</script>
+<meta name="description" content="A listener's guide to Eminem: five eras from the birth of Slim Shady to his symbolic death, one track at a time, closing on 8 Mile.">
 <link rel="icon" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -397,32 +398,42 @@
   @view-transition{navigation:auto}
   @media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
     *,*::before,*::after{animation-duration:.01ms!important;}}
+
+  /* Языковой переключатель (i18n.js) — в тон моно/Detroit-палитре страницы. */
+  .lang-tg{font-family:'JetBrains Mono',ui-monospace,monospace;}
+  .lang-tg button{color:var(--ink-mute);opacity:.75;}
+  .lang-tg button[aria-pressed="true"]{color:var(--ink);opacity:1;background:transparent;}
+  .lang-tg button:hover{color:var(--steel-bright);opacity:1;}
+  .lang-tg .sep{color:var(--ink-mute);opacity:.5;}
 </style>
 </head>
 <body>
 
 <header class="topbar">
   <div class="container topbar-inner">
-    <a href="/music/">← музыка</a>
-    <a class="at" href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
+    <a href="/music/" data-ru="← музыка">← music</a>
+    <span style="display:inline-flex;align-items:center;gap:14px">
+      <span data-lang-toggle></span>
+      <a class="at" href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
+    </span>
   </div>
 </header>
 
 <div class="progress" id="progress"></div>
 
-<nav class="dotnav" aria-label="Навигация по разделам">
-  <a href="#top" data-sec="top"><span class="dn-label">Пролог</span><span class="dn-dot"></span></a>
-  <a href="#board" data-sec="board"><span class="dn-label">Карьера</span><span class="dn-dot"></span></a>
+<nav class="dotnav" aria-label="Section navigation" data-ru-aria-label="Навигация по разделам">
+  <a href="#top" data-sec="top"><span class="dn-label" data-ru="Пролог">Prologue</span><span class="dn-dot"></span></a>
+  <a href="#board" data-sec="board"><span class="dn-label" data-ru="Карьера">Career</span><span class="dn-dot"></span></a>
   <a href="#film" data-sec="film"><span class="dn-label">8 Mile</span><span class="dn-dot"></span></a>
-  <a href="#base" data-sec="base"><span class="dn-label">База</span><span class="dn-dot"></span></a>
+  <a href="#base" data-sec="base"><span class="dn-label" data-ru="База">Vault</span><span class="dn-dot"></span></a>
 </nav>
 
 <!-- HERO -->
 <section class="hero container" id="top">
-  <div class="hero-kicker mono reveal">Гид · Detroit · маршрут сквозь альбомы</div>
+  <div class="hero-kicker mono reveal" data-ru="Гид · Detroit · маршрут сквозь альбомы">Guide · Detroit · a route through the albums</div>
   <h1 class="hero-word display reveal">EMIN<span class="rev">E</span>M</h1>
-  <p class="hero-lead reveal">Эминем берёт английский и ломает его об колено — <em>внутренние рифмы</em>, многосложные созвучия, скорость на грани разборчивости. Этот маршрут ведёт сквозь альбомы по одному треку за раз: от подвалов Детройта и рождения <em>Slim Shady</em> до его символической смерти.</p>
-  <div class="hero-foot mono reveal"><span>13 альбомов</span><span>5 эпох</span><span>финал — «8 Mile»</span></div>
+  <p class="hero-lead reveal" data-ru-html="Эминем берёт английский и ломает его об колено — <em>внутренние рифмы</em>, многосложные созвучия, скорость на грани разборчивости. Этот маршрут ведёт сквозь альбомы по одному треку за раз: от подвалов Детройта и рождения <em>Slim Shady</em> до его символической смерти.">Eminem takes the English language and snaps it over his knee — <em>internal rhymes</em>, multisyllabic patterns, speed pushed to the edge of intelligibility. This route runs through the albums one track at a time: from the basements of Detroit and the birth of <em>Slim Shady</em> to his symbolic death.</p>
+  <div class="hero-foot mono reveal"><span data-ru="13 альбомов">13 albums</span><span data-ru="5 эпох">5 eras</span><span data-ru="финал — «8 Mile»">finale — 8 Mile</span></div>
 </section>
 
 <!-- CAREER BOARD — «следственная доска» (порт таймлайна из «Артефакта») -->
@@ -446,290 +457,290 @@
 <section class="board-section container" id="board">
   <div class="sec-head reveal">
     <span class="sec-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="24" y1="5" x2="24" y2="43"/><circle cx="24" cy="11" r="3.2"/><rect x="20.8" y="20.8" width="6.4" height="6.4" transform="rotate(45 24 24)"/><circle cx="24" cy="37" r="3.2"/><path d="M27 11h11M10 24h11M27 37h9"/></svg></span>
-    <span class="mono">Вся карьера · по годам</span>
+    <span class="mono" data-ru="Вся карьера · по годам">The whole career · year by year</span>
   </div>
 
   <div class="cboard">
     <div class="board-controls">
-      <button type="button" class="board-toggle mono" aria-pressed="false"><span class="ti" aria-hidden="true">▾</span><span class="tlabel">Свернуть подробности</span></button>
+      <button type="button" class="board-toggle mono" aria-pressed="false"><span class="ti" aria-hidden="true">▾</span><span class="tlabel">Collapse details</span></button>
     </div>
     <div class="board">
       <div class="board-axis" style="background:linear-gradient(180deg,#9a9aa8,#a6a86b,#c77c63,#c4ad82,#7e8a96)" aria-hidden="true"></div>
-      <div class="board-cap top" aria-hidden="true"><span class="mono" id="board-top">2026 · сейчас</span></div>
+      <div class="board-cap top" aria-hidden="true"><span class="mono" id="board-top">2026 · now</span></div>
 
       <ol class="board-list">
-        <li class="era-chapter mono" role="presentation" style="--era:#9a9aa8"><span>Смерть Slim Shady</span></li>
-        <li class="ev album left" style="--i:0;--era:#9a9aa8" aria-label="2024 · альбом · The Death of Slim Shady (Coup de Grâce)">
+        <li class="era-chapter mono" role="presentation" style="--era:#9a9aa8"><span data-ru="Смерть Slim Shady">The Death of Slim Shady</span></li>
+        <li class="ev album left" style="--i:0;--era:#9a9aa8" aria-label="2024 · album · The Death of Slim Shady (Coup de Grâce)" data-ru-aria-label="2024 · альбом · The Death of Slim Shady (Coup de Grâce)">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-tombstone"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2024</span><span class="ev-mono mono">TDOSS</span></div>
             <span class="ev-title">The Death of Slim Shady (Coup de Grâce)</span>
-            <span class="ev-meta mono">23 треков · 112 отсылок</span>
-            <ul class="ev-facts mono"><li>«убийство» альтер-эго Slim Shady</li><li>#1 в США</li></ul>
+            <span class="ev-meta mono" data-ru="23 трека · 112 отсылок">23 tracks · 112 references</span>
+            <ul class="ev-facts mono"><li data-ru="«убийство» альтер-эго Slim Shady">the &quot;murder&quot; of the Slim Shady alter ego</li><li data-ru="#1 в США">#1 in the US</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/hdni.mp3" aria-pressed="false">«Guess who's back, back again»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Houdini" target="_blank" rel="noopener" aria-label="Искать «Houdini» на YouTube">Houdini</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Tobey" target="_blank" rel="noopener" aria-label="Искать «Tobey» на YouTube">Tobey</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Somebody+Save+Me" target="_blank" rel="noopener" aria-label="Искать «Somebody Save Me» на YouTube">Somebody Save Me</a></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Houdini" target="_blank" rel="noopener" aria-label="Search YouTube for Houdini" data-ru-aria-label="Искать «Houdini» на YouTube">Houdini</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Tobey" target="_blank" rel="noopener" aria-label="Search YouTube for Tobey" data-ru-aria-label="Искать «Tobey» на YouTube">Tobey</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Somebody+Save+Me" target="_blank" rel="noopener" aria-label="Search YouTube for Somebody Save Me" data-ru-aria-label="Искать «Somebody Save Me» на YouTube">Somebody Save Me</a></div>
           </div>
         </li>
-        <li class="ev beef right" style="--i:1;--era:#9a9aa8" aria-label="2024 · бифф · Benzino">
+        <li class="ev beef right" style="--i:1;--era:#9a9aa8" aria-label="2024 · beef · Benzino" data-ru-aria-label="2024 · бифф · Benzino">
           <span class="ev-node" aria-hidden="true"></span>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2024</span><span class="ev-mono ev-mono-beef mono">⚔</span></div>
-            <span class="ev-title"><span class="ev-vs mono">бифф · </span>Benzino</span>
-            <span class="ev-meta mono">возобновление</span>
+            <span class="ev-title" data-ru-html="<span class=&quot;ev-vs mono&quot;>бифф · </span>Benzino"><span class="ev-vs mono">beef · </span>Benzino</span>
+            <span class="ev-meta mono" data-ru="возобновление">reignited</span>
           </div>
         </li>
 
         <li class="era-chapter mono" role="presentation" style="--era:#a6a86b"><span>Rap God</span></li>
-        <li class="ev album left" style="--i:2;--era:#a6a86b" aria-label="2020 · альбом · Music To Be Murdered By">
+        <li class="ev album left" style="--i:2;--era:#a6a86b" aria-label="2020 · album · Music To Be Murdered By" data-ru-aria-label="2020 · альбом · Music To Be Murdered By">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-hat"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2020</span><span class="ev-mono mono">MTBMB</span></div>
             <span class="ev-title">Music To Be Murdered By</span>
-            <span class="ev-meta mono">19 треков · 376 отсылок</span>
-            <ul class="ev-facts mono"><li>внезапный релиз</li><li>концепт по мотивам Хичкока</li><li>#1 в США</li></ul>
+            <span class="ev-meta mono" data-ru="19 треков · 376 отсылок">19 tracks · 376 references</span>
+            <ul class="ev-facts mono"><li data-ru="внезапный релиз">surprise release</li><li data-ru="концепт по мотивам Хичкока">a Hitchcock-inspired concept</li><li data-ru="#1 в США">#1 in the US</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/gdzll.mp3" aria-pressed="false">«I'll feel like Godzilla»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Godzilla" target="_blank" rel="noopener" aria-label="Искать «Godzilla» на YouTube">Godzilla</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Darkness" target="_blank" rel="noopener" aria-label="Искать «Darkness» на YouTube">Darkness</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Gnat" target="_blank" rel="noopener" aria-label="Искать «Gnat» на YouTube">Gnat</a></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Godzilla" target="_blank" rel="noopener" aria-label="Search YouTube for Godzilla" data-ru-aria-label="Искать «Godzilla» на YouTube">Godzilla</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Darkness" target="_blank" rel="noopener" aria-label="Search YouTube for Darkness" data-ru-aria-label="Искать «Darkness» на YouTube">Darkness</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Gnat" target="_blank" rel="noopener" aria-label="Search YouTube for Gnat" data-ru-aria-label="Искать «Gnat» на YouTube">Gnat</a></div>
           </div>
         </li>
-        <li class="ev album right" style="--i:3;--era:#a6a86b" aria-label="2018 · альбом · Kamikaze">
+        <li class="ev album right" style="--i:3;--era:#a6a86b" aria-label="2018 · album · Kamikaze" data-ru-aria-label="2018 · альбом · Kamikaze">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-plane"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2018</span><span class="ev-mono mono">KMKZ</span></div>
             <span class="ev-title">Kamikaze</span>
-            <span class="ev-meta mono">17 треков · 451 отсылок</span>
-            <ul class="ev-facts mono"><li>внезапный релиз</li><li>ответ критикам</li><li>#1 в США</li></ul>
+            <span class="ev-meta mono" data-ru="17 треков · 451 отсылка">17 tracks · 451 references</span>
+            <ul class="ev-facts mono"><li data-ru="внезапный релиз">surprise release</li><li data-ru="ответ критикам">an answer to the critics</li><li data-ru="#1 в США">#1 in the US</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/vnm.mp3" aria-pressed="false">«Knock knock, let the devil in…»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+The+Ringer" target="_blank" rel="noopener" aria-label="Искать «The Ringer» на YouTube">The Ringer</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Lucky+You" target="_blank" rel="noopener" aria-label="Искать «Lucky You» на YouTube">Lucky You</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Killshot" target="_blank" rel="noopener" aria-label="Искать «Killshot» на YouTube">Killshot</a></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+The+Ringer" target="_blank" rel="noopener" aria-label="Search YouTube for The Ringer" data-ru-aria-label="Искать «The Ringer» на YouTube">The Ringer</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Lucky+You" target="_blank" rel="noopener" aria-label="Search YouTube for Lucky You" data-ru-aria-label="Искать «Lucky You» на YouTube">Lucky You</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Killshot" target="_blank" rel="noopener" aria-label="Search YouTube for Killshot" data-ru-aria-label="Искать «Killshot» на YouTube">Killshot</a></div>
           </div>
         </li>
-        <li class="ev beef left" style="--i:4;--era:#a6a86b" aria-label="2018 · бифф · Machine Gun Kelly">
+        <li class="ev beef left" style="--i:4;--era:#a6a86b" aria-label="2018 · beef · Machine Gun Kelly" data-ru-aria-label="2018 · бифф · Machine Gun Kelly">
           <span class="ev-node" aria-hidden="true"></span>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2018</span><span class="ev-mono ev-mono-beef mono">⚔</span></div>
-            <span class="ev-title"><span class="ev-vs mono">бифф · </span>Machine Gun Kelly</span>
+            <span class="ev-title" data-ru-html="<span class=&quot;ev-vs mono&quot;>бифф · </span>Machine Gun Kelly"><span class="ev-vs mono">beef · </span>Machine Gun Kelly</span>
             <span class="ev-meta mono">Killshot</span>
           </div>
         </li>
-        <li class="ev album right" style="--i:5;--era:#a6a86b" aria-label="2017 · альбом · Revival">
+        <li class="ev album right" style="--i:5;--era:#a6a86b" aria-label="2017 · album · Revival" data-ru-aria-label="2017 · альбом · Revival">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-mic"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2017</span><span class="ev-mono mono">RVL</span></div>
             <span class="ev-title">Revival</span>
-            <span class="ev-meta mono">24 треков · 302 отсылок</span>
-            <ul class="ev-facts mono"><li>#1 в США</li><li>смешанные отзывы</li></ul>
+            <span class="ev-meta mono" data-ru="24 трека · 302 отсылки">24 tracks · 302 references</span>
+            <ul class="ev-facts mono"><li data-ru="#1 в США">#1 in the US</li><li data-ru="смешанные отзывы">mixed reviews</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/blv.mp3" aria-pressed="false">«Started from the bottom like a snowman, oh man…»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+River" target="_blank" rel="noopener" aria-label="Искать «River» на YouTube">River</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Walk+on+Water" target="_blank" rel="noopener" aria-label="Искать «Walk on Water» на YouTube">Walk on Water</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Believe" target="_blank" rel="noopener" aria-label="Искать «Believe» на YouTube">Believe</a></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+River" target="_blank" rel="noopener" aria-label="Search YouTube for River" data-ru-aria-label="Искать «River» на YouTube">River</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Walk+on+Water" target="_blank" rel="noopener" aria-label="Search YouTube for Walk on Water" data-ru-aria-label="Искать «Walk on Water» на YouTube">Walk on Water</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Believe" target="_blank" rel="noopener" aria-label="Search YouTube for Believe" data-ru-aria-label="Искать «Believe» на YouTube">Believe</a></div>
           </div>
         </li>
-        <li class="ev album left" style="--i:6;--era:#a6a86b" aria-label="2013 · альбом · The Marshall Mathers LP 2">
+        <li class="ev album left" style="--i:6;--era:#a6a86b" aria-label="2013 · album · The Marshall Mathers LP 2" data-ru-aria-label="2013 · альбом · The Marshall Mathers LP 2">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-crown"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2013</span><span class="ev-mono mono">MMLP2</span></div>
             <span class="ev-title">The Marshall Mathers LP 2</span>
-            <span class="ev-meta mono">24 треков · 766 отсылок</span>
-            <ul class="ev-facts mono"><li>Grammy — лучший рэп-альбом</li><li>«Rap God» — рекорд по числу слов в хит-песне</li></ul>
+            <span class="ev-meta mono" data-ru="24 трека · 766 отсылок">24 tracks · 766 references</span>
+            <ul class="ev-facts mono"><li data-ru="Grammy — лучший рэп-альбом">Grammy — Best Rap Album</li><li data-ru="«Rap God» — рекорд по числу слов в хит-песне">&quot;Rap God&quot; — a record word count for a hit single</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/rpgd.mp3" aria-pressed="false">«I'm beginning to feel like a Rap God»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Rap+God" target="_blank" rel="noopener" aria-label="Искать «Rap God» на YouTube">Rap God</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Berzerk" target="_blank" rel="noopener" aria-label="Искать «Berzerk» на YouTube">Berzerk</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+The+Monster" target="_blank" rel="noopener" aria-label="Искать «The Monster» на YouTube">The Monster</a></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Rap+God" target="_blank" rel="noopener" aria-label="Search YouTube for Rap God" data-ru-aria-label="Искать «Rap God» на YouTube">Rap God</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Berzerk" target="_blank" rel="noopener" aria-label="Search YouTube for Berzerk" data-ru-aria-label="Искать «Berzerk» на YouTube">Berzerk</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+The+Monster" target="_blank" rel="noopener" aria-label="Search YouTube for The Monster" data-ru-aria-label="Искать «The Monster» на YouTube">The Monster</a></div>
           </div>
         </li>
 
-        <li class="era-chapter mono" role="presentation" style="--era:#c77c63"><span>Срыв и восстановление</span></li>
-        <li class="ev album right" style="--i:7;--era:#c77c63" aria-label="2010 · альбом · Recovery">
+        <li class="era-chapter mono" role="presentation" style="--era:#c77c63"><span data-ru="Срыв и восстановление">Breakdown &amp; Recovery</span></li>
+        <li class="ev album right" style="--i:7;--era:#c77c63" aria-label="2010 · album · Recovery" data-ru-aria-label="2010 · альбом · Recovery">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-rise"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2010</span><span class="ev-mono mono">RCV</span></div>
             <span class="ev-title">Recovery</span>
-            <span class="ev-meta mono">22 треков · 499 отсылок</span>
-            <ul class="ev-facts mono"><li>#1 в 19 странах</li><li>Grammy — лучший рэп-альбом</li></ul>
+            <span class="ev-meta mono" data-ru="22 трека · 499 отсылок">22 tracks · 499 references</span>
+            <ul class="ev-facts mono"><li data-ru="#1 в 19 странах">#1 in 19 countries</li><li data-ru="Grammy — лучший рэп-альбом">Grammy — Best Rap Album</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/ntafrd.mp3" aria-pressed="false">«I'm not afraid to take a stand»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Not+Afraid" target="_blank" rel="noopener" aria-label="Искать «Not Afraid» на YouTube">Not Afraid</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Love+the+Way+You+Lie" target="_blank" rel="noopener" aria-label="Искать «Love the Way You Lie» на YouTube">Love the Way You Lie</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Space+Bound" target="_blank" rel="noopener" aria-label="Искать «Space Bound» на YouTube">Space Bound</a></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Not+Afraid" target="_blank" rel="noopener" aria-label="Search YouTube for Not Afraid" data-ru-aria-label="Искать «Not Afraid» на YouTube">Not Afraid</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Love+the+Way+You+Lie" target="_blank" rel="noopener" aria-label="Search YouTube for Love the Way You Lie" data-ru-aria-label="Искать «Love the Way You Lie» на YouTube">Love the Way You Lie</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Space+Bound" target="_blank" rel="noopener" aria-label="Search YouTube for Space Bound" data-ru-aria-label="Искать «Space Bound» на YouTube">Space Bound</a></div>
           </div>
         </li>
-        <li class="ev album left" style="--i:8;--era:#c77c63" aria-label="2009 · альбом · Relapse">
+        <li class="ev album left" style="--i:8;--era:#c77c63" aria-label="2009 · album · Relapse" data-ru-aria-label="2009 · альбом · Relapse">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-pills"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2009</span><span class="ev-mono mono">RLP</span></div>
             <span class="ev-title">Relapse</span>
-            <span class="ev-meta mono">24 треков · 450 отсылок</span>
-            <ul class="ev-facts mono"><li>возвращение после паузы и зависимости</li><li>Grammy — лучший рэп-альбом</li></ul>
+            <span class="ev-meta mono" data-ru="24 трека · 450 отсылок">24 tracks · 450 references</span>
+            <ul class="ev-facts mono"><li data-ru="возвращение после паузы и зависимости">a comeback after the hiatus and addiction</li><li data-ru="Grammy — лучший рэп-альбом">Grammy — Best Rap Album</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/bfl.mp3" aria-pressed="false">«In my shoes, just to see what it's like to be me»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+We+Made+You" target="_blank" rel="noopener" aria-label="Искать «We Made You» на YouTube">We Made You</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Beautiful" target="_blank" rel="noopener" aria-label="Искать «Beautiful» на YouTube">Beautiful</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+3+a.m." target="_blank" rel="noopener" aria-label="Искать «3 a.m.» на YouTube">3 a.m.</a></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+We+Made+You" target="_blank" rel="noopener" aria-label="Search YouTube for We Made You" data-ru-aria-label="Искать «We Made You» на YouTube">We Made You</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Beautiful" target="_blank" rel="noopener" aria-label="Search YouTube for Beautiful" data-ru-aria-label="Искать «Beautiful» на YouTube">Beautiful</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+3+a.m." target="_blank" rel="noopener" aria-label="Search YouTube for 3 a.m." data-ru-aria-label="Искать «3 a.m.» на YouTube">3 a.m.</a></div>
           </div>
         </li>
-        <li class="ev beef right" style="--i:9;--era:#c77c63" aria-label="2009 · бифф · Nick Cannon">
+        <li class="ev beef right" style="--i:9;--era:#c77c63" aria-label="2009 · beef · Nick Cannon" data-ru-aria-label="2009 · бифф · Nick Cannon">
           <span class="ev-node" aria-hidden="true"></span>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2009</span><span class="ev-mono ev-mono-beef mono">⚔</span></div>
-            <span class="ev-title"><span class="ev-vs mono">бифф · </span>Nick Cannon</span>
+            <span class="ev-title" data-ru-html="<span class=&quot;ev-vs mono&quot;>бифф · </span>Nick Cannon"><span class="ev-vs mono">beef · </span>Nick Cannon</span>
           </div>
         </li>
-        <li class="ev album left" style="--i:10;--era:#c77c63" aria-label="2004 · альбом · Encore">
+        <li class="ev album left" style="--i:10;--era:#c77c63" aria-label="2004 · album · Encore" data-ru-aria-label="2004 · альбом · Encore">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-mic"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2004</span><span class="ev-mono mono">ENC</span></div>
             <span class="ev-title">Encore</span>
-            <span class="ev-meta mono">21 треков · 376 отсылок</span>
-            <ul class="ev-facts mono"><li>11× платина в мире</li></ul>
+            <span class="ev-meta mono" data-ru="21 трек · 376 отсылок">21 tracks · 376 references</span>
+            <ul class="ev-facts mono"><li data-ru="11× платина в мире">11× platinum worldwide</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/mckbd.mp3" aria-pressed="false">«Hush little baby, don't you cry»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Mockingbird" target="_blank" rel="noopener" aria-label="Искать «Mockingbird» на YouTube">Mockingbird</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Just+Lose+It" target="_blank" rel="noopener" aria-label="Искать «Just Lose It» на YouTube">Just Lose It</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Like+Toy+Soldiers" target="_blank" rel="noopener" aria-label="Искать «Like Toy Soldiers» на YouTube">Like Toy Soldiers</a></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Mockingbird" target="_blank" rel="noopener" aria-label="Search YouTube for Mockingbird" data-ru-aria-label="Искать «Mockingbird» на YouTube">Mockingbird</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Just+Lose+It" target="_blank" rel="noopener" aria-label="Search YouTube for Just Lose It" data-ru-aria-label="Искать «Just Lose It» на YouTube">Just Lose It</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Like+Toy+Soldiers" target="_blank" rel="noopener" aria-label="Search YouTube for Like Toy Soldiers" data-ru-aria-label="Искать «Like Toy Soldiers» на YouTube">Like Toy Soldiers</a></div>
           </div>
         </li>
-        <li class="ev beef right" style="--i:11;--era:#c77c63" aria-label="2003 · бифф · Ja Rule / Murder Inc.">
+        <li class="ev beef right" style="--i:11;--era:#c77c63" aria-label="2003 · beef · Ja Rule / Murder Inc." data-ru-aria-label="2003 · бифф · Ja Rule / Murder Inc.">
           <span class="ev-node" aria-hidden="true"></span>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2003</span><span class="ev-mono ev-mono-beef mono">⚔</span></div>
-            <span class="ev-title"><span class="ev-vs mono">бифф · </span>Ja Rule / Murder Inc.</span>
+            <span class="ev-title" data-ru-html="<span class=&quot;ev-vs mono&quot;>бифф · </span>Ja Rule / Murder Inc."><span class="ev-vs mono">beef · </span>Ja Rule / Murder Inc.</span>
           </div>
         </li>
 
-        <li class="era-chapter mono" role="presentation" style="--era:#c4ad82"><span>Рождение Slim Shady</span></li>
-        <li class="ev album left" style="--i:12;--era:#c4ad82" aria-label="2002 · альбом · The Eminem Show">
+        <li class="era-chapter mono" role="presentation" style="--era:#c4ad82"><span data-ru="Рождение Slim Shady">The Birth of Slim Shady</span></li>
+        <li class="ev album left" style="--i:12;--era:#c4ad82" aria-label="2002 · album · The Eminem Show" data-ru-aria-label="2002 · альбом · The Eminem Show">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-mic"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2002</span><span class="ev-mono mono">TES</span></div>
             <span class="ev-title">The Eminem Show</span>
-            <span class="ev-meta mono">22 треков · 536 отсылок</span>
-            <ul class="ev-facts mono"><li>самый продаваемый альбом 2002 в США</li><li>Grammy — лучший рэп-альбом</li></ul>
+            <span class="ev-meta mono" data-ru="22 трека · 536 отсылок">22 tracks · 536 references</span>
+            <ul class="ev-facts mono"><li data-ru="самый продаваемый альбом 2002 в США">the best-selling US album of 2002</li><li data-ru="Grammy — лучший рэп-альбом">Grammy — Best Rap Album</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/wthtm.mp3" aria-pressed="false">«Now this looks like a job for me!»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Without+Me" target="_blank" rel="noopener" aria-label="Искать «Without Me» на YouTube">Without Me</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Cleanin%27+Out+My+Closet" target="_blank" rel="noopener" aria-label="Искать «Cleanin' Out My Closet» на YouTube">Cleanin' Out My Closet</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Sing+for+the+Moment" target="_blank" rel="noopener" aria-label="Искать «Sing for the Moment» на YouTube">Sing for the Moment</a></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Without+Me" target="_blank" rel="noopener" aria-label="Search YouTube for Without Me" data-ru-aria-label="Искать «Without Me» на YouTube">Without Me</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Cleanin%27+Out+My+Closet" target="_blank" rel="noopener" aria-label="Search YouTube for Cleanin' Out My Closet" data-ru-aria-label="Искать «Cleanin' Out My Closet» на YouTube">Cleanin' Out My Closet</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Sing+for+the+Moment" target="_blank" rel="noopener" aria-label="Search YouTube for Sing for the Moment" data-ru-aria-label="Искать «Sing for the Moment» на YouTube">Sing for the Moment</a></div>
           </div>
         </li>
-        <li class="ev beef right" style="--i:13;--era:#c4ad82" aria-label="2002 · бифф · Benzino / The Source">
+        <li class="ev beef right" style="--i:13;--era:#c4ad82" aria-label="2002 · beef · Benzino / The Source" data-ru-aria-label="2002 · бифф · Benzino / The Source">
           <span class="ev-node" aria-hidden="true"></span>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2002</span><span class="ev-mono ev-mono-beef mono">⚔</span></div>
-            <span class="ev-title"><span class="ev-vs mono">бифф · </span>Benzino / The Source</span>
+            <span class="ev-title" data-ru-html="<span class=&quot;ev-vs mono&quot;>бифф · </span>Benzino / The Source"><span class="ev-vs mono">beef · </span>Benzino / The Source</span>
           </div>
         </li>
-        <li class="ev album left" style="--i:14;--era:#c4ad82" aria-label="2000 · альбом · The Marshall Mathers LP">
+        <li class="ev album left" style="--i:14;--era:#c4ad82" aria-label="2000 · album · The Marshall Mathers LP" data-ru-aria-label="2000 · альбом · The Marshall Mathers LP">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-chainsaw"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2000</span><span class="ev-mono mono">MMLP</span></div>
             <span class="ev-title">The Marshall Mathers LP</span>
-            <span class="ev-meta mono">18 треков · 416 отсылок</span>
-            <ul class="ev-facts mono"><li>самый быстро продаваемый рэп-альбом в США</li><li>диамантовая сертификация</li></ul>
+            <span class="ev-meta mono" data-ru="18 треков · 416 отсылок">18 tracks · 416 references</span>
+            <ul class="ev-facts mono"><li data-ru="самый быстро продаваемый рэп-альбом в США">the fastest-selling rap album in the US</li><li data-ru="диамантовая сертификация">certified Diamond</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/stn.mp3" aria-pressed="false">«Dear Slim, I wrote you but you still ain't callin'»<span class="ev-quote-src mono"> — Stan</span><span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Stan" target="_blank" rel="noopener" aria-label="Искать «Stan» на YouTube">Stan</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+The+Real+Slim+Shady" target="_blank" rel="noopener" aria-label="Искать «The Real Slim Shady» на YouTube">The Real Slim Shady</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+The+Way+I+Am" target="_blank" rel="noopener" aria-label="Искать «The Way I Am» на YouTube">The Way I Am</a></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Stan" target="_blank" rel="noopener" aria-label="Search YouTube for Stan" data-ru-aria-label="Искать «Stan» на YouTube">Stan</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+The+Real+Slim+Shady" target="_blank" rel="noopener" aria-label="Search YouTube for The Real Slim Shady" data-ru-aria-label="Искать «The Real Slim Shady» на YouTube">The Real Slim Shady</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+The+Way+I+Am" target="_blank" rel="noopener" aria-label="Search YouTube for The Way I Am" data-ru-aria-label="Искать «The Way I Am» на YouTube">The Way I Am</a></div>
           </div>
         </li>
-        <li class="ev beef right" style="--i:15;--era:#c4ad82" aria-label="2000 · бифф · Everlast">
+        <li class="ev beef right" style="--i:15;--era:#c4ad82" aria-label="2000 · beef · Everlast" data-ru-aria-label="2000 · бифф · Everlast">
           <span class="ev-node" aria-hidden="true"></span>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">2000</span><span class="ev-mono ev-mono-beef mono">⚔</span></div>
-            <span class="ev-title"><span class="ev-vs mono">бифф · </span>Everlast</span>
+            <span class="ev-title" data-ru-html="<span class=&quot;ev-vs mono&quot;>бифф · </span>Everlast"><span class="ev-vs mono">beef · </span>Everlast</span>
           </div>
         </li>
-        <li class="ev album left" style="--i:16;--era:#c4ad82" aria-label="1999 · альбом · The Slim Shady LP">
+        <li class="ev album left" style="--i:16;--era:#c4ad82" aria-label="1999 · album · The Slim Shady LP" data-ru-aria-label="1999 · альбом · The Slim Shady LP">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-mask"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">1999</span><span class="ev-mono mono">SSLP</span></div>
             <span class="ev-title">The Slim Shady LP</span>
-            <span class="ev-meta mono">19 треков · 645 отсылок</span>
-            <ul class="ev-facts mono"><li>2× платина</li><li>Grammy — лучший рэп-альбом</li></ul>
+            <span class="ev-meta mono" data-ru="19 треков · 645 отсылок">19 tracks · 645 references</span>
+            <ul class="ev-facts mono"><li data-ru="2× платина">2× platinum</li><li data-ru="Grammy — лучший рэп-альбом">Grammy — Best Rap Album</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/mnis.mp3" aria-pressed="false">«Hi! My name is… Slim Shady»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+My+Name+Is" target="_blank" rel="noopener" aria-label="Искать «My Name Is» на YouTube">My Name Is</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Guilty+Conscience" target="_blank" rel="noopener" aria-label="Искать «Guilty Conscience» на YouTube">Guilty Conscience</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+%2797+Bonnie+%26+Clyde" target="_blank" rel="noopener" aria-label="Искать «'97 Bonnie &amp; Clyde» на YouTube">'97 Bonnie &amp; Clyde</a></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+My+Name+Is" target="_blank" rel="noopener" aria-label="Search YouTube for My Name Is" data-ru-aria-label="Искать «My Name Is» на YouTube">My Name Is</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Guilty+Conscience" target="_blank" rel="noopener" aria-label="Search YouTube for Guilty Conscience" data-ru-aria-label="Искать «Guilty Conscience» на YouTube">Guilty Conscience</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+%2797+Bonnie+%26+Clyde" target="_blank" rel="noopener" aria-label="Search YouTube for '97 Bonnie &amp; Clyde" data-ru-aria-label="Искать «'97 Bonnie &amp; Clyde» на YouTube">'97 Bonnie &amp; Clyde</a></div>
           </div>
         </li>
-        <li class="ev beef right" style="--i:17;--era:#c4ad82" aria-label="1999 · бифф · Insane Clown Posse">
+        <li class="ev beef right" style="--i:17;--era:#c4ad82" aria-label="1999 · beef · Insane Clown Posse" data-ru-aria-label="1999 · бифф · Insane Clown Posse">
           <span class="ev-node" aria-hidden="true"></span>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">1999</span><span class="ev-mono ev-mono-beef mono">⚔</span></div>
-            <span class="ev-title"><span class="ev-vs mono">бифф · </span>Insane Clown Posse</span>
-            <span class="ev-meta mono">давняя детройтская вражда</span>
+            <span class="ev-title" data-ru-html="<span class=&quot;ev-vs mono&quot;>бифф · </span>Insane Clown Posse"><span class="ev-vs mono">beef · </span>Insane Clown Posse</span>
+            <span class="ev-meta mono" data-ru="давняя детройтская вражда">a long-running Detroit feud</span>
           </div>
         </li>
-        <li class="ev album left" style="--i:18;--era:#c4ad82" aria-label="1997 · альбом · The Slim Shady EP">
+        <li class="ev album left" style="--i:18;--era:#c4ad82" aria-label="1997 · album · The Slim Shady EP" data-ru-aria-label="1997 · альбом · The Slim Shady EP">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-mask"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">1997</span><span class="ev-mono mono">SSEP</span></div>
             <span class="ev-title">The Slim Shady EP</span>
-            <span class="ev-meta mono">10 треков · 263 отсылок</span>
-            <ul class="ev-facts mono"><li>привлёк внимание Dr. Dre</li></ul>
+            <span class="ev-meta mono" data-ru="10 треков · 263 отсылки">10 tracks · 263 references</span>
+            <ul class="ev-facts mono"><li data-ru="привлёк внимание Dr. Dre">caught Dr. Dre's attention</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/noill.mp3" aria-pressed="false">«Down a fifth, crack open a six. I'm on my seventh 8-Ball…»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Just+the+Two+of+Us" target="_blank" rel="noopener" aria-label="Искать «Just the Two of Us» на YouTube">Just the Two of Us</a></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Just+the+Two+of+Us" target="_blank" rel="noopener" aria-label="Search YouTube for Just the Two of Us" data-ru-aria-label="Искать «Just the Two of Us» на YouTube">Just the Two of Us</a></div>
           </div>
         </li>
-        <li class="ev album right" style="--i:19;--era:#c4ad82" aria-label="1996 · альбом · Infinite">
+        <li class="ev album right" style="--i:19;--era:#c4ad82" aria-label="1996 · album · Infinite" data-ru-aria-label="1996 · альбом · Infinite">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-cassette"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">1996</span><span class="ev-mono mono">INF</span></div>
             <span class="ev-title">Infinite</span>
-            <span class="ev-meta mono">11 треков · 334 отсылок</span>
-            <ul class="ev-facts mono"><li>тираж ~1000 копий</li><li>коммерчески провалился</li></ul>
+            <span class="ev-meta mono" data-ru="11 треков · 334 отсылки">11 tracks · 334 references</span>
+            <ul class="ev-facts mono"><li data-ru="тираж ~1000 копий">~1,000 copies pressed</li><li data-ru="коммерчески провалился">a commercial flop</li></ul>
             <button type="button" class="ev-quote ev-quote-btn" data-audio="/music/eminem/mp3/nfnte.mp3" aria-pressed="false">«My pen and paper cause a chain reaction»<span class="ev-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Infinite" target="_blank" rel="noopener" aria-label="Искать «Infinite» на YouTube">Infinite</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+It%27s+OK" target="_blank" rel="noopener" aria-label="Искать «It's OK» на YouTube">It's OK</a></div>
+            <div class="ev-tags"><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+Infinite" target="_blank" rel="noopener" aria-label="Search YouTube for Infinite" data-ru-aria-label="Искать «Infinite» на YouTube">Infinite</a><a class="ev-tag mono" href="https://www.youtube.com/results?search_query=Eminem+It%27s+OK" target="_blank" rel="noopener" aria-label="Search YouTube for It's OK" data-ru-aria-label="Искать «It's OK» на YouTube">It's OK</a></div>
           </div>
         </li>
 
-        <li class="era-chapter mono" role="presentation" style="--era:#7e8a96"><span>Детройт · до дебюта</span></li>
-        <li class="ev milestone left" style="--i:20;--era:#7e8a96" aria-label="1995 · веха · Рождение дочери Hailie Jade">
+        <li class="era-chapter mono" role="presentation" style="--era:#7e8a96"><span data-ru="Детройт · до дебюта">Detroit · before the debut</span></li>
+        <li class="ev milestone left" style="--i:20;--era:#7e8a96" aria-label="1995 · milestone · Birth of daughter Hailie Jade" data-ru-aria-label="1995 · веха · Рождение дочери Hailie Jade">
           <span class="ev-node" aria-hidden="true"></span>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">1995</span></div>
-            <span class="ev-title"><span class="ev-vs mono">веха · </span>Рождение дочери Hailie Jade</span>
-            <span class="ev-meta mono">25 декабря</span>
+            <span class="ev-title" data-ru-html="<span class=&quot;ev-vs mono&quot;>веха · </span>Рождение дочери Hailie Jade"><span class="ev-vs mono">milestone · </span>Birth of daughter Hailie Jade</span>
+            <span class="ev-meta mono" data-ru="25 декабря">December 25</span>
           </div>
         </li>
-        <li class="ev milestone right" style="--i:21;--era:#7e8a96" aria-label="1991 · веха · Бросил школу">
+        <li class="ev milestone right" style="--i:21;--era:#7e8a96" aria-label="1991 · milestone · Dropped out of school" data-ru-aria-label="1991 · веха · Бросил школу">
           <span class="ev-node" aria-hidden="true"></span>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">1991</span></div>
-            <span class="ev-title"><span class="ev-vs mono">веха · </span>Бросил школу</span>
-            <span class="ev-meta mono">после трёх попыток окончить 9-й класс</span>
+            <span class="ev-title" data-ru-html="<span class=&quot;ev-vs mono&quot;>веха · </span>Бросил школу"><span class="ev-vs mono">milestone · </span>Dropped out of school</span>
+            <span class="ev-meta mono" data-ru="после трёх попыток окончить 9-й класс">after three tries at ninth grade</span>
           </div>
         </li>
-        <li class="ev milestone left" style="--i:22;--era:#7e8a96" aria-label="1989 · веха · Soul Intent">
+        <li class="ev milestone left" style="--i:22;--era:#7e8a96" aria-label="1989 · milestone · Soul Intent" data-ru-aria-label="1989 · веха · Soul Intent">
           <span class="ev-node" aria-hidden="true"></span>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">1989</span></div>
-            <span class="ev-title"><span class="ev-vs mono">веха · </span>Soul Intent</span>
-            <span class="ev-meta mono">первая группа; дебютный винил — 1995</span>
+            <span class="ev-title" data-ru-html="<span class=&quot;ev-vs mono&quot;>веха · </span>Soul Intent"><span class="ev-vs mono">milestone · </span>Soul Intent</span>
+            <span class="ev-meta mono" data-ru="первая группа; дебютный винил — 1995">his first group; debut vinyl in 1995</span>
           </div>
         </li>
-        <li class="ev milestone right" style="--i:23;--era:#7e8a96" aria-label="1988 · веха · Bassmint Productions">
+        <li class="ev milestone right" style="--i:23;--era:#7e8a96" aria-label="1988 · milestone · Bassmint Productions" data-ru-aria-label="1988 · веха · Bassmint Productions">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-cassette"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">1988</span></div>
-            <span class="ev-title"><span class="ev-vs mono">веха · </span>Bassmint Productions</span>
-            <span class="ev-meta mono">ранняя рэп-команда Детройта</span>
-            <ul class="ev-facts mono"><li>рэп-баттлы Детройта</li></ul>
+            <span class="ev-title" data-ru-html="<span class=&quot;ev-vs mono&quot;>веха · </span>Bassmint Productions"><span class="ev-vs mono">milestone · </span>Bassmint Productions</span>
+            <span class="ev-meta mono" data-ru="ранняя рэп-команда Детройта">an early Detroit rap crew</span>
+            <ul class="ev-facts mono"><li data-ru="рэп-баттлы Детройта">Detroit rap battles</li></ul>
           </div>
         </li>
-        <li class="ev milestone left" style="--i:24;--era:#7e8a96" aria-label="1986 · веха · Первые рифмы под именем M&amp;M">
+        <li class="ev milestone left" style="--i:24;--era:#7e8a96" aria-label="1986 · milestone · First rhymes as M&amp;M" data-ru-aria-label="1986 · веха · Первые рифмы под именем M&amp;M">
           <span class="ev-node" aria-hidden="true"></span>
           <svg class="doodle ev-doodle" viewBox="0 0 64 64" aria-hidden="true"><use href="#dood-mic"/></svg>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">1986</span></div>
-            <span class="ev-title"><span class="ev-vs mono">веха · </span>Первые рифмы под именем M&amp;M</span>
-            <span class="ev-meta mono">начал читать рэп в ~14 лет</span>
+            <span class="ev-title" data-ru-html="<span class=&quot;ev-vs mono&quot;>веха · </span>Первые рифмы под именем M&amp;M"><span class="ev-vs mono">milestone · </span>First rhymes as M&amp;M</span>
+            <span class="ev-meta mono" data-ru="начал читать рэп в ~14 лет">started rapping around age 14</span>
           </div>
         </li>
-        <li class="ev milestone right" style="--i:25;--era:#7e8a96" aria-label="1972 · веха · Рождение Маршалла Брюса Мэзерса III">
+        <li class="ev milestone right" style="--i:25;--era:#7e8a96" aria-label="1972 · milestone · Birth of Marshall Bruce Mathers III" data-ru-aria-label="1972 · веха · Рождение Маршалла Брюса Мэзерса III">
           <span class="ev-node" aria-hidden="true"></span>
           <div class="ev-chip">
             <div class="ev-chip-top"><span class="ev-year">1972</span></div>
-            <span class="ev-title"><span class="ev-vs mono">веха · </span>Рождение Маршалла Брюса Мэзерса III</span>
-            <span class="ev-meta mono">17 октября · Сент-Джозеф, Миссури</span>
-            <ul class="ev-facts mono"><li>частые переезды между Миссури и Детройтом</li></ul>
+            <span class="ev-title" data-ru-html="<span class=&quot;ev-vs mono&quot;>веха · </span>Рождение Маршалла Брюса Мэзерса III"><span class="ev-vs mono">milestone · </span>Birth of Marshall Bruce Mathers III</span>
+            <span class="ev-meta mono" data-ru="17 октября · Сент-Джозеф, Миссури">October 17 · St. Joseph, Missouri</span>
+            <ul class="ev-facts mono"><li data-ru="частые переезды между Миссури и Детройтом">frequent moves between Missouri and Detroit</li></ul>
           </div>
         </li>
       </ol>
 
-      <div class="board-cap bottom"><span class="mono">1972 · начало</span></div>
+      <div class="board-cap bottom"><span class="mono" data-ru="1972 · начало">1972 · the start</span></div>
       <div class="board-terminus" aria-hidden="true"></div>
     </div>
   </div>
@@ -739,7 +750,7 @@
 <section class="film container" id="film">
   <div class="sec-head reveal">
     <span class="sec-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="12" width="38" height="26" rx="2"/><path d="M5 18h38"/><circle cx="11" cy="15" r="1.2" fill="currentColor"/><path d="M21 22l9 5-9 5z" fill="currentColor" stroke="none"/></svg></span>
-    <span class="mono">Что посмотреть</span>
+    <span class="mono" data-ru="Что посмотреть">What to watch</span>
   </div>
 
   <div class="finale reveal">
@@ -749,11 +760,11 @@
       <span class="fp-rule"></span>
       <span class="fp-sub">Detroit · 2002</span>
     </div>
-    <div class="finale-meta">2002 · реж. Кёртис Хэнсон</div>
+    <div class="finale-meta" data-ru="2002 · реж. Кёртис Хэнсон">2002 · dir. Curtis Hanson</div>
     <h3 class="finale-title display">8 Mile</h3>
-    <p class="finale-text">Полуавтобиографическая драма: Джимми «Кролик» Смит пробивается через рэп-баттлы Детройта, разделённого магистралью 8 Mile. Всё, что ты прошёл по маршруту — гнев, бедность, заикание и взрыв таланта — здесь оживает на экране.</p>
-    <p class="finale-fact">А «Lose Yourself» из саундтрека стал <b>первым хип-хоп-треком, получившим «Оскар»</b> за лучшую оригинальную песню (2003).</p>
-    <a class="finale-watch" data-yt="axGVrfwm9L4" data-title="Трейлер «8 Mile» (2002)" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=8+Mile+2002+official+trailer">▶ смотреть трейлер</a>
+    <p class="finale-text" data-ru="Полуавтобиографическая драма: Джимми «Кролик» Смит пробивается через рэп-баттлы Детройта, разделённого магистралью 8 Mile. Всё, что ты прошёл по маршруту — гнев, бедность, заикание и взрыв таланта — здесь оживает на экране.">A semi-autobiographical drama: Jimmy &quot;Rabbit&quot; Smith claws his way through the rap battles of Detroit, a city split by the 8 Mile freeway. Everything you traveled through on this route — the anger, the poverty, the stutter and the sudden explosion of talent — comes alive on screen here.</p>
+    <p class="finale-fact" data-ru-html="А «Lose Yourself» из саундтрека стал <b>первым хип-хоп-треком, получившим «Оскар»</b> за лучшую оригинальную песню (2003).">And &quot;Lose Yourself&quot; from the soundtrack became <b>the first hip-hop track to win an Oscar</b> for Best Original Song (2003).</p>
+    <a class="finale-watch" data-yt="axGVrfwm9L4" data-title-en="8 Mile trailer (2002)" data-title-ru="Трейлер «8 Mile» (2002)" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=8+Mile+2002+official+trailer" data-ru="▶ смотреть трейлер">▶ watch trailer</a>
   </div>
 </section>
 
@@ -761,13 +772,13 @@
 <section class="base-section container" id="base">
   <div class="sec-head reveal">
     <span class="sec-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="9" width="34" height="30" rx="3"/><path d="M7 17h34M16 9v30"/><path d="M22 24h13M22 30.5h13"/><circle cx="11.5" cy="13" r="1.1" fill="currentColor"/></svg></span>
-    <span class="mono">Вся дискография</span>
-    <h2 class="cond">База треков</h2>
+    <span class="mono" data-ru="Вся дискография">The full discography</span>
+    <h2 class="cond" data-ru="База треков">The vault</h2>
   </div>
   <div class="tb">
-    <p class="tb-sub" id="tbSub">Загрузка базы треков…</p>
+    <p class="tb-sub" id="tbSub">Loading the track vault…</p>
     <div class="tb-controls reveal">
-      <input type="text" class="tb-search" id="tbSearch" placeholder="Поиск по треку, альбому, фиту…" aria-label="Поиск трека">
+      <input type="text" class="tb-search" id="tbSearch" placeholder="Search by track, album, feature…" aria-label="Search tracks" data-ru-placeholder="Поиск по треку, альбому, фиту…" data-ru-aria-label="Поиск трека">
       <div class="tb-filters" id="tbFilters"></div>
     </div>
     <div class="tb-progress reveal" id="tbProg"></div>
@@ -779,37 +790,48 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-glyph" aria-hidden="true">EMIN<span class="rev">E</span>M</div>
-    <p class="footer-mark">EMINEM · ГИД</p>
-    <p class="footer-tag">Маршрут сквозь альбомы Маршалла Мэзерса — от рождения Slim Shady до его смерти, по одному треку за раз.</p>
+    <p class="footer-mark" data-ru="EMINEM · ГИД">EMINEM · GUIDE</p>
+    <p class="footer-tag" data-ru="Маршрут сквозь альбомы Маршалла Мэзерса — от рождения Slim Shady до его смерти, по одному треку за раз.">A route through Marshall Mathers's albums — from the birth of Slim Shady to his death, one track at a time.</p>
     <div class="footer-links">
-      <a class="primary" href="https://eminem.rensite.ru" target="_blank" rel="noopener">Артефакт: разбор 14 000 отсылок ↗</a>
-      <a href="https://www.youtube.com/@Eminem" target="_blank" rel="noopener">Оф. канал YouTube</a>
-      <a href="/music/michael/">Гид: Michael Jackson</a>
-      <a href="/music/linkin-park/">Гид: Linkin Park</a>
+      <a class="primary" href="https://eminem.rensite.ru" target="_blank" rel="noopener" data-ru="Артефакт: разбор 14 000 отсылок ↗">Artefakt: 14,000 references decoded ↗</a>
+      <a href="https://www.youtube.com/@Eminem" target="_blank" rel="noopener" data-ru="Оф. канал YouTube">Official YouTube channel</a>
+      <a href="/music/michael/" data-ru="Гид: Michael Jackson">Guide: Michael Jackson</a>
+      <a href="/music/linkin-park/" data-ru="Гид: Linkin Park">Guide: Linkin Park</a>
     </div>
     <p class="footer-fine">Marshall Bruce Mathers III · Detroit · 1972 —</p>
-    <p class="footer-note">Гид живой и наверняка неидеальный. Нашли ошибку, спорный факт или трек, который must — напишите <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>, поправим вместе. Спасибо, что уделили время ♪</p>
-    <p class="footer-disc">Все права на оригинальные произведения — музыку, фильмы и изображения — принадлежат их правообладателям. Этот сайт и подборка — независимый некоммерческий фан-проект (© 2026 rensite), не связанный с правообладателями. Короткие аудио-отрывки — фрагменты для цели иллюстрации.</p>
+    <p class="footer-note" data-ru-html="Гид живой и наверняка неидеальный. Нашли ошибку, спорный факт или трек, который must — напишите <a href=&quot;https://t.me/renman&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>@renman</a>, поправим вместе. Спасибо, что уделили время ♪">This guide is a living thing and surely imperfect. Spot an error, a debatable fact, or a track that's a must — message <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a> and we'll fix it together. Thanks for your time ♪</p>
+    <p class="footer-disc" data-ru="Все права на оригинальные произведения — музыку, фильмы и изображения — принадлежат их правообладателям. Этот сайт и подборка — независимый некоммерческий фан-проект (© 2026 rensite), не связанный с правообладателями. Короткие аудио-отрывки — фрагменты для цели иллюстрации.">All rights to the original works — music, films, and images — belong to their respective owners. This site and its selection are an independent, non-commercial fan project (© 2026 rensite), unaffiliated with those owners. The short audio clips are excerpts used for illustration.</p>
   </div>
 </footer>
 
 <!-- YouTube lightbox -->
-<div class="ytmodal" id="ytmodal" role="dialog" aria-modal="true" aria-label="Видео">
+<div class="ytmodal" id="ytmodal" role="dialog" aria-modal="true" aria-label="Video" data-ru-aria-label="Видео">
   <div class="ytmodal-dialog">
     <div class="ytmodal-head">
       <span class="ytmodal-title" id="ytmodal-title"></span>
-      <button class="ytmodal-close" type="button" aria-label="Закрыть видео">&#10005;</button>
+      <button class="ytmodal-close" type="button" aria-label="Close video" data-ru-aria-label="Закрыть видео">&#10005;</button>
     </div>
     <div class="ytmodal-frame"><div class="ytmodal-slot"></div></div>
-    <div class="ytmodal-foot"><a class="ytmodal-yt" target="_blank" rel="noopener" href="#">смотреть на YouTube ↗</a></div>
+    <div class="ytmodal-foot"><a class="ytmodal-yt" target="_blank" rel="noopener" href="#" data-ru="смотреть на YouTube ↗">watch on YouTube ↗</a></div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="/i18n.js" defer></script>
 <script src="/music/tracks.js"></script>
 <script>
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── i18n: язык из общего движка (EN по умолчанию); фолбэк на <html lang> до загрузки i18n.js ──
+  function lang(){ return (window.I18N && window.I18N.get) ? window.I18N.get() : (document.documentElement.lang === 'ru' ? 'ru' : 'en'); }
+  function tt(en, ru){ return lang() === 'ru' ? ru : en; }
+  // 'type' в data.json — русский enum; отображаемую метку берём отсюда (data.json не трогаем).
+  var TYPE_MAP = { 'Соло':{en:'Solo',ru:'Соло'}, 'Фиты':{en:'Features',ru:'Фиты'}, 'Фристайлы':{en:'Freestyles',ru:'Фристайлы'}, 'Скиты':{en:'Skits',ru:'Скиты'}, 'Утечки':{en:'Leaks',ru:'Утечки'} };
+  function typeLabel(t){ var m = TYPE_MAP[t]; return m ? (lang() === 'ru' ? m.ru : m.en) : t; }
+  // Единственный неспецифичный ярлык-источник в data.json (гостевой трек на чужом альбоме);
+  // в исходных данных он пришёл битым («chужой»), поэтому переводим на уровне рендера.
+  function srcLabel(s){ return s === 'External (chужой альбом)' ? tt('External (guest album)','External (чужой альбом)') : s; }
 
   // авто-пометка элементов для reveal-анимации
   document.querySelectorAll('.finale').forEach(el=>el.classList.add('reveal'));
@@ -880,20 +902,26 @@
     const board=document.querySelector('.cboard'); if(!board) return;
     const inner=board.querySelector('.board');
     const cap=document.getElementById('board-top');
-    if(cap){ const y=Math.max(new Date().getFullYear(),2024); cap.textContent=y+' · сейчас'; }
+    const y=Math.max(new Date().getFullYear(),2024);
+    function paintCap(){ if(cap) cap.textContent=y+tt(' · now',' · сейчас'); }
+    paintCap();
 
     // переключатель подробно/компактно — выбор запоминается между визитами
     const btn=board.querySelector('.board-toggle');
+    let applyMode=function(){};
     if(btn){
       const lbl=btn.querySelector('.tlabel'), KEY='em-board-compact';
       let compact=false; try{ compact = localStorage.getItem(KEY)==='1'; }catch(e){}
-      const applyMode=()=>{ board.classList.toggle('compact', compact);
+      applyMode=function(){ board.classList.toggle('compact', compact);
         btn.setAttribute('aria-pressed', String(compact));
-        if(lbl) lbl.textContent = compact ? 'Развернуть подробности' : 'Свернуть подробности'; };
+        if(lbl) lbl.textContent = compact ? tt('Expand details','Развернуть подробности') : tt('Collapse details','Свернуть подробности'); };
       applyMode();
       btn.addEventListener('click',()=>{ compact=!compact;
         try{ localStorage.setItem(KEY, compact?'1':'0'); }catch(e){} applyMode(); });
     }
+
+    // смена языка — обновляем год-капу и подпись переключателя
+    document.addEventListener('i18n:change', function(){ paintCap(); applyMode(); });
 
     function show(){ board.classList.add('is-visible'); if(inner) inner.classList.add('drawn'); }
     if(reduced || !('IntersectionObserver' in window)){ show(); return; }
@@ -910,11 +938,20 @@
     const yt=(M&&M.yt)?M.yt:function(q){return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q);};
     const seen=(M&&M.progress)?M.progress('em-listened'):{has:function(){return false;},toggle:function(){return false;},add:function(){return false;},size:function(){return 0;}};
     const ORDER=['Все','Соло','Фиты','Фристайлы','Скиты','Утечки'];
-    let TRACKS=[], active='Все', q='';
+    let TRACKS=[], active='Все', q='', loaded=false;
     function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    function subText(){ return TRACKS.length+tt(' entries — solo tracks, features, freestyles, skits and leaks, 1988—2025. ▶ opens a YouTube search; the check marks a track as heard (kept in this browser).',' записей — соло, фиты, фристайлы, скиты и утечки, 1988—2025. ▶ ведёт на поиск YouTube, галочка отмечает прослушанное (хранится в этом браузере).'); }
     function paintProgress(){
       const n=TRACKS.filter(function(t){return seen.has(t.q);}).length;
-      progEl.innerHTML='<span>прослушано '+n+' из '+TRACKS.length+'</span><span class="bar"><i style="width:'+(TRACKS.length?(n/TRACKS.length*100).toFixed(1):0)+'%"></i></span>';
+      progEl.innerHTML='<span>'+tt('heard ','прослушано ')+n+tt(' of ',' из ')+TRACKS.length+'</span><span class="bar"><i style="width:'+(TRACKS.length?(n/TRACKS.length*100).toFixed(1):0)+'%"></i></span>';
+    }
+    function buildFilters(){
+      const present=ORDER.filter(function(t){ return t==='Все'||TRACKS.some(function(x){return x.type===t;}); });
+      filtEl.innerHTML=present.map(function(t){
+        const c=(t==='Все')?TRACKS.length:TRACKS.filter(function(x){return x.type===t;}).length;
+        const lbl=(t==='Все')?tt('All','Все'):typeLabel(t);
+        return '<button class="tb-filt'+(t===active?' active':'')+'" data-f="'+esc(t)+'">'+esc(lbl)+' '+c+'</button>';
+      }).join('');
     }
     function render(){
       const f=TRACKS.filter(function(t){
@@ -922,15 +959,15 @@
       });
       listEl.innerHTML=f.map(function(t){
         const done=seen.has(t.q), href=t.y||yt(t.q);
-        const src=[t.s,(t.ft?('ft. '+t.ft):'')].filter(Boolean).join(' · ');
+        const src=[srcLabel(t.s),(t.ft?('ft. '+t.ft):'')].filter(Boolean).join(' · ');
         return '<div class="tb-row'+(done?' done':'')+'" data-k="'+esc(t.q)+'">'
-          +'<button class="tb-chk" type="button" aria-pressed="'+done+'" aria-label="Отметить прослушанным">'+(done?'✓':'')+'</button>'
+          +'<button class="tb-chk" type="button" aria-pressed="'+done+'" aria-label="'+esc(tt('Mark as heard','Отметить прослушанным'))+'">'+(done?'✓':'')+'</button>'
           +'<a class="tb-go" href="'+esc(href)+'" target="_blank" rel="noopener">'
           +'<span class="tb-yr">'+(t.yr||'—')+'</span>'
-          +'<span class="tb-nm">'+esc(t.n)+'<span class="tb-cat">'+esc(t.type)+'</span>'+(src?'<span class="tb-src">'+esc(src)+'</span>':'')+'</span>'
+          +'<span class="tb-nm">'+esc(t.n)+'<span class="tb-cat">'+esc(typeLabel(t.type))+'</span>'+(src?'<span class="tb-src">'+esc(src)+'</span>':'')+'</span>'
           +'<span class="tb-play">▶ YouTube</span></a></div>';
-      }).join('')||'<p style="padding:18px 0;color:var(--ink-mute)">Ничего не найдено.</p>';
-      cntEl.textContent='Показано '+f.length+' из '+TRACKS.length+' треков';
+      }).join('')||'<p style="padding:18px 0;color:var(--ink-mute)">'+tt('Nothing found.','Ничего не найдено.')+'</p>';
+      cntEl.textContent=tt('Showing ','Показано ')+f.length+tt(' of ',' из ')+TRACKS.length+tt(' tracks',' треков');
       paintProgress();
     }
     listEl.addEventListener('click',function(e){
@@ -943,25 +980,23 @@
         if(seen.add(k)){ row.classList.add('done'); b.setAttribute('aria-pressed','true'); b.textContent='✓'; paintProgress(); }
       }
     });
+    filtEl.addEventListener('click',function(e){
+      const b=e.target.closest('.tb-filt'); if(!b) return;
+      filtEl.querySelectorAll('.tb-filt').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active'); active=b.dataset.f; render();
+    });
     searchEl.addEventListener('input',function(e){ q=e.target.value.trim().toLowerCase(); render(); });
+    // смена языка — перестраиваем подпись, фильтры и список (галочка/язык — данные не трогаем)
+    document.addEventListener('i18n:change',function(){ if(!loaded) return; subEl.textContent=subText(); buildFilters(); render(); });
     fetch('./data.json',{cache:'no-store'})
       .then(function(r){ if(!r.ok) throw new Error('data.json '+r.status); return r.json(); })
       .then(function(d){
-        TRACKS=d.tracks||[];
-        subEl.textContent=TRACKS.length+' записей — соло, фиты, фристайлы, скиты и утечки, 1988—2025. ▶ ведёт на поиск YouTube, галочка отмечает прослушанное (хранится в этом браузере).';
-        const present=ORDER.filter(function(t){ return t==='Все'||TRACKS.some(function(x){return x.type===t;}); });
-        filtEl.innerHTML=present.map(function(t,i){
-          const c=(t==='Все')?TRACKS.length:TRACKS.filter(function(x){return x.type===t;}).length;
-          return '<button class="tb-filt'+(i===0?' active':'')+'" data-f="'+t+'">'+t+' '+c+'</button>';
-        }).join('');
-        filtEl.addEventListener('click',function(e){
-          const b=e.target.closest('.tb-filt'); if(!b) return;
-          filtEl.querySelectorAll('.tb-filt').forEach(function(x){x.classList.remove('active');});
-          b.classList.add('active'); active=b.dataset.f; render();
-        });
+        TRACKS=d.tracks||[]; loaded=true;
+        subEl.textContent=subText();
+        buildFilters();
         render();
       })
-      .catch(function(err){ subEl.textContent='Не удалось загрузить базу треков.'; if(cntEl) cntEl.textContent=''; console.error(err); });
+      .catch(function(err){ subEl.textContent=tt('Couldn\'t load the track vault.','Не удалось загрузить базу треков.'); if(cntEl) cntEl.textContent=''; console.error(err); });
   })();
 
   // ── YouTube lightbox (клик по треку/трейлеру с data-yt) ──
@@ -973,6 +1008,7 @@
     const closeBtn=modal.querySelector('.ytmodal-close');
     let lastFocus=null;
     function titleFor(a){
+      if(a.dataset.titleEn||a.dataset.titleRu) return tt(a.dataset.titleEn||a.dataset.titleRu, a.dataset.titleRu||a.dataset.titleEn);
       if(a.dataset.title) return a.dataset.title;
       const tn=a.querySelector('.tname');
       if(tn){ const c=tn.cloneNode(true); c.querySelectorAll('.topt,.tyr').forEach(x=>x.remove()); return c.textContent.replace(/\s+/g,' ').trim(); }

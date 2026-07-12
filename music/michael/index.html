@@ -1,9 +1,11 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MICHAEL — Гид к фильму</title>
+<title>MICHAEL — A Guide to the Film</title>
+<script>try{var _l=localStorage.getItem('rensite:lang');if(_l==='ru'||_l==='en')document.documentElement.lang=_l;}catch(e){}</script>
+<meta name="description" content="A guided route through Michael Jackson's music and films — the eras, the short films, and the biopic — to get you up to speed before the movie.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
@@ -290,6 +292,12 @@
     .tl-text,.tl-item:nth-child(even) .tl-text{text-align:left;}
     .poster{max-width:160px;}
   }
+  /* language toggle (i18n.js) — в тон золотой палитре «King of Pop» */
+  .lang-tg{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--ink-mute);}
+  .lang-tg button{color:var(--ink-mute);opacity:.7;}
+  .lang-tg button[aria-pressed="true"]{color:var(--gold-bright);opacity:1;background:transparent;}
+  .lang-tg button:hover{color:var(--gold);opacity:1;}
+  .lang-tg .sep{color:var(--ink-mute);opacity:.45;}
   /* ── Плавные переходы между страницами (cross-document View Transitions) ── */
   @view-transition{navigation:auto}
   @media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
@@ -299,127 +307,128 @@
 
 <header class="topbar">
   <div class="container topbar-inner">
-    <a class="wordmark" href="/music/">← музыка</a>
+    <a class="wordmark" href="/music/" data-ru="← музыка">← music</a>
+    <span data-lang-toggle></span>
   </div>
 </header>
 
 <div class="progress" id="progress"></div>
 
-<nav class="dotnav" aria-label="Навигация по разделам">
-  <a href="#top" data-sec="top"><span class="dn-label">Пролог</span><span class="dn-dot"></span></a>
-  <a href="#eras" data-sec="eras"><span class="dn-label">Эпохи</span><span class="dn-dot"></span></a>
-  <a href="#watch" data-sec="watch"><span class="dn-label">Кино</span><span class="dn-dot"></span></a>
-  <a href="#film" data-sec="film"><span class="dn-label">Фильм</span><span class="dn-dot"></span></a>
+<nav class="dotnav" aria-label="Section navigation" data-ru-aria-label="Навигация по разделам">
+  <a href="#top" data-sec="top"><span class="dn-label" data-ru="Пролог">Prologue</span><span class="dn-dot"></span></a>
+  <a href="#eras" data-sec="eras"><span class="dn-label" data-ru="Эпохи">Eras</span><span class="dn-dot"></span></a>
+  <a href="#watch" data-sec="watch"><span class="dn-label" data-ru="Кино">Watch</span><span class="dn-dot"></span></a>
+  <a href="#film" data-sec="film"><span class="dn-label" data-ru="Фильм">The Film</span><span class="dn-dot"></span></a>
 </nav>
 
 <section class="manifesto container" id="top">
-  <p class="serif reveal">Майкл пел <em>дыханием</em>, акцентами, паузами. Слушай по порядку — и услышишь, как с каждой эпохой голос становится <em>чем-то большим</em>, чем просто голос.</p>
+  <p class="serif reveal" data-ru-html="Майкл пел <em>дыханием</em>, акцентами, паузами. Слушай по порядку — и услышишь, как с каждой эпохой голос становится <em>чем-то большим</em>, чем просто голос.">Michael sang with his <em>breath</em>, his accents, his silences. Listen in order, and you'll hear the voice become <em>something more</em> than a voice with every era.</p>
 </section>
 
 <!-- ERAS WITH FULL TRACKLISTS -->
 <section class="eras container" id="eras">
   <div class="sec-head reveal">
     <span class="sec-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="20"/><circle cx="24" cy="24" r="6"/><circle cx="24" cy="24" r="1.5" fill="currentColor"/></svg></span>
-    <span class="mono">Что слушать · по порядку</span>
-    <h2 class="serif">Четыре эпохи, один путь</h2>
+    <span class="mono" data-ru="Что слушать · по порядку">What to listen to · in order</span>
+    <h2 class="serif" data-ru="Четыре эпохи, один путь">Four eras, one path</h2>
   </div>
 
   <!-- Era 1 -->
   <div class="era reveal">
     <div class="era-top"><span class="era-yr">1969</span><span class="era-label">· Motown</span></div><span class="era-name serif">The Jackson 5</span>
-    <p class="era-desc">Детство и прорыв. Голос 10-летнего ребёнка, что шокировал взрослых. Чистая формула Motown-попа — фундамент всего.</p>
+    <p class="era-desc" data-ru="Детство и прорыв. Голос 10-летнего ребёнка, что шокировал взрослых. Чистая формула Motown-попа — фундамент всего.">Childhood and breakthrough. The voice of a 10-year-old that stunned grown adults. Pure Motown-pop formula — the foundation of it all.</p>
     <div class="tracklist">
-      <a class="trk" data-yt="N9U9A4_cgyI" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+Who%27s+Lovin%27+You"><span class="tnum">01</span><span class="tmid"><span class="tname">Who's Lovin' You</span><span class="tnote">в 10 лет спел блюз о потерянной любви так, что взрослые не поверили возрасту</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="y2bVIBwpCTA" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+I+Want+You+Back+official"><span class="tnum">02</span><span class="tmid"><span class="tname">I Want You Back</span><span class="tnote">дебютный сингл J5 и №1 — эталон Motown-попа, который до сих пор копируют</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="ho7796-au8U" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+ABC+official"><span class="tnum">03</span><span class="tmid"><span class="tname">ABC</span><span class="tnote">скинул The Beatles с вершины чарта — чистый детский драйв</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="OkuULWqF3AY" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+The+Love+You+Save"><span class="tnum">04</span><span class="tmid"><span class="tname">The Love You Save</span><span class="tnote">третий №1 подряд — рекорд, закрепивший J5 как феномен</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="Bjb5vhazFio" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+I%27ll+Be+There"><span class="tnum">05</span><span class="tmid"><span class="tname">I'll Be There</span><span class="tnote">четвёртый №1 — первая баллада, доказавшая, что он не только танцор</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="5Io8tfFDQJo" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+Never+Can+Say+Goodbye"><span class="tnum">06</span><span class="tmid"><span class="tname">Never Can Say Goodbye</span><span class="tnote">голос взрослеет на глазах — мостик к сольной карьере</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="cUpSiISuCd8" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Ben+1972"><span class="tnum">07</span><span class="tmid"><span class="tname">Ben</span><span class="tnote">первый сольный №1 и номинация на «Оскар» — в 14 лет</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="N9U9A4_cgyI" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+Who%27s+Lovin%27+You"><span class="tnum">01</span><span class="tmid"><span class="tname">Who's Lovin' You</span><span class="tnote" data-ru="в 10 лет спел блюз о потерянной любви так, что взрослые не поверили возрасту">At ten, he sang the blues about lost love so convincingly that adults refused to believe his age</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="y2bVIBwpCTA" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+I+Want+You+Back+official"><span class="tnum">02</span><span class="tmid"><span class="tname">I Want You Back</span><span class="tnote" data-ru="дебютный сингл J5 и №1 — эталон Motown-попа, который до сих пор копируют">The J5's debut single and a #1 — the Motown-pop gold standard that's still copied today</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="ho7796-au8U" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+ABC+official"><span class="tnum">03</span><span class="tmid"><span class="tname">ABC</span><span class="tnote" data-ru="скинул The Beatles с вершины чарта — чистый детский драйв">Knocked The Beatles off the top of the chart — pure kid-powered drive</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="OkuULWqF3AY" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+The+Love+You+Save"><span class="tnum">04</span><span class="tmid"><span class="tname">The Love You Save</span><span class="tnote" data-ru="третий №1 подряд — рекорд, закрепивший J5 как феномен">A third #1 in a row — the record that sealed the J5 as a phenomenon</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="Bjb5vhazFio" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+I%27ll+Be+There"><span class="tnum">05</span><span class="tmid"><span class="tname">I'll Be There</span><span class="tnote" data-ru="четвёртый №1 — первая баллада, доказавшая, что он не только танцор">A fourth #1 — the first ballad, proof he was more than a dancer</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="5Io8tfFDQJo" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+Never+Can+Say+Goodbye"><span class="tnum">06</span><span class="tmid"><span class="tname">Never Can Say Goodbye</span><span class="tnote" data-ru="голос взрослеет на глазах — мостик к сольной карьере">You can hear the voice maturing in real time — a bridge to going solo</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="cUpSiISuCd8" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Ben+1972"><span class="tnum">07</span><span class="tmid"><span class="tname">Ben</span><span class="tnote" data-ru="первый сольный №1 и номинация на «Оскар» — в 14 лет">His first solo #1 and an Oscar nomination — at fourteen</span></span><span class="tplay">▶ play</span></a>
     </div>
   </div>
 
   <!-- Era 2 -->
   <div class="era reveal">
-    <div class="era-top"><span class="era-yr">1979</span><span class="era-label">· сольный взлёт</span></div><span class="era-name serif">Off the Wall</span>
-    <p class="era-desc">С продюсером Куинси Джонсом Майкл впервые зазвучал как хозяин своего звука. Чистый диско-фанк, ощущение танца.</p>
+    <div class="era-top"><span class="era-yr">1979</span><span class="era-label" data-ru="· сольный взлёт">· going solo</span></div><span class="era-name serif">Off the Wall</span>
+    <p class="era-desc" data-ru="С продюсером Куинси Джонсом Майкл впервые зазвучал как хозяин своего звука. Чистый диско-фанк, ощущение танца.">With producer Quincy Jones, Michael first sounded like the master of his own sound. Pure disco-funk, the pull of the dance floor.</p>
     <div class="tracklist">
-      <a class="trk" data-yt="MWnyCxva6bA" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Workin%27+Day+and+Night"><span class="tnum">08</span><span class="tmid"><span class="tname">Workin' Day and Night</span><span class="tnote">здесь дыхание и вздохи становятся перкуссией — ярче всего слышно фишку</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="yURRmWtbTbo" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Don%27t+Stop+%27Til+You+Get+Enough+official"><span class="tnum">09</span><span class="tmid"><span class="tname">Don't Stop 'Til You Get Enough</span><span class="tnote">первый сольный шедевр, который он спродюсировал сам — и первый Grammy</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="5X-Mrc2l1d0" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Rock+With+You+official"><span class="tnum">10</span><span class="tmid"><span class="tname">Rock With You <span class="topt">опционально</span></span><span class="tnote">эталон софт-диско — последний №1 эпохи диско вообще</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="MWnyCxva6bA" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Workin%27+Day+and+Night"><span class="tnum">08</span><span class="tmid"><span class="tname">Workin' Day and Night</span><span class="tnote" data-ru="здесь дыхание и вздохи становятся перкуссией — ярче всего слышно фишку">Here his breaths and gasps turn into percussion — the trademark comes through clearest of all</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="yURRmWtbTbo" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Don%27t+Stop+%27Til+You+Get+Enough+official"><span class="tnum">09</span><span class="tmid"><span class="tname">Don't Stop 'Til You Get Enough</span><span class="tnote" data-ru="первый сольный шедевр, который он спродюсировал сам — и первый Grammy">The first solo masterpiece he produced himself — and his first Grammy</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="5X-Mrc2l1d0" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Rock+With+You+official"><span class="tnum">10</span><span class="tmid"><span class="tname">Rock With You <span class="topt" data-ru="опционально">optional</span></span><span class="tnote" data-ru="эталон софт-диско — последний №1 эпохи диско вообще">The benchmark of soft disco — the very last #1 of the disco era</span></span><span class="tplay">▶ play</span></a>
     </div>
   </div>
 
   <!-- Era 3 -->
   <div class="era reveal">
-    <div class="era-top"><span class="era-yr">1982</span><span class="era-label">· пик мира</span></div><span class="era-name serif">Thriller</span>
-    <p class="era-desc">Самый продаваемый альбом в истории. Поп, фанк, рок и R&amp;B в идеальном балансе. Лунная походка на Motown 25 — ключевая сцена фильма.</p>
+    <div class="era-top"><span class="era-yr">1982</span><span class="era-label" data-ru="· пик мира">· global peak</span></div><span class="era-name serif">Thriller</span>
+    <p class="era-desc" data-ru="Самый продаваемый альбом в истории. Поп, фанк, рок и R&amp;B в идеальном балансе. Лунная походка на Motown 25 — ключевая сцена фильма.">The best-selling album in history. Pop, funk, rock, and R&amp;B in perfect balance. The moonwalk on Motown 25 — the film's key scene.</p>
     <div class="tracklist">
-      <a class="trk" data-yt="1XMvPTFzgVU" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Wanna+Be+Startin%27+Somethin%27+official"><span class="tnum">11</span><span class="tmid"><span class="tname">Wanna Be Startin' Somethin'</span><span class="tnote">финал «ма-ма-се» стал одним из самых узнаваемых хуков в поп-музыке</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="ElN_4vUvTPs" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Human+Nature+audio"><span class="tnum">12</span><span class="tmid"><span class="tname">Human Nature</span><span class="tnote">самая нежная вещь альбома — её потом сэмплировали в хип-хопе сотни раз</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="Zi_XLOBDo_Y" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Billie+Jean+official+video"><span class="tnum">13</span><span class="tmid"><span class="tname">Billie Jean</span><span class="tnote">дебют лунной походки на Motown 25 — момент, ставший легендой</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="oRdxUFDoQe0" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Beat+It+official+video"><span class="tnum">14</span><span class="tmid"><span class="tname">Beat It</span><span class="tnote">соло Эдди Ван Халена — взлом расового разделения на MTV</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="sO4vI8P88NM" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Thriller+audio"><span class="tnum">15</span><span class="tmid"><span class="tname">Thriller</span><span class="tnote">14-минутный клип, превративший музыкальное видео в кино</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="1XMvPTFzgVU" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Wanna+Be+Startin%27+Somethin%27+official"><span class="tnum">11</span><span class="tmid"><span class="tname">Wanna Be Startin' Somethin'</span><span class="tnote" data-ru="финал «ма-ма-се» стал одним из самых узнаваемых хуков в поп-музыке">The "ma-ma-se" finale became one of the most recognizable hooks in pop music</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="ElN_4vUvTPs" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Human+Nature+audio"><span class="tnum">12</span><span class="tmid"><span class="tname">Human Nature</span><span class="tnote" data-ru="самая нежная вещь альбома — её потом сэмплировали в хип-хопе сотни раз">The album's tenderest track — later sampled in hip-hop hundreds of times</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="Zi_XLOBDo_Y" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Billie+Jean+official+video"><span class="tnum">13</span><span class="tmid"><span class="tname">Billie Jean</span><span class="tnote" data-ru="дебют лунной походки на Motown 25 — момент, ставший легендой">The moonwalk's debut on Motown 25 — a moment that became legend</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="oRdxUFDoQe0" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Beat+It+official+video"><span class="tnum">14</span><span class="tmid"><span class="tname">Beat It</span><span class="tnote" data-ru="соло Эдди Ван Халена — взлом расового разделения на MTV">Eddie Van Halen's solo — cracking the racial divide on MTV</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="sO4vI8P88NM" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Thriller+audio"><span class="tnum">15</span><span class="tmid"><span class="tname">Thriller</span><span class="tnote" data-ru="14-минутный клип, превративший музыкальное видео в кино">A 14-minute video that turned the music video into cinema</span></span><span class="tplay">▶ play</span></a>
     </div>
   </div>
 
   <!-- We Are the World -->
   <div class="era reveal">
-    <div class="era-top"><span class="era-yr">1985</span><span class="era-label">· благотворительность</span></div><span class="era-name serif">We Are the World</span>
-    <p class="era-desc">Между Thriller и Bad — момент, когда Майкл стал не просто звездой, а голосом эпохи.</p>
+    <div class="era-top"><span class="era-yr">1985</span><span class="era-label" data-ru="· благотворительность">· charity</span></div><span class="era-name serif">We Are the World</span>
+    <p class="era-desc" data-ru="Между Thriller и Bad — момент, когда Майкл стал не просто звездой, а голосом эпохи.">Between Thriller and Bad — the moment Michael became not just a star, but the voice of an era.</p>
     <div class="tracklist">
-      <a class="trk" data-yt="9AjkUyX0rVw" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=USA+for+Africa+We+Are+the+World+official+video"><span class="tnum">16</span><span class="tmid"><span class="tname">We Are the World <span class="topt">опционально</span></span><span class="tnote">написал с Лайонелом Ричи; собрал 45 звёзд в одной студии и десятки млн $ для Африки</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="9AjkUyX0rVw" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=USA+for+Africa+We+Are+the+World+official+video"><span class="tnum">16</span><span class="tmid"><span class="tname">We Are the World <span class="topt" data-ru="опционально">optional</span></span><span class="tnote" data-ru="написал с Лайонелом Ричи; собрал 45 звёзд в одной студии и десятки млн $ для Африки">Co-written with Lionel Richie; it gathered 45 stars in one studio and tens of millions of dollars for Africa</span></span><span class="tplay">▶ play</span></a>
     </div>
   </div>
 
   <!-- Era 4 -->
   <div class="era reveal">
-    <div class="era-top"><span class="era-yr">1987</span><span class="era-label">· на пике власти</span></div><span class="era-name serif">Bad</span>
-    <p class="era-desc">Майкл — продюсер, перфекционист, хозяин сцены. Звук плотнее и жёстче. Фильм заканчивается на старте Bad World Tour.</p>
+    <div class="era-top"><span class="era-yr">1987</span><span class="era-label" data-ru="· на пике власти">· at the height of his power</span></div><span class="era-name serif">Bad</span>
+    <p class="era-desc" data-ru="Майкл — продюсер, перфекционист, хозяин сцены. Звук плотнее и жёстче. Фильм заканчивается на старте Bad World Tour.">Michael the producer, the perfectionist, the master of the stage. The sound is tighter and harder. The film ends as the Bad World Tour begins.</p>
     <div class="tracklist">
-      <a class="trk" data-yt="-DlMoJ2V6uk" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Bad+audio"><span class="tnum">17</span><span class="tmid"><span class="tname">Bad</span><span class="tnote">короткометражка Скорсезе и пять синглов-№1 с одного альбома — рекорд</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="HzZ_urpj4As" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+The+Way+You+Make+Me+Feel+official"><span class="tnum">18</span><span class="tmid"><span class="tname">The Way You Make Me Feel <span class="topt">опционально</span></span><span class="tnote">свинг и фирменные восклицания — мастер-класс по груву</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="h_D3VFfhvs4" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Smooth+Criminal+official+video"><span class="tnum">19</span><span class="tmid"><span class="tname">Smooth Criminal <span class="topt">опционально</span></span><span class="tnote">антигравитационный наклон под 45° — Майкл его запатентовал</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="PivWY9wn5ps" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Man+in+the+Mirror+official"><span class="tnum">20</span><span class="tmid"><span class="tname">Man in the Mirror <span class="topt">опционально</span></span><span class="tnote">госпел-кульминация — его любимое живое исполнение</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="-DlMoJ2V6uk" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Bad+audio"><span class="tnum">17</span><span class="tmid"><span class="tname">Bad</span><span class="tnote" data-ru="короткометражка Скорсезе и пять синглов-№1 с одного альбома — рекорд">A Scorsese short film and five #1 singles from a single album — a record</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="HzZ_urpj4As" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+The+Way+You+Make+Me+Feel+official"><span class="tnum">18</span><span class="tmid"><span class="tname">The Way You Make Me Feel <span class="topt" data-ru="опционально">optional</span></span><span class="tnote" data-ru="свинг и фирменные восклицания — мастер-класс по груву">Swing and his signature yelps — a master class in groove</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="h_D3VFfhvs4" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Smooth+Criminal+official+video"><span class="tnum">19</span><span class="tmid"><span class="tname">Smooth Criminal <span class="topt" data-ru="опционально">optional</span></span><span class="tnote" data-ru="антигравитационный наклон под 45° — Майкл его запатентовал">The anti-gravity 45° lean — Michael patented it</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="PivWY9wn5ps" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Man+in+the+Mirror+official"><span class="tnum">20</span><span class="tmid"><span class="tname">Man in the Mirror <span class="topt" data-ru="опционально">optional</span></span><span class="tnote" data-ru="госпел-кульминация — его любимое живое исполнение">A gospel climax — his favorite song to perform live</span></span><span class="tplay">▶ play</span></a>
     </div>
   </div>
 
   <!-- Also in the film -->
   <div class="era era-film reveal">
-    <div class="era-top"><span class="era-yr">1966–95</span><span class="era-label">· в фильме</span></div><span class="era-name serif">Ещё звучит в фильме</span>
+    <div class="era-top"><span class="era-yr">1966–95</span><span class="era-label" data-ru="· в фильме">· in the film</span></div><span class="era-name serif" data-ru="Ещё звучит в фильме">Also heard in the film</span>
     <details class="spoiler">
-      <summary><span class="spoiler-warn">⚠ спойлеры: что и в какой сцене</span><span class="spoiler-cta">показать <span class="spoiler-caret">▾</span></span></summary>
-      <p class="era-desc">Не вошло в саундтрек-альбом, но звучит в самом фильме — акапеллой, фоном или в финальных титрах.</p>
+      <summary><span class="spoiler-warn" data-ru="⚠ спойлеры: что и в какой сцене">⚠ spoilers: which song, which scene</span><span class="spoiler-cta" data-ru-html="показать <span class=&quot;spoiler-caret&quot;>▾</span>">show <span class="spoiler-caret">▾</span></span></summary>
+      <p class="era-desc" data-ru="Не вошло в саундтрек-альбом, но звучит в самом фильме — акапеллой, фоном или в финальных титрах.">Not on the soundtrack album, but heard in the film itself — a cappella, in the background, or over the closing credits.</p>
       <div class="tracklist">
-      <a class="trk" data-yt="9f4OIx5iSOU" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+Big+Boy+1968"><span class="tmid"><span class="tname">Big Boy <span class="trole">интро</span></span><span class="tnote">первая песня фильма — репетиция J5 в 1966-м, момент прощания с детством</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="TOy05ESF8f8" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+You%27ve+Changed+live"><span class="tmid"><span class="tname">You've Changed <span class="trole">акапелла</span></span><span class="tnote">джазовый стандарт — Майкл поёт его живьём в клубе (1967), не студийный оригинал MJ</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="z-OteAgvINc" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Rockin%27+Robin+1972"><span class="tmid"><span class="tname">Rockin' Robin <span class="trole">фоном</span></span><span class="tnote">сольный хит 1972-го — звучит, когда Майкл заводит шимпанзе Бабблза</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="7IsjqR1IlvE" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=The+Jacksons+Enjoy+Yourself+1976"><span class="tmid"><span class="tname">Enjoy Yourself <span class="trole">фоном</span></span><span class="tnote">The Jacksons, 1976 — сцена, где Майкл с Биллом покупают игрушки</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="nqxVMLVe62U" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=The+Jacksons+Blame+It+On+The+Boogie+1978"><span class="tmid"><span class="tname">Blame It On The Boogie <span class="trole">фоном</span></span><span class="tnote">The Jacksons, 1978 — Майкл и Бабблз играют в Twister</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="re3MOe1SBOs" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+I+Can%27t+Help+It+audio"><span class="tmid"><span class="tname">I Can't Help It <span class="trole">фоном</span></span><span class="tnote">Off the Wall, 1979 — перед записью «Don't Stop 'Til You Get Enough» с Куинси</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="8vfrbJZS1gw" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=The+Jacksons+This+Place+Hotel+Heartbreak+Hotel+live+1981"><span class="tmid"><span class="tname">This Place Hotel <span class="trole">титры</span></span><span class="tnote">The Jacksons, 1980 — в финальных титрах (живьём, тур 1981)</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="puQEcN_iI9o" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Childhood+1995"><span class="tmid"><span class="tname">Childhood <span class="trole">фоном</span></span><span class="tnote">1995 — звучит, когда Майкл читает «Питера Пэна» Бабблзу</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="e-J7_mu1bKo" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackie+Wilson+Doggin%27+Around"><span class="tmid"><span class="tname">Doggin' Around <span class="trole">фоном</span></span><span class="tnote">песня Джеки Уилсона (1960) — фоном по ходу фильма; источники расходятся, чьё исполнение</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="9f4OIx5iSOU" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackson+5+Big+Boy+1968"><span class="tmid"><span class="tname">Big Boy <span class="trole" data-ru="интро">intro</span></span><span class="tnote" data-ru="первая песня фильма — репетиция J5 в 1966-м, момент прощания с детством">The film's first song — a J5 rehearsal in 1966, the moment of parting with childhood</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="TOy05ESF8f8" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+You%27ve+Changed+live"><span class="tmid"><span class="tname">You've Changed <span class="trole" data-ru="акапелла">a cappella</span></span><span class="tnote" data-ru="джазовый стандарт — Майкл поёт его живьём в клубе (1967), не студийный оригинал MJ">A jazz standard — Michael sings it live in a club (1967), not an MJ studio original</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="z-OteAgvINc" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Rockin%27+Robin+1972"><span class="tmid"><span class="tname">Rockin' Robin <span class="trole" data-ru="фоном">background</span></span><span class="tnote" data-ru="сольный хит 1972-го — звучит, когда Майкл заводит шимпанзе Бабблза">His 1972 solo hit — plays when Michael gets his chimp, Bubbles</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="7IsjqR1IlvE" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=The+Jacksons+Enjoy+Yourself+1976"><span class="tmid"><span class="tname">Enjoy Yourself <span class="trole" data-ru="фоном">background</span></span><span class="tnote" data-ru="The Jacksons, 1976 — сцена, где Майкл с Биллом покупают игрушки">The Jacksons, 1976 — the scene where Michael and Bill go toy shopping</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="nqxVMLVe62U" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=The+Jacksons+Blame+It+On+The+Boogie+1978"><span class="tmid"><span class="tname">Blame It On The Boogie <span class="trole" data-ru="фоном">background</span></span><span class="tnote" data-ru="The Jacksons, 1978 — Майкл и Бабблз играют в Twister">The Jacksons, 1978 — Michael and Bubbles play Twister</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="re3MOe1SBOs" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+I+Can%27t+Help+It+audio"><span class="tmid"><span class="tname">I Can't Help It <span class="trole" data-ru="фоном">background</span></span><span class="tnote" data-ru="Off the Wall, 1979 — перед записью «Don't Stop 'Til You Get Enough» с Куинси">Off the Wall, 1979 — right before recording "Don't Stop 'Til You Get Enough" with Quincy</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="8vfrbJZS1gw" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=The+Jacksons+This+Place+Hotel+Heartbreak+Hotel+live+1981"><span class="tmid"><span class="tname">This Place Hotel <span class="trole" data-ru="титры">credits</span></span><span class="tnote" data-ru="The Jacksons, 1980 — в финальных титрах (живьём, тур 1981)">The Jacksons, 1980 — over the closing credits (live, 1981 tour)</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="puQEcN_iI9o" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Childhood+1995"><span class="tmid"><span class="tname">Childhood <span class="trole" data-ru="фоном">background</span></span><span class="tnote" data-ru="1995 — звучит, когда Майкл читает «Питера Пэна» Бабблзу">1995 — plays as Michael reads "Peter Pan" to Bubbles</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="e-J7_mu1bKo" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Jackie+Wilson+Doggin%27+Around"><span class="tmid"><span class="tname">Doggin' Around <span class="trole" data-ru="фоном">background</span></span><span class="tnote" data-ru="песня Джеки Уилсона (1960) — фоном по ходу фильма; источники расходятся, чьё исполнение">A Jackie Wilson song (1960) — in the background through the film; sources disagree on whose recording it is</span></span><span class="tplay">▶ play</span></a>
     </div>
     </details>
   </div>
 
   <!-- Bonus -->
   <div class="era reveal">
-    <div class="era-top"><span class="era-yr">1991+</span><span class="era-label">· deep cuts</span></div><span class="era-name serif">За рамками фильма</span>
-    <p class="era-desc">Не вошло в байопик, но обязательно к прослушиванию — поздний Майкл.</p>
+    <div class="era-top"><span class="era-yr">1991+</span><span class="era-label">· deep cuts</span></div><span class="era-name serif" data-ru="За рамками фильма">Beyond the film</span>
+    <p class="era-desc" data-ru="Не вошло в байопик, но обязательно к прослушиванию — поздний Майкл.">Didn't make the biopic, but essential listening — late-era Michael.</p>
     <div class="tracklist">
-      <a class="trk" data-yt="F2AitTPI5U0" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Black+or+White+official+video"><span class="tnum">21</span><span class="tmid"><span class="tname">Black or White <span class="topt">опционально</span></span><span class="tnote">Dangerous · клип с морфингом лиц, который смотрел весь мир одновременно</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="LeiFF0gvqcc" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Remember+the+Time+official+video"><span class="tnum">22</span><span class="tmid"><span class="tname">Remember the Time <span class="topt">опционально</span></span><span class="tnote">Dangerous · нью-джек-свинг Тедди Райли — звук нового десятилетия</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="QNJL6nfu__Q" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+They+Don%27t+Care+About+Us+official"><span class="tnum">23</span><span class="tmid"><span class="tname">They Don't Care About Us <span class="topt">опционально</span></span><span class="tnote">HIStory · самый жёсткий протест-ритм в его карьере</span></span><span class="tplay">▶ play</span></a>
-      <a class="trk" data-yt="XAi3VTSdTxU" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Earth+Song"><span class="tnum">24</span><span class="tmid"><span class="tname">Earth Song <span class="topt">опционально</span></span><span class="tnote">HIStory · грандиозная эко-баллада, №1 в Британии на Рождество</span></span><span class="tplay">▶ play</span></a>    </div>
+      <a class="trk" data-yt="F2AitTPI5U0" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Black+or+White+official+video"><span class="tnum">21</span><span class="tmid"><span class="tname">Black or White <span class="topt" data-ru="опционально">optional</span></span><span class="tnote" data-ru="Dangerous · клип с морфингом лиц, который смотрел весь мир одновременно">Dangerous · the face-morphing video the whole world watched at once</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="LeiFF0gvqcc" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Remember+the+Time+official+video"><span class="tnum">22</span><span class="tmid"><span class="tname">Remember the Time <span class="topt" data-ru="опционально">optional</span></span><span class="tnote" data-ru="Dangerous · нью-джек-свинг Тедди Райли — звук нового десятилетия">Dangerous · Teddy Riley's new jack swing — the sound of a new decade</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="QNJL6nfu__Q" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+They+Don%27t+Care+About+Us+official"><span class="tnum">23</span><span class="tmid"><span class="tname">They Don't Care About Us <span class="topt" data-ru="опционально">optional</span></span><span class="tnote" data-ru="HIStory · самый жёсткий протест-ритм в его карьере">HIStory · the hardest protest rhythm of his career</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="XAi3VTSdTxU" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Earth+Song"><span class="tnum">24</span><span class="tmid"><span class="tname">Earth Song <span class="topt" data-ru="опционально">optional</span></span><span class="tnote" data-ru="HIStory · грандиозная эко-баллада, №1 в Британии на Рождество">HIStory · a sweeping eco-ballad, #1 in Britain at Christmas</span></span><span class="tplay">▶ play</span></a>    </div>
   </div>
 
   <!-- Smile — closing "P.S." era -->
   <div class="era reveal">
-    <div class="era-top"><span class="era-yr">P.S.</span><span class="era-label">· на десерт</span></div><span class="era-name serif">Smile</span>
+    <div class="era-top"><span class="era-yr">P.S.</span><span class="era-label" data-ru="· на десерт">· for dessert</span></div><span class="era-name serif">Smile</span>
     <div class="tracklist">
-      <a class="trk" data-yt="tQTHBlf-Tvw" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Smile+Charlie+Chaplin+HIStory"><span class="tnum">♪</span><span class="tmid"><span class="tname">Smile</span><span class="tnote">кавер композиции Чарли Чаплина (Modern Times, 1936) — любимая песня Майкла</span></span><span class="tplay">▶ play</span></a>
+      <a class="trk" data-yt="tQTHBlf-Tvw" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Smile+Charlie+Chaplin+HIStory"><span class="tnum">♪</span><span class="tmid"><span class="tname">Smile</span><span class="tnote" data-ru="кавер композиции Чарли Чаплина (Modern Times, 1936) — любимая песня Майкла">A cover of Charlie Chaplin's composition (Modern Times, 1936) — Michael's favorite song</span></span><span class="tplay">▶ play</span></a>
     </div>
   </div>
 </section>
@@ -428,7 +437,7 @@
 <section class="chapters container" id="watch">
   <div class="sec-head reveal">
     <span class="sec-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="12" width="38" height="26" rx="2"/><path d="M5 18h38"/><circle cx="11" cy="15" r="1.2" fill="currentColor"/><path d="M21 22l9 5-9 5z" fill="currentColor" stroke="none"/></svg></span>
-    <h2 class="serif">Что посмотреть</h2>
+    <h2 class="serif" data-ru="Что посмотреть">What to watch</h2>
   </div>
 
   <div class="timeline">
@@ -436,40 +445,40 @@
 
     <div class="tl-item reveal">
       <span class="tl-dot"></span>
-      <div class="tl-poster-cell"><div class="poster"><img src="./posters/thriller.jpg" alt="Постер короткометражного фильма «Thriller» (1983)" loading="lazy" width="600" height="900"></div></div>
-      <div class="tl-text"><div class="meta-line">1983 · короткометражка</div><h3>Thriller</h3><p>14-минутный зомби-хоррор-мюзикл Джона Лэндиса с гримом Рика Бейкера и голосом Винсента Прайса. Первый клип в Национальном реестре фильмов США.</p><a class="watch" data-yt="sOnqjkJTMaA" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Thriller+short+film+1983">▶ Смотреть</a></div>
+      <div class="tl-poster-cell"><div class="poster"><img src="./posters/thriller.jpg" alt="Poster for the short film 'Thriller' (1983)" loading="lazy" width="600" height="900"></div></div>
+      <div class="tl-text"><div class="meta-line" data-ru="1983 · короткометражка">1983 · short film</div><h3>Thriller</h3><p data-ru="14-минутный зомби-хоррор-мюзикл Джона Лэндиса с гримом Рика Бейкера и голосом Винсента Прайса. Первый клип в Национальном реестре фильмов США.">A 14-minute zombie-horror musical by John Landis, with makeup by Rick Baker and narration by Vincent Price. The first music video in the U.S. National Film Registry.</p><a class="watch" data-yt="sOnqjkJTMaA" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Thriller+short+film+1983" data-ru="▶ Смотреть">▶ Watch</a></div>
     </div>
 
     <div class="tl-item reveal">
       <span class="tl-dot"></span>
-      <div class="tl-poster-cell"><div class="poster"><img src="./posters/bad.jpeg" alt="Обложка альбома и тура «Bad» (1987)" loading="lazy" width="600" height="900"></div></div>
-      <div class="tl-text"><div class="meta-line">1987 · режиссёр Скорсезе</div><h3>Bad</h3><p>18-минутная короткометражка Мартина Скорсезе в нью-йоркском метро. Чёрно-белое вступление переходит в цвет; в ролях молодой Уэсли Снайпс.</p><a class="watch" data-yt="MmOZ6ojey3s" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Bad+short+film+Martin+Scorsese+1987">▶ Смотреть</a></div>
+      <div class="tl-poster-cell"><div class="poster"><img src="./posters/bad.jpeg" alt="Cover art for the 'Bad' album and tour (1987)" loading="lazy" width="600" height="900"></div></div>
+      <div class="tl-text"><div class="meta-line" data-ru="1987 · режиссёр Скорсезе">1987 · directed by Scorsese</div><h3>Bad</h3><p data-ru="18-минутная короткометражка Мартина Скорсезе в нью-йоркском метро. Чёрно-белое вступление переходит в цвет; в ролях молодой Уэсли Снайпс.">An 18-minute Martin Scorsese short set in the New York subway. A black-and-white opening shifts into color; a young Wesley Snipes co-stars.</p><a class="watch" data-yt="MmOZ6ojey3s" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Bad+short+film+Martin+Scorsese+1987" data-ru="▶ Смотреть">▶ Watch</a></div>
     </div>
 
     <div class="tl-item reveal">
       <span class="tl-dot"></span>
-      <div class="tl-poster-cell"><div class="poster"><img src="./posters/moonwalker.jpg" alt="Постер фильма «Moonwalker» (1988)" loading="lazy" width="600" height="900"></div></div>
-      <div class="tl-text"><div class="meta-line">1988 · фильм-эталон</div><h3>Moonwalker</h3><p>Антология-мюзикл эпохи Bad — тот самый формат «клип как мини-кино». Центр фильма — Smooth Criminal с Джо Пеши и легендарный наклон под 45°, который Майкл запатентовал. С этого стоит начать.</p><a class="watch" data-yt="-TSswR5Mnho" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Moonwalker+1988+Michael+Jackson+film">▶ Смотреть</a></div>
+      <div class="tl-poster-cell"><div class="poster"><img src="./posters/moonwalker.jpg" alt="Poster for the film 'Moonwalker' (1988)" loading="lazy" width="600" height="900"></div></div>
+      <div class="tl-text"><div class="meta-line" data-ru="1988 · фильм-эталон">1988 · the definitive film</div><h3>Moonwalker</h3><p data-ru="Антология-мюзикл эпохи Bad — тот самый формат «клип как мини-кино». Центр фильма — Smooth Criminal с Джо Пеши и легендарный наклон под 45°, который Майкл запатентовал. С этого стоит начать.">An anthology musical from the Bad era — the definitive "video as mini-movie" format. At its center: Smooth Criminal, with Joe Pesci and the legendary 45° lean Michael patented. This is where to start.</p><a class="watch" data-yt="-TSswR5Mnho" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Moonwalker+1988+Michael+Jackson+film" data-ru="▶ Смотреть">▶ Watch</a></div>
     </div>
 
     <div class="tl-item reveal">
       <span class="tl-dot"></span>
-      <div class="tl-poster-cell"><div class="poster"><img src="./posters/remember-the-time.jpg" alt="Постер короткометражного фильма «Remember the Time» (1992)" loading="lazy" width="600" height="900"></div></div>
-      <div class="tl-text"><div class="meta-line">1992 · Древний Египет <span class="topt">опционально</span></div><h3>Remember the Time</h3><p>Мини-фильм Джона Синглтона. Фараон — Эдди Мёрфи, царица — Иман, в кадре Мэджик Джонсон. Майкл рассыпается в песок в финале.</p><a class="watch" data-yt="LeiFF0gvqcc" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Remember+the+Time+short+film+Eddie+Murphy">▶ Смотреть</a></div>
+      <div class="tl-poster-cell"><div class="poster"><img src="./posters/remember-the-time.jpg" alt="Poster for the short film 'Remember the Time' (1992)" loading="lazy" width="600" height="900"></div></div>
+      <div class="tl-text"><div class="meta-line" data-ru-html="1992 · Древний Египет <span class=&quot;topt&quot;>опционально</span>">1992 · Ancient Egypt <span class="topt">optional</span></div><h3>Remember the Time</h3><p data-ru="Мини-фильм Джона Синглтона. Фараон — Эдди Мёрфи, царица — Иман, в кадре Мэджик Джонсон. Майкл рассыпается в песок в финале.">A short film by John Singleton. Eddie Murphy plays the pharaoh, Iman the queen, with Magic Johnson on screen. Michael crumbles into sand in the finale.</p><a class="watch" data-yt="LeiFF0gvqcc" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Remember+the+Time+short+film+Eddie+Murphy" data-ru="▶ Смотреть">▶ Watch</a></div>
     </div>
 
     <div class="tl-item tl-item-last reveal">
       <span class="tl-dot"></span>
-      <div class="tl-poster-cell"><div class="poster"><img src="./posters/ghost.jpg" alt="Постер короткометражного фильма «Ghosts» (1996)" loading="lazy" width="600" height="900"></div></div>
-      <div class="tl-text"><div class="meta-line">1996 · карта в рукаве <span class="topt">опционально</span></div><h3>Ghosts</h3><p>Почти 40-минутный фильм-мюзикл, сценарий Майкла со Стивеном Кингом, режиссёр — гримёр Стэн Уинстон. «Расширенный Moonwalker», мало кто его видел.</p><a class="watch" data-yt="TEet4nn2G_8" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Ghosts+1996+full+film+Stephen+King">▶ Смотреть</a></div>
+      <div class="tl-poster-cell"><div class="poster"><img src="./posters/ghost.jpg" alt="Poster for the short film 'Ghosts' (1996)" loading="lazy" width="600" height="900"></div></div>
+      <div class="tl-text"><div class="meta-line" data-ru-html="1996 · карта в рукаве <span class=&quot;topt&quot;>опционально</span>">1996 · an ace up the sleeve <span class="topt">optional</span></div><h3>Ghosts</h3><p data-ru="Почти 40-минутный фильм-мюзикл, сценарий Майкла со Стивеном Кингом, режиссёр — гримёр Стэн Уинстон. «Расширенный Moonwalker», мало кто его видел.">A nearly 40-minute musical film, written by Michael with Stephen King and directed by makeup artist Stan Winston. A "Moonwalker, extended" that few people have seen.</p><a class="watch" data-yt="TEet4nn2G_8" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+Jackson+Ghosts+1996+full+film+Stephen+King" data-ru="▶ Смотреть">▶ Watch</a></div>
     </div>
 
     <div class="tl-finale" id="film">
       <span class="tl-finale-dot"></span>
-      <div class="finale-poster"><img src="./posters/micheal.jpeg" alt="Постер игрового фильма «Michael» (2025)" loading="lazy" width="600" height="900"></div>
-      <h3 class="finale-title serif">Наконец вы добрались</h3>
-      <p class="finale-text">Игровой фильм Антуана Фукуа охватывает путь от Jackson 5 до Bad World Tour. Всё, что ты только что прошёл по таймлайну, оживёт на экране — и каждая отсылка будет на месте.</p>
-      <p class="finale-kicker"><button type="button" class="fk-big fk-play" aria-pressed="false" aria-label="Проиграть отрывок «Wanna Be Startin' Somethin'»">«Wanna Be Startin' Somethin'»<span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button></p>
+      <div class="finale-poster"><img src="./posters/micheal.jpeg" alt="Poster for the feature film 'Michael' (2025)" loading="lazy" width="600" height="900"></div>
+      <h3 class="finale-title serif" data-ru="Наконец вы добрались">You've finally made it</h3>
+      <p class="finale-text" data-ru="Игровой фильм Антуана Фукуа охватывает путь от Jackson 5 до Bad World Tour. Всё, что ты только что прошёл по таймлайну, оживёт на экране — и каждая отсылка будет на месте.">Antoine Fuqua's feature film traces the path from the Jackson 5 to the Bad World Tour. Everything you just walked through on the timeline comes alive on screen — and every reference lands where it should.</p>
+      <p class="finale-kicker"><button type="button" class="fk-big fk-play" aria-pressed="false" aria-label="Play a clip of «Wanna Be Startin' Somethin'»" data-ru-aria-label="Проиграть отрывок «Wanna Be Startin' Somethin'»">«Wanna Be Startin' Somethin'»<span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button></p>
       <audio id="wbss-audio" src="./Audio/wbssmth.mp3" preload="auto"></audio>
     </div>
 
@@ -479,37 +488,43 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-glyph" aria-hidden="true">MJ</div>
-    <p class="footer-mark">MICHAEL · ГИД</p>
-    <p class="footer-tag">Маршрут сквозь музыку и кино Майкла Джексона — чтобы быть в теме.</p>
+    <p class="footer-mark" data-ru="MICHAEL · ГИД">MICHAEL · GUIDE</p>
+    <p class="footer-tag" data-ru="Маршрут сквозь музыку и кино Майкла Джексона — чтобы быть в теме.">A route through Michael Jackson's music and films — so you're in the know.</p>
     <div class="footer-links">
-      <a target="_blank" rel="noopener" href="https://www.youtube.com/@MichaelJackson">Оф. канал YouTube</a>
-      <a data-yt="3zOLzsbOleM" data-title="Трейлер «Michael» (2026)" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+2026+film+trailer">Трейлер фильма</a>
-      <a href="/music/jackie-chan/">Гид: Jackie Chan</a>
-      <a href="/music/linkin-park/">Гид: Linkin Park</a>
+      <a target="_blank" rel="noopener" href="https://www.youtube.com/@MichaelJackson" data-ru="Оф. канал YouTube">Official YouTube channel</a>
+      <a data-yt="3zOLzsbOleM" data-title="Michael (2026) — Trailer" data-title-ru="Трейлер «Michael» (2026)" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Michael+2026+film+trailer" data-ru="Трейлер фильма">Film trailer</a>
+      <a href="/music/jackie-chan/" data-ru="Гид: Jackie Chan">Guide: Jackie Chan</a>
+      <a href="/music/linkin-park/" data-ru="Гид: Linkin Park">Guide: Linkin Park</a>
     </div>
     <p class="footer-fine">King of Pop · 1958—2009</p>
-    <p class="footer-note">Гид живой и наверняка неидеальный. Нашли ошибку, спорный факт или трек, который must — напишите <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>, поправим вместе. Спасибо, что уделили время ♪</p>
-    <p class="footer-disc">Все права на оригинальные произведения — музыку, фильмы и изображения постеров — принадлежат их правообладателям. Этот сайт и подборка — независимый некоммерческий фан-проект автора (© 2026 rensite), не связанный с правообладателями.</p>
+    <p class="footer-note" data-ru-html="Гид живой и наверняка неидеальный. Нашли ошибку, спорный факт или трек, который must — напишите <a href=&quot;https://t.me/renman&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>@renman</a>, поправим вместе. Спасибо, что уделили время ♪">This guide is a living thing and surely imperfect. Found a mistake, a debatable fact, or a track that's a must — write to <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a> and we'll fix it together. Thanks for taking the time ♪</p>
+    <p class="footer-disc" data-ru="Все права на оригинальные произведения — музыку, фильмы и изображения постеров — принадлежат их правообладателям. Этот сайт и подборка — независимый некоммерческий фан-проект автора (© 2026 rensite), не связанный с правообладателями.">All rights to the original works — the music, the films, and the poster images — belong to their respective rights holders. This site and its selection are an independent, non-commercial fan project by the author (© 2026 rensite), unaffiliated with the rights holders.</p>
   </div>
 </footer>
 
-<div class="ytmodal" id="ytmodal" role="dialog" aria-modal="true" aria-label="Видео">
+<div class="ytmodal" id="ytmodal" role="dialog" aria-modal="true" aria-label="Video" data-ru-aria-label="Видео">
   <div class="ytmodal-dialog">
     <div class="ytmodal-head">
       <span class="ytmodal-title" id="ytmodal-title"></span>
-      <button class="ytmodal-close" type="button" aria-label="Закрыть видео">&#10005;</button>
+      <button class="ytmodal-close" type="button" aria-label="Close video" data-ru-aria-label="Закрыть видео">&#10005;</button>
     </div>
     <div class="ytmodal-frame"><div class="ytmodal-slot"></div></div>
-    <div class="ytmodal-foot"><a class="ytmodal-yt" target="_blank" rel="noopener" href="#">смотреть на YouTube ↗</a></div>
+    <div class="ytmodal-foot"><a class="ytmodal-yt" target="_blank" rel="noopener" href="#" data-ru="смотреть на YouTube ↗">watch on YouTube ↗</a></div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="/music/tracks.js"></script>
+<script src="/i18n.js" defer></script>
 <script>
   gsap.registerPlugin(ScrollTrigger);
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // язык (i18n.js) — для строк, которые собирает JS. Инлайн-скрипт стартует до defer'а i18n.js,
+  // поэтому подстраховываемся documentElement.lang (его выставляет анти-флеш-скрипт в <head>).
+  var lang = function(){ if(window.I18N && window.I18N.get) return window.I18N.get(); return document.documentElement.lang === 'ru' ? 'ru' : 'en'; };
+  var tt = function(en, ru){ return lang() === 'ru' ? ru : en; };
 
   // auto-tag more elements for reveal so everything animates in on scroll
   document.querySelectorAll('a.trk, .tl-item, .tl-finale, .era-desc').forEach(el=>el.classList.add('reveal'));
@@ -518,6 +533,7 @@
   // Оборачиваем до запуска ScrollTrigger, чтобы анимация .trk не сбилась.
   (function(){
     const M = window.RENSITE_MUSIC; if(!M || !M.progress) return;
+    const markLbl = function(){ return tt('Mark as listened', 'Отметить прослушанным'); };
     const seen = M.progress('mj-listened');
     const route = Array.prototype.filter.call(
       document.querySelectorAll('#eras .tracklist a.trk[data-yt]'),
@@ -531,14 +547,14 @@
     if(head) head.insertAdjacentElement('afterend', pbar);
     const fill=pbar.querySelector('#mjp-fill'), label=pbar.querySelector('#mjp-label');
     function paint(){ const n=route.filter(a=>seen.has(a.dataset.yt)).length;
-      label.textContent='прослушано '+n+' из '+total; fill.style.width=(n/total*100)+'%'; }
+      label.textContent=tt(n+' of '+total+' listened','прослушано '+n+' из '+total); fill.style.width=(n/total*100)+'%'; }
     route.forEach(a=>{
       const key=a.dataset.yt;
       const row=document.createElement('div'); row.className='trkrow'+(seen.has(key)?' done':'');
       a.parentNode.insertBefore(row,a);
       const chk=document.createElement('button'); chk.type='button'; chk.className='tchk';
       chk.setAttribute('aria-pressed', String(seen.has(key)));
-      chk.setAttribute('aria-label','Отметить прослушанным'); chk.textContent=seen.has(key)?'✓':'';
+      chk.setAttribute('aria-label',markLbl()); chk.textContent=seen.has(key)?'✓':'';
       row.appendChild(chk); row.appendChild(a);
       chk.addEventListener('click',e=>{ e.preventDefault();
         const on=seen.toggle(key); row.classList.toggle('done',on);
@@ -547,6 +563,11 @@
         chk.setAttribute('aria-pressed','true'); chk.textContent='✓'; paint(); } });  // ▶ открыл видео → засчитано
     });
     paint();
+    // перерисовка на смену языка: подпись прогресса + aria чекбоксов
+    document.addEventListener('i18n:change', function(){
+      paint();
+      document.querySelectorAll('#eras .trkrow .tchk').forEach(function(c){ c.setAttribute('aria-label', markLbl()); });
+    });
   })();
 
   if(!reduced){
@@ -635,7 +656,7 @@
     let lastFocus=null;
 
     function titleFor(a){
-      if(a.dataset.title) return a.dataset.title;            // явный заголовок (напр. трейлер)
+      if(a.dataset.title) return (lang()==='ru' && a.dataset.titleRu) ? a.dataset.titleRu : a.dataset.title; // явный заголовок (напр. трейлер), с учётом языка
       const tn=a.querySelector('.tname');                    // трек
       if(tn){ const c=tn.cloneNode(true); c.querySelectorAll('.topt,.trole').forEach(x=>x.remove()); return c.textContent.replace(/\s+/g,' ').trim(); }
       const h3=a.closest('.tl-text')?.querySelector('h3');   // фильм из блока «Что посмотреть»

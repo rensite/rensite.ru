@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jackie Chan — Дискография</title>
+<title>Jackie Chan — Discography</title>
+<script>try{var _l=localStorage.getItem('rensite:lang');if(_l==='ru'||_l==='en')document.documentElement.lang=_l;}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
@@ -213,6 +214,14 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
 @media(max-width:700px){.topbar nav{display:none}}
 
 .reveal{will-change:transform,opacity}
+
+/* Языковой переключатель (i18n.js) — в тон красно-золотому топбару. */
+.lang-tg{font-family:"JetBrains Mono",monospace}
+.lang-tg button{color:#f3e6c399;opacity:1}
+.lang-tg button[aria-pressed="true"]{color:var(--cn-gold-soft);opacity:1;background:transparent}
+.lang-tg button:hover{color:var(--cn-gold);opacity:1}
+.lang-tg .sep{color:#f3e6c366}
+
 /* ── Плавные переходы между страницами (cross-document View Transitions) ── */
 @view-transition{navigation:auto}
 @media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
@@ -227,49 +236,50 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
 -->
 
 <div class="topbar">
-  <a class="back" href="/music/">← музыка</a>
+  <a class="back" href="/music/" data-ru="← музыка">← music</a>
   <span class="wm">成龍 · Jackie Chan</span>
   <nav>
-    <a href="#timeline">Таймлайн</a>
-    <a href="#stats">Цифры</a>
-    <a href="#player">Дискография</a>
+    <a href="#timeline" data-ru="Таймлайн">Timeline</a>
+    <a href="#stats" data-ru="Цифры">Numbers</a>
+    <a href="#player" data-ru="Дискография">Discography</a>
   </nav>
+  <span data-lang-toggle></span>
 </div>
 
 <!-- HERO — Chinese-style manifesto -->
 <header class="hero">
   <div class="wrap-h">
-    <span class="label mono"><span class="seal">龍</span> Дискография · 1980 — 2025</span>
+    <span class="label mono" data-ru-html="<span class=&quot;seal&quot;>龍</span> Дискография · 1980 — 2025"><span class="seal">龍</span> Discography · 1980 — 2025</span>
     <div class="hero-cn-name reveal-h">成龍</div>
-    <h1 class="hero-display reveal-h">Пока вы следили за его трюками, вы упустили другое: Джеки Чан <span class="gold">пел</span> — сам, на <span class="soft">пяти языках</span>, за кадром собственных фильмов, и так все сорок лет. Более <span class="gold">160 песен</span>, которые прошли мимо. Пора услышать.</h1>
-    <p class="hero-lead reveal-h">Кантопоп, мандопоп, японские баллады и темы к собственным фильмам — путеводитель по тому, что слушать и в каком порядке.</p>
+    <h1 class="hero-display reveal-h" data-ru-html="Пока вы следили за его трюками, вы упустили другое: Джеки Чан <span class=&quot;gold&quot;>пел</span> — сам, на <span class=&quot;soft&quot;>пяти языках</span>, за кадром собственных фильмов, и так все сорок лет. Более <span class=&quot;gold&quot;>160 песен</span>, которые прошли мимо. Пора услышать.">While you were busy watching the stunts, you missed the other act: Jackie Chan <span class="gold">sang</span> — himself, in <span class="soft">five languages</span>, over the credits of his own movies, and kept it up for forty years. More than <span class="gold">160 songs</span> that slipped right past you. Time to hear them.</h1>
+    <p class="hero-lead reveal-h" data-ru="Кантопоп, мандопоп, японские баллады и темы к собственным фильмам — путеводитель по тому, что слушать и в каком порядке.">Cantopop, Mandopop, Japanese ballads, and themes for his own films — a guide to what to play, and in what order.</p>
   </div>
-  <span class="scroll-hint">↓ листайте</span>
+  <span class="scroll-hint" data-ru="↓ листайте">↓ scroll</span>
 </header>
 
 <!-- START HERE -->
 <section id="start" class="wrap">
-  <span class="sec-num">01 — С чего начать</span>
-  <h2 class="sec-head reveal">Песни,<br>чтобы влюбиться</h2>
+  <span class="sec-num" data-ru="01 — С чего начать">01 — Start here</span>
+  <h2 class="sec-head reveal" data-ru-html="Песни,<br>чтобы влюбиться">Songs to<br>fall for</h2>
   <div class="start-grid reveal" id="startGrid"></div>
 </section>
 
 <!-- TIMELINE VERTICAL -->
 <section id="timeline" class="timeline-sec">
   <div class="wrap">
-    <span class="sec-num">02 — Таймлайн</span>
-    <h2 class="sec-head reveal">Сорок лет<br>в звуке</h2>
-    <p class="tl-sub reveal">студийные альбомы · 1984–2018</p>
+    <span class="sec-num" data-ru="02 — Таймлайн">02 — Timeline</span>
+    <h2 class="sec-head reveal" data-ru-html="Сорок лет<br>в звуке">Forty years<br>in sound</h2>
+    <p class="tl-sub reveal" data-ru="студийные альбомы · 1984–2018">studio albums · 1984–2018</p>
     <div class="tl" id="tl"></div>
-    <p class="tl-bridge reveal">После 2018 студийных альбомов больше нет — но саундтреки и синглы продолжаются до 2025: «Легенда» (2024), Skibidi (2025) и другие. <a href="#player">Весь каталог →</a></p>
+    <p class="tl-bridge reveal" data-ru-html="После 2018 студийных альбомов больше нет — но саундтреки и синглы продолжаются до 2025: «Легенда» (2024), Skibidi (2025) и другие. <a href=&quot;#player&quot;>Весь каталог →</a>">No studio albums after 2018 — but the soundtracks and singles keep coming through 2025: «A Legend» (2024), Skibidi (2025), and more. <a href="#player">The full catalog →</a></p>
   </div>
 </section>
 
 <!-- STATS -->
 <section id="stats" class="stats">
   <div class="wrap">
-    <span class="sec-num">03 — В цифрах</span>
-    <h2 class="sec-head reveal">Масштаб<br>каталога</h2>
+    <span class="sec-num" data-ru="03 — В цифрах">03 — By the numbers</span>
+    <h2 class="sec-head reveal" data-ru-html="Масштаб<br>каталога">The scale<br>of the catalog</h2>
     <div class="stat-row reveal" id="statRow"></div>
     <div class="film-stats reveal" id="filmStats"></div>
   </div>
@@ -277,11 +287,11 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
 
 <!-- PLAYER / LIST -->
 <section id="player" class="wrap">
-  <span class="sec-num">04 — Слушать</span>
-  <h2 class="sec-head reveal">Весь каталог</h2>
+  <span class="sec-num" data-ru="04 — Слушать">04 — Listen</span>
+  <h2 class="sec-head reveal" data-ru="Весь каталог">The full catalog</h2>
   <p class="cat-sub reveal" id="catSub"></p>
   <div class="player-controls reveal">
-    <input type="text" id="search" placeholder="Поиск по названию или фильму…">
+    <input type="text" id="search" placeholder="Search by title or film…" data-ru-placeholder="Поиск по названию или фильму…">
     <div class="filters" id="filters"></div>
   </div>
   <div class="cat-progress reveal" id="catProg"></div>
@@ -293,7 +303,7 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
 <section class="quote">
   <div class="wrap">
     <span class="sec-num">—</span>
-    <blockquote class="reveal">Свыше 100 песен на пяти языках — и награда «Лучший иностранный певец» в Японии ещё в 1984-м. А «Endless Love» знает весь мир.</blockquote>
+    <blockquote class="reveal" data-ru="Свыше 100 песен на пяти языках — и награда «Лучший иностранный певец» в Японии ещё в 1984-м. А «Endless Love» знает весь мир.">Over 100 songs in five languages — and a “Best Foreign Singer” award in Japan, all the way back in 1984. And the whole world knows «Endless Love».</blockquote>
   </div>
 </section>
 
@@ -303,23 +313,28 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
     <span class="wm">成龍</span>
     <div class="foot-cols">
       <div class="foot-lead">
-        <p>Jackie Chan — путеводитель по дискографии</p>
-        <p class="foot-note">Ещё гиды: <a href="/music/michael/">Michael Jackson</a> · <a href="/music/linkin-park/">Linkin Park</a></p>
-        <p class="foot-note">Гид живой и наверняка неидеальный. Нашли ошибку, спорный факт или трек, который must — напишите <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>, поправим вместе. Спасибо, что уделили время ♪</p>
+        <p data-ru="Jackie Chan — путеводитель по дискографии">Jackie Chan — a discography guide</p>
+        <p class="foot-note" data-ru-html="Ещё гиды: <a href=&quot;/music/michael/&quot;>Michael Jackson</a> · <a href=&quot;/music/linkin-park/&quot;>Linkin Park</a>">More guides: <a href="/music/michael/">Michael Jackson</a> · <a href="/music/linkin-park/">Linkin Park</a></p>
+        <p class="foot-note" data-ru-html="Гид живой и наверняка неидеальный. Нашли ошибку, спорный факт или трек, который must — напишите <a href=&quot;https://t.me/renman&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>@renman</a>, поправим вместе. Спасибо, что уделили время ♪">This guide is a living thing, and surely imperfect. Spot an error, a debatable fact, or a track that's a must — message <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a> and we'll fix it together. Thanks for taking the time ♪</p>
       </div>
-      <p class="foot-tip"><span class="mono">Совет:</span> ищите по иероглифам 成龙 / 成龍 в YouTube Music, Spotify или QQ Music — так найдёте максимум.</p>
+      <p class="foot-tip" data-ru-html="<span class=&quot;mono&quot;>Совет:</span> ищите по иероглифам 成龙 / 成龍 в YouTube Music, Spotify или QQ Music — так найдёте максимум."><span class="mono">Tip:</span> search the characters 成龙 / 成龍 on YouTube Music, Spotify, or QQ Music — that turns up the most.</p>
     </div>
   </div>
-  <div class="wrap foot-legal">
-    © 2026 rensite.
-    Авторская компиляция, переводы и тексты — <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC&nbsp;BY-NC&nbsp;4.0</a>:
+  <div class="wrap foot-legal" data-ru-html="© 2026 rensite.
+    Авторская компиляция, переводы и тексты — <a href=&quot;https://creativecommons.org/licenses/by-nc/4.0/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>CC&nbsp;BY-NC&nbsp;4.0</a>:
     делитесь с указанием автора, без коммерции. Факты дискографии собраны из открытых фан-архивов.
     Все права на оригинальные произведения — музыку, фильмы и изображения — принадлежат их правообладателям.
-    Этот сайт и подборка — независимый некоммерческий фан-проект автора, не связанный с правообладателями.
+    Этот сайт и подборка — независимый некоммерческий фан-проект автора, не связанный с правообладателями.">
+    © 2026 rensite.
+    Curated compilation, translations, and writing — <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC&nbsp;BY-NC&nbsp;4.0</a>:
+    share with attribution, non-commercial. Discography facts gathered from open fan archives.
+    All rights to the original works — the music, films, and images — belong to their respective owners.
+    This site and this selection are an independent, non-commercial fan project, unaffiliated with the rights holders.
   </div>
 </footer>
 
 <script src="/music/tracks.js"></script>
+<script src="/i18n.js" defer></script>
 <script>
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -329,34 +344,56 @@ const yt = q => "https://www.youtube.com/results?search_query="+encodeURICompone
 const plural=(n,forms)=>{const a=Math.abs(n)%100,b=a%10;return forms[(a>10&&a<20)?2:(b>1&&b<5)?1:(b===1?0:2)];};
 let DATA = null, activeType = "Все", query = "";
 
+// ---------- i18n: язык + хелперы (English default, Russian toggle) ----------
+// lang() — текущий язык из i18n.js (fallback: атрибут <html lang> / 'en').
+// L(v)   — если поле в data.json это {en,ru}, берём по языку; иначе возвращаем как есть
+//          (так проходят насквозь латинские поля таймлайна и рус. s/why треков).
+// tt(en,ru) — выбор литерала для строк, зашитых в этот render.
+const lang = () => (window.I18N && window.I18N.get) ? window.I18N.get() : (document.documentElement.lang === 'ru' ? 'ru' : 'en');
+const L = v => {
+  if (v && typeof v === 'object' && !Array.isArray(v)) {
+    const l = lang();
+    return v[l] != null ? v[l] : (v.en != null ? v.en : v.ru);
+  }
+  return v == null ? '' : v;
+};
+const tt = (en, ru) => (lang() === 'ru' ? ru : en);
+// flat(v) — для поиска: {en,ru} превращаем в "en ru", чтобы искалось на любом языке.
+const flat = v => (v == null) ? '' : (typeof v === 'object' ? [v.en, v.ru].filter(Boolean).join(' ') : v);
+// enum типа трека: в data.json он остаётся русским, показываем перевод в UI.
+const TYPE_EN = { "Альбом":"Album", "Саундтрек":"Soundtrack", "Сингл":"Single", "Прочее":"Other" };
+const typeLabel = t => tt(TYPE_EN[t] || t, t);
+
 function renderStart(){
   document.getElementById('startGrid').innerHTML = DATA.hits.map(h=>`
     <a class="start-card" href="${yt(h.q)}" target="_blank">
       <span class="yr mono">${h.yr}</span>
       <span class="ttl">${h.t}</span>
-      <span class="meta">${h.m}</span>
-      <span class="play">▶ Слушать на YouTube</span>
+      <span class="meta">${L(h.m)}</span>
+      <span class="play">${tt('▶ Listen on YouTube','▶ Слушать на YouTube')}</span>
     </a>`).join('');
 }
 
 function renderTimeline(){
   document.getElementById('tl').innerHTML = DATA.timeline.map(p=>{
     const n = p.songs ? p.songs.length : 0;
+    const title = L(p.t);
+    const cnt = tt(`${n} ${n===1?'song':'songs'}`, `${n} ${plural(n,['песня','песни','песен'])}`);
     const head = n
       ? `<button class="tl-head" type="button" aria-expanded="false">
-           <h3>${p.t}</h3>
-           <span class="tl-count">${n} ${plural(n,['песня','песни','песен'])}</span>
+           <h3>${title}</h3>
+           <span class="tl-count">${cnt}</span>
            <span class="tl-chev" aria-hidden="true">▸</span>
          </button>`
-      : `<h3>${p.t}</h3>`;
+      : `<h3>${title}</h3>`;
     return `
     <div class="tl-item reveal">
       <div class="tl-year">${p.yr}</div>
       <div class="tl-body">
         ${head}
-        ${p.d?`<p>${p.d}</p>`:''}
-        ${p.repack?`<p class="tl-repack">= переиздание «${p.repack}» — тот же треклист</p>`:''}
-        ${n?`<ul class="tl-songs" hidden>${p.songs.map(s=>`<li><a href="${yt('Jackie Chan '+p.t+' '+s)}" target="_blank">${s}</a></li>`).join('')}</ul>`:''}
+        ${p.d?`<p>${L(p.d)}</p>`:''}
+        ${p.repack?`<p class="tl-repack">${tt(`= reissue of «${p.repack}» — same tracklist`,`= переиздание «${p.repack}» — тот же треклист`)}</p>`:''}
+        ${n?`<ul class="tl-songs" hidden>${p.songs.map(s=>`<li><a href="${yt('Jackie Chan '+title+' '+s)}" target="_blank">${s}</a></li>`).join('')}</ul>`:''}
       </div>
     </div>`;
   }).join('');
@@ -374,15 +411,19 @@ document.getElementById('tl').addEventListener('click', e=>{
 
 function renderStats(){
   document.getElementById('statRow').innerHTML = DATA.stats.counters.map(c=>
-    `<div class="stat"><div class="n" data-count="${c.n}"${c.plus?' data-plus="1"':''}>0</div><div class="l">${c.l}</div></div>`
+    `<div class="stat"><div class="n" data-count="${c.n}"${c.plus?' data-plus="1"':''}>0</div><div class="l">${L(c.l)}</div></div>`
   ).join('');
   // подзаголовок каталога: связывает «записи» (строки) с числом отдельных песен
   // из того же счётчика — чтобы «N записей» не противоречило «песен в дискографии».
   const rec = DATA.tracks.length;
-  document.getElementById('catSub').innerHTML =
+  document.getElementById('catSub').innerHTML = tt(
+    `<b>${rec}</b> ${rec===1?'song':'songs'} on their own — album cuts, `
+    + `soundtracks, singles, and more. Filter by type or search by name. `
+    + `The checkmark marks what you've heard — progress is saved in this browser.`,
     `<b>${rec}</b> ${plural(rec,['песня','песни','песен'])} по отдельности — треки альбомов, `
     + `саундтреки, синглы и прочее. Фильтруй по типу или ищи по названию. `
-    + `Галочка отмечает прослушанное — прогресс хранится в этом браузере.`;
+    + `Галочка отмечает прослушанное — прогресс хранится в этом браузере.`
+  );
 }
 
 const filtersEl = document.getElementById('filters');
@@ -391,7 +432,9 @@ function renderFilters(){
   const present = order.filter(t=>DATA.tracks.some(x=>x.type===t));
   const hasSig = DATA.tracks.some(x=>x.significant);
   const chips = ["Все", ...(hasSig?["Значимые"]:[]), ...present];
-  filtersEl.innerHTML = chips.map((t,i)=>`<button class="filt${i===0?' active':''}" data-t="${t}">${t}</button>`).join('');
+  // data-t остаётся русским ключом (под фильтр-логику); меняется только подпись.
+  const label = t => t==="Все" ? tt('All','Все') : t==="Значимые" ? tt('Significant','Значимые') : typeLabel(t);
+  filtersEl.innerHTML = chips.map(t=>`<button class="filt${t===activeType?' active':''}" data-t="${t}">${label(t)}</button>`).join('');
 }
 filtersEl.addEventListener('click',e=>{
   if(!e.target.classList.contains('filt'))return;
@@ -406,27 +449,27 @@ function paintProgress(){
   const total = DATA.tracks.length;
   const n = DATA.tracks.filter(t=>seen.has(t.q)).length;
   document.getElementById('catProg').innerHTML =
-    `<span>прослушано ${n} из ${total}</span><span class="bar"><i style="width:${(n/total*100).toFixed(1)}%"></i></span>`;
+    `<span>${tt(`heard ${n} of ${total}`,`прослушано ${n} из ${total}`)}</span><span class="bar"><i style="width:${(n/total*100).toFixed(1)}%"></i></span>`;
 }
 function renderTracks(){
   const filtered = DATA.tracks.filter(t=>{
     const okType = activeType==="Все" || (activeType==="Значимые" ? t.significant : t.type===activeType);
-    const okQ = !query || (t.n+" "+(t.s||"")+" "+(t.why||"")).toLowerCase().includes(query);
+    const okQ = !query || (t.n+" "+flat(t.s)+" "+flat(t.why)).toLowerCase().includes(query);
     return okType && okQ;
   });
   document.getElementById('trackList').innerHTML = filtered.map(t=>{
     const done = seen.has(t.q);
     return `
     <div class="track${t.significant?' is-sig':''}${done?' done':''}" data-k="${t.q}">
-      <button class="tchk" type="button" aria-pressed="${done}" aria-label="Прослушано: ${t.n}">${done?'✓':''}</button>
+      <button class="tchk" type="button" aria-pressed="${done}" aria-label="${tt('Heard','Прослушано')}: ${t.n}">${done?'✓':''}</button>
       <a class="tgo" href="${yt(t.q)}" target="_blank">
         <span class="tyr">${t.yr}</span>
-        <span class="tname">${t.n}${t.s?`<span class="sub">${t.s}</span>`:''}${t.why?`<span class="twhy">${t.why}</span>`:''}</span>
+        <span class="tname">${t.n}${t.s?`<span class="sub">${L(t.s)}</span>`:''}${t.why?`<span class="twhy">${L(t.why)}</span>`:''}</span>
         <span class="tplay">▶ YouTube</span>
       </a>
     </div>`;
-  }).join('') || '<p style="padding:var(--s-6) 0;color:var(--ink-mute)">Ничего не найдено.</p>';
-  document.getElementById('listCount').textContent = `Показано ${filtered.length} из ${DATA.tracks.length} песен`;
+  }).join('') || `<p style="padding:var(--s-6) 0;color:var(--ink-mute)">${tt('Nothing found.','Ничего не найдено.')}</p>`;
+  document.getElementById('listCount').textContent = tt(`Showing ${filtered.length} of ${DATA.tracks.length} songs`,`Показано ${filtered.length} из ${DATA.tracks.length} песен`);
   paintProgress();
 }
 document.getElementById('trackList').addEventListener('click', e=>{
@@ -456,11 +499,16 @@ if(!reduced){
 
 function renderFilms(){
   const f = DATA.stats.films;
-  const rows = f.top.map(t=>`<div class="film-row"><span class="fn">${t.name}</span><span class="fx">×${t.n}</span></div>`).join('');
-  document.getElementById('filmStats').innerHTML =
-    `<p class="film-head"><b>${f.soundtracks}</b> ${plural(f.soundtracks,['песня','песни','песен'])} к <b>${f.filmCount}</b> ${plural(f.filmCount,['фильму','фильмам','фильмам'])} — от «Молодого мастера» до «Легенды», ${f.span}.</p>`
+  const rows = f.top.map(t=>`<div class="film-row"><span class="fn">${L(t.name)}</span><span class="fx">×${t.n}</span></div>`).join('');
+  document.getElementById('filmStats').innerHTML = tt(
+      `<p class="film-head"><b>${f.soundtracks}</b> ${f.soundtracks===1?'song':'songs'} for <b>${f.filmCount}</b> ${f.filmCount===1?'film':'films'} — from «The Young Master» to «A Legend», ${f.span}.</p>`,
+      `<p class="film-head"><b>${f.soundtracks}</b> ${plural(f.soundtracks,['песня','песни','песен'])} к <b>${f.filmCount}</b> ${plural(f.filmCount,['фильму','фильмам','фильмам'])} — от «Молодого мастера» до «Легенды», ${f.span}.</p>`
+    )
     + `<div class="film-top">${rows}</div>`
-    + `<p class="film-more">+ ещё <b>${f.more}</b> ${plural(f.more,['фильм','фильма','фильмов'])} — по одной песне</p>`;
+    + tt(
+      `<p class="film-more">+ <b>${f.more}</b> more ${f.more===1?'film':'films'} — one song each</p>`,
+      `<p class="film-more">+ ещё <b>${f.more}</b> ${plural(f.more,['фильм','фильма','фильмов'])} — по одной песне</p>`
+    );
 }
 
 function contentMotion(){
@@ -481,19 +529,32 @@ function contentMotion(){
 }
 
 // ---------- LOAD ----------
+function renderAll(){
+  renderStart(); renderTimeline(); renderStats(); renderFilms(); renderFilters(); renderTracks();
+}
+// Перерисовка динамического контента при смене языка (i18n.js -> событие 'i18n:change').
+// На переключении не проигрываем intro-анимации: сразу показываем контент и финальные числа.
+document.addEventListener('i18n:change', ()=>{
+  if(!DATA) return;
+  renderAll();
+  gsap.set('.reveal',{opacity:1,y:0});
+  document.querySelectorAll('[data-count]').forEach(el=>el.textContent=el.dataset.count+(el.dataset.plus?'+':''));
+  ScrollTrigger.refresh();
+});
+
 fetch('./data.json',{cache:'no-store'})
   .then(r=>{ if(!r.ok) throw new Error('data.json '+r.status); return r.json(); })
   .then(d=>{
     DATA = d;
-    renderStart(); renderTimeline(); renderStats(); renderFilms(); renderFilters(); renderTracks();
+    renderAll();
     contentMotion();
     document.fonts.ready.then(()=>ScrollTrigger.refresh());
   })
   .catch(err=>{
-    console.error('Не удалось загрузить data.json:', err);
+    console.error(tt('Failed to load data.json:','Не удалось загрузить data.json:'), err);
     gsap.set('.reveal',{opacity:1,y:0});
     const tl=document.getElementById('trackList');
-    if(tl) tl.innerHTML='<p style="padding:var(--s-6) 0;color:var(--ink-mute)">Не удалось загрузить данные ('+err.message+'). Откройте страницу через локальный сервер, а не как файл.</p>';
+    if(tl) tl.innerHTML=`<p style="padding:var(--s-6) 0;color:var(--ink-mute)">${tt(`Couldn't load the data (${err.message}). Open the page through a local server, not as a file.`,`Не удалось загрузить данные (${err.message}). Откройте страницу через локальный сервер, а не как файл.`)}</p>`;
   });
 </script>
 <script src="/palette.js" defer></script>

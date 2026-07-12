@@ -1,13 +1,14 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#E5202B">
-<title>Том и Джерри — Музыкальный выпуск</title>
-<meta name="description" content="Комикс-гид по музыкальным короткометражкам «Тома и Джерри»: у каждой серии — своя обложка и раскадровка. Классика MGM, где музыка и есть сюжет.">
-<meta property="og:title" content="Том и Джерри — Музыкальный выпуск">
-<meta property="og:description" content="Каждая музыкальная серия как выпуск комикса: обложка, раскадровка, оригинал на плёнке.">
+<title>Tom and Jerry — The Music Issue</title>
+<script>try{var _l=localStorage.getItem('rensite:lang');if(_l==='ru'||_l==='en')document.documentElement.lang=_l;}catch(e){}</script>
+<meta name="description" content="A comic-book guide to the musical Tom and Jerry shorts: every short gets its own cover and storyboard. Classic MGM, where the music is the story.">
+<meta property="og:title" content="Tom and Jerry — The Music Issue">
+<meta property="og:description" content="Every musical short as a comic issue: a cover, a storyboard, the original on film.">
 <meta property="og:image" content="/music/tom-and-jerry/img/title-card.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -150,7 +151,7 @@
     font-size:clamp(1rem,2.6vw,1.5rem);transform:rotate(-1.5deg);-webkit-text-stroke:.5px var(--red)}
   .lead-box{max-width:52ch;font-size:clamp(1rem,1.5vw,1.16rem);line-height:1.5;color:var(--ink);
     background:var(--paper-2);border:3px solid var(--ink);box-shadow:var(--shadow);padding:14px 20px;position:relative}
-  .lead-box::before{content:"СЛОВО РЕДАКТОРА";position:absolute;top:-13px;left:16px;background:var(--red);color:var(--yellow-hi);
+  .lead-box::before{content:"EDITOR’S NOTE";position:absolute;top:-13px;left:16px;background:var(--red);color:var(--yellow-hi);
     font-family:var(--disp);font-weight:900;font-size:.6rem;letter-spacing:.1em;padding:3px 9px;border:2px solid var(--ink)}
   .cue{font-family:var(--disp);font-weight:900;font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;
     color:var(--ink);background:var(--yellow);border:3px solid var(--ink);border-radius:30px;
@@ -324,38 +325,52 @@
 
   @view-transition{navigation:auto}
   @media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+  /* ── ЯЗЫКОВОЙ ПЕРЕКЛЮЧАТЕЛЬ (i18n.js) — в тон комикс-палитре ── */
+  .tb-right{display:flex;align-items:center;gap:12px}
+  /* выше специфичность, чем у дефолтных .lang-tg из i18n.js (внедряются позже) */
+  .topbar .lang-tg{font-family:var(--disp);font-weight:800}
+  .topbar .lang-tg button{color:var(--ink);opacity:.45;text-transform:uppercase;letter-spacing:.03em}
+  .topbar .lang-tg button[aria-pressed="true"]{color:var(--ink);opacity:1;background:transparent}
+  .topbar .lang-tg button:hover{color:var(--red);opacity:1}
+  .topbar .lang-tg .sep{color:var(--ink);opacity:.4}
+  /* CSS-подпись «слово редактора» — по-русски при lang=ru */
+  html[lang="ru"] .lead-box::before{content:"СЛОВО РЕДАКТОРА"}
 </style>
 </head>
 <body>
 
-<a class="skip" href="#program">К выпускам →</a>
+<a class="skip" href="#program" data-ru="К выпускам →">To the issues →</a>
 
 <!-- ── ВЕРХНЯЯ ПАНЕЛЬ ── -->
 <header class="topbar">
-  <a class="back" href="/music/">← музыка</a>
-  <button class="mute" id="mute" type="button" aria-pressed="false" aria-label="Выключить звук">
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 14l8-9v18l-8-9z" fill="currentColor"/><path d="M14 8s3 1 3 4-3 4-3 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    <span class="lbl" id="mute-lbl">звук</span>
-  </button>
+  <a class="back" href="/music/" data-ru="← музыка">← music</a>
+  <div class="tb-right">
+    <span data-lang-toggle></span>
+    <button class="mute" id="mute" type="button" aria-pressed="false" aria-label="Mute sound">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 14l8-9v18l-8-9z" fill="currentColor"/><path d="M14 8s3 1 3 4-3 4-3 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="lbl" id="mute-lbl">sound</span>
+    </button>
+  </div>
 </header>
 
 <!-- ── ОБЛОЖКА-ИНТРО ── -->
 <div class="cover-intro" id="coverIntro" aria-hidden="false">
   <div class="ci-book">
-    <div class="ci-top"><span>Том и Джерри</span><span>Музыкальный выпуск</span></div>
+    <div class="ci-top"><span>Tom and Jerry</span><span data-ru="Музыкальный выпуск">The Music Issue</span></div>
     <div class="ci-art">
       <img src="img/title-card.jpeg" alt="" aria-hidden="true">
       <div class="ci-burst">
         <div>
-          <span class="ci-logo">ТОМ<span class="amp">и</span>ДЖЕРРИ</span>
-          <span class="ci-tag">10 серий, где поёт музыка</span>
+          <span class="ci-logo">TOM<span class="amp">&amp;</span>JERRY</span>
+          <span class="ci-tag" data-ru="10 серий, где поёт музыка">10 shorts where the music sings</span>
         </div>
       </div>
       <div class="ci-price">10¢<br>No.1</div>
     </div>
     <div class="ci-foot">
       <span class="mgm">A Metro-Goldwyn-Mayer Comic</span>
-      <button class="ci-open" id="openIssue" type="button" aria-label="Открыть выпуск">Открыть выпуск ▸</button>
+      <button class="ci-open" id="openIssue" type="button" aria-label="Open the issue" data-ru-aria-label="Открыть выпуск" data-ru="Открыть выпуск ▸">Open the issue ▸</button>
     </div>
   </div>
 </div>
@@ -371,11 +386,11 @@
 
   <figure class="mast-archive" aria-hidden="true">
     <img src="img/cover-vintage-2.jpg" alt="" loading="lazy">
-    <figcaption>из архива · Dell · 1953</figcaption>
+    <figcaption data-ru="из архива · Dell · 1953">from the archive · Dell · 1953</figcaption>
   </figure>
 
   <div class="mast-meta">
-    <span>rensite · музыкальный гид</span>
+    <span data-ru="rensite · музыкальный гид">rensite · music guide</span>
     <span>No.1 · MGM · 1944—1967</span>
   </div>
 
@@ -383,33 +398,33 @@
     <div class="lockup">
       <img class="cameo tom" src="img/tom.png" alt="" aria-hidden="true" loading="lazy">
       <img class="cameo jerry" src="img/jerry.png" alt="" aria-hidden="true" loading="lazy">
-      <svg class="wm" viewBox="0 0 1540 330" role="img" aria-label="Том и Джерри">
+      <svg class="wm" viewBox="0 0 1540 330" role="img" aria-label="Tom and Jerry">
         <defs>
           <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stop-color="#FFE873"/><stop offset="0.45" stop-color="#FFD21E"/><stop offset="1" stop-color="#F2A916"/>
           </linearGradient>
-          <text id="wmtext" x="770" y="238" text-anchor="middle" font-family="Rubik, sans-serif" font-weight="900" font-size="196" letter-spacing="-5">ТОМ<tspan font-family="Caveat, cursive" font-weight="700" font-size="134" dx="4" dy="-6"> и </tspan><tspan dx="0" dy="6">ДЖЕРРИ</tspan></text>
+          <text id="wmtext" x="770" y="238" text-anchor="middle" font-family="Rubik, sans-serif" font-weight="900" font-size="196" letter-spacing="-5">TOM<tspan font-family="Caveat, cursive" font-weight="700" font-size="134" dx="4" dy="-6"> &amp; </tspan><tspan dx="0" dy="6">JERRY</tspan></text>
         </defs>
         <use href="#wmtext" x="8" y="12" fill="#15110D"/>
         <use href="#wmtext" fill="url(#sheen)" stroke="#15110D" stroke-width="14" stroke-linejoin="round" paint-order="stroke"/>
         <use href="#wmtext" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
       </svg>
-      <span class="sub">музыкальный выпуск · 10 серий</span>
+      <span class="sub" data-ru="музыкальный выпуск · 10 серий">the music issue · 10 shorts</span>
     </div>
   </div>
 
   <div class="mast-foot">
-    <span class="ribbon">10 серий, где поёт музыка</span>
-    <p class="lead-box">У Тома и Джерри почти нет реплик. За них говорит музыка — и в этих выпусках она не сопровождает погоню, а сама ею становится. Каждой серии — своя обложка и раскадровка.</p>
-    <a class="cue" href="#program">▼ Открыть программу</a>
+    <span class="ribbon" data-ru="10 серий, где поёт музыка">10 shorts where the music sings</span>
+    <p class="lead-box" data-ru="У Тома и Джерри почти нет реплик. За них говорит музыка — и в этих выпусках она не сопровождает погоню, а сама ею становится. Каждой серии — своя обложка и раскадровка.">Tom and Jerry barely speak. The music talks for them — and in these shorts it doesn’t just score the chase, it becomes the chase. Every short gets its own cover and storyboard.</p>
+    <a class="cue" href="#program" data-ru="▼ Открыть программу">▼ Open the program</a>
   </div>
 </section>
 
 <!-- ── #program ГЛАВНЫЕ ВЫПУСКИ ── -->
 <section class="sec" id="program">
   <div class="banner reveal">
-    <h2>Выпуски 01–06 · концертное ядро</h2>
-    <p>Шесть «партитурных» короткометражек, где музыка — сам сюжет; <b>две из них принесли франшизе оба «Оскара»</b>. У каждой — обложка, раскадровка и оригинал на плёнке.</p>
+    <h2 data-ru="Выпуски 01–06 · концертное ядро">Issues 01–06 · the concert core</h2>
+    <p data-ru-html="Шесть «партитурных» короткометражек, где музыка — сам сюжет; <b>две из них принесли франшизе оба «Оскара»</b>. У каждой — обложка, раскадровка и оригинал на плёнке.">Six “score-driven” shorts where the music is the plot itself; <b>two of them won the franchise both of its Oscars</b>. Each one comes with a cover, a storyboard, and the original on film.</p>
   </div>
   <div id="issues1"></div>
 </section>
@@ -417,8 +432,8 @@
 <!-- ── #encore НА БИС ── -->
 <section class="sec" id="encore">
   <div class="banner reveal">
-    <h2>На бис · 07–10 · джаз и свинг</h2>
-    <p>Не классика, но музыка снова ведёт сюжет: контрабас, свинг и песни, которые герои поют сами.</p>
+    <h2 data-ru="На бис · 07–10 · джаз и свинг">Encore · 07–10 · jazz and swing</h2>
+    <p data-ru="Не классика, но музыка снова ведёт сюжет: контрабас, свинг и песни, которые герои поют сами.">Not the classics, but the music leads the story again: an upright bass, swing, and songs the characters sing themselves.</p>
   </div>
   <div id="issues2"></div>
 </section>
@@ -426,8 +441,8 @@
 <!-- ── #holiday НОВОГОДНИЙ БОНУС ── -->
 <section class="sec" id="holiday">
   <div class="banner reveal">
-    <h2>Рождественский разворот</h2>
-    <p>Две серии вне музыкальной программы — здесь главное не партитура, а <b>Рождество</b>. Классика 1941 года под хор и колядки (номинант на «Оскар») и праздничный мюзикл 2007-го на «Щелкунчика» Чайковского.</p>
+    <h2 data-ru="Рождественский разворот">The Christmas spread</h2>
+    <p data-ru-html="Две серии вне музыкальной программы — здесь главное не партитура, а <b>Рождество</b>. Классика 1941 года под хор и колядки (номинант на «Оскар») и праздничный мюзикл 2007-го на «Щелкунчика» Чайковского.">Two shorts outside the music program — here it’s not the score that matters but <b>Christmas</b>. The 1941 classic set to a choir and carols (an Oscar nominee) and a festive 2007 musical built on Tchaikovsky’s Nutcracker.</p>
   </div>
   <div id="issues3"></div>
 </section>
@@ -435,92 +450,93 @@
 <!-- ── #antrakt АНТРАКТ ── -->
 <section class="sec" id="antrakt">
   <div class="banner reveal">
-    <h2>Антракт · кто это нарисовал</h2>
-    <p>Единой «вселенной» у «Тома и Джерри» нет — это самостоятельные выпуски, снятые разными студиями в разные эпохи.</p>
+    <h2 data-ru="Антракт · кто это нарисовал">Intermission · who drew this</h2>
+    <p data-ru="Единой «вселенной» у «Тома и Джерри» нет — это самостоятельные выпуски, снятые разными студиями в разные эпохи.">There’s no single Tom and Jerry “universe” — these are standalone shorts, made by different studios across different eras.</p>
   </div>
   <div class="eras">
     <article class="era core reveal">
-      <img src="img/era-hanna-barbera.jpg" alt="Билл Ханна и Джозеф Барбера — создатели классической эпохи MGM/Hanna-Barbera, 1940–1958" loading="lazy">
+      <img src="img/era-hanna-barbera.jpg" alt="Bill Hanna and Joseph Barbera, creators of the classic MGM / Hanna-Barbera era, 1940–1958" loading="lazy">
       <div class="ebody">
         <div class="eyr">1940—1958</div>
-        <h3>MGM · Ханна и Барбера</h3>
-        <p>Оригинальные театральные короткометражки Уильяма Ханны и Джозефа Барберы. Они задали характеры, динамику погони и весь визуальный язык.</p>
-        <span class="ebadge">ядро · канон</span>
+        <h3>MGM · Hanna and Barbera</h3>
+        <p data-ru="Оригинальные театральные короткометражки Уильяма Ханны и Джозефа Барберы. Они задали характеры, динамику погони и весь визуальный язык.">The original theatrical shorts by William Hanna and Joseph Barbera. They set the characters, the rhythm of the chase, and the whole visual language.</p>
+        <span class="ebadge" data-ru="ядро · канон">core · canon</span>
       </div>
     </article>
     <article class="era reveal">
-      <img src="img/era-deitch.jpg" alt="Джин Дейч — режиссёр восточноевропейской эры «Том и Джерри», 1961–1962" loading="lazy">
+      <img src="img/era-deitch.jpg" alt="Gene Deitch, director of the Eastern European era of Tom and Jerry, 1961–1962" loading="lazy">
       <div class="ebody">
         <div class="eyr">1961—1962</div>
-        <h3>Джин Дейч</h3>
-        <p>Короткометражки, снятые в Восточной Европе. Визуально и по звуку заметно отличаются — их часто называют самыми странными во франшизе. Сюда относится и музыкальный выпуск <em>Carmen Get It!</em> (1962).</p>
+        <h3>Gene Deitch</h3>
+        <p data-ru-html="Короткометражки, снятые в Восточной Европе. Визуально и по звуку заметно отличаются — их часто называют самыми странными во франшизе. Сюда относится и музыкальный выпуск <em>Carmen Get It!</em> (1962).">Shorts produced in Eastern Europe. They look and sound noticeably different — often called the strangest in the franchise. This era includes the musical short <em>Carmen Get It!</em> (1962).</p>
       </div>
     </article>
     <article class="era reveal">
-      <img src="img/era-jones.jpg" alt="Чак Джонс — режиссёр эры Sib Tower 12, 1963–1967 (другой дизайн, брови Тома)" loading="lazy">
+      <img src="img/era-jones.jpg" alt="Chuck Jones, director of the Sib Tower 12 era, 1963–1967 (redesigned look, Tom’s eyebrows)" loading="lazy">
       <div class="ebody">
         <div class="eyr">1963—1967</div>
-        <h3>Чак Джонс · Sib Tower 12</h3>
-        <p>Другой дизайн персонажей — более выразительные брови у Тома. Сюда же поздние выпуски: <em>The Cat Above…</em> и <em>Cat and Dupli-cat</em>.</p>
+        <h3>Chuck Jones · Sib Tower 12</h3>
+        <p data-ru-html="Другой дизайн персонажей — более выразительные брови у Тома. Сюда же поздние выпуски: <em>The Cat Above…</em> и <em>Cat and Dupli-cat</em>.">A different character design — more expressive eyebrows on Tom. The late shorts belong here too: <em>The Cat Above…</em> and <em>Cat and Dupli-cat</em>.</p>
       </div>
     </article>
   </div>
-  <p class="canon reveal">Строгого канона у франшизы нет. Но <b>эталоном считаются оригинальные короткометражки MGM 1940—1958 годов</b> — на них ориентируются все последующие версии; всё остальное (телесериалы, полнометражки, кроссоверы) — самостоятельные интерпретации в той же традиции.</p>
+  <p class="canon reveal" data-ru-html="Строгого канона у франшизы нет. Но <b>эталоном считаются оригинальные короткометражки MGM 1940—1958 годов</b> — на них ориентируются все последующие версии; всё остальное (телесериалы, полнометражки, кроссоверы) — самостоятельные интерпретации в той же традиции.">The franchise has no strict canon. But <b>the original MGM shorts of 1940–1958 are considered the gold standard</b> — every later version looks back to them; everything else (TV series, features, crossovers) is a standalone take in the same tradition.</p>
 </section>
 
 <!-- ── #finale ФИНАЛ ── -->
 <section class="finale" id="finale">
   <div class="finale-burst" aria-hidden="true"></div>
-  <h2 class="reveal">Два «Оскара».<br>Ни одной реплики.</h2>
-  <p class="reveal">Главная партитурная линия — это первые шесть выпусков. Именно классические концертные короткометражки принесли «Тому и Джерри» обе статуэтки «Оскар»: <em>The Cat Concerto</em> и <em>Johann Mouse</em>. Мультфильм построен целиком на музыке, а не на словах.</p>
-  <p class="kicker reveal">Сначала просто послушайте. Картинка договорит сама.</p>
+  <h2 class="reveal" data-ru-html="Два «Оскара».<br>Ни одной реплики.">Two Oscars.<br>Not one line of dialogue.</h2>
+  <p class="reveal" data-ru-html="Главная партитурная линия — это первые шесть выпусков. Именно классические концертные короткометражки принесли «Тому и Джерри» обе статуэтки «Оскар»: <em>The Cat Concerto</em> и <em>Johann Mouse</em>. Мультфильм построен целиком на музыке, а не на словах.">The main score-driven run is the first six issues. It was the classic concert shorts that won Tom and Jerry both statuettes: <em>The Cat Concerto</em> and <em>Johann Mouse</em>. The cartoon is built entirely on music, not on words.</p>
+  <p class="kicker reveal" data-ru="Сначала просто послушайте. Картинка договорит сама.">Just listen first. The picture will say the rest.</p>
   <a class="wc reveal" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Tom+and+Jerry+Warner+Classics+The+Cat+Concerto">Warner Classics ↗</a>
 </section>
 </main>
 
 <!-- ── FOOTER ── -->
 <footer class="foot">
-  <div class="fmark">Том и Джерри · музыкальный выпуск</div>
-  <p class="ftag">Комикс-гид по сериям, где музыка и есть сюжет. Десять выпусков, две статуэтки, ноль реплик.</p>
+  <div class="fmark" data-ru="Том и Джерри · музыкальный выпуск">Tom and Jerry · The Music Issue</div>
+  <p class="ftag" data-ru="Комикс-гид по сериям, где музыка и есть сюжет. Десять выпусков, две статуэтки, ноль реплик.">A comic-book guide to the shorts where the music is the plot. Ten issues, two statuettes, zero lines of dialogue.</p>
   <div class="foot-links">
-    <a href="/music/">← Все музыкальные гиды</a>
-    <a href="/">На главную</a>
+    <a href="/music/" data-ru="← Все музыкальные гиды">← All music guides</a>
+    <a href="/" data-ru="На главную">Home</a>
   </div>
-  <div class="foot-fine">rensite · сделано с любовью к классике MGM</div>
-  <p class="foot-disc">Кадры и обложки — собственность Metro-Goldwyn-Mayer / Warner Bros. и приводятся в образовательных целях. Видео встроено с YouTube. Это некоммерческий фанатский гид.</p>
+  <div class="foot-fine" data-ru="rensite · сделано с любовью к классике MGM">rensite · made with love for the MGM classics</div>
+  <p class="foot-disc" data-ru="Кадры и обложки — собственность Metro-Goldwyn-Mayer / Warner Bros. и приводятся в образовательных целях. Видео встроено с YouTube. Это некоммерческий фанатский гид.">Stills and covers are the property of Metro-Goldwyn-Mayer / Warner Bros. and are shown for educational purposes. Video is embedded from YouTube. This is a non-commercial fan guide.</p>
 </footer>
 
 <!-- ── READ-O-METER ── -->
-<aside class="meter" id="meter" role="meter" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" aria-valuetext="прослушано: 0 из 10" aria-label="Сколько выпусков прослушано">
-  <div class="mlabel">Прослушано</div>
+<aside class="meter" id="meter" role="meter" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" aria-valuetext="heard: 0 of 10" aria-label="How many shorts you’ve heard" data-ru-aria-label="Сколько выпусков прослушано">
+  <div class="mlabel" data-ru="Прослушано">Heard</div>
   <svg class="dial" viewBox="0 0 100 56" aria-hidden="true">
     <path d="M8 50 A42 42 0 0 1 92 50" fill="none" stroke="#15110D" stroke-width="2"/>
     <g stroke="#15110D" stroke-width="1.5"><line x1="8" y1="50" x2="13" y2="50"/><line x1="50" y1="8" x2="50" y2="13"/><line x1="92" y1="50" x2="87" y2="50"/></g>
     <line class="needle" x1="50" y1="50" x2="50" y2="16" stroke="#E5202B" stroke-width="3" stroke-linecap="round"/>
     <circle cx="50" cy="50" r="4" fill="#15110D"/>
   </svg>
-  <div class="read" id="meterRead">не слушали</div>
+  <div class="read" id="meterRead">not yet</div>
   <div class="cnt" id="meterCnt">0 / 10</div>
 </aside>
 
 <!-- ── ПРОЕКТОР ── -->
-<aside class="projector paused" id="projector" aria-live="polite" aria-label="Проектор — сейчас на плёнке">
+<aside class="projector paused" id="projector" aria-live="polite" aria-label="Projector — now on film" data-ru-aria-label="Проектор — сейчас на плёнке">
   <div class="pj-top">
     <div class="pj-reel" aria-hidden="true"></div>
     <div class="pj-meta">
-      <div class="now">Сейчас на плёнке</div>
+      <div class="now" data-ru="Сейчас на плёнке">Now on film</div>
       <div class="ttl" id="pjTtl">—</div>
       <div class="wrk" id="pjWrk">—</div>
     </div>
-    <button class="pj-close" id="pjClose" type="button" aria-label="Остановить и закрыть">✕</button>
+    <button class="pj-close" id="pjClose" type="button" aria-label="Stop and close" data-ru-aria-label="Остановить и закрыть">✕</button>
   </div>
   <div class="pj-frame" id="pjFrame"></div>
   <div class="pj-foot">
-    <a id="pjYt" target="_blank" rel="noopener" href="#">смотреть на YouTube ↗</a>
-    <span class="hint">+1 к коллекции</span>
+    <a id="pjYt" target="_blank" rel="noopener" href="#" data-ru="смотреть на YouTube ↗">watch on YouTube ↗</a>
+    <span class="hint" data-ru="+1 к коллекции">+1 to your reel</span>
   </div>
 </aside>
 
+<script src="/i18n.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
@@ -530,107 +546,116 @@
   var hasGSAP = !!window.gsap;
   if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
 
+  /* ═══════════ ЯЗЫК (i18n.js) ═══════════ */
+  // i18n.js грузится с defer → на момент первого рендера window.I18N ещё нет.
+  // Пока движка нет, читаем язык из <html lang>, который anti-flash-скрипт в <head>
+  // уже выставил из localStorage. После загрузки i18n — из window.I18N.get().
+  var lang = function(){ return (window.I18N && window.I18N.get) ? window.I18N.get() : (document.documentElement.lang === 'ru' ? 'ru' : 'en'); };
+  var tt = function(en, ru){ return lang() === 'ru' ? ru : en; };
+  function escHtml(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function escAttr(s){ return escHtml(s).replace(/"/g,'&quot;'); }
+
   /* ═══════════ ДАННЫЕ ВЫПУСКОВ ═══════════ */
   // panels[].sfx — латиница/символы (шрифт Bangers без кириллицы); cap — кириллица (Caveat)
   var ISSUES=[
     {no:'01',slug:'manhattan',key:'mouse-manhattan',title:'Mouse in Manhattan',year:'1945',studio:'MGM',
-     work:'Луис Алтер · «Manhattan Serenade»',yt:'ItxS2SsjQro',cover:'manhattan-1',
-     blurb:'Джерри один на один с большим городом — и ни одного слова.',
+     work:{en:'Louis Alter · “Manhattan Serenade”',ru:'Луис Алтер · «Manhattan Serenade»'},yt:'ItxS2SsjQro',cover:'manhattan-1',
+     blurb:{en:'Jerry, one mouse against the big city — and not a single word.',ru:'Джерри один на один с большим городом — и ни одного слова.'},
      panels:[
-       {img:'manhattan-4',who:'jerry',cap:'Прибыл! Город встречает вывеской «GRAND CENTRAL».',sfx:'TOOT TOOT!'},
-       {img:'manhattan-1',who:'jerry',cap:'Фрак, дама в платье и танец на крыше Манхэттена.',sfx:'♪ SWING'},
-       {img:'manhattan-5',who:'jerry',cap:'Витрина «Jewelers»: Джерри прилип носом к стеклу.',sfx:'OOOH!'},
-       {img:'manhattan-2',who:'jerry',cap:'Один-одинёшенек на гигантском мосту под звёздами.',sfx:'GULP...'},
-       {img:'manhattan-3',who:'jerry',cap:'А в метро — синий вагон прямо на тебя!',sfx:'SCREECH!'}
+       {img:'manhattan-4',who:'jerry',cap:{en:'He’s arrived! The city greets him with a “GRAND CENTRAL” sign.',ru:'Прибыл! Город встречает вывеской «GRAND CENTRAL».'},sfx:'TOOT TOOT!'},
+       {img:'manhattan-1',who:'jerry',cap:{en:'Top hat and tails, a lady in a gown, and a dance on a Manhattan rooftop.',ru:'Фрак, дама в платье и танец на крыше Манхэттена.'},sfx:'♪ SWING'},
+       {img:'manhattan-5',who:'jerry',cap:{en:'A “Jewelers” window: Jerry, nose pressed to the glass.',ru:'Витрина «Jewelers»: Джерри прилип носом к стеклу.'},sfx:'OOOH!'},
+       {img:'manhattan-2',who:'jerry',cap:{en:'All alone on a giant bridge under the stars.',ru:'Один-одинёшенек на гигантском мосту под звёздами.'},sfx:'GULP...'},
+       {img:'manhattan-3',who:'jerry',cap:{en:'And in the subway — a blue train barreling right at you!',ru:'А в метро — синий вагон прямо на тебя!'},sfx:'SCREECH!'}
      ]},
     {no:'02',slug:'concerto',key:'cat-concerto',title:'The Cat Concerto',year:'1947',studio:'MGM',oscar:true,
-     work:'Ференц Лист · Венгерская рапсодия №2',yt:'meN_XQ4PQMI',cover:'still-cat-concerto',
-     blurb:'Маэстро Том даёт концерт — а Джерри живёт прямо в рояле.',
+     work:{en:'Franz Liszt · Hungarian Rhapsody No. 2',ru:'Ференц Лист · Венгерская рапсодия №2'},yt:'meN_XQ4PQMI',cover:'still-cat-concerto',
+     blurb:{en:'Maestro Tom gives a recital — while Jerry lives right inside the piano.',ru:'Маэстро Том даёт концерт — а Джерри живёт прямо в рояле.'},
      panels:[
-       {img:'still-cat-concerto',who:'tom',cap:'Плакат MGM: Том над клавишами, Джерри с молотком!',sfx:'TA-DA!'},
-       {img:'concerto-2',who:'tom',cap:'Маэстро Том кланяется публике. Сейчас будет рапсодия.',sfx:'AHEM!'},
-       {img:'concerto-3',who:'jerry',cap:'Молоточки лупят Джерри прямо внутри рояля!',sfx:'BONK BONK!'},
-       {img:'concerto-4',who:'tom',cap:'Оба выдохлись: Том размазан, Джерри в отключке.',sfx:'THUD!'}
+       {img:'still-cat-concerto',who:'tom',cap:{en:'The MGM poster: Tom over the keys, Jerry with a hammer!',ru:'Плакат MGM: Том над клавишами, Джерри с молотком!'},sfx:'TA-DA!'},
+       {img:'concerto-2',who:'tom',cap:{en:'Maestro Tom bows to the crowd. The rhapsody is about to begin.',ru:'Маэстро Том кланяется публике. Сейчас будет рапсодия.'},sfx:'AHEM!'},
+       {img:'concerto-3',who:'jerry',cap:{en:'The little hammers pound Jerry right inside the piano!',ru:'Молоточки лупят Джерри прямо внутри рояля!'},sfx:'BONK BONK!'},
+       {img:'concerto-4',who:'tom',cap:{en:'Both are spent: Tom flattened, Jerry out cold.',ru:'Оба выдохлись: Том размазан, Джерри в отключке.'},sfx:'THUD!'}
      ]},
     {no:'03',slug:'bowl',key:'hollywood-bowl',title:'Hollywood Bowl',year:'1950',studio:'MGM',
-     work:'Иоганн Штраус II · увертюра «Летучая мышь»',yt:'DIWTbRxRuqA',cover:'still-hollywood-bowl',
-     blurb:'Сто котов, одна увертюра — и две палочки на один пульт.',
+     work:{en:'Johann Strauss II · Die Fledermaus overture',ru:'Иоганн Штраус II · увертюра «Летучая мышь»'},yt:'DIWTbRxRuqA',cover:'still-hollywood-bowl',
+     blurb:{en:'A hundred cats, one overture — and two batons fighting over a single podium.',ru:'Сто котов, одна увертюра — и две палочки на один пульт.'},
      panels:[
-       {img:'bowl-1',who:'tom',cap:'Тихий вечер. Голливудская чаша ждёт оркестр…',sfx:'♪'},
-       {img:'bowl-2',who:'tom',cap:'Том во фраке берётся за палочку — маэстро вышел.',sfx:'TAP TAP'},
-       {img:'bowl-3',who:'jerry',cap:'Мышиный оркестр расселся: арфы, виолончели, смокинги.',sfx:'♪ TUNE UP'},
-       {img:'bowl-4',who:'jerry',cap:'Джерри один на пульте — самозабвенно машет палочкой.',sfx:'SWISH!'}
+       {img:'bowl-1',who:'tom',cap:{en:'A quiet evening. The Hollywood Bowl waits for its orchestra…',ru:'Тихий вечер. Голливудская чаша ждёт оркестр…'},sfx:'♪'},
+       {img:'bowl-2',who:'tom',cap:{en:'Tom in white tie takes up the baton — the maestro has arrived.',ru:'Том во фраке берётся за палочку — маэстро вышел.'},sfx:'TAP TAP'},
+       {img:'bowl-3',who:'jerry',cap:{en:'The mouse orchestra takes its seats: harps, cellos, tuxedos.',ru:'Мышиный оркестр расселся: арфы, виолончели, смокинги.'},sfx:'♪ TUNE UP'},
+       {img:'bowl-4',who:'jerry',cap:{en:'Jerry alone on the podium — waving the baton with total abandon.',ru:'Джерри один на пульте — самозабвенно машет палочкой.'},sfx:'SWISH!'}
      ]},
     {no:'04',slug:'johann',key:'johann-mouse',title:'Johann Mouse',year:'1953',studio:'MGM',oscar:true,
-     work:'Иоганн Штраус · вальсы («Голубой Дунай»)',yt:'_mAj7RAR7hU',cover:'still-johann-mouse',
-     blurb:'Вена: стоит заиграть вальс — и лапки сами идут в пляс.',
+     work:{en:'Johann Strauss · waltzes (The Blue Danube)',ru:'Иоганн Штраус · вальсы («Голубой Дунай»)'},yt:'_mAj7RAR7hU',cover:'still-johann-mouse',
+     blurb:{en:'Vienna: the moment a waltz strikes up, the paws start dancing on their own.',ru:'Вена: стоит заиграть вальс — и лапки сами идут в пляс.'},
      panels:[
-       {img:'still-johann-mouse',who:'jerry',cap:'«Johann Mouse»: открываем книгу-сказку из старой Вены.',sfx:'♪'},
-       {img:'johann-2',who:'tom',cap:'Том зубрит урок III по нотам. Кот идёт в пианисты.',sfx:'PLINK!'},
-       {img:'johann-3',who:'jerry',cap:'Том играет, Джерри отплясывает на рояле. Аншлаг!',sfx:'WHIRL!'},
-       {img:'johann-4',who:'tom',cap:'Концерт окончен: Том сцапал артиста за шкирку.',sfx:'GOTCHA!'}
+       {img:'still-johann-mouse',who:'jerry',cap:{en:'“Johann Mouse”: we open a storybook out of old Vienna.',ru:'«Johann Mouse»: открываем книгу-сказку из старой Вены.'},sfx:'♪'},
+       {img:'johann-2',who:'tom',cap:{en:'Tom drills Lesson III from the sheet music. The cat’s becoming a pianist.',ru:'Том зубрит урок III по нотам. Кот идёт в пианисты.'},sfx:'PLINK!'},
+       {img:'johann-3',who:'jerry',cap:{en:'Tom plays, Jerry dances across the piano. A full house!',ru:'Том играет, Джерри отплясывает на рояле. Аншлаг!'},sfx:'WHIRL!'},
+       {img:'johann-4',who:'tom',cap:{en:'Concert over: Tom nabs the performer by the scruff.',ru:'Концерт окончен: Том сцапал артиста за шкирку.'},sfx:'GOTCHA!'}
      ]},
-    {no:'05',slug:'carmen',key:'carmen-get-it',title:'Carmen Get It!',year:'1962',studio:'Джин Дейч',
-     work:'Жорж Бизе · опера «Кармен»',yt:'3Wsx22WxWOc',
-     blurb:'Метрополитен-опера, «Кармен» — и один очень музыкальный муравей.',
+    {no:'05',slug:'carmen',key:'carmen-get-it',title:'Carmen Get It!',year:'1962',studio:'Gene Deitch',
+     work:{en:'Georges Bizet · the opera Carmen',ru:'Жорж Бизе · опера «Кармен»'},yt:'3Wsx22WxWOc',
+     blurb:{en:'The Met, a night of Carmen — and one very musical ant.',ru:'Метрополитен-опера, «Кармен» — и один очень музыкальный муравей.'},
      panels:[
-       {img:'carmen-1',who:'tom',cap:'Ночной город под фонарями. Тишина перед спектаклем.',sfx:'SHHH...'},
-       {img:'carmen-2',who:'tom',cap:'Том во фраке с контрабасом. Маэстро готов.',sfx:'TA-DA!'},
-       {img:'carmen-3',who:'jerry',cap:'Джерри у контрабаса строит муравьёв в шеренгу.',sfx:'TICK TICK'},
-       {img:'carmen-4',who:'tom',cap:'Том листает партитуру, а Джерри уселся на ноты.',sfx:'FLIP!'}
+       {img:'carmen-1',who:'tom',cap:{en:'The night city under the lamplight. The hush before the show.',ru:'Ночной город под фонарями. Тишина перед спектаклем.'},sfx:'SHHH...'},
+       {img:'carmen-2',who:'tom',cap:{en:'Tom in tails with an upright bass. The maestro is ready.',ru:'Том во фраке с контрабасом. Маэстро готов.'},sfx:'TA-DA!'},
+       {img:'carmen-3',who:'jerry',cap:{en:'By the bass, Jerry lines his ants up in formation.',ru:'Джерри у контрабаса строит муравьёв в шеренгу.'},sfx:'TICK TICK'},
+       {img:'carmen-4',who:'tom',cap:{en:'Tom flips through the score while Jerry plops down on the notes.',ru:'Том листает партитуру, а Джерри уселся на ноты.'},sfx:'FLIP!'}
      ]},
-    {no:'06',slug:'catabove',key:'cat-above',title:'The Cat Above and the Mouse Below',year:'1964',studio:'Чак Джонс',
-     work:'Россини · «Largo al factotum» («Севильский цирюльник»)',yt:'Cf2WckMuVNU',cover:'catabove-cover',
-     blurb:'Том наверху поёт арию, Джерри внизу пытается поспать.',
+    {no:'06',slug:'catabove',key:'cat-above',title:'The Cat Above and the Mouse Below',year:'1964',studio:'Chuck Jones',
+     work:{en:'Rossini · “Largo al factotum” (The Barber of Seville)',ru:'Россини · «Largo al factotum» («Севильский цирюльник»)'},yt:'Cf2WckMuVNU',cover:'catabove-cover',
+     blurb:{en:'Tom sings an aria up top while Jerry, down below, just wants to sleep.',ru:'Том наверху поёт арию, Джерри внизу пытается поспать.'},
      panels:[
-       {img:'catabove-1',who:'tom',cap:'Том — оперный баритон. «Largo al factotum!»',sfx:'♪ FIGARO'},
-       {img:'catabove-2',who:'tom',cap:'Руки во фраке сжимают на сцене жёлтый колокольчик.',sfx:'CLANG!'},
-       {img:'catabove-3',who:'jerry',cap:'Джерри в фраке выходит на сцену и сам поёт.',sfx:'♪ LA~'},
-       {img:'catabove-4',who:'jerry',cap:'Под колосниками: тросы, балка и оранжевый противовес.',sfx:'CREAK...'}
+       {img:'catabove-1',who:'tom',cap:{en:'Tom, the opera baritone. “Largo al factotum!”',ru:'Том — оперный баритон. «Largo al factotum!»'},sfx:'♪ FIGARO'},
+       {img:'catabove-2',who:'tom',cap:{en:'Tailored hands grip a yellow hand-bell on stage.',ru:'Руки во фраке сжимают на сцене жёлтый колокольчик.'},sfx:'CLANG!'},
+       {img:'catabove-3',who:'jerry',cap:{en:'Jerry, in tails, steps onstage and sings it himself.',ru:'Джерри в фраке выходит на сцену и сам поёт.'},sfx:'♪ LA~'},
+       {img:'catabove-4',who:'jerry',cap:{en:'Up in the rafters: ropes, a beam, and an orange counterweight.',ru:'Под колосниками: тросы, балка и оранжевый противовес.'},sfx:'CREAK...'}
      ]},
     {no:'07',slug:'zoot',key:'zoot-cat',title:'Zoot Cat',year:'1944',studio:'MGM',jazz:true,
-     work:'джаз · свинг',search:'Tom and Jerry Zoot Cat 1944',cover:'zoot-cover',
-     blurb:'Том шьёт зут-костюм и идёт охмурять кошку под свинг.',
+     work:{en:'jazz · swing',ru:'джаз · свинг'},search:'Tom and Jerry Zoot Cat 1944',cover:'zoot-cover',
+     blurb:{en:'Tom tailors a zoot suit and struts off to woo a lady cat to a swing beat.',ru:'Том шьёт зут-костюм и идёт охмурять кошку под свинг.'},
      panels:[
-       {img:'zoot-1',who:'tom',cap:'«Dear Toots… OH YOU KID» — записка с сердечками.',sfx:'SMOOCH!'},
-       {img:'zoot-2',who:'tom',cap:'Том намыливает лапы и прихорашивается ловеласом.',sfx:'SPLISH!'},
-       {img:'zoot-3',who:'tom',cap:'Том зубами растягивает полосатую ткань во всю веранду.',sfx:'STRETCH!'},
-       {img:'zoot-4',who:'tom',cap:'Ой! Том запутался в собственной полосатой ткани.',sfx:'OW!'}
+       {img:'zoot-1',who:'tom',cap:{en:'“Dear Toots… OH YOU KID” — a love note dotted with hearts.',ru:'«Dear Toots… OH YOU KID» — записка с сердечками.'},sfx:'SMOOCH!'},
+       {img:'zoot-2',who:'tom',cap:{en:'Tom lathers up his paws and preens like a ladies’ man.',ru:'Том намыливает лапы и прихорашивается ловеласом.'},sfx:'SPLISH!'},
+       {img:'zoot-3',who:'tom',cap:{en:'Tom stretches the striped fabric across the whole porch with his teeth.',ru:'Том зубами растягивает полосатую ткань во всю веранду.'},sfx:'STRETCH!'},
+       {img:'zoot-4',who:'tom',cap:{en:'Oops! Tom’s tangled up in his own striped cloth.',ru:'Ой! Том запутался в собственной полосатой ткани.'},sfx:'OW!'}
      ]},
     {no:'08',slug:'serenade',key:'solid-serenade',title:'Solid Serenade',year:'1946',studio:'MGM',jazz:true,
-     work:'«Is You Is or Is You Ain’t My Baby»',search:'Tom and Jerry Solid Serenade 1946',cover:'serenade-cover',
-     blurb:'Том с контрабасом поёт серенаду — и будит не ту собаку.',
+     work:{en:'“Is You Is or Is You Ain’t My Baby”',ru:'«Is You Is or Is You Ain’t My Baby»'},search:'Tom and Jerry Solid Serenade 1946',cover:'serenade-cover',
+     blurb:{en:'Tom croons a serenade with his bass — and wakes up exactly the wrong dog.',ru:'Том с контрабасом поёт серенаду — и будит не ту собаку.'},
      panels:[
-       {img:'serenade-1',who:'tom',cap:'Том, контрабас и лунная ночь — серенада началась.',sfx:'♪ BOM BOM'},
-       {img:'serenade-2',who:'tom',cap:'«Is You Is or Is You Ain’t My Baby…» — Том поёт ей.',sfx:'CROON~'},
-       {img:'serenade-3',who:'tom',cap:'Будка «KILLER». Внутри спит пёс. Пока спит.',sfx:'ZZZ...'},
-       {img:'serenade-4',who:'tom',cap:'Кошка на балконе ждёт продолжения серенады.',sfx:'♪ SIGH'}
+       {img:'serenade-1',who:'tom',cap:{en:'Tom, an upright bass, and a moonlit night — the serenade begins.',ru:'Том, контрабас и лунная ночь — серенада началась.'},sfx:'♪ BOM BOM'},
+       {img:'serenade-2',who:'tom',cap:{en:'“Is You Is or Is You Ain’t My Baby…” — Tom sings it to her.',ru:'«Is You Is or Is You Ain’t My Baby…» — Том поёт ей.'},sfx:'CROON~'},
+       {img:'serenade-3',who:'tom',cap:{en:'A doghouse marked “KILLER.” Inside, a dog sleeps. For now.',ru:'Будка «KILLER». Внутри спит пёс. Пока спит.'},sfx:'ZZZ...'},
+       {img:'serenade-4',who:'tom',cap:{en:'The lady cat on the balcony waits for the serenade to go on.',ru:'Кошка на балконе ждёт продолжения серенады.'},sfx:'♪ SIGH'}
      ]},
     {no:'09',slug:'pecos',key:'pecos-pest',title:'Pecos Pest',year:'1955',studio:'MGM',jazz:true,
-     work:'«Froggy Went A-Courtin’»',search:'Tom and Jerry Pecos Pest 1955',cover:'pecos-cover',
-     blurb:'Дядюшка Пекос дёргает усы Тома вместо струн банджо.',
+     work:{en:'“Froggy Went A-Courtin’”',ru:'«Froggy Went A-Courtin’»'},search:'Tom and Jerry Pecos Pest 1955',cover:'pecos-cover',
+     blurb:{en:'Uncle Pecos plucks Tom’s whiskers instead of banjo strings.',ru:'Дядюшка Пекос дёргает усы Тома вместо струн банджо.'},
      panels:[
-       {img:'pecos-1',who:'jerry',cap:'Дядюшка Пекос с гитарой заявился к Джерри в гости.',sfx:'HOWDY!'},
-       {img:'pecos-2',who:'jerry',cap:'Пекос наяривает на гитаре — крупным планом.',sfx:'♪ PLUNK'},
-       {img:'pecos-3',who:'tom',cap:'Том дуется на диване, Джерри рядом у телика.',sfx:'GRR...'},
-       {img:'pecos-4',who:'tom',cap:'Пекос семенит по плитке, Том провожает взглядом.',sfx:'TIP-TOE'}
+       {img:'pecos-1',who:'jerry',cap:{en:'Uncle Pecos and his guitar show up at Jerry’s place.',ru:'Дядюшка Пекос с гитарой заявился к Джерри в гости.'},sfx:'HOWDY!'},
+       {img:'pecos-2',who:'jerry',cap:{en:'Pecos wails away on the guitar — in close-up.',ru:'Пекос наяривает на гитаре — крупным планом.'},sfx:'♪ PLUNK'},
+       {img:'pecos-3',who:'tom',cap:{en:'Tom sulks on the couch, Jerry beside him by the TV.',ru:'Том дуется на диване, Джерри рядом у телика.'},sfx:'GRR...'},
+       {img:'pecos-4',who:'tom',cap:{en:'Pecos scurries across the tiles while Tom watches him go.',ru:'Пекос семенит по плитке, Том провожает взглядом.'},sfx:'TIP-TOE'}
      ]},
-    {no:'10',slug:'duplicat',key:'dupli-cat',title:'Cat and Dupli-cat',year:'1967',studio:'Чак Джонс',jazz:true,
-     work:'«Santa Lucia» · неаполитанская баллада',yt:'g_X_lhSS-V4',cover:'duplicat-cover',
-     blurb:'Два кота-баритона поют «Santa Lucia» — каждый за Джерри.',
+    {no:'10',slug:'duplicat',key:'dupli-cat',title:'Cat and Dupli-cat',year:'1967',studio:'Chuck Jones',jazz:true,
+     work:{en:'“Santa Lucia” · a Neapolitan ballad',ru:'«Santa Lucia» · неаполитанская баллада'},yt:'g_X_lhSS-V4',cover:'duplicat-cover',
+     blurb:{en:'Two baritone cats sing “Santa Lucia” — each one chasing Jerry.',ru:'Два кота-баритона поют «Santa Lucia» — каждый за Джерри.'},
      panels:[
-       {img:'duplicat-1',who:'tom',cap:'Том в смокинге зажмурился и горланит песню под луной.',sfx:'♪ O~'},
-       {img:'duplicat-2',who:'tom',cap:'Том крадётся по сваям причала с чем-то тёмным в лапах.',sfx:'SNEAK...'},
-       {img:'duplicat-3',who:'tom',cap:'Корабль у пирса под луной, на сходнях — фигурка.',sfx:'♪ ECHO'},
-       {img:'duplicat-4',who:'jerry',cap:'Джерри на шляпе нос к носу с подозрительным псом.',sfx:'GULP!'}
+       {img:'duplicat-1',who:'tom',cap:{en:'Tom, in a tux, screws his eyes shut and belts the song at the moon.',ru:'Том в смокинге зажмурился и горланит песню под луной.'},sfx:'♪ O~'},
+       {img:'duplicat-2',who:'tom',cap:{en:'Tom creeps along the dock pilings with something dark in his paws.',ru:'Том крадётся по сваям причала с чем-то тёмным в лапах.'},sfx:'SNEAK...'},
+       {img:'duplicat-3',who:'tom',cap:{en:'A ship at the pier under the moon, a little figure on the gangway.',ru:'Корабль у пирса под луной, на сходнях — фигурка.'},sfx:'♪ ECHO'},
+       {img:'duplicat-4',who:'jerry',cap:{en:'Perched on a hat, Jerry comes nose to nose with a suspicious dog.',ru:'Джерри на шляпе нос к носу с подозрительным псом.'},sfx:'GULP!'}
      ]},
     {no:'12',slug:'night-xmas',key:'night-before-christmas',title:'The Night Before Christmas',year:'1941',studio:'MGM',holiday:true,
-     work:'«’Twas the night before Christmas…»',search:'Tom and Jerry The Night Before Christmas 1941 Warner Classics',cover:'night-xmas-cover',
-     blurb:'Ёлка, подарки и леденец — пока ссора не уступит духу Рождества. Номинант на «Оскар».',
+     work:{en:'“’Twas the night before Christmas…”',ru:'«’Twas the night before Christmas…»'},search:'Tom and Jerry The Night Before Christmas 1941 Warner Classics',cover:'night-xmas-cover',
+     blurb:{en:'A tree, presents, and a candy cane — until the squabbling gives way to the Christmas spirit. An Oscar nominee.',ru:'Ёлка, подарки и леденец — пока ссора не уступит духу Рождества. Номинант на «Оскар».'},
      panels:[{img:'night-xmas-cover',who:'tom'}]},
     {no:'11',slug:'nutcracker',key:'nutcracker-tale',title:'A Nutcracker Tale',year:'2007',studio:'Warner Bros.',holiday:true,
-     work:'Чайковский · балет «Щелкунчик»',yt:'t8dFcGPTjOY',cover:'nutcracker-cover',
-     blurb:'Рождество, балет и Джерри в роли Щелкунчика — под музыку Чайковского.',
+     work:{en:'Tchaikovsky · The Nutcracker ballet',ru:'Чайковский · балет «Щелкунчик»'},yt:'t8dFcGPTjOY',cover:'nutcracker-cover',
+     blurb:{en:'Christmas, ballet, and Jerry as the Nutcracker — set to Tchaikovsky.',ru:'Рождество, балет и Джерри в роли Щелкунчика — под музыку Чайковского.'},
      panels:[{img:'nutcracker-cover',who:'jerry'}]}
   ];
 
@@ -698,21 +723,24 @@
   /* ═══════════ РЕНДЕР ВЫПУСКОВ ═══════════ */
   function issueHTML(it){
     var coverImg = it.cover || it.panels[0].img;
+    var ta = escAttr(it.title), th = escHtml(it.title);
+    // видимый текст — английский; русский лежит в data-ru* и переключается i18n.js
     var cov =
-      '<div class="issue-cover"><div class="cover" role="button" tabindex="0" aria-label="Открыть оригинал «'+it.title+'»">'+
+      '<div class="issue-cover"><div class="cover" role="button" tabindex="0" aria-label="Open the original of “'+ta+'”" data-ru-aria-label="Открыть оригинал «'+ta+'»">'+
         '<div class="cov-no'+(it.holiday?' bonus':'')+'">'+(it.holiday?'<b>❄</b>':'<span>No</span><b>'+it.no+'</b>')+'</div>'+
-        (it.oscar?'<figure class="cov-oscar"><img src="img/oscar.png" alt="Премия «Оскар»" loading="lazy"><figcaption>«Оскар»<span>'+it.year+'</span></figcaption></figure>':'')+
-        '<div class="cov-art" data-who="'+(it.panels[0].who||'tom')+'"><img src="img/'+coverImg+'.jpg" alt="Обложка выпуска «'+it.title+'»" data-fallback loading="lazy">'+
-          '<div class="cov-title">'+it.title+'<span class="yr">'+it.studio+' · '+it.year+'</span></div>'+
+        (it.oscar?'<figure class="cov-oscar"><img src="img/oscar.png" alt="Academy Award (Oscar)" loading="lazy"><figcaption>Oscar<span>'+it.year+'</span></figcaption></figure>':'')+
+        '<div class="cov-art" data-who="'+(it.panels[0].who||'tom')+'"><img src="img/'+coverImg+'.jpg" alt="Cover of “'+ta+'”" data-fallback loading="lazy">'+
+          '<div class="cov-title">'+th+'<span class="yr">'+escHtml(it.studio)+' · '+it.year+'</span></div>'+
           '<div class="cov-play" aria-hidden="true"><b>▶</b></div>'+
-          '<div class="stamp" aria-hidden="true">Прослушано</div>'+
+          '<div class="stamp" aria-hidden="true" data-ru="Прослушано">Played</div>'+
         '</div>'+
-        '<div class="cov-blurb">'+it.blurb+'</div>'+
-        '<div class="cov-work">'+it.work+'</div>'+
+        '<div class="cov-blurb" data-ru="'+escAttr(it.blurb.ru)+'">'+escHtml(it.blurb.en)+'</div>'+
+        '<div class="cov-work" data-ru="'+escAttr(it.work.ru)+'">'+escHtml(it.work.en)+'</div>'+
       '</div></div>';
     var art = document.createElement('article');
     art.className='issue reveal'+(it.jazz?' jazz':'')+(it.oscar?' oscar':'')+(it.holiday?' holiday':'');
-    art.dataset.key=it.key; art.dataset.no=it.no; art.dataset.title=it.title; art.dataset.work=it.work;
+    art.dataset.key=it.key; art.dataset.no=it.no; art.dataset.title=it.title;
+    art.dataset.workEn=it.work.en; art.dataset.workRu=it.work.ru;
     if(it.yt) art.dataset.yt=it.yt; if(it.search) art.dataset.search=it.search; if(it.holiday) art.dataset.bonus='1';
     art.innerHTML = cov;
     return art;
@@ -740,14 +768,21 @@
 
   /* ═══════════ MUTE ═══════════ */
   var muteBtn=document.getElementById('mute'), muteLbl=document.getElementById('mute-lbl');
+  // подпись зависит и от состояния (mute), и от языка → единая функция, вызывается
+  // при старте, по клику и на смену языка (i18n:change).
+  function applyMuteLabels(){
+    var m=Sound.isMuted();
+    muteBtn.setAttribute('aria-pressed', String(m));
+    muteBtn.setAttribute('aria-label', m?tt('Unmute sound','Включить звук'):tt('Mute sound','Выключить звук'));
+    muteLbl.textContent = m?tt('muted','тихо'):tt('sound','звук');
+  }
   muteBtn.addEventListener('click', function(){
     var m=Sound.toggle();
     if(!m) Sound.bonk();
-    muteBtn.setAttribute('aria-pressed', String(m));
-    muteBtn.setAttribute('aria-label', m?'Включить звук':'Выключить звук');
-    muteLbl.textContent = m?'тихо':'звук';
+    applyMuteLabels();
     starBurst(muteBtn);
   });
+  applyMuteLabels();
 
   /* ═══════════ ОБЛОЖКА-ИНТРО ═══════════ */
   (function(){
@@ -792,13 +827,15 @@
     var box=document.getElementById('meter'), readEl=document.getElementById('meterRead'), cntEl=document.getElementById('meterCnt');
     var total=ISSUES.filter(function(it){ return !it.holiday; }).length, read=new Set();
     try{ JSON.parse(localStorage.getItem('tj-listened')||'[]').forEach(function(k){ read.add(k); }); }catch(e){}
-    var READS=['не слушали','+1','слушаем','ещё!','почти треть','полпути','шесть!','семь','восемь','девять','КОЛЛЕКЦИЯ!'];
+    var READS_EN=['not yet','+1','rolling','more!','almost a third','halfway','six!','seven','eight','nine','FULL REEL!'];
+    var READS_RU=['не слушали','+1','слушаем','ещё!','почти треть','полпути','шесть!','семь','восемь','девять','КОЛЛЕКЦИЯ!'];
     function save(){ try{ localStorage.setItem('tj-listened',JSON.stringify(Array.from(read))); }catch(e){} }
     function paint(spring){
       var n=Math.min(read.size,total);
       box.style.setProperty('--read',n);
-      readEl.textContent=READS[n]||'КОЛЛЕКЦИЯ!'; cntEl.textContent=n+' / '+total;
-      box.setAttribute('aria-valuenow',n); box.setAttribute('aria-valuetext','прослушано: '+n+' из '+total);
+      var reads=lang()==='ru'?READS_RU:READS_EN;
+      readEl.textContent=reads[n]||reads[reads.length-1]; cntEl.textContent=n+' / '+total;
+      box.setAttribute('aria-valuenow',n); box.setAttribute('aria-valuetext',tt('heard: ','прослушано: ')+n+tt(' of ',' из ')+total);
       if(spring && !reduce){ box.classList.add('spring'); setTimeout(function(){ box.classList.remove('spring'); },720); }
       if(n>=total && spring) finale();
     }
@@ -810,7 +847,7 @@
     function add(key){ if(read.has(key)) return false; read.add(key); save(); Sound.noiseSwell(0.5,1500); paint(true); return true; }
     // восстановить печати «Читано»
     paint(false);
-    return { add:add, has:function(k){ return read.has(k); }, restore:function(){
+    return { add:add, has:function(k){ return read.has(k); }, repaint:function(){ paint(false); }, restore:function(){
       document.querySelectorAll('.issue').forEach(function(a){ if(read.has(a.dataset.key)) a.classList.add('read'); });
     } };
   })();
@@ -820,11 +857,12 @@
   var Projector=(function(){
     var el=document.getElementById('projector'), ttl=document.getElementById('pjTtl'), wrk=document.getElementById('pjWrk'),
         frame=document.getElementById('pjFrame'), ytLink=document.getElementById('pjYt'), closeBtn=document.getElementById('pjClose');
-    var lastBtn=null;
+    var lastBtn=null, curArt=null;
+    function srLabel(){ return tt('▶ find it on YouTube','▶ найти на YouTube'); }
     function searchUrl(q){ return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q); }
     function open(art, btn){
-      var d=art.dataset;
-      ttl.textContent=d.title||''; wrk.textContent=d.work||'';
+      var d=art.dataset; curArt=art;
+      ttl.textContent=d.title||''; wrk.textContent=tt(d.workEn||'', d.workRu||'');
       frame.innerHTML='';
       if(d.yt){
         var f=document.createElement('iframe');
@@ -835,7 +873,7 @@
       } else {
         var q=d.search||(d.title+' Tom and Jerry');
         frame.innerHTML='<div class="nofilm"><div><div class="big">'+(d.bonus?'❄':'No.'+d.no)+'</div>'+
-          '<a class="sr" target="_blank" rel="noopener" href="'+searchUrl(q)+'">▶ найти на YouTube</a></div></div>';
+          '<a class="sr" target="_blank" rel="noopener" href="'+searchUrl(q)+'">'+srLabel()+'</a></div></div>';
         ytLink.href=searchUrl(q);
       }
       el.classList.add('open'); el.classList.remove('paused');
@@ -844,10 +882,16 @@
       if(d.bonus){ art.classList.add('read'); }
       else if(d.key && ReadMeter.add(d.key)){ art.classList.add('read'); }
     }
-    function close(){ el.classList.remove('open'); el.classList.add('paused'); frame.innerHTML=''; if(lastBtn) lastBtn.focus(); }
+    function close(){ el.classList.remove('open'); el.classList.add('paused'); frame.innerHTML=''; curArt=null; if(lastBtn) lastBtn.focus(); }
+    // при смене языка обновляем то, что нарисовано динамически (пока проектор открыт)
+    function relabel(){
+      if(!el.classList.contains('open')||!curArt) return;
+      wrk.textContent=tt(curArt.dataset.workEn||'', curArt.dataset.workRu||'');
+      var sr=frame.querySelector('.sr'); if(sr) sr.textContent=srLabel();
+    }
     closeBtn.addEventListener('click', close);
     document.addEventListener('keydown', function(e){ if(e.key==='Escape' && el.classList.contains('open')) close(); });
-    return { open:open };
+    return { open:open, relabel:relabel };
   })();
 
   /* клик или Enter/Пробел по обложке → проектор */
@@ -868,6 +912,15 @@
     // reduced-motion ИЛИ вкладка открыта в фоне (rAF спит) — показываем контент без анимации
     document.querySelectorAll('.reveal').forEach(function(el){ el.style.opacity=1; el.style.transform='none'; });
   }
+
+  /* ═══════════ СМЕНА ЯЗЫКА ═══════════ */
+  // Статический текст и data-ru* карточек переключает сам i18n.js.
+  // Здесь перерисовываем то, что строит JS из строковых литералов.
+  document.addEventListener('i18n:change', function(){
+    ReadMeter.repaint();
+    applyMuteLabels();
+    Projector.relabel();
+  });
 })();
 </script>
 <script src="/palette.js" defer></script>

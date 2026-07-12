@@ -7,25 +7,37 @@
     {
       "yr": "2005",
       "t": "Endless Love (無盡的愛)",
-      "m": "из «Миф» · с Kim Hee-sun",
+      "m": {
+        "en": "from «The Myth» · with Kim Hee-sun",
+        "ru": "из «Миф» · с Kim Hee-sun"
+      },
       "q": "Jackie Chan Endless Love (無盡的愛) The Myth Kim Hee-sun"
     },
     {
       "yr": "1994",
       "t": "Drunken Boxing (醉拳)",
-      "m": "из «Пьяный мастер 2»",
+      "m": {
+        "en": "from «Drunken Master II»",
+        "ru": "из «Пьяный мастер 2»"
+      },
       "q": "Jackie Chan Drunken Boxing (醉拳) Drunken Master II"
     },
     {
       "yr": "1998",
       "t": "Who Am I? (我是誰)",
-      "m": "из «Кто я?» · с Emil Chau",
+      "m": {
+        "en": "from «Who Am I?» · with Emil Chau",
+        "ru": "из «Кто я?» · с Emil Chau"
+      },
       "q": "Jackie Chan Who Am I? (我是誰) Who Am I? Emil Chau"
     },
     {
       "yr": "2017",
       "t": "Beautiful Myth (美麗的神話)",
-      "m": "из «Kung Fu Yoga»",
+      "m": {
+        "en": "from «Kung Fu Yoga»",
+        "ru": "из «Kung Fu Yoga»"
+      },
       "q": "Jackie Chan Beautiful Myth (美麗的神話)"
     }
   ],
@@ -215,1019 +227,1475 @@
     {
       "yr": "1980",
       "n": "Kung Fu Fighting Man",
-      "s": "Молодой мастер",
+      "s": {
+        "en": "The Young Master",
+        "ru": "Молодой мастер"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Kung Fu Fighting Man The Young Master"
     },
     {
       "yr": "1982",
       "n": "Dragon Lord (龍少爺)",
-      "s": "Драконы навсегда",
+      "s": {
+        "en": "Dragons Forever",
+        "ru": "Драконы навсегда"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Dragon Lord (龍少爺) Dragon Lord"
     },
     {
       "yr": "1983",
       "n": "Marianne (マリアンヌ)",
-      "s": "сингл · 7\" / Warner Pioneer",
+      "s": {
+        "en": "single · 7\" / Warner Pioneer",
+        "ru": "сингл · 7\" / Warner Pioneer"
+      },
       "type": "Сингл",
       "q": "Jackie Chan Marianne (マリアンヌ) single"
     },
     {
       "yr": "1983",
       "n": "Project A (A計劃)",
-      "s": "Проект А",
+      "s": {
+        "en": "Project A",
+        "ru": "Проект А"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Project A (A計劃) Project A"
     },
     {
       "yr": "1984",
       "n": "Heart Ha Yes (ハートはYES)",
-      "s": "сингл · 7\" / Warner Pioneer",
+      "s": {
+        "en": "single · 7\" / Warner Pioneer",
+        "ru": "сингл · 7\" / Warner Pioneer"
+      },
       "type": "Сингл",
       "q": "Jackie Chan Heart Ha Yes (ハートはYES) single"
     },
     {
       "yr": "1984",
       "n": "Hello Happy Song",
-      "s": "из «Love Me»",
+      "s": {
+        "en": "from «Love Me»",
+        "ru": "из «Love Me»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Love Me Hello Happy Song"
     },
     {
       "yr": "1984",
       "n": "Jackie's Legend",
-      "s": "из «Love Me»",
+      "s": {
+        "en": "from «Love Me»",
+        "ru": "из «Love Me»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Love Me Jackie's Legend"
     },
     {
       "yr": "1984",
       "n": "Let Me Hear Once More",
-      "s": "из «Love Me»",
+      "s": {
+        "en": "from «Love Me»",
+        "ru": "из «Love Me»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Love Me Let Me Hear Once More"
     },
     {
       "yr": "1984",
       "n": "Love Me",
-      "s": "из «Love Me»",
+      "s": {
+        "en": "from «Love Me»",
+        "ru": "из «Love Me»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Love Me Love Me"
     },
     {
       "yr": "1984",
       "n": "Marianne",
-      "s": "из «Love Me»",
+      "s": {
+        "en": "from «Love Me»",
+        "ru": "из «Love Me»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Love Me Marianne"
     },
     {
       "yr": "1984",
       "n": "Movie Star",
-      "s": "из «Love Me»",
+      "s": {
+        "en": "from «Love Me»",
+        "ru": "из «Love Me»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Love Me Movie Star"
     },
     {
       "yr": "1984",
       "n": "Thank You (Do Je)",
-      "s": "сингл · 12\" EP / Warner Pioneer",
+      "s": {
+        "en": "single · 12\" EP / Warner Pioneer",
+        "ru": "сингл · 12\" EP / Warner Pioneer"
+      },
       "type": "Сингл",
       "q": "Jackie Chan Thank You (Do Je) single"
     },
     {
       "yr": "1984",
       "n": "Wait for Me",
-      "s": "из «Love Me»",
+      "s": {
+        "en": "from «Love Me»",
+        "ru": "из «Love Me»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Love Me Wait for Me"
     },
     {
       "yr": "1984",
       "n": "When April Comes",
-      "s": "из «Love Me»",
+      "s": {
+        "en": "from «Love Me»",
+        "ru": "из «Love Me»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Love Me When April Comes"
     },
     {
       "yr": "1985",
       "n": "China Blue",
-      "s": "из «The Boy's Life (A Boy's Life)»",
+      "s": {
+        "en": "from «The Boy's Life (A Boy's Life)»",
+        "ru": "из «The Boy's Life (A Boy's Life)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan The Boy's Life (A Boy's Life) China Blue"
     },
     {
       "yr": "1985",
       "n": "Dear Jackie",
-      "s": "сингл · 12\" EP / Warner Pioneer",
+      "s": {
+        "en": "single · 12\" EP / Warner Pioneer",
+        "ru": "сингл · 12\" EP / Warner Pioneer"
+      },
       "type": "Сингл",
       "q": "Jackie Chan Dear Jackie single"
     },
     {
       "yr": "1985",
       "n": "Hero Story (英雄故事)",
-      "s": "Полицейская история",
+      "s": {
+        "en": "Police Story",
+        "ru": "Полицейская история"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Hero Story (英雄故事) Police Story",
       "significant": true,
-      "why": "Тема «Полицейской истории» — кантопоп-классика 80-х из, возможно, лучшего его боевика. Вход в раннего, гонконгского Джеки."
+      "why": {
+        "en": "The theme from «Police Story» — a 1980s Cantopop classic from what may be his best action movie. A doorway into early, Hong Kong-era Jackie.",
+        "ru": "Тема «Полицейской истории» — кантопоп-классика 80-х из, возможно, лучшего его боевика. Вход в раннего, гонконгского Джеки."
+      }
     },
     {
       "yr": "1985",
       "n": "Hong Kong Twilight",
-      "s": "из «The Boy's Life (A Boy's Life)»",
+      "s": {
+        "en": "from «The Boy's Life (A Boy's Life)»",
+        "ru": "из «The Boy's Life (A Boy's Life)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan The Boy's Life (A Boy's Life) Hong Kong Twilight"
     },
     {
       "yr": "1985",
       "n": "I Love You You You",
-      "s": "сингл · 7\" / Warner Pioneer",
+      "s": {
+        "en": "single · 7\" / Warner Pioneer",
+        "ru": "сингл · 7\" / Warner Pioneer"
+      },
       "type": "Сингл",
       "q": "Jackie Chan I Love You You You single"
     },
     {
       "yr": "1985",
       "n": "I Love You, You, You",
-      "s": "из «The Boy's Life (A Boy's Life)»",
+      "s": {
+        "en": "from «The Boy's Life (A Boy's Life)»",
+        "ru": "из «The Boy's Life (A Boy's Life)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan The Boy's Life (A Boy's Life) I Love You, You, You"
     },
     {
       "yr": "1985",
       "n": "Jackie",
-      "s": "сингл · 7\" / Warner Pioneer",
+      "s": {
+        "en": "single · 7\" / Warner Pioneer",
+        "ru": "сингл · 7\" / Warner Pioneer"
+      },
       "type": "Сингл",
       "q": "Jackie Chan Jackie single"
     },
     {
       "yr": "1985",
       "n": "Memories of Eagles",
-      "s": "из «The Boy's Life (A Boy's Life)»",
+      "s": {
+        "en": "from «The Boy's Life (A Boy's Life)»",
+        "ru": "из «The Boy's Life (A Boy's Life)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan The Boy's Life (A Boy's Life) Memories of Eagles"
     },
     {
       "yr": "1985",
       "n": "Platonic Intuition",
-      "s": "из «The Boy's Life (A Boy's Life)»",
+      "s": {
+        "en": "from «The Boy's Life (A Boy's Life)»",
+        "ru": "из «The Boy's Life (A Boy's Life)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan The Boy's Life (A Boy's Life) Platonic Intuition"
     },
     {
       "yr": "1985",
       "n": "Rosy Coloured Pupils",
-      "s": "из «The Boy's Life (A Boy's Life)»",
+      "s": {
+        "en": "from «The Boy's Life (A Boy's Life)»",
+        "ru": "из «The Boy's Life (A Boy's Life)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan The Boy's Life (A Boy's Life) Rosy Coloured Pupils"
     },
     {
       "yr": "1985",
       "n": "Sleep in My Arms",
-      "s": "из «The Boy's Life (A Boy's Life)»",
+      "s": {
+        "en": "from «The Boy's Life (A Boy's Life)»",
+        "ru": "из «The Boy's Life (A Boy's Life)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan The Boy's Life (A Boy's Life) Sleep in My Arms"
     },
     {
       "yr": "1985",
       "n": "Tokyo Saturday Night",
-      "s": "из «The Boy's Life (A Boy's Life)»",
+      "s": {
+        "en": "from «The Boy's Life (A Boy's Life)»",
+        "ru": "из «The Boy's Life (A Boy's Life)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan The Boy's Life (A Boy's Life) Tokyo Saturday Night"
     },
     {
       "yr": "1985",
       "n": "Tokyo Saturday Night",
-      "s": "Сердце дракона",
+      "s": {
+        "en": "Heart of Dragon",
+        "ru": "Сердце дракона"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Tokyo Saturday Night Heart of Dragon",
       "significant": true,
-      "why": "Тема «Сердца дракона» и визитка японского периода Джеки — лёгкий сити-поп 80-х. Совсем другой Джеки, чем в боевиках."
+      "why": {
+        "en": "The theme from «Heart of Dragon» and the calling card of Jackie's Japanese period — breezy 1980s city pop. A completely different Jackie from the one in the action films.",
+        "ru": "Тема «Сердца дракона» и визитка японского периода Джеки — лёгкий сити-поп 80-х. Совсем другой Джеки, чем в боевиках."
+      }
     },
     {
       "yr": "1985",
       "n": "Tokyo Saturday Night",
-      "s": "сингл · 7\" / Warner Pioneer",
+      "s": {
+        "en": "single · 7\" / Warner Pioneer",
+        "ru": "сингл · 7\" / Warner Pioneer"
+      },
       "type": "Сингл",
       "q": "Jackie Chan Tokyo Saturday Night single"
     },
     {
       "yr": "1985",
       "n": "Try to Love Me",
-      "s": "из «The Boy's Life (A Boy's Life)»",
+      "s": {
+        "en": "from «The Boy's Life (A Boy's Life)»",
+        "ru": "из «The Boy's Life (A Boy's Life)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan The Boy's Life (A Boy's Life) Try to Love Me"
     },
     {
       "yr": "1985",
       "n": "Wow Wow Wow",
-      "s": "из «The Boy's Life (A Boy's Life)»",
+      "s": {
+        "en": "from «The Boy's Life (A Boy's Life)»",
+        "ru": "из «The Boy's Life (A Boy's Life)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan The Boy's Life (A Boy's Life) Wow Wow Wow"
     },
     {
       "yr": "1986",
       "n": "Flight of the Dragon",
-      "s": "из «Sing Lung»",
+      "s": {
+        "en": "from «Sing Lung»",
+        "ru": "из «Sing Lung»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Sing Lung Flight of the Dragon"
     },
     {
       "yr": "1986",
       "n": "Flight of the Dragon",
-      "s": "Доспехи бога",
+      "s": {
+        "en": "Armour of God",
+        "ru": "Доспехи бога"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Flight of the Dragon Armour of God"
     },
     {
       "yr": "1986",
       "n": "Hero Story",
-      "s": "из «Sing Lung»",
+      "s": {
+        "en": "from «Sing Lung»",
+        "ru": "из «Sing Lung»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Sing Lung Hero Story"
     },
     {
       "yr": "1986",
       "n": "I Stop the Heart Pain",
-      "s": "из «Sing Lung»",
+      "s": {
+        "en": "from «Sing Lung»",
+        "ru": "из «Sing Lung»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Sing Lung I Stop the Heart Pain"
     },
     {
       "yr": "1986",
       "n": "Iron Man, Soft Feelings",
-      "s": "из «Sing Lung»",
+      "s": {
+        "en": "from «Sing Lung»",
+        "ru": "из «Sing Lung»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Sing Lung Iron Man, Soft Feelings"
     },
     {
       "yr": "1986",
       "n": "Just for Tonight",
-      "s": "из «Sing Lung»",
+      "s": {
+        "en": "from «Sing Lung»",
+        "ru": "из «Sing Lung»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Sing Lung Just for Tonight"
     },
     {
       "yr": "1986",
       "n": "Life's Fulfillment",
-      "s": "из «Sing Lung»",
+      "s": {
+        "en": "from «Sing Lung»",
+        "ru": "из «Sing Lung»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Sing Lung Life's Fulfillment"
     },
     {
       "yr": "1986",
       "n": "My Friend / Pang Yao",
-      "s": "с Alan Tam — Armour of God (англ./кант.)",
+      "s": {
+        "en": "with Alan Tam — Armour of God (Eng./Cant.)",
+        "ru": "с Alan Tam — Armour of God (англ./кант.)"
+      },
       "type": "Прочее",
       "q": "Jackie Chan My Friend / Pang Yao",
       "significant": true,
-      "why": "Ранний кантонский дуэт с Аланом Тамом, связанный с «Доспехами бога». Гонконгский поп 80-х в чистом виде — с чего начинался Джеки-певец."
+      "why": {
+        "en": "An early Cantonese duet with Alan Tam, tied to «Armour of God». Pure 1980s Hong Kong pop — where Jackie the singer got his start.",
+        "ru": "Ранний кантонский дуэт с Аланом Тамом, связанный с «Доспехами бога». Гонконгский поп 80-х в чистом виде — с чего начинался Джеки-певец."
+      }
     },
     {
       "yr": "1986",
       "n": "My Little Girl",
-      "s": "из «Sing Lung»",
+      "s": {
+        "en": "from «Sing Lung»",
+        "ru": "из «Sing Lung»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Sing Lung My Little Girl"
     },
     {
       "yr": "1986",
       "n": "OK I Love You",
-      "s": "из «Sing Lung»",
+      "s": {
+        "en": "from «Sing Lung»",
+        "ru": "из «Sing Lung»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Sing Lung OK I Love You"
     },
     {
       "yr": "1986",
       "n": "Thousand Times Chained in Feelings",
-      "s": "из «Sing Lung»",
+      "s": {
+        "en": "from «Sing Lung»",
+        "ru": "из «Sing Lung»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Sing Lung Thousand Times Chained in Feelings"
     },
     {
       "yr": "1986",
       "n": "Waan Ngau",
-      "s": "из «Sing Lung»",
+      "s": {
+        "en": "from «Sing Lung»",
+        "ru": "из «Sing Lung»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Sing Lung Waan Ngau"
     },
     {
       "yr": "1987",
       "n": "Dream Ties",
-      "s": "из «No Problem»",
+      "s": {
+        "en": "from «No Problem»",
+        "ru": "из «No Problem»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan No Problem Dream Ties"
     },
     {
       "yr": "1987",
       "n": "Giant Feeling",
-      "s": "из «No Problem»",
+      "s": {
+        "en": "from «No Problem»",
+        "ru": "из «No Problem»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan No Problem Giant Feeling"
     },
     {
       "yr": "1987",
       "n": "Maria My Love",
-      "s": "из «No Problem»",
+      "s": {
+        "en": "from «No Problem»",
+        "ru": "из «No Problem»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan No Problem Maria My Love"
     },
     {
       "yr": "1987",
       "n": "Miss Temptation",
-      "s": "из «No Problem»",
+      "s": {
+        "en": "from «No Problem»",
+        "ru": "из «No Problem»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan No Problem Miss Temptation"
     },
     {
       "yr": "1987",
       "n": "No Problem",
-      "s": "из «No Problem»",
+      "s": {
+        "en": "from «No Problem»",
+        "ru": "из «No Problem»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan No Problem No Problem"
     },
     {
       "yr": "1987",
       "n": "Project A 2 (A計劃續集)",
-      "s": "Проект А 2",
+      "s": {
+        "en": "Project A 2",
+        "ru": "Проект А 2"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Project A 2 (A計劃續集) Project A Part II"
     },
     {
       "yr": "1987",
       "n": "Stardust Bay Blues",
-      "s": "из «No Problem»",
+      "s": {
+        "en": "from «No Problem»",
+        "ru": "из «No Problem»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan No Problem Stardust Bay Blues"
     },
     {
       "yr": "1987",
       "n": "Tears of Jade",
-      "s": "из «No Problem»",
+      "s": {
+        "en": "from «No Problem»",
+        "ru": "из «No Problem»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan No Problem Tears of Jade"
     },
     {
       "yr": "1987",
       "n": "Telephone",
-      "s": "из «No Problem»",
+      "s": {
+        "en": "from «No Problem»",
+        "ru": "из «No Problem»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan No Problem Telephone"
     },
     {
       "yr": "1987",
       "n": "The Rain of Jealousy Falls",
-      "s": "из «No Problem»",
+      "s": {
+        "en": "from «No Problem»",
+        "ru": "из «No Problem»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan No Problem The Rain of Jealousy Falls"
     },
     {
       "yr": "1988",
       "n": "Before the Midnight Kiss",
-      "s": "из «Jackie Chan / Before the Midnight Kiss»",
+      "s": {
+        "en": "from «Jackie Chan / Before the Midnight Kiss»",
+        "ru": "из «Jackie Chan / Before the Midnight Kiss»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Jackie Chan / Before the Midnight Kiss Before the Midnight Kiss"
     },
     {
       "yr": "1988",
       "n": "Dare to Fight Against Bans",
-      "s": "из «Jackie Chan / Before the Midnight Kiss»",
+      "s": {
+        "en": "from «Jackie Chan / Before the Midnight Kiss»",
+        "ru": "из «Jackie Chan / Before the Midnight Kiss»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Jackie Chan / Before the Midnight Kiss Dare to Fight Against Bans"
     },
     {
       "yr": "1988",
       "n": "Film Cutting Machine of Life",
-      "s": "из «Jackie Chan / Before the Midnight Kiss»",
+      "s": {
+        "en": "from «Jackie Chan / Before the Midnight Kiss»",
+        "ru": "из «Jackie Chan / Before the Midnight Kiss»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Jackie Chan / Before the Midnight Kiss Film Cutting Machine of Life"
     },
     {
       "yr": "1988",
       "n": "Giant Feelings",
-      "s": "из «Jackie Chan / Before the Midnight Kiss»",
+      "s": {
+        "en": "from «Jackie Chan / Before the Midnight Kiss»",
+        "ru": "из «Jackie Chan / Before the Midnight Kiss»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Jackie Chan / Before the Midnight Kiss Giant Feelings"
     },
     {
       "yr": "1988",
       "n": "Good Night (O-Y-A-S-U-M-I)",
-      "s": "из «Hong Kong My Love»",
+      "s": {
+        "en": "from «Hong Kong My Love»",
+        "ru": "из «Hong Kong My Love»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Hong Kong My Love Good Night (O-Y-A-S-U-M-I)"
     },
     {
       "yr": "1988",
       "n": "Great Tsim Sha Tsui Night",
-      "s": "из «Hong Kong My Love»",
+      "s": {
+        "en": "from «Hong Kong My Love»",
+        "ru": "из «Hong Kong My Love»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Hong Kong My Love Great Tsim Sha Tsui Night"
     },
     {
       "yr": "1988",
       "n": "Grow",
-      "s": "из «Jackie Chan / Before the Midnight Kiss»",
+      "s": {
+        "en": "from «Jackie Chan / Before the Midnight Kiss»",
+        "ru": "из «Jackie Chan / Before the Midnight Kiss»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Jackie Chan / Before the Midnight Kiss Grow"
     },
     {
       "yr": "1988",
       "n": "I Can Do It",
-      "s": "из «Jackie Chan / Before the Midnight Kiss»",
+      "s": {
+        "en": "from «Jackie Chan / Before the Midnight Kiss»",
+        "ru": "из «Jackie Chan / Before the Midnight Kiss»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Jackie Chan / Before the Midnight Kiss I Can Do It"
     },
     {
       "yr": "1988",
       "n": "I Need…",
-      "s": "из «Hong Kong My Love»",
+      "s": {
+        "en": "from «Hong Kong My Love»",
+        "ru": "из «Hong Kong My Love»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Hong Kong My Love I Need…"
     },
     {
       "yr": "1988",
       "n": "Longing for the Jasmine Flower",
-      "s": "из «Hong Kong My Love»",
+      "s": {
+        "en": "from «Hong Kong My Love»",
+        "ru": "из «Hong Kong My Love»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Hong Kong My Love Longing for the Jasmine Flower"
     },
     {
       "yr": "1988",
       "n": "New Diary",
-      "s": "из «Jackie Chan / Before the Midnight Kiss»",
+      "s": {
+        "en": "from «Jackie Chan / Before the Midnight Kiss»",
+        "ru": "из «Jackie Chan / Before the Midnight Kiss»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Jackie Chan / Before the Midnight Kiss New Diary"
     },
     {
       "yr": "1988",
       "n": "Night of Passion Melody",
-      "s": "из «Hong Kong My Love»",
+      "s": {
+        "en": "from «Hong Kong My Love»",
+        "ru": "из «Hong Kong My Love»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Hong Kong My Love Night of Passion Melody"
     },
     {
       "yr": "1988",
       "n": "Night of Passion Melody",
-      "s": "сингл · 7\" / Warner Pioneer",
+      "s": {
+        "en": "single · 7\" / Warner Pioneer",
+        "ru": "сингл · 7\" / Warner Pioneer"
+      },
       "type": "Сингл",
       "q": "Jackie Chan Night of Passion Melody single"
     },
     {
       "yr": "1988",
       "n": "Serenade of Love (愛のセレナーデ)",
-      "s": "сингл · 7\" / Warner Pioneer",
+      "s": {
+        "en": "single · 7\" / Warner Pioneer",
+        "ru": "сингл · 7\" / Warner Pioneer"
+      },
       "type": "Сингл",
       "q": "Jackie Chan Serenade of Love (愛のセレナーデ) single"
     },
     {
       "yr": "1988",
       "n": "Stay with Me",
-      "s": "из «Jackie Chan / Before the Midnight Kiss»",
+      "s": {
+        "en": "from «Jackie Chan / Before the Midnight Kiss»",
+        "ru": "из «Jackie Chan / Before the Midnight Kiss»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Jackie Chan / Before the Midnight Kiss Stay with Me"
     },
     {
       "yr": "1988",
       "n": "Tender Hearts Sparkle",
-      "s": "из «Jackie Chan / Before the Midnight Kiss»",
+      "s": {
+        "en": "from «Jackie Chan / Before the Midnight Kiss»",
+        "ru": "из «Jackie Chan / Before the Midnight Kiss»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Jackie Chan / Before the Midnight Kiss Tender Hearts Sparkle"
     },
     {
       "yr": "1988",
       "n": "This Night",
-      "s": "из «Jackie Chan / Before the Midnight Kiss»",
+      "s": {
+        "en": "from «Jackie Chan / Before the Midnight Kiss»",
+        "ru": "из «Jackie Chan / Before the Midnight Kiss»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Jackie Chan / Before the Midnight Kiss This Night"
     },
     {
       "yr": "1988",
       "n": "When We Touch",
-      "s": "Драконы навсегда · с Anita Mui",
+      "s": {
+        "en": "Dragons Forever · with Anita Mui",
+        "ru": "Драконы навсегда · с Anita Mui"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan When We Touch Dragons Forever Anita Mui"
     },
     {
       "yr": "1988",
       "n": "You Change My Life",
-      "s": "из «Hong Kong My Love»",
+      "s": {
+        "en": "from «Hong Kong My Love»",
+        "ru": "из «Hong Kong My Love»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Hong Kong My Love You Change My Life"
     },
     {
       "yr": "1991",
       "n": "I Can Make It",
-      "s": "с Alan Tam",
+      "s": {
+        "en": "with Alan Tam",
+        "ru": "с Alan Tam"
+      },
       "type": "Прочее",
       "q": "Jackie Chan I Can Make It"
     },
     {
       "yr": "1991",
       "n": "The Way of the Condor",
-      "s": "Операция «Кондор»",
+      "s": {
+        "en": "Operation Condor",
+        "ru": "Операция «Кондор»"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan The Way of the Condor Operation Condor"
     },
     {
       "yr": "1992",
       "n": "A Vigorous Aspiration in My Mind",
-      "s": "из «First Time (My First Time)»",
+      "s": {
+        "en": "from «First Time (My First Time)»",
+        "ru": "из «First Time (My First Time)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan First Time (My First Time) A Vigorous Aspiration in My Mind"
     },
     {
       "yr": "1992",
       "n": "Every Day in My Life",
-      "s": "из «First Time (My First Time)»",
+      "s": {
+        "en": "from «First Time (My First Time)»",
+        "ru": "из «First Time (My First Time)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan First Time (My First Time) Every Day in My Life"
     },
     {
       "yr": "1992",
       "n": "I Wished the Flower Could Never Fade",
-      "s": "из «First Time (My First Time)»",
+      "s": {
+        "en": "from «First Time (My First Time)»",
+        "ru": "из «First Time (My First Time)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan First Time (My First Time) I Wished the Flower Could Never Fade"
     },
     {
       "yr": "1992",
       "n": "Keep Your Company Through Every Moment",
-      "s": "из «First Time (My First Time)»",
+      "s": {
+        "en": "from «First Time (My First Time)»",
+        "ru": "из «First Time (My First Time)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan First Time (My First Time) Keep Your Company Through Every Moment"
     },
     {
       "yr": "1992",
       "n": "My Feeling",
-      "s": "из «First Time (My First Time)»",
+      "s": {
+        "en": "from «First Time (My First Time)»",
+        "ru": "из «First Time (My First Time)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan First Time (My First Time) My Feeling"
     },
     {
       "yr": "1992",
       "n": "My Feeling (感受)",
-      "s": "Двойной дракон",
+      "s": {
+        "en": "Twin Dragons",
+        "ru": "Двойной дракон"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan My Feeling (感受) Twin Dragons"
     },
     {
       "yr": "1992",
       "n": "So Transparent is My Heart",
-      "s": "из «First Time (My First Time)»",
+      "s": {
+        "en": "from «First Time (My First Time)»",
+        "ru": "из «First Time (My First Time)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan First Time (My First Time) So Transparent is My Heart"
     },
     {
       "yr": "1992",
       "n": "The Betel Nuts Beauty",
-      "s": "из «First Time (My First Time)»",
+      "s": {
+        "en": "from «First Time (My First Time)»",
+        "ru": "из «First Time (My First Time)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan First Time (My First Time) The Betel Nuts Beauty"
     },
     {
       "yr": "1992",
       "n": "The End",
-      "s": "из «First Time (My First Time)»",
+      "s": {
+        "en": "from «First Time (My First Time)»",
+        "ru": "из «First Time (My First Time)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan First Time (My First Time) The End"
     },
     {
       "yr": "1992",
       "n": "The Reddish Face",
-      "s": "из «First Time (My First Time)»",
+      "s": {
+        "en": "from «First Time (My First Time)»",
+        "ru": "из «First Time (My First Time)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan First Time (My First Time) The Reddish Face"
     },
     {
       "yr": "1992",
       "n": "The Riddle (謎)",
-      "s": "Суперполицейский",
+      "s": {
+        "en": "Supercop",
+        "ru": "Суперполицейский"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan The Riddle (謎) Police Story 3"
     },
     {
       "yr": "1992",
       "n": "You Are a Lover in My Dreams",
-      "s": "из «First Time (My First Time)»",
+      "s": {
+        "en": "from «First Time (My First Time)»",
+        "ru": "из «First Time (My First Time)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan First Time (My First Time) You Are a Lover in My Dreams"
     },
     {
       "yr": "1993",
       "n": "City Hunter (城市獵人)",
-      "s": "Городской охотник",
+      "s": {
+        "en": "City Hunter",
+        "ru": "Городской охотник"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan City Hunter (城市獵人) City Hunter"
     },
     {
       "yr": "1993",
       "n": "Sincere Hero",
-      "s": "с Anthony Wong, Emil Chau, Jonathan Lee — Crime Story",
+      "s": {
+        "en": "with Anthony Wong, Emil Chau, Jonathan Lee — Crime Story",
+        "ru": "с Anthony Wong, Emil Chau, Jonathan Lee — Crime Story"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Sincere Hero"
     },
     {
       "yr": "1994",
       "n": "Drunken Boxing (醉拳)",
-      "s": "Пьяный мастер 2",
+      "s": {
+        "en": "Drunken Master II",
+        "ru": "Пьяный мастер 2"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Drunken Boxing (醉拳) Drunken Master II",
       "significant": true,
-      "why": "Тема к «Пьяному мастеру 2» — одному из величайших боевиков в его карьере. Кунг-фу-энергия, упакованная в песню."
+      "why": {
+        "en": "The theme from «Drunken Master II» — one of the greatest action films of his career. Kung-fu energy packed into a song.",
+        "ru": "Тема к «Пьяному мастеру 2» — одному из величайших боевиков в его карьере. Кунг-фу-энергия, упакованная в песню."
+      }
     },
     {
       "yr": "1995",
       "n": "A Good Conscience (問心無愧)",
-      "s": "Разборки в Бронксе",
+      "s": {
+        "en": "Rumble in the Bronx",
+        "ru": "Разборки в Бронксе"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan A Good Conscience (問心無愧) Rumble in the Bronx"
     },
     {
       "yr": "1995",
       "n": "One Moment's Hero (一分鐘英雄)",
-      "s": "Громобой",
+      "s": {
+        "en": "Thunderbolt",
+        "ru": "Громобой"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan One Moment's Hero (一分鐘英雄) Thunderbolt"
     },
     {
       "yr": "1996",
       "n": "Cry With You, Laugh With You",
-      "s": "из «Dragon's Heart»",
+      "s": {
+        "en": "from «Dragon's Heart»",
+        "ru": "из «Dragon's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Dragon's Heart Cry With You, Laugh With You"
     },
     {
       "yr": "1996",
       "n": "How Come",
-      "s": "из «Dragon's Heart»",
+      "s": {
+        "en": "from «Dragon's Heart»",
+        "ru": "из «Dragon's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Dragon's Heart How Come"
     },
     {
       "yr": "1996",
       "n": "How Come? (怎么会)",
-      "s": "Первый удар",
+      "s": {
+        "en": "First Strike",
+        "ru": "Первый удар"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan How Come? (怎么会) First Strike"
     },
     {
       "yr": "1996",
       "n": "I Know How You Feel",
-      "s": "из «Dragon's Heart»",
+      "s": {
+        "en": "from «Dragon's Heart»",
+        "ru": "из «Dragon's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Dragon's Heart I Know How You Feel"
     },
     {
       "yr": "1996",
       "n": "I Love Hong Kong",
-      "s": "из «Dragon's Heart»",
+      "s": {
+        "en": "from «Dragon's Heart»",
+        "ru": "из «Dragon's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Dragon's Heart I Love Hong Kong"
     },
     {
       "yr": "1996",
       "n": "I Would Start to Speak but I Can't",
-      "s": "из «Dragon's Heart»",
+      "s": {
+        "en": "from «Dragon's Heart»",
+        "ru": "из «Dragon's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Dragon's Heart I Would Start to Speak but I Can't"
     },
     {
       "yr": "1996",
       "n": "In the Cold Rain",
-      "s": "из «Dragon's Heart»",
+      "s": {
+        "en": "from «Dragon's Heart»",
+        "ru": "из «Dragon's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Dragon's Heart In the Cold Rain"
     },
     {
       "yr": "1996",
       "n": "Let Me Be Your Man",
-      "s": "из «Dragon's Heart»",
+      "s": {
+        "en": "from «Dragon's Heart»",
+        "ru": "из «Dragon's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Dragon's Heart Let Me Be Your Man"
     },
     {
       "yr": "1996",
       "n": "Red Sun",
-      "s": "из «Dragon's Heart»",
+      "s": {
+        "en": "from «Dragon's Heart»",
+        "ru": "из «Dragon's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Dragon's Heart Red Sun"
     },
     {
       "yr": "1996",
       "n": "So Much Love",
-      "s": "из «Dragon's Heart»",
+      "s": {
+        "en": "from «Dragon's Heart»",
+        "ru": "из «Dragon's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Dragon's Heart So Much Love"
     },
     {
       "yr": "1996",
       "n": "Would Rather Say Goodbye in Dreams",
-      "s": "из «Dragon's Heart»",
+      "s": {
+        "en": "from «Dragon's Heart»",
+        "ru": "из «Dragon's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Dragon's Heart Would Rather Say Goodbye in Dreams"
     },
     {
       "yr": "1997",
       "n": "A Nice Guy (一個好人)",
-      "s": "Славный парень",
+      "s": {
+        "en": "Mr. Nice Guy",
+        "ru": "Славный парень"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan A Nice Guy (一個好人) Mr. Nice Guy"
     },
     {
       "yr": "1997",
       "n": "If It's Love Let It Be",
-      "s": "с Tarcy Su — Mr. Nice Guy",
+      "s": {
+        "en": "with Tarcy Su — Mr. Nice Guy",
+        "ru": "с Tarcy Su — Mr. Nice Guy"
+      },
       "type": "Прочее",
       "q": "Jackie Chan If It's Love Let It Be"
     },
     {
       "yr": "1997",
       "n": "Man & Woman",
-      "s": "с Sally Yeh",
+      "s": {
+        "en": "with Sally Yeh",
+        "ru": "с Sally Yeh"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Man & Woman"
     },
     {
       "yr": "1998",
       "n": "Want To Find Love Back",
-      "s": "дуэт с Lillian Ho",
+      "s": {
+        "en": "duet with Lillian Ho",
+        "ru": "дуэт с Lillian Ho"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Want To Find Love Back"
     },
     {
       "yr": "1998",
       "n": "Who Am I? (我是誰)",
-      "s": "Кто я? · с Emil Chau",
+      "s": {
+        "en": "Who Am I? · with Emil Chau",
+        "ru": "Кто я? · с Emil Chau"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Who Am I? (我是誰) Who Am I? Emil Chau",
       "significant": true,
-      "why": "Заглавная тема «Кто я?» с Эмилем Чау — эталонный мандопоп конца 90-х и образец «песни Джеки к собственному фильму»."
+      "why": {
+        "en": "The title theme from «Who Am I?» with Emil Chau — benchmark late-'90s Mandopop and a textbook example of a «Jackie song for his own film».",
+        "ru": "Заглавная тема «Кто я?» с Эмилем Чау — эталонный мандопоп конца 90-х и образец «песни Джеки к собственному фильму»."
+      }
     },
     {
       "yr": "2001",
       "n": "Out of Control (身不由己)",
-      "s": "Случайный шпион · с Mavis Fan",
+      "s": {
+        "en": "The Accidental Spy · with Mavis Fan",
+        "ru": "Случайный шпион · с Mavis Fan"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Out of Control (身不由己) The Accidental Spy Mavis Fan"
     },
     {
       "yr": "2002",
       "n": "As Long as I Loved",
-      "s": "из «With All One's Heart»",
+      "s": {
+        "en": "from «With All One's Heart»",
+        "ru": "из «With All One's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan With All One's Heart As Long as I Loved"
     },
     {
       "yr": "2002",
       "n": "Clear Conscience in My Heart",
-      "s": "из «With All One's Heart»",
+      "s": {
+        "en": "from «With All One's Heart»",
+        "ru": "из «With All One's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan With All One's Heart Clear Conscience in My Heart"
     },
     {
       "yr": "2002",
       "n": "Dream of the Horizon",
-      "s": "из «With All One's Heart»",
+      "s": {
+        "en": "from «With All One's Heart»",
+        "ru": "из «With All One's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan With All One's Heart Dream of the Horizon"
     },
     {
       "yr": "2002",
       "n": "I Only Care about You",
-      "s": "из «With All One's Heart»",
+      "s": {
+        "en": "from «With All One's Heart»",
+        "ru": "из «With All One's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan With All One's Heart I Only Care about You"
     },
     {
       "yr": "2002",
       "n": "Metropolis Shangri-la",
-      "s": "из «With All One's Heart»",
+      "s": {
+        "en": "from «With All One's Heart»",
+        "ru": "из «With All One's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan With All One's Heart Metropolis Shangri-la"
     },
     {
       "yr": "2002",
       "n": "Offended",
-      "s": "из «With All One's Heart»",
+      "s": {
+        "en": "from «With All One's Heart»",
+        "ru": "из «With All One's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan With All One's Heart Offended"
     },
     {
       "yr": "2002",
       "n": "Pocket",
-      "s": "из «With All One's Heart»",
+      "s": {
+        "en": "from «With All One's Heart»",
+        "ru": "из «With All One's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan With All One's Heart Pocket"
     },
     {
       "yr": "2002",
       "n": "Staying with You All My Life",
-      "s": "из «With All One's Heart»",
+      "s": {
+        "en": "from «With All One's Heart»",
+        "ru": "из «With All One's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan With All One's Heart Staying with You All My Life"
     },
     {
       "yr": "2002",
       "n": "That's Meaningless",
-      "s": "из «With All One's Heart»",
+      "s": {
+        "en": "from «With All One's Heart»",
+        "ru": "из «With All One's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan With All One's Heart That's Meaningless"
     },
     {
       "yr": "2002",
       "n": "Truly, With All My Heart",
-      "s": "из «With All One's Heart»",
+      "s": {
+        "en": "from «With All One's Heart»",
+        "ru": "из «With All One's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan With All One's Heart Truly, With All My Heart"
     },
     {
       "yr": "2002",
       "n": "Unforgettable",
-      "s": "дуэт с Ani DiFranco (\"When Pigs Fly\")",
+      "s": {
+        "en": "duet with Ani DiFranco (\"When Pigs Fly\")",
+        "ru": "дуэт с Ani DiFranco (\"When Pigs Fly\")"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Unforgettable",
       "significant": true,
-      "why": "Неожиданный англоязычный дуэт с американкой Ани ДиФранко («When Pigs Fly»). Самый нетипичный трек в каталоге — Джеки вне азиатского контекста."
+      "why": {
+        "en": "An unexpected English-language duet with American singer Ani DiFranco («When Pigs Fly»). The most atypical track in the catalog — Jackie outside any Asian context.",
+        "ru": "Неожиданный англоязычный дуэт с американкой Ани ДиФранко («When Pigs Fly»). Самый нетипичный трек в каталоге — Джеки вне азиатского контекста."
+      }
     },
     {
       "yr": "2002",
       "n": "With All One's Heart",
-      "s": "из «With All One's Heart»",
+      "s": {
+        "en": "from «With All One's Heart»",
+        "ru": "из «With All One's Heart»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan With All One's Heart With All One's Heart"
     },
     {
       "yr": "2003",
       "n": "Bian Bian Bian (变变变)",
-      "s": "Эффект близнецов · с Twins",
+      "s": {
+        "en": "The Twins Effect · with Twins",
+        "ru": "Эффект близнецов · с Twins"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Bian Bian Bian (变变变) The Twins Effect Twins"
     },
     {
       "yr": "2004",
       "n": "September Storm (九月風暴)",
-      "s": "Новая полицейская история",
+      "s": {
+        "en": "New Police Story",
+        "ru": "Новая полицейская история"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan September Storm (九月風暴) New Police Story",
       "significant": true,
-      "why": "Тема «Новой полицейской истории» — спустя 19 лет после Hero Story. Слышно, как повзрослел и звук франшизы, и сам Джеки."
+      "why": {
+        "en": "The theme from «New Police Story» — 19 years after Hero Story. You can hear how both the franchise's sound and Jackie himself have grown up.",
+        "ru": "Тема «Новой полицейской истории» — спустя 19 лет после Hero Story. Слышно, как повзрослел и звук франшизы, и сам Джеки."
+      }
     },
     {
       "yr": "2005",
       "n": "Endless Love (無盡的愛)",
-      "s": "Миф · с Kim Hee-sun",
+      "s": {
+        "en": "The Myth · with Kim Hee-sun",
+        "ru": "Миф · с Kim Hee-sun"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Endless Love (無盡的愛) The Myth Kim Hee-sun",
       "significant": true,
-      "why": "Любовная тема «Мифа» — дуэт с Ким Хи Сон. Самая известная песня Джеки: парящая баллада, с которой проще всего влюбиться в его вокал."
+      "why": {
+        "en": "The love theme from «The Myth» — a duet with Kim Hee-sun. Jackie's best-known song: a soaring ballad, and the easiest way to fall for his voice.",
+        "ru": "Любовная тема «Мифа» — дуэт с Ким Хи Сон. Самая известная песня Джеки: парящая баллада, с которой проще всего влюбиться в его вокал."
+      }
     },
     {
       "yr": "2005",
       "n": "Longyan Tree in the Homeland",
-      "s": "благотв. — World Eye Organisation",
+      "s": {
+        "en": "charity — World Eye Organisation",
+        "ru": "благотв. — World Eye Organisation"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Longyan Tree in the Homeland"
     },
     {
       "yr": "2006",
       "n": "Father and Mother's Words (爸媽的話)",
-      "s": "Младенец на $30 млн",
+      "s": {
+        "en": "Rob-B-Hood",
+        "ru": "Младенец на $30 млн"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Father and Mother's Words (爸媽的話) Rob-B-Hood"
     },
     {
       "yr": "2006",
       "n": "It's A Wonder",
-      "s": "дуэт с Agnes Chan",
+      "s": {
+        "en": "duet with Agnes Chan",
+        "ru": "дуэт с Agnes Chan"
+      },
       "type": "Прочее",
       "q": "Jackie Chan It's A Wonder"
     },
     {
       "yr": "2006",
       "n": "Peace of the World",
-      "s": "дуэт с Clair",
+      "s": {
+        "en": "duet with Clair",
+        "ru": "дуэт с Clair"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Peace of the World"
     },
     {
       "yr": "2008",
       "n": "Hard to Say Goodbye",
-      "s": "с Andy Lau, Liu Huan, Emil Chau — закрытие Олимпиады",
+      "s": {
+        "en": "with Andy Lau, Liu Huan, Emil Chau — Olympics closing ceremony",
+        "ru": "с Andy Lau, Liu Huan, Emil Chau — закрытие Олимпиады"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Hard to Say Goodbye"
     },
     {
       "yr": "2008",
       "n": "Let the World Be Filled With Love",
-      "s": "Сычуаньское землетрясение",
+      "s": {
+        "en": "Sichuan earthquake",
+        "ru": "Сычуаньское землетрясение"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Let the World Be Filled With Love"
     },
     {
       "yr": "2008",
       "n": "Rising Up in the World",
-      "s": "открытие Олимпиады-2008",
+      "s": {
+        "en": "2008 Olympics opening ceremony",
+        "ru": "открытие Олимпиады-2008"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Rising Up in the World"
     },
     {
       "yr": "2008",
       "n": "We Are Ready",
-      "s": "из «Beijing 2008 Olympics (JC Version)»",
+      "s": {
+        "en": "from «Beijing 2008 Olympics (JC Version)»",
+        "ru": "из «Beijing 2008 Olympics (JC Version)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Beijing 2008 Olympics (JC Version) We Are Ready"
     },
     {
       "yr": "2008",
       "n": "中国看见 / China Sees",
-      "s": "из «Beijing 2008 Olympics (JC Version)»",
+      "s": {
+        "en": "from «Beijing 2008 Olympics (JC Version)»",
+        "ru": "из «Beijing 2008 Olympics (JC Version)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Beijing 2008 Olympics (JC Version) 中国看见 / China Sees"
     },
     {
       "yr": "2008",
       "n": "北京欢迎你 / Beijing Welcomes You",
-      "s": "из «Beijing 2008 Olympics (JC Version)»",
+      "s": {
+        "en": "from «Beijing 2008 Olympics (JC Version)»",
+        "ru": "из «Beijing 2008 Olympics (JC Version)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Beijing 2008 Olympics (JC Version) 北京欢迎你 / Beijing Welcomes You",
       "significant": true,
-      "why": "Песня-приглашение Олимпиады-2008, где Джеки — среди десятков звёзд. Не боевик, а культурный момент, который в Китае знают все."
+      "why": {
+        "en": "The 2008 Olympics invitation song, with Jackie among dozens of stars. Not an action film but a cultural moment everyone in China knows.",
+        "ru": "Песня-приглашение Олимпиады-2008, где Джеки — среди десятков звёзд. Не боевик, а культурный момент, который в Китае знают все."
+      }
     },
     {
       "yr": "2008",
       "n": "少年强 / Youth are Strong",
-      "s": "из «Beijing 2008 Olympics (JC Version)»",
+      "s": {
+        "en": "from «Beijing 2008 Olympics (JC Version)»",
+        "ru": "из «Beijing 2008 Olympics (JC Version)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Beijing 2008 Olympics (JC Version) 少年强 / Youth are Strong"
     },
     {
       "yr": "2008",
       "n": "打开天空 / Open the Heavens",
-      "s": "из «Beijing 2008 Olympics (JC Version)»",
+      "s": {
+        "en": "from «Beijing 2008 Olympics (JC Version)»",
+        "ru": "из «Beijing 2008 Olympics (JC Version)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Beijing 2008 Olympics (JC Version) 打开天空 / Open the Heavens"
     },
     {
       "yr": "2008",
       "n": "生死不离 / Chain of Life and Death",
-      "s": "из «Beijing 2008 Olympics (JC Version)»",
+      "s": {
+        "en": "from «Beijing 2008 Olympics (JC Version)»",
+        "ru": "из «Beijing 2008 Olympics (JC Version)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Beijing 2008 Olympics (JC Version) 生死不离 / Chain of Life and Death"
     },
     {
       "yr": "2008",
       "n": "相信自己 / Believe in Yourself",
-      "s": "из «Beijing 2008 Olympics (JC Version)»",
+      "s": {
+        "en": "from «Beijing 2008 Olympics (JC Version)»",
+        "ru": "из «Beijing 2008 Olympics (JC Version)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Beijing 2008 Olympics (JC Version) 相信自己 / Believe in Yourself"
     },
     {
       "yr": "2008",
       "n": "站起来 / Stand Up",
-      "s": "из «Beijing 2008 Olympics (JC Version)»",
+      "s": {
+        "en": "from «Beijing 2008 Olympics (JC Version)»",
+        "ru": "из «Beijing 2008 Olympics (JC Version)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Beijing 2008 Olympics (JC Version) 站起来 / Stand Up"
     },
     {
       "yr": "2008",
       "n": "龙的梦想 / Dragon's Dream",
-      "s": "из «Beijing 2008 Olympics (JC Version)»",
+      "s": {
+        "en": "from «Beijing 2008 Olympics (JC Version)»",
+        "ru": "из «Beijing 2008 Olympics (JC Version)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan Beijing 2008 Olympics (JC Version) 龙的梦想 / Dragon's Dream"
     },
     {
       "yr": "2009",
       "n": "City",
-      "s": "Expo 2010 · с Lang Lang, Yao Ming",
+      "s": {
+        "en": "Expo 2010 · with Lang Lang, Yao Ming",
+        "ru": "Expo 2010 · с Lang Lang, Yao Ming"
+      },
       "type": "Прочее",
       "q": "Jackie Chan City Lang Lang, Yao Ming"
     },
     {
       "yr": "2009",
       "n": "Like A Dream",
-      "s": "дуэт с Chen Sisi",
+      "s": {
+        "en": "duet with Chen Sisi",
+        "ru": "дуэт с Chen Sisi"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Like A Dream"
     },
     {
       "yr": "2009",
       "n": "My Country",
-      "s": "60-летие КНР, с Liu Yuanyuan",
+      "s": {
+        "en": "PRC 60th anniversary, with Liu Yuanyuan",
+        "ru": "60-летие КНР, с Liu Yuanyuan"
+      },
       "type": "Прочее",
       "q": "Jackie Chan My Country"
     },
     {
       "yr": "2009",
       "n": "We Are The World",
-      "s": "благотв., с другими артистами",
+      "s": {
+        "en": "charity, with other artists",
+        "ru": "благотв., с другими артистами"
+      },
       "type": "Прочее",
       "q": "Jackie Chan We Are The World"
     },
     {
       "yr": "2010",
       "n": "Blue Sky",
-      "s": "тема Азиатских игр 2010, с Sun Nan",
+      "s": {
+        "en": "2010 Asian Games theme, with Sun Nan",
+        "ru": "тема Азиатских игр 2010, с Sun Nan"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Blue Sky"
     },
@@ -1241,88 +1709,127 @@
     {
       "yr": "2010",
       "n": "Canola Flower (油菜花)",
-      "s": "Большой солдат",
+      "s": {
+        "en": "Little Big Soldier",
+        "ru": "Большой солдат"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Canola Flower (油菜花) Little Big Soldier"
     },
     {
       "yr": "2010",
       "n": "To Welcome You Home (接你回家)",
-      "s": "с Tan Jing — жертвам землетрясения на Гаити",
+      "s": {
+        "en": "with Tan Jing — for the victims of the Haiti earthquake",
+        "ru": "с Tan Jing — жертвам землетрясения на Гаити"
+      },
       "type": "Прочее",
       "q": "Jackie Chan To Welcome You Home (接你回家)"
     },
     {
       "yr": "2011",
       "n": "Succumb Not to Sorrow (雨ニモマケズ)",
-      "s": "Artistes 311 — землетрясение в Японии",
+      "s": {
+        "en": "Artistes 311 — Japan earthquake",
+        "ru": "Artistes 311 — землетрясение в Японии"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Succumb Not to Sorrow (雨ニモマケズ)"
     },
     {
       "yr": "2012",
       "n": "Believe in Love (因为爱相信爱)",
-      "s": "новогодний благотв. концерт",
+      "s": {
+        "en": "New Year charity concert",
+        "ru": "новогодний благотв. концерт"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Believe in Love (因为爱相信爱)"
     },
     {
       "yr": "2012",
       "n": "Full Moon Every Day (天天月圆)",
-      "s": "с Chen Sisi — 15 лет возврата Гонконга",
+      "s": {
+        "en": "with Chen Sisi — 15 years since Hong Kong's handover",
+        "ru": "с Chen Sisi — 15 лет возврата Гонконга"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Full Moon Every Day (天天月圆)"
     },
     {
       "yr": "2012",
       "n": "Petty Thief (妙手空空)",
-      "s": "Доспехи бога 3 · с Emil Chau",
+      "s": {
+        "en": "Armour of God 3 · with Emil Chau",
+        "ru": "Доспехи бога 3 · с Emil Chau"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Petty Thief (妙手空空) Chinese Zodiac Emil Chau"
     },
     {
       "yr": "2013",
       "n": "Homeland (国土)",
-      "s": "подарок CPPCC",
+      "s": {
+        "en": "a CPPCC gift",
+        "ru": "подарок CPPCC"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Homeland (国土)"
     },
     {
       "yr": "2013",
       "n": "Rescue (拯救)",
-      "s": "Полицейская история 2013 · с Sun Nan",
+      "s": {
+        "en": "Police Story 2013 · with Sun Nan",
+        "ru": "Полицейская история 2013 · с Sun Nan"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Rescue (拯救) Sun Nan"
     },
     {
       "yr": "2015",
       "n": "Song of Peace (不再失去)",
-      "s": "Меч дракона",
+      "s": {
+        "en": "Dragon Blade",
+        "ru": "Меч дракона"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Song of Peace (不再失去) Dragon Blade"
     },
     {
       "yr": "2015",
       "n": "Wake Up",
-      "s": "заявка Пекина на Зимнюю Олимпиаду-2022",
+      "s": {
+        "en": "Beijing's 2022 Winter Olympics bid",
+        "ru": "заявка Пекина на Зимнюю Олимпиаду-2022"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Wake Up"
     },
     {
       "yr": "2016",
       "n": "Pipa",
-      "s": "Железнодорожные тигры",
+      "s": {
+        "en": "Railroad Tigers",
+        "ru": "Железнодорожные тигры"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Pipa Railroad Tigers"
     },
     {
       "yr": "2016",
       "n": "Plainly My Heart (明明白白我的心)",
-      "s": "Скиптрейс · с Sarah Chen",
+      "s": {
+        "en": "Skiptrace · with Sarah Chen",
+        "ru": "Скиптрейс · с Sarah Chen"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Plainly My Heart (明明白白我的心) Skiptrace Sarah Chen",
       "significant": true,
-      "why": "Дуэт с Сарой Чэнь к «Скиптрейсу» — переосмысление кантопоп-классики. Тёплый, ламповый поздний Джеки."
+      "why": {
+        "en": "A duet with Sarah Chen for «Skiptrace» — a reworking of a Cantopop classic. Warm, cozy, late-era Jackie.",
+        "ru": "Дуэт с Сарой Чэнь к «Скиптрейсу» — переосмысление кантопоп-классики. Тёплый, ламповый поздний Джеки."
+      }
     },
     {
       "yr": "2017",
@@ -1331,72 +1838,108 @@
       "type": "Саундтрек",
       "q": "Jackie Chan Beautiful Myth (美麗的神話)",
       "significant": true,
-      "why": "Поздний Джеки и узнаваемая мелодия из вселенной «Мифа». Хорошо ставить сразу после Endless Love — сравнить эпохи."
+      "why": {
+        "en": "Late-era Jackie and a recognizable melody from the «Myth» universe. Great to play right after Endless Love — to compare the eras.",
+        "ru": "Поздний Джеки и узнаваемая мелодия из вселенной «Мифа». Хорошо ставить сразу после Endless Love — сравнить эпохи."
+      }
     },
     {
       "yr": "2017",
       "n": "Ordinary People (普通人)",
-      "s": "Иностранец · с Liu Tao",
+      "s": {
+        "en": "The Foreigner · with Liu Tao",
+        "ru": "Иностранец · с Liu Tao"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Ordinary People (普通人) The Foreigner Liu Tao"
     },
     {
       "yr": "2018",
       "n": "Thank You, My Love",
-      "s": "из «I Am Me (我還是成龍)»",
+      "s": {
+        "en": "from «I Am Me (我還是成龍)»",
+        "ru": "из «I Am Me (我還是成龍)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan I Am Me (我還是成龍) Thank You, My Love"
     },
     {
       "yr": "2018",
       "n": "物是人非 / Wù Shì Rén Fēi",
-      "s": "из «I Am Me (我還是成龍)»",
+      "s": {
+        "en": "from «I Am Me (我還是成龍)»",
+        "ru": "из «I Am Me (我還是成龍)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan I Am Me (我還是成龍) 物是人非 / Wù Shì Rén Fēi"
     },
     {
       "yr": "2018",
       "n": "青春故事 / Childhood Stories",
-      "s": "из «I Am Me (我還是成龍)»",
+      "s": {
+        "en": "from «I Am Me (我還是成龍)»",
+        "ru": "из «I Am Me (我還是成龍)»"
+      },
       "type": "Альбом",
       "q": "Jackie Chan I Am Me (我還是成龍) 青春故事 / Childhood Stories",
       "significant": true,
-      "why": "Открывает ретроспективный альбом «I Am Me» (2018) — единственный полноценный сольник за десятилетия. Личный, итожащий Джеки, а не саундтрек."
+      "why": {
+        "en": "Opens the retrospective album «I Am Me» (2018) — his only full-fledged solo record in decades. A personal, summing-up Jackie, not a soundtrack.",
+        "ru": "Открывает ретроспективный альбом «I Am Me» (2018) — единственный полноценный сольник за десятилетия. Личный, итожащий Джеки, а не саундтрек."
+      }
     },
     {
       "yr": "2019",
       "n": "The Lunar Song (一起笑出来)",
-      "s": "Рыцарь теней · с Cai Xukun",
+      "s": {
+        "en": "The Knight of Shadows · with Cai Xukun",
+        "ru": "Рыцарь теней · с Cai Xukun"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan The Lunar Song (一起笑出来) Knight of Shadows Cai Xukun"
     },
     {
       "yr": "2020",
       "n": "Ambition in My Chest 2020 (壮志在我胸)",
-      "s": "Авангард",
+      "s": {
+        "en": "Vanguard",
+        "ru": "Авангард"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan Ambition in My Chest 2020 (壮志在我胸) Vanguard"
     },
     {
       "yr": "2020",
-      "n": "坚信爱会赢 (Верю, любовь победит)",
-      "s": "COVID-19 сингл · с Xiao Zhan, Wang Leehom и др.",
+      "n": "坚信爱会赢 (I Believe Love Will Win)",
+      "s": {
+        "en": "COVID-19 single · with Xiao Zhan, Wang Leehom and others",
+        "ru": "COVID-19 сингл · с Xiao Zhan, Wang Leehom и др."
+      },
       "type": "Прочее",
       "q": "Jackie Chan 坚信爱会赢 Xiao Zhan, Wang Leehom и др."
     },
     {
       "yr": "2024",
       "n": "A Legend (傳說)",
-      "s": "Легенда · с LAY, Kim Hee-sun",
+      "s": {
+        "en": "A Legend · with LAY, Kim Hee-sun",
+        "ru": "Легенда · с LAY, Kim Hee-sun"
+      },
       "type": "Саундтрек",
       "q": "Jackie Chan A Legend (傳說) A Legend LAY, Kim Hee-sun",
       "significant": true,
-      "why": "Самый свежий трек (2024): снова «Легенда» и снова Ким Хи Сон, плюс LAY из EXO. Мост между классикой и современным C-pop."
+      "why": {
+        "en": "The most recent track (2024): «A Legend» again and Kim Hee-sun again, plus LAY of EXO. A bridge between the classics and modern C-pop.",
+        "ru": "Самый свежий трек (2024): снова «Легенда» и снова Ким Хи Сон, плюс LAY из EXO. Мост между классикой и современным C-pop."
+      }
     },
     {
       "yr": "2025",
       "n": "Skibidi",
-      "s": "с JJ Lin",
+      "s": {
+        "en": "with JJ Lin",
+        "ru": "с JJ Lin"
+      },
       "type": "Прочее",
       "q": "Jackie Chan Skibidi JJ Lin"
     }
@@ -1406,23 +1949,38 @@
       {
         "n": 160,
         "plus": true,
-        "l": "песен в дискографии"
+        "l": {
+          "en": "songs in the discography",
+          "ru": "песен в дискографии"
+        }
       },
       {
         "n": 12,
-        "l": "студийных альбомов"
+        "l": {
+          "en": "studio albums",
+          "ru": "студийных альбомов"
+        }
       },
       {
         "n": 9,
-        "l": "сборников"
+        "l": {
+          "en": "compilations",
+          "ru": "сборников"
+        }
       },
       {
         "n": 9,
-        "l": "синглов / EP"
+        "l": {
+          "en": "singles / EPs",
+          "ru": "синглов / EP"
+        }
       },
       {
         "n": 5,
-        "l": "языков"
+        "l": {
+          "en": "languages",
+          "ru": "языков"
+        }
       }
     ],
     "films": {
@@ -1431,19 +1989,31 @@
       "span": "1980–2024",
       "top": [
         {
-          "name": "Полицейская история",
+          "name": {
+            "en": "Police Story",
+            "ru": "Полицейская история"
+          },
           "n": 4
         },
         {
-          "name": "Драконы навсегда",
+          "name": {
+            "en": "Dragons Forever",
+            "ru": "Драконы навсегда"
+          },
           "n": 2
         },
         {
-          "name": "Проект А",
+          "name": {
+            "en": "Project A",
+            "ru": "Проект А"
+          },
           "n": 2
         },
         {
-          "name": "Доспехи бога",
+          "name": {
+            "en": "Armour of God",
+            "ru": "Доспехи бога"
+          },
           "n": 2
         }
       ],

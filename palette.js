@@ -5,18 +5,28 @@
 (function(){
   'use strict';
 
+  /* t/d — переводимые поля: строка = язык-нейтрально (имена собственные),
+     объект { en, ru } выбирается по текущему языку через pick.
+     k — поисковые синонимы (EN+RU сразу), язык-нейтральны. */
   var PAGES = [
-    {t:'Главная',           d:'rensite',                              url:'/',                   k:'home renat'},
-    {t:'Музыкальные гиды',  d:'маршруты сквозь дискографии',          url:'/music/',              k:'music музыка'},
-    {t:'Linkin Park',       d:'гид: корни, сайд-проекты, возвращение',url:'/music/linkin-park/',  k:'линкин парк lp честер майк'},
-    {t:'Jackie Chan',       d:'дискография: 160+ песен',              url:'/music/jackie-chan/',  k:'джеки чан 成龍'},
-    {t:'Michael Jackson',   d:'гид к фильму: эпохи и треки',          url:'/music/michael/',      k:'майкл джексон mj'},
-    {t:'Eminem',            d:'гид: вся карьера и «8 Mile»',          url:'/music/eminem/',       k:'эминем eminem slim shady marshall маршалл'},
-    {t:'Том и Джерри',      d:'комикс-выпуск: музыка как сюжет',      url:'/music/tom-and-jerry/',k:'том джерри tom and jerry мультфильм оскар'},
-    {t:'Микроблог',         d:'статусы и инсайты недели',             url:'/status/',             k:'status статус инсайт blog заметки notes'},
-    {t:'Проекты',           d:'агенты, гиды и этот сайт',             url:'/projects/',           k:'projects агенты'}
+    {t:{en:'Home',ru:'Главная'},                d:'rensite',                                                              url:'/',                    k:'home главная renat'},
+    {t:{en:'Music guides',ru:'Музыкальные гиды'},d:{en:'routes through discographies',ru:'маршруты сквозь дискографии'},   url:'/music/',              k:'music музыка'},
+    {t:'Linkin Park',       d:{en:'guide: roots, side projects, the return',ru:'гид: корни, сайд-проекты, возвращение'},   url:'/music/linkin-park/',  k:'линкин парк lp честер майк'},
+    {t:'Jackie Chan',       d:{en:'discography: 160+ songs',ru:'дискография: 160+ песен'},                                 url:'/music/jackie-chan/',  k:'джеки чан 成龍'},
+    {t:'Michael Jackson',   d:{en:'guide to the film: eras and tracks',ru:'гид к фильму: эпохи и треки'},                  url:'/music/michael/',      k:'майкл джексон mj'},
+    {t:'Eminem',            d:{en:'guide: the whole career and “8 Mile”',ru:'гид: вся карьера и «8 Mile»'},                url:'/music/eminem/',       k:'эминем eminem slim shady marshall маршалл'},
+    {t:{en:'Tom and Jerry',ru:'Том и Джерри'},  d:{en:'comic issue: music as the plot',ru:'комикс-выпуск: музыка как сюжет'},url:'/music/tom-and-jerry/',k:'том джерри tom and jerry мультфильм оскар'},
+    {t:{en:'Microblog',ru:'Микроблог'},         d:{en:'weekly statuses and insights',ru:'статусы и инсайты недели'},       url:'/status/',             k:'status статус инсайт blog заметки notes'},
+    {t:{en:'Projects',ru:'Проекты'},            d:{en:'agents, guides, and this site',ru:'агенты, гиды и этот сайт'},      url:'/projects/',           k:'projects проекты агенты'}
   ];
   var TRACK_LIMIT = 9;
+
+  /* Язык из i18n.js (дефолт en). pick — выбор перевода, tt — инлайн-строки UI,
+     txt — плоский поиск сразу по обоим языкам (не зависит от текущего). */
+  function lang(){ try { return (window.I18N && I18N.get) ? I18N.get() : (document.documentElement.lang === 'ru' ? 'ru' : 'en'); } catch(e){ return 'en'; } }
+  function pick(v){ if (v && typeof v === 'object' && !Array.isArray(v)){ var l = lang(); return v[l] != null ? v[l] : (v.en != null ? v.en : v.ru); } return v == null ? '' : v; }
+  function tt(en, ru){ return lang() === 'ru' ? ru : en; }
+  function txt(v){ return (v && typeof v === 'object') ? ((v.en || '') + ' ' + (v.ru || '')) : (v || ''); }
 
   var CSS =
     '.kpal-ov{position:fixed;inset:0;z-index:9999;background:rgba(8,8,12,.45);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);display:flex;justify-content:center;align-items:flex-start;padding:12vh 16px 16px}' +
@@ -42,7 +52,7 @@
       ? Promise.resolve(window.RENSITE_MUSIC)
       : new Promise(function(res){
           var sc = document.createElement('script');
-          sc.src = '/music/tracks.js';
+          sc.src = '/music/tracks.js?v=20260713';
           sc.onload = function(){ res(window.RENSITE_MUSIC); };
           sc.onerror = function(){ res(null); };
           document.head.appendChild(sc);
@@ -57,10 +67,10 @@
     var st = document.createElement('style'); st.textContent = CSS; document.head.appendChild(st);
     ov = document.createElement('div'); ov.className = 'kpal-ov'; ov.hidden = true;
     ov.innerHTML =
-      '<div class="kpal" role="dialog" aria-modal="true" aria-label="Поиск по сайту">' +
-        '<input type="text" placeholder="Страница или трек…" aria-label="Поиск" autocomplete="off" spellcheck="false">' +
+      '<div class="kpal" role="dialog" aria-modal="true" aria-label="' + tt('Search the site','Поиск по сайту') + '">' +
+        '<input type="text" placeholder="' + tt('Page or track…','Страница или трек…') + '" aria-label="' + tt('Search','Поиск') + '" autocomplete="off" spellcheck="false">' +
         '<div class="kpal-list"></div>' +
-        '<div class="kpal-foot"><span>↑↓ выбор</span><span>↵ открыть</span><span>esc закрыть</span></div>' +
+        '<div class="kpal-foot"><span>' + tt('↑↓ navigate','↑↓ выбор') + '</span><span>' + tt('↵ open','↵ открыть') + '</span><span>' + tt('esc close','esc закрыть') + '</span></div>' +
       '</div>';
     document.body.appendChild(ov);
     input = ov.querySelector('input');
@@ -86,7 +96,7 @@
 
   function render(q){
     var pages = PAGES.filter(function(p){
-      return !q || (p.t + ' ' + p.d + ' ' + p.url + ' ' + p.k).toLowerCase().indexOf(q) !== -1;
+      return !q || (txt(p.t) + ' ' + txt(p.d) + ' ' + p.url + ' ' + p.k).toLowerCase().indexOf(q) !== -1;
     });
     var trs = (q && tracks) ? tracks.filter(function(t){
       return (t.n + ' ' + t.alb + ' ' + t.artist + ' ' + (t.ft || '')).toLowerCase().indexOf(q) !== -1;
@@ -95,21 +105,21 @@
     flat = []; sel = 0;
     var html = '';
     if (pages.length){
-      html += '<div class="kpal-cap">страницы</div>';
+      html += '<div class="kpal-cap">' + tt('pages','страницы') + '</div>';
       pages.forEach(function(p){
-        html += '<div class="kpal-it" data-i="' + flat.length + '"><span class="t">' + esc(p.t) + '</span><span class="d">' + esc(p.d) + '</span></div>';
+        html += '<div class="kpal-it" data-i="' + flat.length + '"><span class="t">' + esc(pick(p.t)) + '</span><span class="d">' + esc(pick(p.d)) + '</span></div>';
         flat.push({kind:'page', url:p.url});
       });
     }
     if (trs.length){
-      html += '<div class="kpal-cap">треки · ▶ youtube</div>';
+      html += '<div class="kpal-cap">' + tt('tracks · ▶ youtube','треки · ▶ youtube') + '</div>';
       trs.forEach(function(t){
         html += '<div class="kpal-it" data-i="' + flat.length + '"><span class="t">' + esc(t.n) + '</span><span class="d">' + esc(t.artist + ' · ' + t.yr) + '</span></div>';
         flat.push({kind:'track', t:t});
       });
     }
-    if (!flat.length) html = '<div class="kpal-empty">Ничего не нашлось. Попробуй название трека — например, «numb».</div>';
-    else if (!q) html += '<div class="kpal-empty">Начни печатать — найдутся и треки всех гидов.</div>';
+    if (!flat.length) html = '<div class="kpal-empty">' + tt('Nothing found. Try a track title — for example, “numb”.','Ничего не нашлось. Попробуй название трека — например, «numb».') + '</div>';
+    else if (!q) html += '<div class="kpal-empty">' + tt('Start typing — tracks from every guide show up too.','Начни печатать — найдутся и треки всех гидов.') + '</div>';
     listEl.innerHTML = html;
     paint();
   }
@@ -154,6 +164,18 @@
       e.preventDefault();
       (ov && !ov.hidden) ? close() : open();
     } else if (e.key === 'Escape'){ close(); }
+  });
+
+  /* Смена языка на лету: обновляем статические строки (собираются один раз
+     в build()) и перерисовываем список, если палитра открыта. */
+  document.addEventListener('i18n:change', function(){
+    if (!ov) return;
+    var dlg = ov.querySelector('.kpal');
+    if (dlg) dlg.setAttribute('aria-label', tt('Search the site','Поиск по сайту'));
+    if (input){ input.placeholder = tt('Page or track…','Страница или трек…'); input.setAttribute('aria-label', tt('Search','Поиск')); }
+    var hints = ov.querySelectorAll('.kpal-foot span'), h = [tt('↑↓ navigate','↑↓ выбор'), tt('↵ open','↵ открыть'), tt('esc close','esc закрыть')];
+    hints.forEach(function(s, i){ if (h[i]) s.textContent = h[i]; });
+    if (!ov.hidden) render(input.value.trim().toLowerCase());
   });
 
   window.KPAL = { open: open, close: close };

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)" />
 <title>projects — rensite</title>
+<script>try{var _l=localStorage.getItem('rensite:lang');if(_l==='ru'||_l==='en')document.documentElement.lang=_l;}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -129,35 +130,39 @@
 
     <header class="top">
       <a class="back" href="/">← rensite</a>
-      <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
+      <span style="display:inline-flex;align-items:center;gap:14px">
+        <span data-lang-toggle></span>
+        <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
+      </span>
     </header>
 
     <section class="hero">
-      <h1>Все<br/><span>проекты</span></h1>
-      <p>Что строю и что уже живёт: продукты на базе LLM, агенты и музыкальные гиды. Полный список.</p>
+      <h1 data-ru-html="Все<br/><span>проекты</span>">All<br/><span>projects</span></h1>
+      <p data-ru="Что строю и что уже живёт: продукты на базе LLM, агенты и музыкальные гиды. Полный список.">What I'm building and what's already live: LLM-powered products, agents, and music guides. The full list.</p>
     </section>
 
-    <section class="list" aria-label="Проекты">
-      <div class="label">проекты</div>
+    <section class="list" aria-label="Projects" data-ru-aria-label="Проекты">
+      <div class="label" data-ru="проекты">projects</div>
       <ul class="items">
+        <!-- фолбэк без JS; карточки рендерятся из /content.json (уже с учётом языка) -->
         <li>
           <a href="/music/">
-            <span class="name">гиды по музыке <span class="soon chip-live">live</span></span>
-            <span class="desc">разбор больших дискографий</span>
-            <span class="m">frontend · данные · 2025—</span>
+            <span class="name">music guides <span class="soon chip-live">live</span></span>
+            <span class="desc">deep dives into big discographies</span>
+            <span class="m">frontend · data · 2025—</span>
           </a>
         </li>
         <li>
           <span class="dead">
-            <span class="name">агенты для Bizdevim <span class="soon chip-wip">в работе</span></span>
-            <span class="desc">мультиагентная система: ресёрч, лиды, аутрич</span>
+            <span class="name">agents for Bizdevim <span class="soon chip-wip">in progress</span></span>
+            <span class="desc">multi-agent system: research, leads, outreach</span>
             <span class="m">agents · LLM · 2026</span>
           </span>
         </li>
         <li>
           <span class="dead">
-            <span class="name">книга по «взлому» <span class="soon chip-wip">в работе</span></span>
-            <span class="desc">о взломе как методе мышления — подробности позже ;)</span>
+            <span class="name">a book on “hacking” <span class="soon chip-wip">in progress</span></span>
+            <span class="desc">on hacking as a way of thinking — more soon ;)</span>
             <span class="m">writing · 2026</span>
           </span>
         </li>
@@ -166,11 +171,12 @@
 
     <footer class="foot">
       <span>$ ls ~/projects</span>
-      <span class="v">3 проекта · обновляется</span>
+      <span class="v" data-ru="3 проекта · обновляется">3 projects · updating</span>
     </footer>
 
   </div>
 
+  <script src="/i18n.js" defer></script>
   <script src="/cards.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {

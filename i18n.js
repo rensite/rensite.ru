@@ -39,6 +39,17 @@
       el.textContent = (val == null) ? el.getAttribute('data-en') : val;
     }
   }
+  // Для элементов с внутренней разметкой (напр. цветной <span> в заголовке):
+  // меняем innerHTML целиком. data-ru-html держит русскую версию.
+  function applyHTML(root, l) {
+    var nodes = root.querySelectorAll('[data-ru-html]');
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      if (!el.hasAttribute('data-en-html')) el.setAttribute('data-en-html', el.innerHTML); // снимок англ.
+      var val = el.getAttribute('data-' + l + '-html');
+      el.innerHTML = (val == null) ? el.getAttribute('data-en-html') : val;
+    }
+  }
   function applyAttrs(root, l) {
     for (var a = 0; a < ATTRS.length; a++) {
       var attr = ATTRS[a], enKey = 'data-en-' + attr;
@@ -55,6 +66,7 @@
   function apply(root) {
     root = root || document;
     applyText(root, lang);
+    applyHTML(root, lang);
     applyAttrs(root, lang);
   }
 

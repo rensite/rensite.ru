@@ -1,6 +1,14 @@
 {
   "statuses": [
     {
+      "date": "2026-07-12",
+      "tag": { "en": "shipped", "ru": "статус" },
+      "text": {
+        "en": "An article on the 84 Chinese building blocks every other character is made from — flashcards, quizzes, a mastery map, [here](/langs/chinese-radicals/).",
+        "ru": "Статья про 84 китайских иероглифа, из которых собирается любой другой — карточки, квизы, карта [здесь](/langs/chinese-radicals/)."
+      }
+    },
+    {
       "date": "2026-07-10",
       "tag": { "en": "insight of the week", "ru": "инсайт недели" },
       "text": {

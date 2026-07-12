@@ -136,12 +136,39 @@
     return true;
   }
 
+  /* Схема url ограничена безопасными (http(s), корень «/», «#», mailto) —
+     контент авторский, но защита от javascript: почти бесплатна. */
+  function safeHref(u) {
+    return /^(https?:\/\/|\/|#|mailto:)/i.test(u) ? u : null;
+  }
+
+  /* Инлайн-ссылки в тексте статуса в markdown-стиле: [текст](url).
+     Весь остальной текст экранируется; ссылка со внешним url — в новой вкладке. */
+  function renderText(str) {
+    var s = String(str == null ? '' : str);
+    var re = /\[([^\]]+)\]\(([^)]+)\)/g;
+    var out = '', last = 0, m;
+    while ((m = re.exec(s))) {
+      out += esc(s.slice(last, m.index));
+      var href = safeHref(m[2].trim());
+      if (href) {
+        var attrs = isExternal(href) ? ' target="_blank" rel="noopener"' : '';
+        out += '<a class="st-link" href="' + esc(href) + '"' + attrs + '>' + esc(m[1]) + '</a>';
+      } else {
+        out += esc(m[0]); // небезопасная схема — оставляем обычным текстом
+      }
+      last = m.index + m[0].length;
+    }
+    out += esc(s.slice(last));
+    return out;
+  }
+
   function statusHTML(s) {
     var tag = pick(s.tag);
     return '<li class="st-row">'
       + '<span class="st-meta"><span class="st-date">' + fmtDate(s.date) + '</span>'
       + (tag ? '<span class="st-tag">' + esc(tag) + '</span>' : '') + '</span>'
-      + '<p class="st-text">' + esc(pick(s.text)) + '</p></li>';
+      + '<p class="st-text">' + renderText(pick(s.text)) + '</p></li>';
   }
 
   window.renderStatuses = function (targets) {

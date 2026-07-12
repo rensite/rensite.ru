@@ -383,6 +383,13 @@ main{ flex:1; display:flex; flex-direction:column; }
 .foot__legal p{ color:var(--ink-mute); line-height:1.7; }
 .foot__joke{ color:var(--ink-soft)!important; }
 .foot__seal{ font-size:13px; color:var(--red); margin:0 2px; transform:rotate(-9deg); display:inline-block; }
+.foot__meta{ display:flex; flex-direction:column; gap:8px; align-items:flex-start; }
+.foot__ml{
+  font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.08em;
+  font-size:11px; font-weight:500; color:var(--red); text-decoration:none;
+  border-bottom:1px solid transparent; transition:border-color .15s;
+}
+.foot__ml:hover{ border-bottom-color:var(--red); }
 
 /* ── session overlay (study / quiz) ────────────────────────── */
 .ses-overlay{ position:fixed; inset:0; z-index:350; background:var(--bg); overflow-y:auto; display:none; }
@@ -645,7 +652,10 @@ main{ flex:1; display:flex; flex-direction:column; }
 
     <footer class="foot">
       <div class="foot__row">
-        <span class="mono" data-ru="RadicalIQ · 84 ключа · опирается на когнитивную науку">RadicalIQ · 84 radicals · grounded in cognitive science</span>
+        <span class="foot__meta">
+          <span class="mono" data-ru="RadicalIQ · 84 ключа · опирается на когнитивную науку">RadicalIQ · 84 radicals · grounded in cognitive science</span>
+          <a class="foot__ml" href="/status/" data-ru="← Микроблог">← Microblog</a>
+        </span>
         <button class="btn btn--danger btn--sm" id="reset-btn" type="button" data-ru="Сбросить прогресс">Reset progress</button>
       </div>
       <div class="foot__legal">

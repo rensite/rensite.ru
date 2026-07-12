@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)" />
 <title>music — rensite</title>
+<script>try{var _l=localStorage.getItem('rensite:lang');if(_l==='ru'||_l==='en')document.documentElement.lang=_l;}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -192,29 +193,30 @@
     <header class="top">
       <a class="back" href="/">← rensite</a>
       <span style="display:flex;gap:14px;align-items:center">
-        <button class="kbd" type="button" title="Поиск по сайту и трекам" onclick="window.KPAL&&KPAL.open()">⌘K</button>
+        <span data-lang-toggle></span>
+        <button class="kbd" type="button" title="Search the site and tracks" data-ru-title="Поиск по сайту и трекам" onclick="window.KPAL&&KPAL.open()">⌘K</button>
         <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
       </span>
     </header>
 
     <section class="hero">
-      <h1>Музыкальные<br/><span>гиды</span></h1>
-      <p>Маршруты сквозь дискографии — что слушать и смотреть, по порядку. Я ещё и меломан ;)</p>
+      <h1 data-ru-html="Музыкальные<br/><span>гиды</span>">Music<br/><span>guides</span></h1>
+      <p data-ru="Маршруты сквозь дискографии — что слушать и смотреть, по порядку. Я ещё и меломан ;)">Routes through discographies — what to listen to and watch, in order. I'm a music nerd too ;)</p>
     </section>
 
-    <section class="list" aria-label="Гиды">
-      <div class="label">гиды</div>
+    <section class="list" aria-label="Guides" data-ru-aria-label="Гиды">
+      <div class="label" data-ru="гиды">guides</div>
       <div class="hubbar">
-        <button class="rnd" id="rndTrack" type="button">▶ случайный трек</button>
+        <button class="rnd" id="rndTrack" type="button">▶ random track</button>
         <div class="hubprog" id="hubProg"></div>
       </div>
       <div class="guides" id="guides">
         <!-- фолбэк без JS: ссылки на гиды; карточки с прогрессом рендерятся из реестра -->
-        <a class="gcard" href="/music/michael/" style="--gc:#d4af37"><span class="gc-art" style="background-image:url(/music/michael/posters/micheal.jpeg)"></span><div class="gc-main"><div class="gc-head"><span class="gc-name">Michael Jackson</span></div><p class="gc-hook">Маршрут от Jackson 5 до Bad — музыка и кино.</p></div></a>
-        <a class="gcard" href="/music/jackie-chan/" style="--gc:#cd2c24"><span class="gc-art tint"></span><span class="gc-motif">成龍</span><div class="gc-main"><div class="gc-head"><span class="gc-name">Jackie Chan</span></div><p class="gc-hook">166 песен на пяти языках за сорок лет.</p></div></a>
-        <a class="gcard mono" href="/music/linkin-park/" style="--gc:#16181d"><span class="gc-art tint"></span><span class="gc-motif">LP</span><div class="gc-main"><div class="gc-head"><span class="gc-name">Linkin Park</span></div><p class="gc-hook">Корни, сайд-проекты и возвращение — вся дуга.</p></div></a>
-        <a class="gcard mono" href="/music/eminem/" style="--gc:#16181d"><span class="gc-art tint"></span><span class="gc-motif">Ǝ</span><div class="gc-main"><div class="gc-head"><span class="gc-name">Eminem</span></div><p class="gc-hook">Маршрут сквозь альбомы — от рождения Slim Shady до его смерти, и «8 Mile».</p></div></a>
-        <a class="gcard" href="/music/tom-and-jerry/" style="--gc:#e5202b"><span class="gc-art" style="background-image:url(/music/tom-and-jerry/img/title-card.jpeg)"></span><div class="gc-main"><div class="gc-head"><span class="gc-name">Том и Джерри</span></div><p class="gc-hook">Десять короткометражек, где музыка не фон, а сам сюжет — комикс с обложками и «Оскарами».</p></div></a>
+        <a class="gcard" href="/music/michael/" style="--gc:#d4af37"><span class="gc-art" style="background-image:url(/music/michael/posters/micheal.jpeg)"></span><div class="gc-main"><div class="gc-head"><span class="gc-name">Michael Jackson</span></div><p class="gc-hook">A route from Jackson 5 to Bad — music and film.</p></div></a>
+        <a class="gcard" href="/music/jackie-chan/" style="--gc:#cd2c24"><span class="gc-art tint"></span><span class="gc-motif">成龍</span><div class="gc-main"><div class="gc-head"><span class="gc-name">Jackie Chan</span></div><p class="gc-hook">166 songs in five languages across forty years.</p></div></a>
+        <a class="gcard mono" href="/music/linkin-park/" style="--gc:#16181d"><span class="gc-art tint"></span><span class="gc-motif">LP</span><div class="gc-main"><div class="gc-head"><span class="gc-name">Linkin Park</span></div><p class="gc-hook">Roots, side projects, and the return — the whole arc.</p></div></a>
+        <a class="gcard mono" href="/music/eminem/" style="--gc:#16181d"><span class="gc-art tint"></span><span class="gc-motif">Ǝ</span><div class="gc-main"><div class="gc-head"><span class="gc-name">Eminem</span></div><p class="gc-hook">A route through the albums — from the birth of Slim Shady to his death, and “8 Mile”.</p></div></a>
+        <a class="gcard" href="/music/tom-and-jerry/" style="--gc:#e5202b"><span class="gc-art" style="background-image:url(/music/tom-and-jerry/img/title-card.jpeg)"></span><div class="gc-main"><div class="gc-head"><span class="gc-name">Tom and Jerry</span></div><p class="gc-hook">Ten shorts where music isn't the background — it's the plot. A comic with covers and Oscars.</p></div></a>
       </div>
     </section>
 
@@ -225,54 +227,75 @@
 
   </div>
 <script src="/music/tracks.js" defer></script>
+<script src="/i18n.js" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   var M = window.RENSITE_MUSIC; if (!M || !M.GUIDES) return;
   var esc = function(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); };
-  var html = M.GUIDES.map(function(g){
-    var soon = g.status !== 'live';
-    var badge = soon
-      ? '<span class="gc-badge">скоро</span>'
-      : '<span class="gc-badge live">live</span>';
-    var art = g.img
-      ? '<span class="gc-art" style="background-image:url('+g.img+')"></span>'
-      : '<span class="gc-art tint"></span>';
-    if (g.motif) art += '<span class="gc-motif">'+esc(g.motif)+'</span>';
-    return '<a class="gcard'+(soon?' soon':'')+(g.mono?' mono':'')+'" href="'+g.url+'" style="--gc:'+g.accent+'">'
-      + art
-      + '<div class="gc-main"><div class="gc-head"><span class="gc-name">'+esc(g.name)+'</span>'
-      + '<span class="gc-native">'+esc(g.native)+'</span>'+badge+'</div>'
-      + '<p class="gc-hook">'+esc(g.hook)+'</p>'
-      + '<div class="gc-stats">'+esc(g.stats)+'</div></div>'
-      + '</a>';
-  }).join('');
-  document.getElementById('guides').innerHTML = html;
-  var liveGuides = M.GUIDES.filter(function(g){ return g.status==='live'; });
-  document.getElementById('foot-count').textContent = M.GUIDES.length+' гида · '+liveGuides.length+' готовы';
+  /* Язык из i18n.js (дефолт en, если движок не загрузился). pick/tt — выбор
+     переводимого поля {en,ru} и коротких строк UI. */
+  var lang = function(){ return (window.I18N && window.I18N.get) ? window.I18N.get() : 'en'; };
+  var pick = function(v){ if (v && typeof v==='object' && !Array.isArray(v)){ var l=lang(); return v[l]!=null?v[l]:(v.en!=null?v.en:v.ru); } return v==null?'':v; };
+  var tt = function(en,ru){ return lang()==='ru'?ru:en; };
 
-  /* Сводный прогресс по всем готовым гидам */
-  var hp = document.getElementById('hubProg');
-  var total = liveGuides.reduce(function(s,g){ return s + g.total; }, 0);
-  var done  = liveGuides.reduce(function(s,g){ return s + M.progress(g.storage).size(); }, 0);
-  if (done > 0) {
-    var pct = Math.round(done / total * 100);
-    hp.innerHTML = '<span>пройдено '+done+' из '+total+'</span>'
-      + '<span class="bar"><i style="width:'+Math.min(pct,100)+'%"></i></span><span>'+pct+'%</span>';
-  } else {
-    hp.innerHTML = '<span>'+total+' треков · 3 мира</span>';
+  function renderHub(){
+    var html = M.GUIDES.map(function(g){
+      var soon = g.status !== 'live';
+      var badge = soon
+        ? '<span class="gc-badge">'+tt('soon','скоро')+'</span>'
+        : '<span class="gc-badge live">live</span>';
+      var art = g.img
+        ? '<span class="gc-art" style="background-image:url('+g.img+')"></span>'
+        : '<span class="gc-art tint"></span>';
+      if (g.motif) art += '<span class="gc-motif">'+esc(g.motif)+'</span>';
+      return '<a class="gcard'+(soon?' soon':'')+(g.mono?' mono':'')+'" href="'+g.url+'" style="--gc:'+g.accent+'">'
+        + art
+        + '<div class="gc-main"><div class="gc-head"><span class="gc-name">'+esc(pick(g.name))+'</span>'
+        + '<span class="gc-native">'+esc(g.native)+'</span>'+badge+'</div>'
+        + '<p class="gc-hook">'+esc(pick(g.hook))+'</p>'
+        + '<div class="gc-stats">'+esc(pick(g.stats))+'</div></div>'
+        + '</a>';
+    }).join('');
+    document.getElementById('guides').innerHTML = html;
+
+    var liveGuides = M.GUIDES.filter(function(g){ return g.status==='live'; });
+    document.getElementById('foot-count').textContent =
+      M.GUIDES.length + tt(' guides · ',' гида · ') + liveGuides.length + tt(' ready',' готовы');
+
+    /* Сводный прогресс по всем готовым гидам */
+    var hp = document.getElementById('hubProg');
+    var total = liveGuides.reduce(function(s,g){ return s + g.total; }, 0);
+    var done  = liveGuides.reduce(function(s,g){ return s + M.progress(g.storage).size(); }, 0);
+    if (done > 0) {
+      var pct = Math.round(done / total * 100);
+      hp.innerHTML = '<span>'+tt('done ','пройдено ')+done+tt(' of ',' из ')+total+'</span>'
+        + '<span class="bar"><i style="width:'+Math.min(pct,100)+'%"></i></span><span>'+pct+'%</span>';
+    } else {
+      hp.innerHTML = '<span>'+total+tt(' tracks · 3 worlds',' треков · 3 мира')+'</span>';
+    }
   }
+  renderHub();
 
   /* Случайный трек: грузим заранее, на клик — сразу YouTube (без потери жеста) */
   var pool = M.LP_TRACKS.slice();                 // синхронный фолбэк
   M.loadAll().then(function(ts){ if (ts && ts.length) pool = ts; });
-  var btn = document.getElementById('rndTrack'), reset;
+  var btn = document.getElementById('rndTrack'), reset, showingTrack = false;
+  function rndDefault(){ return tt('▶ random track','▶ случайный трек'); }
+  btn.textContent = rndDefault();
   btn.addEventListener('click', function(){
     if (!pool.length) return;
     var t = pool[Math.floor(Math.random() * pool.length)];
     window.open(M.yt(t.q), '_blank', 'noopener');
     btn.textContent = '▶ ' + t.n + ' — ' + t.artist;
+    showingTrack = true;
     clearTimeout(reset);
-    reset = setTimeout(function(){ btn.textContent = '▶ случайный трек'; }, 2800);
+    reset = setTimeout(function(){ btn.textContent = rndDefault(); showingTrack = false; }, 2800);
+  });
+
+  /* Смена языка — перерисовываем карточки/счётчики и кнопку (если та не занята треком) */
+  document.addEventListener('i18n:change', function(){
+    renderHub();
+    if (!showingTrack) btn.textContent = rndDefault();
   });
 });
 </script>

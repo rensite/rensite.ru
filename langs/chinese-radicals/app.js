@@ -17,6 +17,19 @@
 
   var $  = function (id) { return document.getElementById(id); };
 
+  // ── i18n: язык из общего движка i18n.js (англ. по умолчанию) ────
+  function lang() { return (window.I18N && window.I18N.get) ? window.I18N.get() : 'en'; }
+  // Двуязычное поле данных { en, ru } → строка нужного языка.
+  function L(v) {
+    if (v && typeof v === 'object' && !Array.isArray(v)) {
+      var l = lang();
+      return v[l] != null ? v[l] : (v.en != null ? v.en : v.ru);
+    }
+    return v == null ? '' : v;
+  }
+  // Короткий помощник для UI-строк: tt('English', 'Русский').
+  function tt(en, ru) { return lang() === 'ru' ? ru : en; }
+
   // ── STORE ──────────────────────────────────────────────────────
   function freshRadicals() {
     var o = {};
@@ -135,7 +148,7 @@
     $('stat-streak').textContent = state.streak;
     $('stat-due').textContent = dueForReview().length;
     $('stat-mastered').textContent = overallProgress();
-    $('nav-streak').textContent = 'Streak ' + state.streak;
+    $('nav-streak').textContent = tt('Streak ', 'Серия ') + state.streak;
     $('nav-pct').textContent = overallProgress() + '%';
   }
 
@@ -151,13 +164,13 @@
           '<span class="cat-row__num mono">' + num + '</span>' +
           '<span class="cat-row__glyph glyph">' + (CAT_GLYPH[cat.id] || '字') + '</span>' +
           '<div class="cat-row__meta">' +
-            '<h3 class="cat-row__name">' + cat.label + '</h3>' +
-            '<span class="cat-row__count mono">' + count + ' radicals · ' + prog + '%</span>' +
+            '<h3 class="cat-row__name">' + L(cat.label) + '</h3>' +
+            '<span class="cat-row__count mono">' + count + ' ' + tt('radicals', 'ключей') + ' · ' + prog + '%</span>' +
             '<div class="cat-row__bar"><div class="cat-row__bar-fill" style="width:' + prog + '%"></div></div>' +
           '</div>' +
           '<div class="cat-row__actions">' +
-            '<button class="cat-row__link" type="button" data-action="study" data-cat="' + cat.id + '">Study →</button>' +
-            '<button class="cat-row__link" type="button" data-action="quiz" data-cat="' + cat.id + '">Quiz →</button>' +
+            '<button class="cat-row__link" type="button" data-action="study" data-cat="' + cat.id + '">' + tt('Study →', 'Учить →') + '</button>' +
+            '<button class="cat-row__link" type="button" data-action="quiz" data-cat="' + cat.id + '">' + tt('Quiz →', 'Квиз →') + '</button>' +
           '</div>' +
         '</div>';
     }).join('');
@@ -168,18 +181,18 @@
     var host = $('mmap-grid');
     host.innerHTML = RADICALS.map(function (r) {
       var m = masteryOf(r.id);
-      var title = r.glyph + ' · ' + r.pinyin + ' — ' + r.meaning;
+      var title = r.glyph + ' · ' + r.pinyin + ' — ' + L(r.meaning);
       return '<div class="mmap__cell glyph mmap__cell--m' + m + '" title="' + title + '">' + r.glyph + '</div>';
     }).join('');
   }
 
   // ── CATALOG (sec 04) ───────────────────────────────────────────
-  var catFilters = [{ id: 'all', label: 'All categories' }].concat(CAT_LIST);
+  var catFilters = [{ id: 'all', label: { en: 'All categories', ru: 'Все категории' } }].concat(CAT_LIST);
   var masteryFilters = [
-    { id: 'all', label: 'All' },
-    { id: 'unlearned', label: 'New' },
-    { id: 'learning', label: 'Learning' },
-    { id: 'mastered', label: 'Mastered' },
+    { id: 'all',       label: { en: 'All',       ru: 'Все' } },
+    { id: 'unlearned', label: { en: 'New',       ru: 'Новые' } },
+    { id: 'learning',  label: { en: 'Learning',  ru: 'Учу' } },
+    { id: 'mastered',  label: { en: 'Mastered',  ru: 'Освоено' } },
   ];
   var selectedCat = 'all', selectedMastery = 'all', searchTerm = '';
 
@@ -198,7 +211,7 @@
       if (searchTerm) {
         return r.glyph.indexOf(searchTerm) !== -1 ||
                normalizePinyin(r.pinyin).indexOf(q) !== -1 ||
-               r.meaning.toLowerCase().indexOf(q) !== -1;
+               L(r.meaning).toLowerCase().indexOf(q) !== -1;
       }
       return true;
     });
@@ -212,7 +225,7 @@
           (r.alt ? '<div class="radical-tile__alt glyph">' + r.alt + '</div>' : '') +
           '<div class="radical-tile__glyph glyph">' + r.glyph + '</div>' +
           '<div class="radical-tile__pinyin mono">' + r.pinyin + '</div>' +
-          '<div class="radical-tile__meaning">' + r.meaning + '</div>' +
+          '<div class="radical-tile__meaning">' + L(r.meaning) + '</div>' +
         '</div>';
     }).join('');
     $('browse-empty').hidden = list.length > 0;
@@ -220,14 +233,15 @@
 
   function buildCatalogControls() {
     $('filter-cat').innerHTML = catFilters.map(function (o) {
-      return '<option value="' + o.id + '">' + o.label + '</option>';
+      return '<option value="' + o.id + '">' + L(o.label) + '</option>';
     }).join('');
-    $('filter-mastery-dd').innerHTML = masteryFilters.map(function (m) {
-      return '<option value="' + m.id + '">' + m.label + '</option>';
+    $('filter-mastery-dd').innerHTML = masteryFilters.map(function (mf) {
+      return '<option value="' + mf.id + '">' + L(mf.label) + '</option>';
     }).join('');
-    $('mastery-chips').innerHTML = masteryFilters.map(function (m) {
-      return '<button class="filter-chip filter-mastery-chips" type="button" data-mastery="' + m.id + '">' + m.label + '</button>';
+    $('mastery-chips').innerHTML = masteryFilters.map(function (mf) {
+      return '<button class="filter-chip filter-mastery-chips" type="button" data-mastery="' + mf.id + '">' + L(mf.label) + '</button>';
     }).join('');
+    $('filter-cat').value = selectedCat;
     syncMasteryChips();
   }
   function syncMasteryChips() {
@@ -246,9 +260,9 @@
     else { alt.hidden = true; }
     $('modal-image').textContent = r.image;
     $('modal-pinyin').textContent = r.pinyin;
-    $('modal-meaning').textContent = r.meaning;
-    $('modal-logic').textContent = r.logic;
-    $('modal-cat').textContent = CATEGORIES[r.category].label;
+    $('modal-meaning').textContent = L(r.meaning);
+    $('modal-logic').textContent = L(r.logic);
+    $('modal-cat').textContent = L(CATEGORIES[r.category].label);
     $('modal').hidden = false;
   }
   function closeModal() { $('modal').hidden = true; }
@@ -267,7 +281,7 @@
     tryCard.glyphB.textContent = r.glyph;
     tryCard.image.textContent = r.image;
     tryCard.pinyin.textContent = r.pinyin;
-    tryCard.meaning.textContent = r.meaning;
+    tryCard.meaning.textContent = L(r.meaning);
   }
   function paintCard(r) { paintFront(r); paintBack(r); }
   // Клик по карточке — единственное управление:
@@ -352,9 +366,9 @@
     sesInner.innerHTML =
       '<div class="session study">' +
         '<div class="study-header">' +
-          '<button class="btn btn--ghost btn--sm" data-close>✕ Close</button>' +
+          '<button class="btn btn--ghost btn--sm" data-close>' + tt('✕ Close', '✕ Закрыть') + '</button>' +
           '<div class="study-header__info">' +
-            '<span class="study-header__cat mono">' + cat.label + '</span>' +
+            '<span class="study-header__cat mono">' + L(cat.label) + '</span>' +
             '<span class="study-header__progress mono" data-progress></span>' +
           '</div>' +
         '</div>' +
@@ -364,7 +378,7 @@
             '<div class="flashcard__face flashcard__front">' +
               '<div class="fc-glyph glyph" data-fg></div>' +
               '<div class="fc-alt-corner glyph" data-fa></div>' +
-              '<p class="fc-hint mono">Tap to reveal →</p>' +
+              '<p class="fc-hint mono">' + tt('Tap to reveal →', 'Нажми, чтобы открыть →') + '</p>' +
             '</div>' +
             '<div class="flashcard__face flashcard__back">' +
               '<div class="fc-glyph fc-glyph--sm glyph" data-bg></div>' +
@@ -375,10 +389,10 @@
               '<div class="fc-logic" data-bl></div>' +
             '</div>' +
           '</div>' +
-          '<p class="card-area__tip mono" data-tip>Click card to reveal</p>' +
+          '<p class="card-area__tip mono" data-tip>' + tt('Click card to reveal', 'Кликни по карточке') + '</p>' +
         '</div>' +
         '<div class="next-bar" data-nextbar hidden><button class="btn btn--primary next-btn" data-next></button></div>' +
-        '<button class="why-chip mono" data-why="03">Why recall first? · 03 →</button>' +
+        '<button class="why-chip mono" data-why="03">' + tt('Why recall first? · 03 →', 'Почему сначала вспомнить? · 03 →') + '</button>' +
       '</div>';
 
     var q = function (s) { return sesInner.querySelector(s); };
@@ -393,16 +407,16 @@
       var ba = q('[data-ba]'); ba.textContent = c.alt || ''; ba.style.display = c.alt ? '' : 'none';
       q('[data-bi]').textContent = c.image;
       q('[data-bp]').textContent = c.pinyin;
-      q('[data-bm]').textContent = c.meaning;
-      q('[data-bl]').textContent = c.logic;
+      q('[data-bm]').textContent = L(c.meaning);
+      q('[data-bl]').textContent = L(c.logic);
       progress.textContent = pad2(idx + 1) + ' / ' + deck.length;
       bar.style.width = ((idx + 1) / deck.length * 100) + '%';
-      nextBtn.textContent = idx < deck.length - 1 ? 'Next card →' : 'Finish';
+      nextBtn.textContent = idx < deck.length - 1 ? tt('Next card →', 'Дальше →') : tt('Finish', 'Завершить');
     }
     function setFlipped(f) {
       flipped = f;
       card.classList.toggle('flipped', f);
-      tip.textContent = f ? 'Take a moment, then move on' : 'Click card to reveal';
+      tip.textContent = f ? tt('Take a moment, then move on', 'Задержись на секунду и дальше') : tt('Click card to reveal', 'Кликни по карточке');
       nextBar.hidden = !f;
     }
     function flip() { if (transitioning || done) return; setFlipped(!flipped); }
@@ -423,12 +437,12 @@
       dc.className = 'done-card';
       dc.innerHTML =
         '<div class="done-card__seal seal">完</div>' +
-        '<h2>Session complete</h2>' +
-        '<p>You reviewed <strong>' + deck.length + '</strong> radicals.</p>' +
+        '<h2>' + tt('Session complete', 'Сессия завершена') + '</h2>' +
+        '<p>' + tt('You reviewed <strong>' + deck.length + '</strong> radicals.', 'Просмотрено <strong>' + deck.length + '</strong> ключей.') + '</p>' +
         '<div class="done-card__actions">' +
-          '<button class="btn btn--primary" data-restart>Study Again</button>' +
-          '<button class="btn" data-switch>Take Quiz</button>' +
-          '<button class="btn btn--ghost" data-close>Back to page</button>' +
+          '<button class="btn btn--primary" data-restart>' + tt('Study Again', 'Ещё раз') + '</button>' +
+          '<button class="btn" data-switch>' + tt('Take Quiz', 'Пройти квиз') + '</button>' +
+          '<button class="btn btn--ghost" data-close>' + tt('Back to page', 'На страницу') + '</button>' +
         '</div>';
       area.parentNode.insertBefore(dc, area);
       dc.querySelector('[data-restart]').addEventListener('click', restart);
@@ -458,9 +472,9 @@
     sesInner.innerHTML =
       '<div class="session quiz">' +
         '<div class="quiz-header">' +
-          '<button class="btn btn--ghost btn--sm" data-close>✕ Close</button>' +
+          '<button class="btn btn--ghost btn--sm" data-close>' + tt('✕ Close', '✕ Закрыть') + '</button>' +
           '<div class="quiz-header__info">' +
-            '<span class="quiz-header__cat mono">' + cat.label + '</span>' +
+            '<span class="quiz-header__cat mono">' + L(cat.label) + '</span>' +
             '<span class="quiz-header__score mono" data-score></span>' +
           '</div>' +
         '</div>' +
@@ -480,14 +494,14 @@
       answered = false; selected = null;
       updateHud();
       arena.innerHTML =
-        '<div class="quiz-question"><div class="quiz-glyph glyph">' + cur.glyph + '</div><p class="quiz-prompt mono">What does this radical mean?</p></div>' +
+        '<div class="quiz-question"><div class="quiz-glyph glyph">' + cur.glyph + '</div><p class="quiz-prompt mono">' + tt('What does this radical mean?', 'Что значит этот ключ?') + '</p></div>' +
         '<div class="quiz-options">' +
           opts.map(function (o) {
-            return '<button class="quiz-option" data-opt="' + o.id + '"><span class="quiz-option__meaning">' + o.meaning + '</span><span class="quiz-option__pinyin mono">' + o.pinyin + '</span></button>';
+            return '<button class="quiz-option" data-opt="' + o.id + '"><span class="quiz-option__meaning">' + L(o.meaning) + '</span><span class="quiz-option__pinyin mono">' + o.pinyin + '</span></button>';
           }).join('') +
         '</div>' +
         '<div data-feedback></div>' +
-        '<button class="why-chip mono" data-why="04">How mastery is earned · 04 →</button>';
+        '<button class="why-chip mono" data-why="04">' + tt('How mastery is earned · 04 →', 'Как копится освоение · 04 →') + '</button>';
       var byId = {}; opts.forEach(function (o) { byId[o.id] = o; });
       Array.prototype.forEach.call(arena.querySelectorAll('[data-opt]'), function (b) {
         b.addEventListener('click', function () { onAnswer(byId[b.getAttribute('data-opt')], cur); });
@@ -512,9 +526,9 @@
       fb.className = 'quiz-feedback ' + (isCorrect ? 'quiz-feedback--ok' : 'quiz-feedback--err');
       fb.innerHTML =
         '<span class="quiz-feedback__img">' + cur.image + '</span>' +
-        '<strong>' + (isCorrect ? 'Correct' : 'Wrong') + '</strong> ' +
-        (isCorrect ? '— ' + cur.meaning : '— it was: ' + cur.meaning + ' (' + cur.pinyin + ')') +
-        '<button class="btn btn--sm" data-next style="margin-left:auto">' + (total < deck.length ? 'Next →' : 'Finish') + '</button>';
+        '<strong>' + (isCorrect ? tt('Correct', 'Верно') : tt('Wrong', 'Неверно')) + '</strong> ' +
+        (isCorrect ? '— ' + L(cur.meaning) : tt('— it was: ', '— правильно: ') + L(cur.meaning) + ' (' + cur.pinyin + ')') +
+        '<button class="btn btn--sm" data-next style="margin-left:auto">' + (total < deck.length ? tt('Next →', 'Дальше →') : tt('Finish', 'Завершить')) + '</button>';
       fb.querySelector('[data-next]').addEventListener('click', next);
     }
     function next() { if (idx < deck.length - 1) { idx++; renderQuestion(); } else showDone(); }
@@ -522,16 +536,16 @@
       done = true;
       var pct = correct / deck.length;
       var seal = pct === 1 ? '滿' : pct >= 0.7 ? '好' : pct >= 0.4 ? '學' : '再';
-      var title = pct === 1 ? 'Perfect score!' : pct >= 0.7 ? 'Great work!' : pct >= 0.4 ? 'Keep studying!' : 'Need more practice';
+      var title = pct === 1 ? tt('Perfect score!', 'Идеально!') : pct >= 0.7 ? tt('Great work!', 'Отлично!') : pct >= 0.4 ? tt('Keep studying!', 'Продолжай учить!') : tt('Need more practice', 'Нужно больше практики');
       arena.innerHTML =
         '<div class="done-card">' +
           '<div class="done-card__seal seal">' + seal + '</div>' +
           '<h2>' + title + '</h2>' +
-          '<p>You scored <strong>' + correct + ' / ' + deck.length + '</strong> (' + Math.round(correct / deck.length * 100) + '%)</p>' +
+          '<p>' + tt('You scored <strong>' + correct + ' / ' + deck.length + '</strong>', 'Результат: <strong>' + correct + ' / ' + deck.length + '</strong>') + ' (' + Math.round(correct / deck.length * 100) + '%)</p>' +
           '<div class="done-card__actions">' +
-            '<button class="btn btn--primary" data-restart>Play Again</button>' +
-            '<button class="btn" data-switch>Review Cards</button>' +
-            '<button class="btn btn--ghost" data-close>Back to page</button>' +
+            '<button class="btn btn--primary" data-restart>' + tt('Play Again', 'Ещё раз') + '</button>' +
+            '<button class="btn" data-switch>' + tt('Review Cards', 'К карточкам') + '</button>' +
+            '<button class="btn btn--ghost" data-close>' + tt('Back to page', 'На страницу') + '</button>' +
           '</div>' +
         '</div>';
       arena.querySelector('[data-restart]').addEventListener('click', restart);
@@ -627,7 +641,19 @@
 
     // reset
     $('reset-btn').addEventListener('click', function () {
-      if (window.confirm('Reset all progress? This cannot be undone.')) { resetAll(); toast('Прогресс сброшен'); }
+      if (window.confirm(tt('Reset all progress? This cannot be undone.', 'Сбросить весь прогресс? Это необратимо.'))) {
+        resetAll(); toast(tt('Progress reset', 'Прогресс сброшен'));
+      }
+    });
+
+    // Смена языка (i18n.js) — перерисовываем всё видимое (сессии читают язык при открытии).
+    document.addEventListener('i18n:change', function () {
+      buildCatalogControls();
+      renderStats();
+      renderCategories();
+      renderHeatmap();
+      renderCatalog();
+      if (tryCard.current) paintCard(tryCard.current);
     });
   }
 

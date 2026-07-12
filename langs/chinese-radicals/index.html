@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RadicalIQ — Learn Chinese Radicals</title>
 <meta name="description" content="Интерактивная статья-тренажёр 84 ключей китайских иероглифов: карточки, квизы, карта освоения. Часть renatgalin.pro.">
+<script>try{var _l=localStorage.getItem('rensite:lang');if(_l==='ru'||_l==='en')document.documentElement.lang=_l;}catch(e){}</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -489,6 +490,13 @@ main{ flex:1; display:flex; flex-direction:column; }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{ transition-duration:.01ms!important; scroll-behavior:auto!important; }
 }
+
+/* Языковой переключатель (i18n.js) — в тон кремово-красной палитре страницы. */
+.lang-tg{ font-family:var(--font-mono); }
+.lang-tg button{ color:var(--ink-mute); opacity:.75; }
+.lang-tg button[aria-pressed="true"]{ color:var(--ink); opacity:1; background:transparent; }
+.lang-tg button:hover{ color:var(--red); opacity:1; }
+.lang-tg .sep{ color:var(--ink-mute); opacity:.5; }
 </style>
 </head>
 <body>
@@ -500,12 +508,13 @@ main{ flex:1; display:flex; flex-direction:column; }
     <span class="nav-brand__name">RadicalIQ</span>
   </button>
   <div class="nav-links">
-    <button class="nav-link" type="button" data-scroll="sec-try">Learn</button>
-    <button class="nav-link" type="button" data-scroll="sec-numbers">Numbers</button>
-    <button class="nav-link" type="button" data-scroll="sec-catalog">Catalog</button>
-    <button class="nav-link" type="button" data-method>Method</button>
+    <button class="nav-link" type="button" data-scroll="sec-try" data-ru="Учить">Learn</button>
+    <button class="nav-link" type="button" data-scroll="sec-numbers" data-ru="Цифры">Numbers</button>
+    <button class="nav-link" type="button" data-scroll="sec-catalog" data-ru="Каталог">Catalog</button>
+    <button class="nav-link" type="button" data-method data-ru="Метод">Method</button>
   </div>
   <div class="nav-stats">
+    <span data-lang-toggle></span>
     <span class="nav-stat" id="nav-streak">Streak 0</span>
     <span class="nav-stat nav-stat--pct" id="nav-pct">0%</span>
   </div>
@@ -520,18 +529,18 @@ main{ flex:1; display:flex; flex-direction:column; }
         <div class="hero__text">
           <div class="hero__label">
             <span class="seal">字</span>
-            <span class="hero__label-text">Radicals · 84 glyphs · 5 categories</span>
+            <span class="hero__label-text" data-ru="Ключи · 84 знака · 5 категорий">Radicals · 84 glyphs · 5 categories</span>
           </div>
           <div class="hero__cn glyph">部 首</div>
-          <h1 class="hero__title">Master the building blocks <em>every character</em> is made of.</h1>
-          <p class="hero__lead">Study with flashcards, test yourself with quizzes — one category at a time.</p>
-          <button class="hero__method" type="button" data-scroll="sec-try">↓ 01 — Try it now</button>
+          <h1 class="hero__title" data-ru-html="Освой кирпичики, из которых собран <em>каждый иероглиф</em>.">Master the building blocks <em>every character</em> is made of.</h1>
+          <p class="hero__lead" data-ru="Учи карточками, проверяй себя квизами — по одной категории за раз.">Study with flashcards, test yourself with quizzes — one category at a time.</p>
+          <button class="hero__method" type="button" data-scroll="sec-try" data-ru="↓ 01 — Попробовать сейчас">↓ 01 — Try it now</button>
         </div>
         <div class="hero__stats">
-          <div class="stat"><span class="stat__n"><span id="stat-known">0</span><span class="stat__of">/84</span></span><span class="stat__l">Known</span></div>
-          <div class="stat"><span class="stat__n" id="stat-streak">0</span><span class="stat__l">Day streak</span></div>
-          <div class="stat"><span class="stat__n" id="stat-due">0</span><span class="stat__l">Due review</span></div>
-          <div class="stat"><span class="stat__n"><span id="stat-mastered">0</span><span class="stat__of">%</span></span><span class="stat__l">Mastered</span></div>
+          <div class="stat"><span class="stat__n"><span id="stat-known">0</span><span class="stat__of">/84</span></span><span class="stat__l" data-ru="Изучено">Known</span></div>
+          <div class="stat"><span class="stat__n" id="stat-streak">0</span><span class="stat__l" data-ru="Дней подряд">Day streak</span></div>
+          <div class="stat"><span class="stat__n" id="stat-due">0</span><span class="stat__l" data-ru="К повтору">Due review</span></div>
+          <div class="stat"><span class="stat__n"><span id="stat-mastered">0</span><span class="stat__of">%</span></span><span class="stat__l" data-ru="Освоено">Mastered</span></div>
         </div>
       </div>
     </section>
@@ -539,16 +548,16 @@ main{ flex:1; display:flex; flex-direction:column; }
     <!-- ═══ 01 · Try it now ═══ -->
     <section id="sec-try" class="sec sec--split">
       <div class="sec-split__text">
-        <div class="sec-label">01 — Try it now</div>
-        <h2 class="sec-head">One card.<br>The whole method.</h2>
-        <p class="sec-lead">Recall first, then flip. That single moment of effort — trying before seeing — is what makes it stick.</p>
+        <div class="sec-label" data-ru="01 — Попробуй сейчас">01 — Try it now</div>
+        <h2 class="sec-head" data-ru-html="Одна карточка.<br>Весь метод.">One card.<br>The whole method.</h2>
+        <p class="sec-lead" data-ru="Сначала вспомни, потом переверни. Именно это усилие — попытка до подсказки — и заставляет запомнить.">Recall first, then flip. That single moment of effort — trying before seeing — is what makes it stick.</p>
       </div>
       <div class="sec-split__aside">
         <div class="try-area">
           <div class="try-card" id="try-card">
             <div class="try-card__face try-card__front">
               <div class="try-glyph glyph" id="try-glyph"></div>
-              <p class="try-hint mono">Tap — what does it mean?</p>
+              <p class="try-hint mono" data-ru="Нажми — что это значит?">Tap — what does it mean?</p>
             </div>
             <div class="try-card__face try-card__back">
               <div class="try-image" id="try-image"></div>
@@ -563,33 +572,33 @@ main{ flex:1; display:flex; flex-direction:column; }
 
     <!-- ═══ 02 · The map ═══ -->
     <section id="sec-map" class="sec">
-      <div class="sec-label">02 — The map</div>
-      <h2 class="sec-head">Five families,<br>eighty-four glyphs</h2>
-      <p class="sec-lead">Radicals are learned as a connected system, not a flat list — pick a family and start a session.</p>
+      <div class="sec-label" data-ru="02 — Карта">02 — The map</div>
+      <h2 class="sec-head" data-ru-html="Пять семей,<br>восемьдесят четыре знака">Five families,<br>eighty-four glyphs</h2>
+      <p class="sec-lead" data-ru="Ключи учатся как связная система, а не плоский список — выбери семью и начни сессию.">Radicals are learned as a connected system, not a flat list — pick a family and start a session.</p>
       <div class="categories" id="cat-list"></div>
     </section>
 
     <!-- ═══ 03 · Your numbers ═══ -->
     <section id="sec-numbers" class="sec">
-      <div class="sec-label">03 — Your numbers</div>
-      <h2 class="sec-head">Every glyph,<br>one glance</h2>
-      <p class="sec-lead">One square per radical. Paper means untouched; red means in progress; gold means mastered — earned through quiz answers only.</p>
+      <div class="sec-label" data-ru="03 — Твои цифры">03 — Your numbers</div>
+      <h2 class="sec-head" data-ru-html="Каждый знак,<br>с одного взгляда">Every glyph,<br>one glance</h2>
+      <p class="sec-lead" data-ru="Один квадрат на ключ. Бумага — не тронут; красный — в процессе; золото — освоен, а это даётся только за ответы в квизе.">One square per radical. Paper means untouched; red means in progress; gold means mastered — earned through quiz answers only.</p>
       <div class="mmap">
         <div class="mmap__grid" id="mmap-grid"></div>
         <div class="mmap__legend">
-          <span class="mmap__key mono"><i class="mmap__swatch mmap__cell--m0"></i>New</span>
-          <span class="mmap__key mono"><i class="mmap__swatch mmap__cell--m1"></i>Seen</span>
-          <span class="mmap__key mono"><i class="mmap__swatch mmap__cell--m2"></i>Learning</span>
-          <span class="mmap__key mono"><i class="mmap__swatch mmap__cell--m3"></i>Mastered</span>
+          <span class="mmap__key mono"><i class="mmap__swatch mmap__cell--m0"></i><span data-ru="Новый">New</span></span>
+          <span class="mmap__key mono"><i class="mmap__swatch mmap__cell--m1"></i><span data-ru="Знаком">Seen</span></span>
+          <span class="mmap__key mono"><i class="mmap__swatch mmap__cell--m2"></i><span data-ru="Учу">Learning</span></span>
+          <span class="mmap__key mono"><i class="mmap__swatch mmap__cell--m3"></i><span data-ru="Освоен">Mastered</span></span>
         </div>
       </div>
     </section>
 
     <!-- ═══ 04 · Full catalog ═══ -->
     <section id="sec-catalog" class="sec">
-      <div class="sec-label">04 — Full catalog</div>
-      <h2 class="sec-head">Browse all 84</h2>
-      <p class="sec-lead">Filter by family or mastery — search matches glyphs, meanings, and accent-free pinyin (<span class="mono-inline">ren</span> finds <span class="mono-inline">rén</span>).</p>
+      <div class="sec-label" data-ru="04 — Полный каталог">04 — Full catalog</div>
+      <h2 class="sec-head" data-ru="Все 84 ключа">Browse all 84</h2>
+      <p class="sec-lead" data-ru-html="Фильтруй по семье или уровню освоения — поиск ищет по знакам, значениям и пиньиню без тонов (<span class=&quot;mono-inline&quot;>ren</span> находит <span class=&quot;mono-inline&quot;>rén</span>).">Filter by family or mastery — search matches glyphs, meanings, and accent-free pinyin (<span class="mono-inline">ren</span> finds <span class="mono-inline">rén</span>).</p>
       <div class="catalog">
         <div class="browse-filters">
           <div class="filter-select-wrap">
@@ -607,21 +616,21 @@ main{ flex:1; display:flex; flex-direction:column; }
           <span class="browse-count mono" id="browse-count">0</span>
         </div>
         <div class="radical-grid" id="rad-grid"></div>
-        <p class="browse-empty" id="browse-empty" hidden>No radicals match your filters.</p>
+        <p class="browse-empty" id="browse-empty" hidden data-ru="Под фильтры ничего не подходит.">No radicals match your filters.</p>
       </div>
     </section>
 
     <!-- ═══ 05 · Why it works ═══ -->
     <section id="sec-why" class="sec">
-      <div class="sec-label">05 — Why it works</div>
-      <h2 class="sec-head">Built on memory science</h2>
-      <p class="sec-lead">Five principles from cognitive psychology, each mapped to a mechanic you just used. Tap any to read the research.</p>
+      <div class="sec-label" data-ru="05 — Почему это работает">05 — Why it works</div>
+      <h2 class="sec-head" data-ru="Опирается на науку о памяти">Built on memory science</h2>
+      <p class="sec-lead" data-ru="Пять принципов из когнитивной психологии, каждый привязан к механике, которой ты только что пользовался. Нажми любой, чтобы прочитать исследования.">Five principles from cognitive psychology, each mapped to a mechanic you just used. Tap any to read the research.</p>
       <div class="method-strip">
-        <button class="method-chip" type="button" data-method="01"><span class="method-chip__n">01</span><span class="method-chip__t">Radicals as building blocks</span><span class="method-chip__cite">Miller 1956</span></button>
-        <button class="method-chip" type="button" data-method="02"><span class="method-chip__n">02</span><span class="method-chip__t">Vivid image anchors</span><span class="method-chip__cite">Atkinson 1975</span></button>
-        <button class="method-chip" type="button" data-method="03"><span class="method-chip__n">03</span><span class="method-chip__t">Recall before reveal</span><span class="method-chip__cite">Roediger 2006</span></button>
-        <button class="method-chip" type="button" data-method="04"><span class="method-chip__n">04</span><span class="method-chip__t">Spaced, not crammed</span><span class="method-chip__cite">Cepeda 2006</span></button>
-        <button class="method-chip" type="button" data-method="05"><span class="method-chip__n">05</span><span class="method-chip__t">Shuffled, not sequential</span><span class="method-chip__cite">Bjork 1994</span></button>
+        <button class="method-chip" type="button" data-method="01"><span class="method-chip__n">01</span><span class="method-chip__t" data-ru="Ключи как кирпичики">Radicals as building blocks</span><span class="method-chip__cite">Miller 1956</span></button>
+        <button class="method-chip" type="button" data-method="02"><span class="method-chip__n">02</span><span class="method-chip__t" data-ru="Яркие образы-якоря">Vivid image anchors</span><span class="method-chip__cite">Atkinson 1975</span></button>
+        <button class="method-chip" type="button" data-method="03"><span class="method-chip__n">03</span><span class="method-chip__t" data-ru="Вспомнить до подсказки">Recall before reveal</span><span class="method-chip__cite">Roediger 2006</span></button>
+        <button class="method-chip" type="button" data-method="04"><span class="method-chip__n">04</span><span class="method-chip__t" data-ru="Интервалами, а не зубрёжкой">Spaced, not crammed</span><span class="method-chip__cite">Cepeda 2006</span></button>
+        <button class="method-chip" type="button" data-method="05"><span class="method-chip__n">05</span><span class="method-chip__t" data-ru="Вперемешку, а не по порядку">Shuffled, not sequential</span><span class="method-chip__cite">Bjork 1994</span></button>
       </div>
     </section>
 
@@ -629,19 +638,19 @@ main{ flex:1; display:flex; flex-direction:column; }
     <section class="quote">
       <div class="quote__inner">
         <div class="quote__cn glyph">學如逆水行舟</div>
-        <blockquote>Learning is like rowing upstream —<br><em>stop rowing, and you drift back.</em></blockquote>
-        <p class="quote__attr mono">Chinese proverb · the case for daily practice</p>
+        <blockquote data-ru-html="Учёба — как грести против течения:<br><em>перестал грести — и тебя сносит назад.</em>">Learning is like rowing upstream —<br><em>stop rowing, and you drift back.</em></blockquote>
+        <p class="quote__attr mono" data-ru="Китайская пословица · довод в пользу ежедневной практики">Chinese proverb · the case for daily practice</p>
       </div>
     </section>
 
     <footer class="foot">
       <div class="foot__row">
-        <span class="mono">RadicalIQ · 84 radicals · grounded in cognitive science</span>
-        <button class="btn btn--danger btn--sm" id="reset-btn" type="button">Reset progress</button>
+        <span class="mono" data-ru="RadicalIQ · 84 ключа · опирается на когнитивную науку">RadicalIQ · 84 radicals · grounded in cognitive science</span>
+        <button class="btn btn--danger btn--sm" id="reset-btn" type="button" data-ru="Сбросить прогресс">Reset progress</button>
       </div>
       <div class="foot__legal">
-        <p class="mono">© <span id="foot-year">2026</span> Renat Galin — design, code &amp; original material. All rights reserved.</p>
-        <p class="mono foot__joke">The 84 glyphs themselves? Property of ~3,000 years of Chinese writing. <span class="glyph foot__seal">字</span> No royalties owed. 謝謝.</p>
+        <p class="mono" data-ru-html="© <span id=&quot;foot-year&quot;>2026</span> Ренат Галин — дизайн, код и оригинальные материалы. Все права защищены.">© <span id="foot-year">2026</span> Renat Galin — design, code &amp; original material. All rights reserved.</p>
+        <p class="mono foot__joke" data-ru-html="А сами 84 знака? Собственность ~3000 лет китайской письменности. <span class=&quot;glyph foot__seal&quot;>字</span> Роялти не положены. 謝謝.">The 84 glyphs themselves? Property of ~3,000 years of Chinese writing. <span class="glyph foot__seal">字</span> No royalties owed. 謝謝.</p>
       </div>
     </footer>
 
@@ -669,27 +678,27 @@ main{ flex:1; display:flex; flex-direction:column; }
 
 <!-- method panel — «why it works», right slide-over -->
 <div class="mp-overlay" id="mp-overlay" aria-hidden="true">
-  <aside class="mp-panel" id="mp-panel" role="dialog" aria-label="The method behind the flashcards">
+  <aside class="mp-panel" id="mp-panel" role="dialog" aria-label="The method behind the flashcards" data-ru-aria-label="Метод, стоящий за карточками">
     <header class="mp-head">
-      <span class="sec-label">05 — Why it works</span>
+      <span class="sec-label" data-ru="05 — Почему это работает">05 — Why it works</span>
       <button class="btn btn--icon btn--ghost" id="mp-close" type="button">✕</button>
     </header>
-    <h2 class="mp-title">The method behind<br>the flashcards</h2>
-    <p class="mp-lead">RadicalIQ isn't a random pile of characters to memorise. Every screen is built on a specific, well-studied principle of how memory actually forms.</p>
+    <h2 class="mp-title" data-ru-html="Метод, стоящий за<br>карточками">The method behind<br>the flashcards</h2>
+    <p class="mp-lead" data-ru="RadicalIQ — это не случайная куча иероглифов для зубрёжки. Каждый экран построен на конкретном, хорошо изученном принципе того, как на самом деле формируется память.">RadicalIQ isn't a random pile of characters to memorise. Every screen is built on a specific, well-studied principle of how memory actually forms.</p>
     <section class="mp-quote">
       <div class="mp-quote__inner">
         <span class="seal">學</span>
-        <blockquote>Learn the <em>~84 building blocks</em>, and a character stops being a picture of fifteen strokes — it becomes a few familiar parts.</blockquote>
+        <blockquote data-ru-html="Выучи <em>~84 кирпичика</em> — и иероглиф перестаёт быть картинкой из пятнадцати черт, превращаясь в несколько знакомых частей.">Learn the <em>~84 building blocks</em>, and a character stops being a picture of fifteen strokes — it becomes a few familiar parts.</blockquote>
       </div>
     </section>
 
     <article id="mp-01" class="mp-principle">
       <span class="mp-principle__n mono">01</span>
       <div>
-        <h3 class="mp-principle__title">Radicals as building blocks</h3>
-        <p class="mp-principle__idea">Chinese characters aren't random strokes — the overwhelming majority are assembled from a few hundred recurring components (radicals). Learn the ~84 most frequent and you can read most characters as combinations of known parts instead of memorising each as a fresh image.</p>
-        <div class="mp-principle__block"><span class="mp-principle__tag mono">In the app</span><p>The 84 radicals are split into 5 meaning-based groups (Human, Nature, Structural, Tools, Abstract) rather than an alphabetical list, so related pieces are learned as a connected system.</p></div>
-        <div class="mp-principle__block"><span class="mp-principle__tag mono">The science</span><p>Working memory operates on “chunks”, not individual elements — grouping raw strokes into a few known units is exactly this. Semantic grouping also aids recall more than a flat list. In second-language Chinese, learners with stronger radical awareness both remember and infer new characters better.</p></div>
+        <h3 class="mp-principle__title" data-ru="Ключи как кирпичики">Radicals as building blocks</h3>
+        <p class="mp-principle__idea" data-ru="Китайские иероглифы — не случайные черты: подавляющее большинство собрано из нескольких сотен повторяющихся компонентов (ключей). Выучи ~84 самых частых — и большинство иероглифов читаются как комбинации знакомых частей, а не запоминаются каждый как новая картинка.">Chinese characters aren't random strokes — the overwhelming majority are assembled from a few hundred recurring components (radicals). Learn the ~84 most frequent and you can read most characters as combinations of known parts instead of memorising each as a fresh image.</p>
+        <div class="mp-principle__block"><span class="mp-principle__tag mono" data-ru="В приложении">In the app</span><p data-ru="84 ключа разбиты на 5 смысловых групп (Человек, Природа, Структура, Инструменты, Абстракции), а не в алфавитный список — так родственные части учатся как связная система.">The 84 radicals are split into 5 meaning-based groups (Human, Nature, Structural, Tools, Abstract) rather than an alphabetical list, so related pieces are learned as a connected system.</p></div>
+        <div class="mp-principle__block"><span class="mp-principle__tag mono" data-ru="Наука">The science</span><p data-ru="Рабочая память оперирует «чанками», а не отдельными элементами — сборка черт в несколько знакомых единиц и есть это. Смысловая группировка помогает вспоминать лучше, чем плоский список. У изучающих китайский как второй язык те, кто лучше чувствует ключи, и запоминают, и угадывают новые иероглифы точнее.">Working memory operates on “chunks”, not individual elements — grouping raw strokes into a few known units is exactly this. Semantic grouping also aids recall more than a flat list. In second-language Chinese, learners with stronger radical awareness both remember and infer new characters better.</p></div>
         <p class="mp-principle__cite mono">Miller (1956) · Taft &amp; Chung (1999) · Shen &amp; Ke (2007)</p>
       </div>
     </article>
@@ -697,10 +706,10 @@ main{ flex:1; display:flex; flex-direction:column; }
     <article id="mp-02" class="mp-principle">
       <span class="mp-principle__n mono">02</span>
       <div>
-        <h3 class="mp-principle__title">Vivid image anchors</h3>
-        <p class="mp-principle__idea">An abstract glyph is hard to hold; a concrete picture is easy. Tying each radical to a vivid image and a functional metaphor gives memory something rich to grab onto.</p>
-        <div class="mp-principle__block"><span class="mp-principle__tag mono">In the app</span><p>Every radical carries an emoji anchor (人 → 🧑, 心 → ❤️, 水 → 💧) plus a systems-style “logic” note (心 = “the CPU”). Both appear at the moment you reveal the meaning — right when the association is being formed.</p></div>
-        <div class="mp-principle__block"><span class="mp-principle__tag mono">The science</span><p>The keyword method — pairing foreign vocabulary with a vivid mental image — reliably beats rote repetition. More broadly, the deeper and more meaningfully material is encoded (image, function, association), the stronger the memory trace.</p></div>
+        <h3 class="mp-principle__title" data-ru="Яркие образы-якоря">Vivid image anchors</h3>
+        <p class="mp-principle__idea" data-ru="Абстрактный знак удержать трудно, конкретную картинку — легко. Привязка каждого ключа к яркому образу и функциональной метафоре даёт памяти за что зацепиться.">An abstract glyph is hard to hold; a concrete picture is easy. Tying each radical to a vivid image and a functional metaphor gives memory something rich to grab onto.</p>
+        <div class="mp-principle__block"><span class="mp-principle__tag mono" data-ru="В приложении">In the app</span><p data-ru="У каждого ключа есть эмодзи-якорь (人 → 🧑, 心 → ❤️, 水 → 💧) плюс «логика» в духе устройства системы (心 = «процессор»). И то, и другое появляется в момент, когда ты открываешь значение — как раз когда завязывается ассоциация.">Every radical carries an emoji anchor (人 → 🧑, 心 → ❤️, 水 → 💧) plus a systems-style “logic” note (心 = “the CPU”). Both appear at the moment you reveal the meaning — right when the association is being formed.</p></div>
+        <div class="mp-principle__block"><span class="mp-principle__tag mono" data-ru="Наука">The science</span><p data-ru="Метод ключевого слова — связка иностранного слова с ярким мысленным образом — стабильно обходит механическое повторение. Шире: чем глубже и осмысленнее закодирован материал (образ, функция, ассоциация), тем прочнее след в памяти.">The keyword method — pairing foreign vocabulary with a vivid mental image — reliably beats rote repetition. More broadly, the deeper and more meaningfully material is encoded (image, function, association), the stronger the memory trace.</p></div>
         <p class="mp-principle__cite mono">Atkinson &amp; Raugh (1975) · Craik &amp; Lockhart (1972)</p>
       </div>
     </article>
@@ -708,10 +717,10 @@ main{ flex:1; display:flex; flex-direction:column; }
     <article id="mp-03" class="mp-principle">
       <span class="mp-principle__n mono">03</span>
       <div>
-        <h3 class="mp-principle__title">Recall before reveal</h3>
-        <p class="mp-principle__idea">The act of retrieving an answer strengthens memory far more than passively re-reading it — even though rereading feels more productive in the moment.</p>
-        <div class="mp-principle__block"><span class="mp-principle__tag mono">In the app</span><p>Flashcards ask you to recall the meaning before you flip the card; the quiz forces a choice among four. You never just look — you always try first.</p></div>
-        <div class="mp-principle__block"><span class="mp-principle__tag mono">The science</span><p>The testing effect: learners who were tested remembered markedly more a week later than those who simply restudied, despite feeling less confident. Retrieval is the single most evidence-backed mechanic here.</p></div>
+        <h3 class="mp-principle__title" data-ru="Вспомнить до подсказки">Recall before reveal</h3>
+        <p class="mp-principle__idea" data-ru="Само усилие вытащить ответ из памяти укрепляет её куда сильнее, чем пассивное перечитывание — хотя перечитывание в моменте кажется продуктивнее.">The act of retrieving an answer strengthens memory far more than passively re-reading it — even though rereading feels more productive in the moment.</p>
+        <div class="mp-principle__block"><span class="mp-principle__tag mono" data-ru="В приложении">In the app</span><p data-ru="Карточки просят вспомнить значение до того, как перевернёшь; квиз заставляет выбрать из четырёх. Ты никогда просто не смотришь — всегда сначала пробуешь.">Flashcards ask you to recall the meaning before you flip the card; the quiz forces a choice among four. You never just look — you always try first.</p></div>
+        <div class="mp-principle__block"><span class="mp-principle__tag mono" data-ru="Наука">The science</span><p data-ru="Эффект тестирования: те, кого проверяли, через неделю помнили заметно больше, чем те, кто просто перечитывал — при том что чувствовали себя менее уверенно. Извлечение из памяти — самая доказанная механика здесь.">The testing effect: learners who were tested remembered markedly more a week later than those who simply restudied, despite feeling less confident. Retrieval is the single most evidence-backed mechanic here.</p></div>
         <p class="mp-principle__cite mono">Roediger &amp; Karpicke (2006)</p>
       </div>
     </article>
@@ -719,10 +728,10 @@ main{ flex:1; display:flex; flex-direction:column; }
     <article id="mp-04" class="mp-principle">
       <span class="mp-principle__n mono">04</span>
       <div>
-        <h3 class="mp-principle__title">Spaced, not crammed</h3>
-        <p class="mp-principle__idea">The same amount of study spread over time produces much better long-term retention than the same study massed into one sitting.</p>
-        <div class="mp-principle__block"><span class="mp-principle__tag mono">In the app</span><p>Each radical has a mastery level (0–3), earned through quiz answers, that lengthens the gap before it comes back: seen now → 1 min → 5 min → 1 day. Confident items step back; shaky ones return sooner.</p></div>
-        <div class="mp-principle__block"><span class="mp-principle__tag mono">The science</span><p>The spacing effect is one of the most reproducible findings in memory research, from Ebbinghaus's forgetting curve to modern meta-analysis across hundreds of experiments.</p></div>
+        <h3 class="mp-principle__title" data-ru="Интервалами, а не зубрёжкой">Spaced, not crammed</h3>
+        <p class="mp-principle__idea" data-ru="Тот же объём занятий, растянутый во времени, даёт куда лучшее долгосрочное запоминание, чем то же самое, втиснутое в один присест.">The same amount of study spread over time produces much better long-term retention than the same study massed into one sitting.</p>
+        <div class="mp-principle__block"><span class="mp-principle__tag mono" data-ru="В приложении">In the app</span><p data-ru="У каждого ключа есть уровень освоения (0–3), заработанный ответами в квизе, который удлиняет паузу до возврата: сейчас → 1 мин → 5 мин → 1 день. Уверенные уходят дальше, шаткие возвращаются раньше.">Each radical has a mastery level (0–3), earned through quiz answers, that lengthens the gap before it comes back: seen now → 1 min → 5 min → 1 day. Confident items step back; shaky ones return sooner.</p></div>
+        <div class="mp-principle__block"><span class="mp-principle__tag mono" data-ru="Наука">The science</span><p data-ru="Эффект интервалов — один из самых воспроизводимых результатов в исследованиях памяти, от кривой забывания Эббингауза до современных мета-анализов сотен экспериментов.">The spacing effect is one of the most reproducible findings in memory research, from Ebbinghaus's forgetting curve to modern meta-analysis across hundreds of experiments.</p></div>
         <p class="mp-principle__cite mono">Ebbinghaus (1885) · Cepeda, Pashler et al. (2006)</p>
       </div>
     </article>
@@ -730,21 +739,22 @@ main{ flex:1; display:flex; flex-direction:column; }
     <article id="mp-05" class="mp-principle">
       <span class="mp-principle__n mono">05</span>
       <div>
-        <h3 class="mp-principle__title">Shuffled, not sequential</h3>
-        <p class="mp-principle__idea">Learn in a fixed order and each item quietly becomes the cue for the next — a fragile chain that breaks the moment the order changes. Shuffling forces the brain to retrieve each meaning on its own.</p>
-        <div class="mp-principle__block"><span class="mp-principle__tag mono">In the app</span><p>Both the study deck and the quiz are reshuffled every session, so you never memorise the sequence instead of the characters.</p></div>
-        <div class="mp-principle__block"><span class="mp-principle__tag mono">The science</span><p>Interleaving practice improves durable, flexible learning versus blocked practice. It's one of Bjork's “desirable difficulties”: harder in the moment, better retained.</p></div>
+        <h3 class="mp-principle__title" data-ru="Вперемешку, а не по порядку">Shuffled, not sequential</h3>
+        <p class="mp-principle__idea" data-ru="Учишь в фиксированном порядке — и каждый элемент тихо становится подсказкой к следующему: хрупкая цепь, которая рвётся, стоит порядку измениться. Перемешивание заставляет мозг вытаскивать каждое значение само по себе.">Learn in a fixed order and each item quietly becomes the cue for the next — a fragile chain that breaks the moment the order changes. Shuffling forces the brain to retrieve each meaning on its own.</p>
+        <div class="mp-principle__block"><span class="mp-principle__tag mono" data-ru="В приложении">In the app</span><p data-ru="И колода для учёбы, и квиз перемешиваются каждую сессию — так ты не запоминаешь последовательность вместо самих иероглифов.">Both the study deck and the quiz are reshuffled every session, so you never memorise the sequence instead of the characters.</p></div>
+        <div class="mp-principle__block"><span class="mp-principle__tag mono" data-ru="Наука">The science</span><p data-ru="Перемежающаяся практика даёт более прочное и гибкое обучение, чем практика блоками. Это одна из «полезных трудностей» Бьорка: тяжелее в моменте, но лучше запоминается.">Interleaving practice improves durable, flexible learning versus blocked practice. It's one of Bjork's “desirable difficulties”: harder in the moment, better retained.</p></div>
         <p class="mp-principle__cite mono">Bjork (1994) · Rohrer &amp; Taylor (2007)</p>
       </div>
     </article>
 
-    <p class="mp-foot mono">Grounded in cognitive psychology · not medical or clinical advice</p>
+    <p class="mp-foot mono" data-ru="Опирается на когнитивную психологию · не медицинский и не клинический совет">Grounded in cognitive psychology · not medical or clinical advice</p>
   </aside>
 </div>
 
 <div class="riq-toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="radicals.js"></script>
+<script src="/i18n.js" defer></script>
 <script src="app.js" defer></script>
 </body>
 </html>

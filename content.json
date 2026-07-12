@@ -2,55 +2,78 @@
   "statuses": [
     {
       "date": "2026-07-10",
-      "tag": "инсайт недели",
-      "text": "Какая разница, как сделано… — если оно работает."
+      "tag": { "en": "insight of the week", "ru": "инсайт недели" },
+      "text": {
+        "en": "Who cares how it's built — as long as it works.",
+        "ru": "Какая разница, как сделано… — если оно работает."
+      }
     },
     {
-      "date": "2026-07-10",
-      "tag": "метод",
-      "text": "Слить мысли потоком в несколько ИИ → сравнить → предложить несколько вариантов → выбрать лучшее!"
+      "date": "2026-07-03",
+      "tag": { "en": "method", "ru": "метод" },
+      "text": {
+        "en": "Brain-dump into a few AIs → compare → let them pitch options → pick the best one.",
+        "ru": "Слить мысли потоком в несколько ИИ → сравнить → предложить несколько вариантов → выбрать лучшее!"
+      }
     },
     {
-      "date": "2026-07-10",
-      "tag": "манифест",
-      "text": "Агентно-ориентированное программирование: пусть агенты действуют по своей логике, не рассказывайте им про scrum/agile, backend/frontend."
+      "date": "2026-06-25",
+      "tag": { "en": "manifesto", "ru": "манифест" },
+      "text": {
+        "en": "Agent-oriented programming: let agents run on their own logic — spare them the scrum/agile, backend/frontend lectures.",
+        "ru": "Агентно-ориентированное программирование: пусть агенты действуют по своей логике, не рассказывайте им про scrum/agile, backend/frontend."
+      }
     },
     {
-      "date": "2026-07-10",
-      "tag": "шутка",
-      "text": "Существует 10 способа пожарить ИИшницу."
+      "date": "2026-06-19",
+      "tag": { "ru": "шутка" },
+      "text": {
+        "ru": "Существует 10 способа пожарить ИИшницу."
+      }
     },
     {
       "date": "2026-06-10",
-      "tag": "инсайт недели",
-      "text": "Лучший промпт — тот, который не понадобился: половина магии агентов делается нормальной декомпозицией задачи."
+      "tag": { "en": "insight of the week", "ru": "инсайт недели" },
+      "text": {
+        "en": "The best prompt is the one you never needed — half the agent magic is just solid task decomposition.",
+        "ru": "Лучший промпт — тот, который не понадобился: половина магии агентов делается нормальной декомпозицией задачи."
+      }
     },
     {
       "date": "2026-06-03",
-      "tag": "инсайт недели",
-      "text": "Агент с пятью инструментами надёжнее агента с пятьюдесятью. Каждый лишний tool — минус процент к точности."
+      "tag": { "en": "insight of the week", "ru": "инсайт недели" },
+      "text": {
+        "en": "An agent with five tools beats one with fifty — every extra tool shaves a point off your accuracy.",
+        "ru": "Агент с пятью инструментами надёжнее агента с пятьюдесятью. Каждый лишний tool — минус процент к точности."
+      }
     },
     {
       "date": "2026-05-27",
-      "tag": "статус",
-      "text": "Перевёл музыкальные гиды на общий датасет треков — теперь поиск по ⌘K знает все 263 трека."
+      "tag": { "en": "shipped", "ru": "статус" },
+      "text": {
+        "en": "Put the music guides on one shared track dataset — now ⌘K search knows all 263 tracks.",
+        "ru": "Перевёл музыкальные гиды на общий датасет треков — теперь поиск по ⌘K знает все 263 трека."
+      }
     }
   ],
   "projects": [
     {
-      "name": "гиды по музыке",
-      "desc": "разбор больших дискографий",
+      "name": { "en": "music guides", "ru": "гиды по музыке" },
+      "desc": { "en": "deep dives into big discographies", "ru": "разбор больших дискографий" },
       "url": "/music/",
       "status": "live",
       "tags": [
         "frontend",
-        "данные"
+        { "en": "data", "ru": "данные" }
       ],
       "yr": "2025—"
     },
     {
-      "name": "агенты для Bizdevim",
-      "desc": "мультиагентная система: ресёрч, лиды, аутрич",
+      "name": { "en": "agents for Bizdevim", "ru": "агенты для Bizdevim" },
+      "desc": {
+        "en": "multi-agent system: research, leads, outreach",
+        "ru": "мультиагентная система: ресёрч, лиды, аутрич"
+      },
       "status": "wip",
       "tags": [
         "agents",
@@ -59,8 +82,11 @@
       "yr": "2026"
     },
     {
-      "name": "книга по «взлому»",
-      "desc": "о взломе как методе мышления — подробности позже ;)",
+      "name": { "en": "a book on “hacking”", "ru": "книга по «взлому»" },
+      "desc": {
+        "en": "on hacking as a way of thinking — more soon ;)",
+        "ru": "о взломе как методе мышления — подробности позже ;)"
+      },
       "status": "wip",
       "tags": [
         "writing"

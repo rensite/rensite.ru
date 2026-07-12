@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)" />
 <title>rensite — AI Development</title>
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');try{var _l=localStorage.getItem('rensite:lang');if(_l==='ru'||_l==='en')document.documentElement.lang=_l;}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -288,7 +288,8 @@
     <header class="topline">
       <span class="greeting" id="greeting"></span>
       <span class="topright">
-        <button class="kbd" type="button" title="Поиск по сайту" onclick="window.KPAL&&KPAL.open()">⌘K</button>
+        <span data-lang-toggle></span>
+        <button class="kbd" type="button" title="Search the site" data-ru-title="Поиск по сайту" onclick="window.KPAL&&KPAL.open()">⌘K</button>
         <span class="pulse">live</span>
         <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
       </span>
@@ -298,71 +299,72 @@
 
       <section class="hero">
         <h1 class="hero-title anim d1">Renat&nbsp;Galin<br/><span class="grad">AI&nbsp;Development</span></h1>
-        <p class="hero-sub anim d2">Собираю продукты на базе LLM: ассистенты, агенты, RAG-системы и автоматизации.</p>
+        <p class="hero-sub anim d2" data-ru="Собираю продукты на базе LLM: ассистенты, агенты, RAG-системы и автоматизации.">I build LLM-powered products: assistants, agents, RAG systems, and automations.</p>
       </section>
 
-      <section class="insight anim d2" aria-label="Инсайт недели">
+      <section class="insight anim d2" aria-label="Insight of the week" data-ru-aria-label="Инсайт недели">
         <ul id="insight-feed">
-          <!-- фолбэк без JS; свежий статус рендерится из /content.json -->
+          <!-- фолбэк без JS; свежий статус рендерится из /content.json (уже с учётом языка) -->
           <li class="st-row">
-            <span class="st-meta"><span class="st-date">10 июл</span><span class="st-tag">инсайт недели</span></span>
-            <p class="st-text">Какая разница, как сделано… — если оно работает.</p>
+            <span class="st-meta"><span class="st-date">Jul 10</span><span class="st-tag">insight of the week</span></span>
+            <p class="st-text">Who cares how it's built — as long as it works.</p>
           </li>
         </ul>
-        <a class="more" href="/status/">микроблог</a>
+        <a class="more" href="/status/" data-ru="микроблог">microblog</a>
       </section>
 
       <div class="band">
 
-        <section class="col anim d3" aria-label="Сейчас">
-          <div class="label">сейчас</div>
+        <section class="col anim d3" aria-label="Now" data-ru-aria-label="Сейчас">
+          <div class="label" data-ru="сейчас">now</div>
           <ul class="lines">
-            <li>Собираю агентов для Bizdevim.</li>
-            <li>Пишу книгу по «взлому».</li>
-            <li id="now-status">Слушаю музыку <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></li>
+            <li data-ru="Собираю агентов для Bizdevim.">Building agents for Bizdevim.</li>
+            <li data-ru="Пишу книгу по «взлому».">Writing a book on “hacking.”</li>
+            <li id="now-status">Listening to music <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></li>
           </ul>
         </section>
 
-        <section class="col anim d4" aria-label="Проекты">
-          <div class="label">проекты</div>
-          <ul class="links">
+        <section class="col anim d4" aria-label="Projects" data-ru-aria-label="Проекты">
+          <div class="label" data-ru="проекты">projects</div>
+          <ul class="links" id="projects-links">
+            <!-- фолбэк без JS; карточки рендерятся из /content.json (уже с учётом языка) -->
             <li><a href="/music/">
-              <span class="n">гиды по музыке <span class="soon chip-live">live</span></span>
-              <span class="d">разбор больших дискографий</span>
-              <span class="m">frontend · данные · 2025—</span>
+              <span class="n">music guides <span class="soon chip-live">live</span></span>
+              <span class="d">deep dives into big discographies</span>
+              <span class="m">frontend · data · 2025—</span>
             </a></li>
             <li><span class="dead">
-              <span class="n">агенты для Bizdevim <span class="soon chip-wip">в работе</span></span>
-              <span class="d">мультиагентная система: ресёрч, лиды, аутрич</span>
+              <span class="n">agents for Bizdevim <span class="soon chip-wip">in progress</span></span>
+              <span class="d">multi-agent system: research, leads, outreach</span>
               <span class="m">agents · LLM · 2026</span>
             </span></li>
             <li><span class="dead">
-              <span class="n">книга по «взлому» <span class="soon chip-wip">в работе</span></span>
-              <span class="d">о взломе как методе мышления — подробности позже ;)</span>
+              <span class="n">a book on “hacking” <span class="soon chip-wip">in progress</span></span>
+              <span class="d">on hacking as a way of thinking — more soon ;)</span>
               <span class="m">writing · 2026</span>
             </span></li>
           </ul>
-          <span class="more more-end" id="more-projects">остальное не покажу</span>
+          <span class="more more-end" id="more-projects" data-ru="остальное не покажу">that's all I'll show</span>
         </section>
 
-        <section class="col anim d5" aria-label="Микроблог">
-          <div class="label">микроблог</div>
+        <section class="col anim d5" aria-label="Microblog" data-ru-aria-label="Микроблог">
+          <div class="label" data-ru="микроблог">microblog</div>
           <ul class="feed-col" id="feed-col">
             <!-- фолбэк без JS; свежие статусы (после тизера) рендерятся из /content.json -->
             <li class="st-row">
-              <span class="st-meta"><span class="st-date">10 июл</span><span class="st-tag">метод</span></span>
-              <p class="st-text">Слить мысли потоком в несколько ИИ → сравнить → предложить несколько вариантов → выбрать лучшее!</p>
+              <span class="st-meta"><span class="st-date">Jul 3</span><span class="st-tag">method</span></span>
+              <p class="st-text">Brain-dump into a few AIs → compare → let them pitch options → pick the best one.</p>
             </li>
           </ul>
-          <a class="more" href="/status/">все статусы</a>
+          <a class="more" href="/status/" data-ru="все статусы">all posts</a>
         </section>
 
       </div>
 
     </main>
 
-    <footer class="telemetry anim d5" aria-label="Статистика разработчика">
-      <button class="head" id="shellToggle" type="button" title="Открыть терминал">$ dev.stats --today<span class="cur" aria-hidden="true"></span></button>
+    <footer class="telemetry anim d5" aria-label="Developer stats" data-ru-aria-label="Статистика разработчика">
+      <button class="head" id="shellToggle" type="button" title="Open terminal" data-ru-title="Открыть терминал">$ dev.stats --today<span class="cur" aria-hidden="true"></span></button>
       <div class="stats">
         <div class="stat"><span class="k">commits</span><span class="v" id="s-commits">0</span></div>
         <div class="stat"><span class="k">hrs coded</span><span class="v" id="s-hours">0.0</span></div>
@@ -376,12 +378,13 @@
 
   </div>
 
+<script src="/i18n.js" defer></script>
 <script src="/cards.js" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var cls = { name: 'n', desc: 'd', meta: 'm', arrow: 'arrow', dead: 'dead', soon: 'soon' };
     renderCards([
-      { sel: '[aria-label="Проекты"] .links', key: 'projects', limit: 4, cls: cls }
+      { sel: '#projects-links', key: 'projects', limit: 4, cls: cls }
     ]);
     renderStatuses([
       { sel: '#insight-feed', limit: 1 },
@@ -408,24 +411,32 @@
   updateGreeting();
   setInterval(updateGreeting, 60*1000);
 
-  /* now-статус: ночью по Екатеринбургу «сплю» + Zzz, иначе «слушаю музыку» + эквалайзер */
-  const EQ  = 'Слушаю музыку <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
-  const ZZZ = 'Сплю <span class="zzz" aria-hidden="true"><i>z</i><i>z</i><i>z</i></span>';
+  /* now-статус: ночью по Екатеринбургу «сплю» + Zzz, иначе «слушаю музыку» + эквалайзер.
+     Текст зависит от языка (i18n.js) — анимационные спаны те же. */
+  const EQ_BARS  = '<span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
+  const ZZZ_BARS = '<span class="zzz" aria-hidden="true"><i>z</i><i>z</i><i>z</i></span>';
+  function nowHTML(night){
+    const ru = document.documentElement.lang === 'ru';
+    return night
+      ? (ru ? 'Сплю' : 'Sleeping') + ' ' + ZZZ_BARS
+      : (ru ? 'Слушаю музыку' : 'Listening to music') + ' ' + EQ_BARS;
+  }
   function ekbHour(){
     try{ return parseInt(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Yekaterinburg',hour:'numeric',hour12:false}).format(new Date()),10); }
     catch(e){ return new Date().getUTCHours() + 5 >= 24 ? new Date().getUTCHours()+5-24 : new Date().getUTCHours()+5; } // фолбэк: UTC+5
   }
   function isNightEkb(){ const h = ekbHour() % 24; return h >= 1 && h < 7; }   // окно сна 01:00–07:00 ЕКБ
   let nightState = null;
-  function paintNow(){
+  function paintNow(force){
     const el = $('now-status'); if (!el) return;
     const night = isNightEkb();
-    if (night === nightState) return;        // меняем DOM только при смене состояния — не рестартим анимацию каждую минуту
+    if (!force && night === nightState) return; // меняем DOM только при смене состояния — не рестартим анимацию каждую минуту
     nightState = night;
-    el.innerHTML = night ? ZZZ : EQ;
+    el.innerHTML = nowHTML(night);
   }
-  paintNow();
-  setInterval(paintNow, 60*1000);
+  paintNow(true);
+  setInterval(function(){ paintNow(false); }, 60*1000);
+  document.addEventListener('i18n:change', function(){ paintNow(true); }); // мгновенный перевод строки
 
   /* Телеметрия — «кривая активности» суток */
   const DAILY = { commits: 7, hours: 5, coffee: 3 };

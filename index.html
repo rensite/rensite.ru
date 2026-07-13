@@ -380,8 +380,8 @@
 
   </div>
 
-<script src="/i18n.js" defer></script>
-<script src="/cards.js" defer></script>
+<script src="/i18n.js?v=20260713" defer></script>
+<script src="/cards.js?v=20260713" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var cls = { name: 'n', desc: 'd', meta: 'm', arrow: 'arrow', dead: 'dead', soon: 'soon' };
@@ -499,9 +499,15 @@
         out=document.getElementById('shOut'), inp=document.getElementById('shIn');
   if(!tg||!sh) return;
   const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  /* Язык из i18n.js (дефолт en). tt — инлайн-строки, pick — {en,ru}-поля. */
+  const lang=()=>{try{return (window.I18N&&I18N.get)?I18N.get():(document.documentElement.lang==='ru'?'ru':'en');}catch(e){return 'en';}};
+  const tt=(en,ru)=>lang()==='ru'?ru:en;
+  const pick=v=>(v&&typeof v==='object'&&!Array.isArray(v))?(v[lang()]!=null?v[lang()]:(v.en!=null?v.en:v.ru)):(v==null?'':v);
   const FILES={
-    'now.txt':'Собираю агентов для Bizdevim.\nПишу книгу по «взлому».\nСлушаю музыку.',
-    'book.txt':'Книга по «взлому» — в работе. Подробности позже ;)'
+    'now.txt':{en:'Building agents for Bizdevim.\nWriting a book on “hacking”.\nListening to music.',
+               ru:'Собираю агентов для Bizdevim.\nПишу книгу по «взлому».\nСлушаю музыку.'},
+    'book.txt':{en:'A book on “hacking” — in progress. Details later ;)',
+                ru:'Книга по «взлому» — в работе. Подробности позже ;)'}
   };
   const DIRS={music:'/music/',projects:'/projects/',notes:'/status/',status:'/status/','~':'/','..':'/',fun:'/fun/'};
   let hist=[],hi=0;
@@ -513,43 +519,44 @@
     const parts=cmd.split(/\s+/), c=parts[0], args=parts.slice(1), a=args.join(' ');
     switch(c){
       case 'help':
-        line('команды: ls · cd &lt;dir&gt; · cat &lt;file&gt; · whoami · date · stats · clear · exit');
-        line('подсказки: у ls есть флаг -a · ⌘K — поиск по сайту и трекам'); break;
+        line(tt('commands','команды')+': ls · cd &lt;dir&gt; · cat &lt;file&gt; · whoami · date · stats · clear · exit');
+        line(tt('tips: ls has a -a flag · ⌘K — search the site and tracks','подсказки: у ls есть флаг -a · ⌘K — поиск по сайту и трекам')); break;
       case 'ls':{
         const vis='music/  projects/  status/  now.txt  book.txt  seed.txt  status.log';
-        if(args.indexOf('-a')!==-1){ line('<span class="nv">.fun/</span>  '+vis); line('// скрытая папка! cd fun'); }
+        if(args.indexOf('-a')!==-1){ line('<span class="nv">.fun/</span>  '+vis); line(tt('// hidden folder! cd fun','// скрытая папка! cd fun')); }
         else line(vis);
         break;
       }
       case 'cd':{
         const d=(a||'~').replace(/\/$/,'');
         if(DIRS[d]){ line('→ '+DIRS[d]); setTimeout(()=>{location.href=DIRS[d];},250); }
-        else line('cd: нет такой папки: '+esc(d));
+        else line('cd: '+tt('no such folder','нет такой папки')+': '+esc(d));
         break;
       }
       case 'cat':
         if(a==='status.log'){
-          if(window.loadContent) loadContent().then(d=>{(d.statuses||[]).slice(0,3).forEach(st=>line(esc(st.date+'  ['+(st.tag||'статус')+']  '+st.text)));}).catch(()=>line('cat: status.log: недоступен'));
-          else line('cat: status.log: недоступен');
+          const na=tt('cat: status.log: unavailable','cat: status.log: недоступен');
+          if(window.loadContent) loadContent().then(d=>{(d.statuses||[]).slice(0,3).forEach(st=>line(esc(st.date+'  ['+(pick(st.tag)||tt('status','статус'))+']  '+pick(st.text))));}).catch(()=>line(na));
+          else line(na);
         }
         else if(a==='seed.txt'){
-          fetch('/seed.txt').then(r=>r.ok?r.text():Promise.reject()).then(t=>{t.replace(/\s+$/,'').split(/\r?\n/).forEach(l=>line(esc(l)));}).catch(()=>line('cat: seed.txt: недоступен'));
+          fetch('/seed.txt').then(r=>r.ok?r.text():Promise.reject()).then(t=>{t.replace(/\s+$/,'').split(/\r?\n/).forEach(l=>line(esc(l)));}).catch(()=>line(tt('cat: seed.txt: unavailable','cat: seed.txt: недоступен')));
         }
-        else FILES[a]?line(esc(FILES[a])):line('cat: '+esc(a||'?')+': нет такого файла');
+        else FILES[a]?line(esc(pick(FILES[a]))):line('cat: '+esc(a||'?')+': '+tt('no such file','нет такого файла'));
         break;
-      case 'whoami': line('renat · AI engineer · собираю продукты на LLM'); break;
-      case 'date': line(new Date().toLocaleString('ru-RU')); break;
+      case 'whoami': line(tt('renat · AI engineer · building LLM-powered products','renat · AI engineer · собираю продукты на LLM')); break;
+      case 'date': line(new Date().toLocaleString(lang()==='ru'?'ru-RU':'en-US')); break;
       case 'stats': line('commits '+document.getElementById('s-commits').textContent+' · hrs '+document.getElementById('s-hours').textContent+' · coffee '+document.getElementById('s-coffee').textContent); break;
       case 'sudo': line('nice try.'); break;
       case 'clear': out.innerHTML=''; break;
       case 'exit': toggle(false); break;
-      default: line('zsh: command not found: '+esc(c)+' — попробуй help');
+      default: line('zsh: command not found: '+esc(c)+tt(' — try help',' — попробуй help'));
     }
   }
   function toggle(show){
     const on=(show===undefined)?sh.hidden:show;
     sh.hidden=!on;
-    if(on){ if(!out.childElementCount) line('интерактивный терминал · введи help'); inp.focus(); }
+    if(on){ if(!out.childElementCount) line(tt('interactive terminal · type help','интерактивный терминал · введи help')); inp.focus(); }
   }
   tg.addEventListener('click',()=>toggle());
   inp.addEventListener('keydown',e=>{

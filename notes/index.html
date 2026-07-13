@@ -2,14 +2,124 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<!-- Заметки заменены микроблогом: /notes/ редиректит на /status/.
-     Страница вернётся, когда появится первый настоящий лонгрид. -->
-<meta http-equiv="refresh" content="0; url=/status/" />
-<link rel="canonical" href="/status/" />
-<title>notes → status — rensite</title>
-<meta name="robots" content="noindex" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)" />
+<title>notes — rensite</title>
+<meta name="description" content="Longer writeups — when a status isn't enough." data-ru="Лонгриды — когда статуса мало." />
+<script>try{var _l=localStorage.getItem('rensite:lang');if(_l==='ru'||_l==='en')document.documentElement.lang=_l;}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Токены зеркалят основной сайт (index.html / status). */
+  :root{
+    --navy:#1E3A8A; --ink:#0F172A; --muted:#64748B; --soft:#94A3B8;
+    --hair:#E2E8F0; --bg:#FFFFFF; --surface:#FFFFFF; --accent:#3B82F6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --navy:#93C5FD; --ink:#E2E8F0; --muted:#94A3B8; --soft:#64748B;
+      --hair:#1E293B; --bg:#0B1220; --surface:#0F1729; --accent:#60A5FA;
+    }
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",system-ui,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  :focus:not(:focus-visible){outline:none}
+  body{min-height:100vh;min-height:100dvh;display:flex;justify-content:center;background:transparent}
+
+  .app{
+    width:100%;max-width:760px;min-height:100vh;min-height:100dvh;
+    padding:clamp(16px,2.6vh,26px) clamp(20px,5vw,52px) calc(clamp(16px,2.6vh,26px) + env(safe-area-inset-bottom));
+    display:flex;flex-direction:column;gap:clamp(24px,4vh,44px);
+  }
+
+  .top{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--muted);
+    padding-bottom:14px;border-bottom:1px solid var(--hair);
+  }
+  .top a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:color .15s ease,border-color .15s ease}
+  .top a:hover,.top a:focus-visible{color:var(--navy);border-bottom-color:var(--navy)}
+  .top .back{color:var(--navy);font-weight:500}
+  .top-right{display:inline-flex;align-items:center;gap:14px}
+
+  .hero h1{margin:0;font-size:clamp(2.4rem,6vw,4rem);line-height:1.0;letter-spacing:-.03em;font-weight:700;color:var(--ink)}
+  .hero h1 span{color:var(--navy)}
+  .hero p{margin:14px 0 0;font-size:clamp(16px,1.6vw,19px);color:var(--muted);line-height:1.45;max-width:48ch}
+
+  .label{
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:15px;color:var(--soft);
+    letter-spacing:.04em;text-transform:lowercase;display:flex;align-items:center;gap:8px;
+  }
+  .label::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+  ul.notes{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+  a.note{
+    display:block;text-decoration:none;color:inherit;
+    background:var(--surface);border:1px solid var(--hair);border-radius:14px;
+    padding:20px 22px;transition:border-color .16s ease,transform .16s ease;
+  }
+  a.note:hover,a.note:focus-visible{border-color:var(--navy);transform:translateY(-2px)}
+  a.note .nmeta{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:var(--soft)}
+  a.note .ndate{color:var(--muted)}
+  a.note .ntag{border:1px solid var(--hair);border-radius:999px;padding:1px 8px;letter-spacing:.03em;text-transform:lowercase}
+  a.note h2{margin:10px 0 0;font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--ink);line-height:1.2}
+  a.note:hover h2{color:var(--navy)}
+  a.note p{margin:7px 0 0;font-size:15.5px;line-height:1.5;color:var(--muted);max-width:60ch}
+  a.note .go{margin-top:12px;display:inline-block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--navy)}
+
+  footer.foot{
+    margin-top:auto;padding-top:16px;border-top:1px solid var(--hair);
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--soft);
+    display:flex;justify-content:space-between;gap:10px;
+  }
+  footer.foot a{color:var(--navy);text-decoration:none;border-bottom:1px solid transparent;transition:.15s ease}
+  footer.foot a:hover,footer.foot a:focus-visible{border-bottom-color:var(--navy)}
+
+  @view-transition{navigation:auto}
+  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
 </head>
 <body>
-  <p>Notes moved to the <a href="/status/">microblog</a>.</p>
+  <div class="app">
+
+    <header class="top">
+      <a class="back" href="/">← rensite</a>
+      <span class="top-right">
+        <span data-lang-toggle></span>
+        <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
+      </span>
+    </header>
+
+    <section class="hero">
+      <h1 data-ru-html="Замет<span>ки</span>">No<span>tes</span></h1>
+      <p data-ru="Лонгриды — когда для статуса слишком много. Разбираю то, в чём успел покопаться сам.">Longer writeups — for when a status isn't enough. Things I dug into far enough to write down.</p>
+    </section>
+
+    <section>
+      <div class="label" data-ru="заметки">writeups</div>
+      <ul class="notes">
+        <li>
+          <a class="note" href="/notes/coffee/">
+            <span class="nmeta"><span class="ndate">Jul 13</span><span class="ntag" data-ru="гайд">guide</span></span>
+            <h2 data-ru="Как сварить отличный кофе">How to brew great coffee</h2>
+            <p data-ru="Не рецепт, а рычаги: помол, пропорция, вода, время. Теория экстракции, четыре домашних метода и два калькулятора.">Not a recipe but the levers: grind, ratio, water, time. Extraction theory, four home methods, and two calculators.</p>
+            <span class="go" data-ru="Читать →">Read →</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <footer class="foot">
+      <span>$ ls ~/notes</span>
+      <a href="/status/" data-ru="Микроблог →">Microblog →</a>
+    </footer>
+
+  </div>
+
+  <script src="/i18n.js?v=20260713" defer></script>
+  <script src="/palette.js?v=20260714" defer></script>
 </body>
 </html>

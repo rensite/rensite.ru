@@ -1,6 +1,14 @@
 {
   "statuses": [
     {
+      "date": "2026-07-13",
+      "tag": { "en": "shipped", "ru": "статус" },
+      "text": {
+        "en": "A field note on brewing great coffee — the levers, extraction theory, four home methods, and two little calculators, [here](/notes/coffee/).",
+        "ru": "Заметка о том, как сварить отличный кофе — рычаги, теория экстракции, четыре домашних метода и два калькулятора [здесь](/notes/coffee/)."
+      }
+    },
+    {
       "date": "2026-07-12",
       "tag": { "en": "shipped", "ru": "статус" },
       "text": {

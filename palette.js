@@ -16,7 +16,9 @@
     {t:'Michael Jackson',   d:{en:'guide to the film: eras and tracks',ru:'гид к фильму: эпохи и треки'},                  url:'/music/michael/',      k:'майкл джексон mj'},
     {t:'Eminem',            d:{en:'guide: the whole career and “8 Mile”',ru:'гид: вся карьера и «8 Mile»'},                url:'/music/eminem/',       k:'эминем eminem slim shady marshall маршалл'},
     {t:{en:'Tom and Jerry',ru:'Том и Джерри'},  d:{en:'comic issue: music as the plot',ru:'комикс-выпуск: музыка как сюжет'},url:'/music/tom-and-jerry/',k:'том джерри tom and jerry мультфильм оскар'},
-    {t:{en:'Microblog',ru:'Микроблог'},         d:{en:'weekly statuses and insights',ru:'статусы и инсайты недели'},       url:'/status/',             k:'status статус инсайт blog заметки notes'},
+    {t:{en:'Microblog',ru:'Микроблог'},         d:{en:'weekly statuses and insights',ru:'статусы и инсайты недели'},       url:'/status/',             k:'status статус инсайт blog'},
+    {t:{en:'Notes',ru:'Заметки'},               d:{en:'longer writeups',ru:'лонгриды'},                                   url:'/notes/',              k:'notes заметки longread лонгрид'},
+    {t:{en:'How to brew great coffee',ru:'Как сварить отличный кофе'},d:{en:'guide: levers, methods, calculators',ru:'гайд: рычаги, методы, калькуляторы'},url:'/notes/coffee/',k:'coffee кофе brew заваривание espresso эспрессо pour-over v60 френч-пресс grind помол ratio пропорция'},
     {t:{en:'Projects',ru:'Проекты'},            d:{en:'agents, guides, and this site',ru:'агенты, гиды и этот сайт'},      url:'/projects/',           k:'projects проекты агенты'}
   ];
   var TRACK_LIMIT = 9;

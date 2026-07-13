@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#FAF6F0" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#17120E" media="(prefers-color-scheme: dark)" />
+<title>How to Brew Great Coffee — rensite</title>
+<meta name="description" content="Perfect coffee isn't a recipe — it's a handful of variables you learn to control: grind, ratio, water, time. The levers, the theory, and four home methods." data-ru="«Идеальный» кофе — это не рецепт, а несколько переменных, которыми учишься управлять: помол, пропорция, вода, время. Рычаги, теория и четыре домашних метода." />
+<script>try{var _l=localStorage.getItem('rensite:lang');if(_l==='ru'||_l==='en')document.documentElement.lang=_l;}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Тёплая кофейная палитра поверх стандартного контракта токенов сайта
+     (--soft/--ink/--navy используются дефолтным переключателем языка). */
+  :root{
+    --navy:#9A5B2E; --ink:#2B211A; --muted:#6B5B4E; --soft:#A0907F;
+    --hair:#EAE0D4; --bg:#FAF6F0; --surface:#FFFFFF; --accent:#C77D3A;
+    --crema:#E7C9A0;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --navy:#D89A5E; --ink:#EDE4D8; --muted:#B3A594; --soft:#7A6A59;
+      --hair:#2A211A; --bg:#17120E; --surface:#1E1712; --accent:#E0A468;
+      --crema:#6B4E34;
+    }
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",system-ui,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:5px}
+  :focus:not(:focus-visible){outline:none}
+  body{min-height:100vh;min-height:100dvh;display:flex;justify-content:center;background:transparent}
+
+  .app{
+    width:100%;max-width:760px;
+    padding:clamp(16px,2.6vh,26px) clamp(20px,5vw,48px) calc(clamp(28px,4vh,48px) + env(safe-area-inset-bottom));
+    display:flex;flex-direction:column;gap:clamp(28px,4.5vh,48px);
+  }
+
+  /* ── Top ── */
+  .top{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--muted);
+    padding-bottom:14px;border-bottom:1px solid var(--hair);
+  }
+  .top a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:color .15s ease,border-color .15s ease}
+  .top a:hover,.top a:focus-visible{color:var(--navy);border-bottom-color:var(--navy)}
+  .top .back{color:var(--navy);font-weight:500}
+  .top-right{display:inline-flex;align-items:center;gap:14px}
+
+  /* ── Hero ── */
+  .hero .kicker{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--soft);letter-spacing:.06em;text-transform:lowercase}
+  .hero h1{margin:.35em 0 0;font-size:clamp(2.3rem,6.2vw,3.8rem);line-height:1.02;letter-spacing:-.03em;font-weight:700;color:var(--ink)}
+  .hero h1 .accent{color:var(--navy)}
+  .hero .lead{margin:18px 0 0;font-size:clamp(16.5px,1.7vw,19px);color:var(--muted);line-height:1.5;max-width:54ch}
+  .hero .meta{margin:16px 0 0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:var(--soft);display:flex;gap:14px;flex-wrap:wrap}
+
+  section{display:flex;flex-direction:column;gap:14px}
+  .label{
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;color:var(--soft);
+    letter-spacing:.05em;text-transform:lowercase;display:flex;align-items:center;gap:10px;
+  }
+  .label::after{content:"";flex:1;height:1px;background:var(--hair)}
+  h2{margin:0;font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:-.02em;font-weight:700;color:var(--ink);line-height:1.15}
+  p{margin:0;font-size:17px;line-height:1.62;color:var(--ink);max-width:64ch}
+  p.sub{color:var(--muted)}
+  strong{font-weight:600;color:var(--ink)}
+  em{font-style:normal;color:var(--navy);font-weight:500}
+
+  /* ── Ranked variables ── */
+  ol.vars{list-style:none;margin:2px 0 0;padding:0;counter-reset:v;display:flex;flex-direction:column;gap:2px}
+  ol.vars li{
+    counter-increment:v;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    padding:15px 2px;border-top:1px solid var(--hair);
+  }
+  ol.vars li:first-child{border-top:none}
+  ol.vars li::before{
+    content:counter(v);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;font-weight:500;
+    color:var(--surface);background:var(--navy);width:26px;height:26px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;
+  }
+  ol.vars .vt{font-size:17px;line-height:1.5}
+  ol.vars .vt b{font-weight:600}
+
+  /* ── Cards (methods) ── */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .card{
+    background:var(--surface);border:1px solid var(--hair);border-radius:14px;padding:18px 18px 16px;
+    display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;
+  }
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--navy);opacity:.55}
+  .card h3{margin:0;font-size:17.5px;font-weight:600;color:var(--ink);display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .card h3 .kind{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:var(--soft);text-transform:lowercase;letter-spacing:.03em;font-weight:400}
+  .card .pick{align-self:flex-start;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--navy);border:1px solid var(--crema);border-radius:999px;padding:2px 8px}
+  .card p{font-size:14.5px;color:var(--muted);line-height:1.5}
+  .card dl{margin:2px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13.5px}
+  .card dt{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--soft);font-size:12px}
+  .card dd{margin:0;color:var(--ink)}
+
+  /* ── Interactive shell ── */
+  .tool{
+    background:var(--surface);border:1px solid var(--hair);border-radius:16px;
+    padding:clamp(18px,3vw,26px);display:flex;flex-direction:column;gap:18px;
+  }
+  .tool-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .tool-h h2{font-size:clamp(1.25rem,2.6vw,1.6rem)}
+  .tool-h .hint{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:var(--soft)}
+
+  /* Calculator */
+  .calc-row{display:flex;flex-direction:column;gap:8px}
+  .calc-row label{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .calc-row label b{color:var(--ink);font-weight:600;font-size:14px}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:999px;background:var(--hair);outline-offset:6px}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--navy);cursor:pointer;border:3px solid var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.2)}
+  input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--navy);cursor:pointer;border:3px solid var(--surface)}
+  .calc-num{display:flex;gap:8px;flex-wrap:wrap}
+  .calc-num button{
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:var(--ink);
+    background:transparent;border:1px solid var(--hair);border-radius:8px;padding:7px 12px;cursor:pointer;transition:.14s ease;
+  }
+  .calc-num button:hover{border-color:var(--navy);color:var(--navy)}
+  .calc-num button.on{background:var(--navy);border-color:var(--navy);color:var(--surface)}
+  .calc-out{
+    background:var(--bg);border:1px dashed var(--crema);border-radius:12px;padding:16px 18px;
+    display:flex;flex-wrap:wrap;gap:18px 28px;align-items:baseline;
+  }
+  .calc-out .big{font-size:30px;font-weight:700;color:var(--navy);letter-spacing:-.02em;line-height:1}
+  .calc-out .big small{font-size:15px;font-weight:500;color:var(--muted);margin-left:3px}
+  .calc-out .sub{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--soft)}
+
+  /* Diagnoser */
+  .diag-btns{display:flex;flex-wrap:wrap;gap:9px}
+  .diag-btns button{
+    font-size:14px;color:var(--ink);background:transparent;border:1px solid var(--hair);
+    border-radius:999px;padding:9px 16px;cursor:pointer;transition:.14s ease;
+  }
+  .diag-btns button:hover{border-color:var(--navy);color:var(--navy)}
+  .diag-btns button.on{background:var(--navy);border-color:var(--navy);color:var(--surface)}
+  .diag-out{
+    border-left:3px solid var(--navy);padding:4px 0 4px 16px;display:flex;flex-direction:column;gap:8px;
+    min-height:3.4em;
+  }
+  .diag-out .dx{font-size:13px;font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--soft);text-transform:uppercase;letter-spacing:.05em}
+  .diag-out .fix{font-size:16.5px;line-height:1.55;color:var(--ink)}
+  .diag-out .fix b{color:var(--navy);font-weight:600}
+  .diag-empty{color:var(--soft);font-size:15px}
+
+  /* ── Mistakes ── */
+  ul.miss{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+  ul.miss li{font-size:16px;line-height:1.5;color:var(--ink);padding-left:24px;position:relative}
+  ul.miss li::before{content:"✕";position:absolute;left:0;top:1px;color:var(--navy);font-size:13px;font-weight:700}
+
+  /* ── Footer ── */
+  footer.foot{
+    margin-top:6px;padding-top:18px;border-top:1px solid var(--hair);
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:var(--soft);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;
+  }
+  footer.foot a{color:var(--navy);text-decoration:none;border-bottom:1px solid transparent;transition:.15s ease}
+  footer.foot a:hover,footer.foot a:focus-visible{border-bottom-color:var(--navy)}
+
+  @view-transition{navigation:auto}
+  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+  <div class="app">
+
+    <header class="top">
+      <a class="back" href="/status/" data-ru="← Микроблог">← Microblog</a>
+      <span class="top-right">
+        <span data-lang-toggle></span>
+        <a href="https://t.me/renman" target="_blank" rel="noopener">@renman</a>
+      </span>
+    </header>
+
+    <section class="hero">
+      <div class="kicker" data-ru="rensite · заметки">rensite · field notes</div>
+      <h1 data-ru-html="Как сварить<br><span class=&quot;accent&quot;>отличный кофе</span>">How to brew<br><span class="accent">great coffee</span></h1>
+      <p class="lead" data-ru="«Идеально» — это не рецепт, а несколько переменных, которыми учишься управлять. Освой рычаги — и любое зерно, любая техника станут лучше. Никакой эспрессо-машины не нужно.">“Perfect” isn't a recipe — it's a handful of variables you learn to control. Master the levers and any bean, any gear gets better. No espresso machine required.</p>
+      <div class="meta">
+        <span data-ru="⏱ 6 мин чтения">⏱ 6 min read</span>
+        <span data-ru="☕ 4 домашних метода">☕ 4 home methods</span>
+        <span data-ru="🧮 2 калькулятора">🧮 2 calculators</span>
+      </div>
+    </section>
+
+    <!-- THE ONE IDEA -->
+    <section>
+      <div class="label" data-ru="одна идея">the one idea</div>
+      <h2 data-ru="Вкус — это экстракция">Taste is extraction</h2>
+      <p data-ru-html="Кофе на ~98% состоит из воды, которая растворяет вкус из молотого зерна. Растворилось <em>слишком мало</em> — чашка выходит <strong>кислой и пустой</strong> (недоэкстракция). Растворилось <em>слишком много</em> — <strong>горькой и резкой</strong> (переэкстракция). Идеал — посередине.">Coffee is ~98% water dissolving flavour out of the grounds. Dissolve <em>too little</em> and the cup is <strong>sour and thin</strong> (under-extracted). Dissolve <em>too much</em> and it's <strong>bitter and harsh</strong> (over-extracted). The sweet spot sits between.</p>
+      <p class="sub" data-ru="Всё, что ниже — лишь способы двигать экстракцию вверх или вниз. Научись на вкус понимать, в какую сторону промахнулся, — и починишь любую чашку.">Everything below is just a way to push extraction up or down. Learn to taste which way you missed, and you can fix any cup.</p>
+    </section>
+
+    <!-- VARIABLES -->
+    <section>
+      <div class="label" data-ru="рычаги · по важности">the levers · ranked</div>
+      <h2 data-ru="Шесть переменных, которые решают">Six variables that decide the cup</h2>
+      <ol class="vars">
+        <li><span class="vt" data-ru-html="<b>Свежее зерно.</b> Цельное, обжаренное недели назад — не месяцы. Главный барьер качества. Молотый кофе выдыхается за часы; пик вкуса — примерно 4–21 день после обжарки."><b>Fresh beans.</b> Whole, roasted weeks ago — not months. The biggest quality gate. Pre-ground stales within hours; beans peak around 4–21 days off roast.</span></li>
+        <li><span class="vt" data-ru-html="<b>Помол.</b> Самый мощный ежедневный рычаг. Мельче — больше экстракции (и медленнее поток), крупнее — меньше. Жерновая мельница, даже дешёвая ручная, бьёт любую ножевую: та рубит в неравномерную пыль."><b>Grind.</b> The most powerful daily lever. Finer means more extraction (and slower flow); coarser, less. A burr grinder — even a cheap hand one — beats any blade grinder, which hacks beans into uneven dust.</span></li>
+        <li><span class="vt" data-ru-html="<b>Пропорция.</b> Насколько крепко. Стандарт фильтра — ~60 г кофе на 1 л воды, то есть 1:16–1:17. Ниже — калькулятор."><b>Ratio.</b> How strong. The filter standard is ~60 g coffee per 1 L water — that's 1:16–1:17. There's a calculator below.</span></li>
+        <li><span class="vt" data-ru-html="<b>Вода.</b> 90–96 °C, чуть ниже кипения. И буквально 98% чашки: бери чистую воду средней минерализации — не дистиллят и не жёсткую из-под крана."><b>Water.</b> 90–96 °C, just off the boil. And literally 98% of the cup: use clean, medium-mineral water — not distilled, not very hard tap water.</span></li>
+        <li><span class="vt" data-ru-html="<b>Время и техника.</b> Сколько вода контактирует с зерном и насколько ровно она его смачивает. Каждый метод ниже задаёт своё время."><b>Time & technique.</b> How long water stays in contact with the grounds, and how evenly it wets them. Each method below sets its own time.</span></li>
+        <li><span class="vt" data-ru-html="<b>Свежесть пролива.</b> Мели прямо перед завариванием и пей в первые минуты — аромат улетучивается быстрее, чем кажется."><b>Freshness of the pour.</b> Grind right before you brew and drink within minutes — aroma escapes faster than you'd think.</span></li>
+      </ol>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section>
+      <div class="label" data-ru="интерактив · пропорция">interactive · ratio</div>
+      <div class="tool" id="calc">
+        <div class="tool-h">
+          <h2 data-ru="Подбери пропорцию">Dial in your ratio</h2>
+          <span class="hint" data-ru="1 мл воды ≈ 1 г">1 ml water ≈ 1 g</span>
+        </div>
+        <div class="calc-row">
+          <label data-ru="Вода">Water <b><span id="cWater">250</span> ml</b></label>
+          <div class="calc-num" id="cWaterBtns" role="group" aria-label="Water volume" data-ru-aria-label="Объём воды"></div>
+        </div>
+        <div class="calc-row">
+          <label><span data-ru="Крепость">Strength</span> <b><span id="cRatioLabel">1:16</span> · <span id="cStrength">standard</span></b></label>
+          <input type="range" id="cRatio" min="15" max="18" step="0.5" value="16" aria-label="Strength ratio" data-ru-aria-label="Пропорция крепости">
+        </div>
+        <div class="calc-out" aria-live="polite">
+          <span class="big"><span id="cCoffee">16</span> g<small data-ru="кофе">coffee</small></span>
+          <span class="sub"><span data-ru="≈ ">≈ </span><span id="cTbsp">3</span> <span id="cTbspWord">level tbsp</span> · <span id="cWaterOut">250</span> ml <span data-ru="воды">water</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- METHODS -->
+    <section>
+      <div class="label" data-ru="дома · без эспрессо-машины">at home · no espresso machine</div>
+      <h2 data-ru="Четыре метода, которые есть на любой кухне">Four methods for any kitchen</h2>
+      <div class="grid">
+        <div class="card">
+          <span class="pick" data-ru="старт">start here</span>
+          <h3>French press <span class="kind" data-ru="иммерсия">immersion</span></h3>
+          <p data-ru="Самый прощающий: зерно просто настаивается в воде. Минимум оборудования, трудно испортить.">The most forgiving: grounds simply steep in water. Minimal gear, hard to ruin.</p>
+          <dl>
+            <dt data-ru="помол">grind</dt><dd data-ru="крупный">coarse</dd>
+            <dt data-ru="проп.">ratio</dt><dd>1:15–1:16</dd>
+            <dt data-ru="время">time</dt><dd data-ru="4 мин, затем отжать">4 min, then press</dd>
+          </dl>
+        </div>
+        <div class="card">
+          <span class="pick" data-ru="выбор энтузиаста">enthusiast pick</span>
+          <h3>Pour-over / V60 <span class="kind" data-ru="проливной">percolation</span></h3>
+          <p data-ru="Максимум контроля и самая чистая чашка. Вода проходит сквозь слой — ты правишь вкус проливом.">The most control and the cleanest cup. Water passes through the bed — you steer the taste with the pour.</p>
+          <dl>
+            <dt data-ru="помол">grind</dt><dd data-ru="средне-мелкий">medium-fine</dd>
+            <dt data-ru="проп.">ratio</dt><dd>1:16–1:17</dd>
+            <dt data-ru="время">time</dt><dd data-ru="2:30–3:00 + блум 30–45 с">2:30–3:00 + 30–45 s bloom</dd>
+          </dl>
+        </div>
+        <div class="card">
+          <h3>Moka pot <span class="kind" data-ru="гейзерная · плита">stovetop</span></h3>
+          <p data-ru="Крепкий, близкий к эспрессо. Вода — до клапана, кофе не трамбовать, слабый огонь; снять, как забулькает.">Strong, espresso-adjacent. Water below the valve, don't tamp the coffee, low heat; pull it off when it gurgles.</p>
+          <dl>
+            <dt data-ru="помол">grind</dt><dd data-ru="мелко-средний">fine-medium</dd>
+            <dt data-ru="проп.">ratio</dt><dd data-ru="крепкий">strong</dd>
+            <dt data-ru="время">time</dt><dd data-ru="~5 мин на плите">~5 min on heat</dd>
+          </dl>
+        </div>
+        <div class="card">
+          <h3>AeroPress <span class="kind" data-ru="иммерсия · пресс">immersion</span></h3>
+          <p data-ru="Быстрый, прощающий, походный. Отличен для одной чашки; почти невозможно переэкстрагировать.">Fast, forgiving, portable. Great for a single cup; almost impossible to over-extract.</p>
+          <dl>
+            <dt data-ru="помол">grind</dt><dd data-ru="средне-мелкий">medium-fine</dd>
+            <dt data-ru="проп.">ratio</dt><dd>1:14–1:16</dd>
+            <dt data-ru="время">time</dt><dd data-ru="1–2 мин">1–2 min</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIAGNOSER -->
+    <section>
+      <div class="label" data-ru="интерактив · диагностика">interactive · troubleshooting</div>
+      <div class="tool" id="diag">
+        <div class="tool-h">
+          <h2 data-ru="Диагностируй чашку">Diagnose your cup</h2>
+          <span class="hint" data-ru="меняй по одной переменной">change one variable at a time</span>
+        </div>
+        <div class="diag-btns" id="diagBtns" role="group" aria-label="Your cup tastes" data-ru-aria-label="Твоя чашка на вкус"></div>
+        <div class="diag-out" id="diagOut" aria-live="polite">
+          <span class="diag-empty" data-ru="Выбери, что не так со вкусом — покажу, что покрутить.">Pick what's off about the taste — I'll show what to change.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISTAKES -->
+    <section>
+      <div class="label" data-ru="чего не делать">what to skip</div>
+      <h2 data-ru="Пять частых ошибок">Five common mistakes</h2>
+      <ul class="miss">
+        <li data-ru-html="<strong>Ножевая мельница или готовый молотый.</strong> Неравномерный помол = кисло и горько одновременно."><strong>A blade grinder or pre-ground coffee.</strong> Uneven grind = sour and bitter at once.</li>
+        <li data-ru-html="<strong>Крутой кипяток на кофе.</strong> Слишком горячо — выходит горечь. Дай воде постоять ~30 секунд."><strong>Full-boil water on the grounds.</strong> Too hot pulls out bitterness. Let the kettle rest ~30 seconds.</li>
+        <li data-ru-html="<strong>Прикидка «на глаз».</strong> Взвешивай кофе и воду на весах — иначе не повторишь удачную чашку."><strong>Guessing amounts.</strong> Weigh coffee and water on a scale — otherwise you can't repeat a good cup.</li>
+        <li data-ru-html="<strong>Грязная техника.</strong> Старые масла прогоркают и дают затхлый привкус. Мой после каждого раза."><strong>Dirty gear.</strong> Old oils go rancid and add a stale note. Rinse after every brew.</li>
+        <li data-ru-html="<strong>Хранение зерна в холодильнике или на свету.</strong> Влага и свет — враги. Плотная тара, комнатная температура, темнота."><strong>Storing beans in the fridge or in sunlight.</strong> Moisture and light are the enemies. Airtight, room temperature, dark.</li>
+      </ul>
+    </section>
+
+    <footer class="foot">
+      <span class="mono" data-ru="Заметка · сварено на rensite">A field note · brewed at rensite</span>
+      <a href="/status/" data-ru="← Микроблог">← Microblog</a>
+    </footer>
+
+  </div>
+
+  <script src="/i18n.js?v=20260713" defer></script>
+  <script>
+  /* Оба виджета генерят текст в JS, поэтому язык-осознанны:
+     lang()/tt() из i18n.js (дефолт en), перерисовка на i18n:change. */
+  (function(){
+    'use strict';
+    function lang(){ try { return (window.I18N && I18N.get) ? I18N.get() : (document.documentElement.lang === 'ru' ? 'ru' : 'en'); } catch(e){ return 'en'; } }
+    function tt(en, ru){ return lang() === 'ru' ? ru : en; }
+
+    /* ── Калькулятор пропорции ── */
+    var WATERS = [200, 250, 350, 500];
+    var water = 250, ratio = 16;
+    var elWater = document.getElementById('cWater'), elBtns = document.getElementById('cWaterBtns'),
+        elRatio = document.getElementById('cRatio'), elRatioLabel = document.getElementById('cRatioLabel'),
+        elStrength = document.getElementById('cStrength'), elCoffee = document.getElementById('cCoffee'),
+        elTbsp = document.getElementById('cTbsp'), elTbspWord = document.getElementById('cTbspWord'),
+        elWaterOut = document.getElementById('cWaterOut');
+
+    function strengthWord(r){
+      if (r <= 15.5) return tt('strong','крепко');
+      if (r >= 17.5) return tt('mild','мягко');
+      if (r >= 16.5) return tt('light','легко');
+      return tt('standard','стандарт');
+    }
+    function tbspWord(n){
+      if (lang() === 'ru') return 'ст. л.';
+      return n === 1 ? 'level tbsp' : 'level tbsp';
+    }
+    function calc(){
+      var coffee = water / ratio;
+      var tbsp = Math.round(coffee / 5.5); // ~5.5 g молотого кофе в столовой ложке
+      elWater.textContent = water;
+      elWaterOut.textContent = water;
+      elRatioLabel.textContent = '1:' + (ratio % 1 === 0 ? ratio : ratio.toFixed(1));
+      elStrength.textContent = strengthWord(ratio);
+      elCoffee.textContent = coffee.toFixed(coffee < 10 ? 1 : 0);
+      elTbsp.textContent = Math.max(1, tbsp);
+      elTbspWord.textContent = tbspWord(tbsp);
+    }
+    WATERS.forEach(function(w){
+      var b = document.createElement('button');
+      b.type = 'button'; b.textContent = w + ' ml';
+      if (w === water) b.className = 'on';
+      b.addEventListener('click', function(){
+        water = w;
+        elBtns.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', +x.dataset.w === w); });
+        calc();
+      });
+      b.dataset.w = w;
+      elBtns.appendChild(b);
+    });
+    elRatio.addEventListener('input', function(){ ratio = parseFloat(elRatio.value); calc(); });
+
+    /* ── Диагностер чашки ── */
+    var DIAG = [
+      { key:'sour',   btn:['Sour','Кисло'],
+        dx:['under-extracted','недоэкстракция'],
+        fix:['Grind <b>finer</b>, use <b>hotter</b> water, or brew <b>longer</b>. Too little flavour came out.',
+             'Мели <b>мельче</b>, лей <b>горячее</b> или завари <b>дольше</b>. Вкуса вышло слишком мало.'] },
+      { key:'bitter', btn:['Bitter','Горько'],
+        dx:['over-extracted','переэкстракция'],
+        fix:['Grind <b>coarser</b>, use <b>cooler</b> water, or brew <b>shorter</b>. Too much came out.',
+             'Мели <b>крупнее</b>, лей <b>прохладнее</b> или завари <b>короче</b>. Вышло слишком много.'] },
+      { key:'weak',   btn:['Weak & watery','Водянисто'],
+        dx:['too weak','слишком слабо'],
+        fix:['Use <b>more coffee</b> (a lower ratio like 1:15) — or grind a touch finer.',
+             'Возьми <b>больше кофе</b> (пропорция ниже, 1:15) — или мели чуть мельче.'] },
+      { key:'harsh',  btn:['Harsh & muddy','Резко и мутно'],
+        dx:['too many fines','много пыли'],
+        fix:['Grind <b>coarser</b> and use a burr grinder — dusty fines over-extract and cloud the cup.',
+             'Мели <b>крупнее</b> и на жерновах — пыль переэкстрагируется и мутит чашку.'] },
+      { key:'flat',   btn:['Flat & dull','Плоско'],
+        dx:['stale','выдохлось'],
+        fix:['<b>Fresher beans</b>, ground <b>right before</b> brewing. Aroma is mostly gone from old or pre-ground coffee.',
+             '<b>Свежее зерно</b>, молотое <b>прямо перед</b> завариванием. У старого или готового молотого аромата почти нет.'] }
+    ];
+    var active = null;
+    var diagBtns = document.getElementById('diagBtns'), diagOut = document.getElementById('diagOut');
+    function renderDiag(){
+      if (!active){
+        diagOut.innerHTML = '<span class="diag-empty">' + tt('Pick what’s off about the taste — I’ll show what to change.','Выбери, что не так со вкусом — покажу, что покрутить.') + '</span>';
+        return;
+      }
+      var d = DIAG.find(function(x){ return x.key === active; });
+      var i = lang() === 'ru' ? 1 : 0;
+      diagOut.innerHTML = '<span class="dx">' + d.dx[i] + '</span><span class="fix">' + d.fix[i] + '</span>';
+    }
+    function renderDiagBtns(){
+      var i = lang() === 'ru' ? 1 : 0;
+      diagBtns.querySelectorAll('button').forEach(function(b){
+        var d = DIAG.find(function(x){ return x.key === b.dataset.k; });
+        b.textContent = d.btn[i];
+      });
+    }
+    DIAG.forEach(function(d){
+      var b = document.createElement('button');
+      b.type = 'button'; b.dataset.k = d.key;
+      b.addEventListener('click', function(){
+        active = (active === d.key) ? null : d.key;
+        diagBtns.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x.dataset.k === active); });
+        renderDiag();
+      });
+      diagBtns.appendChild(b);
+    });
+
+    function init(){ calc(); renderDiagBtns(); renderDiag(); }
+    init();
+    document.addEventListener('i18n:change', function(){ calc(); renderDiagBtns(); renderDiag(); });
+  })();
+  </script>
+  <script src="/palette.js?v=20260714" defer></script>
+</body>
+</html>

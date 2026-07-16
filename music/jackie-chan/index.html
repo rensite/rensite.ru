@@ -354,6 +354,11 @@ const yt = q => "https://www.youtube.com/results?search_query="+encodeURICompone
 // когда фраза приходит из данных и форму выбирать некому.
 const plural = window.RENSITE_MUSIC.plural;
 const fill = window.RENSITE_MUSIC.fill;
+// Форма data.json, которую понимает эта страница; сверяется при загрузке.
+// Меняешь форму (поля, их смысл) — подними число здесь И в data.json.
+// Добавил трек или поправил текст — форма та же, не трогай. Подробности —
+// в ключе _schema_note самого data.json.
+const SCHEMA = 2;
 let DATA = null, activeType = "Все", query = "";
 
 // ---------- i18n: язык + хелперы (English default, Russian toggle) ----------
@@ -541,19 +546,34 @@ function renderFilms(){
     );
 }
 
+/* Текст счётчика: число и необязательный «+». Значение приезжает через DOM
+   строкой (data-count), поэтому не-число здесь физически возможно: не дали
+   поле — получим +"undefined", то есть NaN. Печатать NaN нельзя, это видимое
+   враньё того же сорта, что «0 песен» при недоступном data.json: не знаем —
+   не показываем, оставляем пусто.
+   v — промежуточное значение анимации; без него берём финальное из data-count. */
+function setCount(el, v){
+  const raw = (el.dataset.count || '').trim();
+  // +'' === 0 — ловушка JS: пустая строка притворилась бы честным нулём
+  const n = v === undefined ? (raw === '' ? NaN : +raw) : v;
+  el.textContent = Number.isFinite(n) ? Math.round(n) + (el.dataset.plus ? '+' : '') : '';
+}
+const setAllCounts = () => document.querySelectorAll('[data-count]').forEach(el=>setCount(el));
+
 function contentMotion(){
   if(!reduced){
     gsap.set('.reveal',{y:40,opacity:0});
     ScrollTrigger.batch('.reveal',{start:'top 85%',onEnter:els=>gsap.to(els,{y:0,opacity:1,duration:1,ease:'expo.out',stagger:0.12,overwrite:true})});
     gsap.utils.toArray('[data-count]').forEach(el=>{
-      const end = +el.dataset.count, plus = el.dataset.plus?'+':'';
+      const end = +el.dataset.count;
+      if(!Number.isFinite(end)){ setCount(el); return; }   // анимировать нечего
       ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>{
-        gsap.to({v:0},{v:end,duration:1.6,ease:'power3.out',onUpdate(){el.textContent=Math.round(this.targets()[0].v)+plus;}});
+        gsap.to({v:0},{v:end,duration:1.6,ease:'power3.out',onUpdate(){setCount(el,this.targets()[0].v);}});
       }});
     });
   } else {
     gsap.set('.reveal',{y:0,opacity:1});
-    document.querySelectorAll('[data-count]').forEach(el=>el.textContent=el.dataset.count+(el.dataset.plus?'+':''));
+    setAllCounts();
   }
   ScrollTrigger.refresh();
 }
@@ -568,13 +588,30 @@ document.addEventListener('i18n:change', ()=>{
   if(!DATA) return;
   renderAll();
   gsap.set('.reveal',{opacity:1,y:0});
-  document.querySelectorAll('[data-count]').forEach(el=>el.textContent=el.dataset.count+(el.dataset.plus?'+':''));
+  setAllCounts();
   ScrollTrigger.refresh();
 });
+
+// Сообщение вместо каталога, когда рисовать нечем.
+function dataError(msg){
+  gsap.set('.reveal',{opacity:1,y:0});
+  const tl=document.getElementById('trackList');
+  if(tl) tl.innerHTML=`<p style="padding:var(--s-6) 0;color:var(--ink-mute)">${msg}</p>`;
+}
 
 fetch('./data.json',{cache:'no-store'})
   .then(r=>{ if(!r.ok) throw new Error('data.json '+r.status); return r.json(); })
   .then(d=>{
+    /* Данные грузятся с no-store (всегда свежие), а сам HTML GitHub Pages отдаёт
+       с max-age=600 — после смены формы data.json вернувшийся посетитель до
+       10 минут рендерит новые данные старым кодом. Раньше это молча давало NaN
+       в счётчиках и сырые {формы|в|подписях}. Сверяем форму и говорим правду. */
+    if(d.schema !== SCHEMA){
+      console.error(`data.json: форма ${d.schema}, страница понимает ${SCHEMA}`);
+      dataError(tt('This page is out of date — reload it (Cmd+Shift+R / Ctrl+F5).',
+                   'Страница устарела — обнови её (Cmd+Shift+R / Ctrl+F5).'));
+      return;
+    }
     DATA = d;
     renderAll();
     contentMotion();
@@ -582,9 +619,7 @@ fetch('./data.json',{cache:'no-store'})
   })
   .catch(err=>{
     console.error(tt('Failed to load data.json:','Не удалось загрузить data.json:'), err);
-    gsap.set('.reveal',{opacity:1,y:0});
-    const tl=document.getElementById('trackList');
-    if(tl) tl.innerHTML=`<p style="padding:var(--s-6) 0;color:var(--ink-mute)">${tt(`Couldn't load the data (${err.message}). Open the page through a local server, not as a file.`,`Не удалось загрузить данные (${err.message}). Откройте страницу через локальный сервер, а не как файл.`)}</p>`;
+    dataError(tt(`Couldn't load the data (${err.message}). Open the page through a local server, not as a file.`,`Не удалось загрузить данные (${err.message}). Откройте страницу через локальный сервер, а не как файл.`));
   });
 </script>
 <script src="/palette.js?v=20260716d" defer></script>

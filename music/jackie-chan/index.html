@@ -173,6 +173,14 @@ hr{border:none;border-top:1px solid var(--rule)}
 .track .twhy::before{content:"★ ";color:var(--accent)}
 .track .tplay{font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.08em;font-size:var(--fs-sm);color:var(--accent);white-space:nowrap;opacity:0;transition:opacity .2s}
 .track:hover .tplay{opacity:1}
+/* Одна песня, вышедшая в нескольких релизных контекстах (альбом / саундтрек / сингл):
+   одна строка каталога, по чипу-ссылке на каждый вариант. У таких треков .tgo —
+   это div, а не ссылка: вся навигация живёт в чипах (ссылка внутри ссылки невалидна). */
+.tvars{grid-column:2;display:flex;flex-wrap:wrap;gap:8px;margin-top:.55rem}
+.tvar{font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:.05em;color:var(--ink-mute);
+  border:1px solid var(--rule);border-radius:30px;padding:4px 11px;text-decoration:none;white-space:nowrap;
+  transition:color .2s,border-color .2s}
+.tvar:hover,.tvar:focus-visible{color:var(--accent);border-color:var(--accent)}
 .list-count{margin-top:var(--s-4);color:var(--ink-mute);font-family:"JetBrains Mono",monospace;font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.08em}
 
 /* pull quote */
@@ -333,7 +341,7 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
   </div>
 </footer>
 
-<script src="/music/tracks.js?v=20260713"></script>
+<script src="/music/tracks.js?v=20260716c"></script>
 <script src="/i18n.js?v=20260713" defer></script>
 <script>
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -341,7 +349,8 @@ const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 // ---------- DATA: единый источник — data.json (генерируется build_data.py из xlsx) ----------
 const yt = q => "https://www.youtube.com/results?search_query="+encodeURIComponent(q);
 // согласование рус. существительного с числом: plural(n,['запись','записи','записей'])
-const plural=(n,forms)=>{const a=Math.abs(n)%100,b=a%10;return forms[(a>10&&a<20)?2:(b>1&&b<5)?1:(b===1?0:2)];};
+// Общий хелпер живёт в /music/tracks.js — он же используется на хабе.
+const plural = window.RENSITE_MUSIC.plural;
 let DATA = null, activeType = "Все", query = "";
 
 // ---------- i18n: язык + хелперы (English default, Russian toggle) ----------
@@ -360,6 +369,9 @@ const L = v => {
 const tt = (en, ru) => (lang() === 'ru' ? ru : en);
 // flat(v) — для поиска: {en,ru} превращаем в "en ru", чтобы искалось на любом языке.
 const flat = v => (v == null) ? '' : (typeof v === 'object' ? [v.en, v.ru].filter(Boolean).join(' ') : v);
+// varText(t) — подписи вариантов в строку поиска: иначе слитый трек перестал бы
+// находиться по названию альбома/фильма, из которого он к нам приехал.
+const varText = t => (t.variants || []).map(v => flat(v.l)).join(' ');
 // enum типа трека: в data.json он остаётся русским, показываем перевод в UI.
 const TYPE_EN = { "Альбом":"Album", "Саундтрек":"Soundtrack", "Сингл":"Single", "Прочее":"Other" };
 const typeLabel = t => tt(TYPE_EN[t] || t, t);
@@ -409,12 +421,16 @@ document.getElementById('tl').addEventListener('click', e=>{
   head.setAttribute('aria-expanded', String(willOpen));
 });
 
+// Счётчик с "from":"tracks" считается из каталога, а не хранится в data.json:
+// после сведения дублей одна строка = одна песня, так что это ровно его длина.
+// Остальные счётчики (сборники, языки) из данных не выводятся — лежат числом.
+const counterValue = c => c.from === 'tracks' ? DATA.tracks.length : c.n;
+
 function renderStats(){
   document.getElementById('statRow').innerHTML = DATA.stats.counters.map(c=>
-    `<div class="stat"><div class="n" data-count="${c.n}"${c.plus?' data-plus="1"':''}>0</div><div class="l">${L(c.l)}</div></div>`
+    `<div class="stat"><div class="n" data-count="${counterValue(c)}"${c.plus?' data-plus="1"':''}>0</div><div class="l">${L(c.l)}</div></div>`
   ).join('');
-  // подзаголовок каталога: связывает «записи» (строки) с числом отдельных песен
-  // из того же счётчика — чтобы «N записей» не противоречило «песен в дискографии».
+  // Подзаголовок каталога — то же число, что и в счётчике выше.
   const rec = DATA.tracks.length;
   document.getElementById('catSub').innerHTML = tt(
     `<b>${rec}</b> ${rec===1?'song':'songs'} on their own — album cuts, `
@@ -429,7 +445,7 @@ function renderStats(){
 const filtersEl = document.getElementById('filters');
 function renderFilters(){
   const order = ["Альбом","Саундтрек","Сингл","Прочее"];
-  const present = order.filter(t=>DATA.tracks.some(x=>x.type===t));
+  const present = order.filter(t=>DATA.tracks.some(x=>x.types.includes(t)));
   const hasSig = DATA.tracks.some(x=>x.significant);
   const chips = ["Все", ...(hasSig?["Значимые"]:[]), ...present];
   // data-t остаётся русским ключом (под фильтр-логику); меняется только подпись.
@@ -453,20 +469,28 @@ function paintProgress(){
 }
 function renderTracks(){
   const filtered = DATA.tracks.filter(t=>{
-    const okType = activeType==="Все" || (activeType==="Значимые" ? t.significant : t.type===activeType);
-    const okQ = !query || (t.n+" "+flat(t.s)+" "+flat(t.why)).toLowerCase().includes(query);
+    const okType = activeType==="Все" || (activeType==="Значимые" ? t.significant : t.types.includes(activeType));
+    const okQ = !query || (t.n+" "+flat(t.s)+" "+flat(t.why)+" "+varText(t)).toLowerCase().includes(query);
     return okType && okQ;
   });
   document.getElementById('trackList').innerHTML = filtered.map(t=>{
     const done = seen.has(t.q);
+    // Год варианта показываем, только если он расходится с годом песни (сингл нередко
+    // опережал альбом) — иначе это был бы шум на каждом чипе.
+    const inner = `<span class="tyr">${t.yr}</span>
+        <span class="tname">${t.n}${t.s?`<span class="sub">${L(t.s)}</span>`:''}${t.why?`<span class="twhy">${L(t.why)}</span>`:''}</span>`;
+    const body = t.variants
+      ? `<div class="tgo">${inner}
+        <span class="tvars">${t.variants.map(v=>
+          `<a class="tvar" href="${yt(v.q)}" target="_blank">▶ ${L(v.l)}${v.yr!==t.yr?` · ${v.yr}`:''}</a>`).join('')}</span>
+      </div>`
+      : `<a class="tgo" href="${yt(t.q)}" target="_blank">${inner}
+        <span class="tplay">▶ YouTube</span>
+      </a>`;
     return `
     <div class="track${t.significant?' is-sig':''}${done?' done':''}" data-k="${t.q}">
       <button class="tchk" type="button" aria-pressed="${done}" aria-label="${tt('Heard','Прослушано')}: ${t.n}">${done?'✓':''}</button>
-      <a class="tgo" href="${yt(t.q)}" target="_blank">
-        <span class="tyr">${t.yr}</span>
-        <span class="tname">${t.n}${t.s?`<span class="sub">${L(t.s)}</span>`:''}${t.why?`<span class="twhy">${L(t.why)}</span>`:''}</span>
-        <span class="tplay">▶ YouTube</span>
-      </a>
+      ${body}
     </div>`;
   }).join('') || `<p style="padding:var(--s-6) 0;color:var(--ink-mute)">${tt('Nothing found.','Ничего не найдено.')}</p>`;
   document.getElementById('listCount').textContent = tt(`Showing ${filtered.length} of ${DATA.tracks.length} songs`,`Показано ${filtered.length} из ${DATA.tracks.length} песен`);
@@ -481,8 +505,11 @@ document.getElementById('trackList').addEventListener('click', e=>{
     row.classList.toggle('done', on);
     b.setAttribute('aria-pressed', String(on)); b.textContent = on?'✓':'';
     paintProgress();
-  } else if(e.target.closest('.tgo')){
-    if(seen.add(k)){ row.classList.add('done'); b.setAttribute('aria-pressed','true'); b.textContent='✓'; paintProgress(); }  // ▶ тоже засчитывает
+  } else if(e.target.closest('a.tgo') || e.target.closest('.tvar')){
+    // ▶ и чипы-варианты тоже засчитывают. Селектор именно a.tgo: у треков с
+    // вариантами .tgo — это div, и клик по нему никуда не ведёт, так что
+    // отмечать прослушанным нечего.
+    if(seen.add(k)){ row.classList.add('done'); b.setAttribute('aria-pressed','true'); b.textContent='✓'; paintProgress(); }
   }
 });
 
@@ -557,6 +584,6 @@ fetch('./data.json',{cache:'no-store'})
     if(tl) tl.innerHTML=`<p style="padding:var(--s-6) 0;color:var(--ink-mute)">${tt(`Couldn't load the data (${err.message}). Open the page through a local server, not as a file.`,`Не удалось загрузить данные (${err.message}). Откройте страницу через локальный сервер, а не как файл.`)}</p>`;
   });
 </script>
-<script src="/palette.js?v=20260714" defer></script>
+<script src="/palette.js?v=20260716c" defer></script>
 </body>
 </html>

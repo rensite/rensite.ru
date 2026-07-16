@@ -12,7 +12,7 @@
     {t:{en:'Home',ru:'Главная'},                d:'rensite',                                                              url:'/',                    k:'home главная renat'},
     {t:{en:'Music guides',ru:'Музыкальные гиды'},d:{en:'routes through discographies',ru:'маршруты сквозь дискографии'},   url:'/music/',              k:'music музыка'},
     {t:'Linkin Park',       d:{en:'guide: roots, side projects, the return',ru:'гид: корни, сайд-проекты, возвращение'},   url:'/music/linkin-park/',  k:'линкин парк lp честер майк'},
-    {t:'Jackie Chan',       d:{en:'discography: 160+ songs',ru:'дискография: 160+ песен'},                                 url:'/music/jackie-chan/',  k:'джеки чан 成龍'},
+    {t:'Jackie Chan',       d:{en:'discography: forty years, five languages',ru:'дискография: сорок лет, пять языков'},    url:'/music/jackie-chan/',  k:'джеки чан 成龍'},
     {t:'Michael Jackson',   d:{en:'guide to the film: eras and tracks',ru:'гид к фильму: эпохи и треки'},                  url:'/music/michael/',      k:'майкл джексон mj'},
     {t:'Eminem',            d:{en:'guide: the whole career and “8 Mile”',ru:'гид: вся карьера и «8 Mile»'},                url:'/music/eminem/',       k:'эминем eminem slim shady marshall маршалл'},
     {t:{en:'Tom and Jerry',ru:'Том и Джерри'},  d:{en:'comic issue: music as the plot',ru:'комикс-выпуск: музыка как сюжет'},url:'/music/tom-and-jerry/',k:'том джерри tom and jerry мультфильм оскар'},
@@ -54,7 +54,7 @@
       ? Promise.resolve(window.RENSITE_MUSIC)
       : new Promise(function(res){
           var sc = document.createElement('script');
-          sc.src = '/music/tracks.js?v=20260713';
+          sc.src = '/music/tracks.js?v=20260716c';
           sc.onload = function(){ res(window.RENSITE_MUSIC); };
           sc.onerror = function(){ res(null); };
           document.head.appendChild(sc);

@@ -1,6 +1,6 @@
 /* Общий датасет треков rensite.
    Единый источник: каталог LP читает LP_ALBUMS отсюда, Джеки Чан остаётся
-   в своём data.json (генерируется build_data.py) и подгружается loadAll().
+   в своём data.json (правится вручную) и подгружается loadAll().
    Поверх датасета работает Cmd+K палитра. */
 window.RENSITE_MUSIC = (function(){
   'use strict';
@@ -26,41 +26,48 @@ window.RENSITE_MUSIC = (function(){
   function yt(q){ return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q); }
 
   /* Реестр гидов — единый источник для витрины /music/, сводного прогресса и ⌘K.
-     total — длина маршрута (знаменатель прогресса), storage — ключ localStorage гида,
-     accent — цвет «мира» гида (полоса + заливка прогресс-бара). */
-  /* hook/stats/name — переводимые поля: строка = язык-нейтрально,
-     объект { en, ru } выбирается по текущему языку (хаб выбирает через pick). */
+     storage — ключ localStorage гида, accent — цвет «мира» (полоса + заливка прогресс-бара).
+
+     total — длина маршрута (знаменатель прогресса) ТОЛЬКО там, где её неоткуда взять:
+     у Michael и Tom & Jerry нет своего data.json, их числа заданы руками и иначе никак.
+     У остальных total отсутствует намеренно — его считает totals() из реальных треков,
+     чтобы число не разъезжалось с каталогом при каждой правке. LP считается синхронно
+     (LP_TRACKS лежит здесь же), Джеки и Eminem — из своих data.json, то есть асинхронно.
+
+     hook/stats/name — переводимые поля: строка = язык-нейтрально, объект { en, ru }
+     выбирается по текущему языку (хаб выбирает через pick).
+     В stats {n} подставляется из totals() — число в строке не дублируем. */
   var GUIDES = [
     { key:'mj', name:'Michael Jackson', native:'King of Pop', url:'/music/michael/',
       accent:'#d4af37', status:'live', total:24, storage:'mj-listened',
       img:'/music/michael/posters/micheal.jpeg',
       hook:{ en:'He sang with breath, pauses, accents. A route from Jackson 5 to Bad — and the films.',
              ru:'Он пел дыханием, паузами, акцентами. Маршрут от Jackson 5 до Bad — и кино.' },
-      stats:{ en:'24 tracks · 4 eras · film', ru:'24 трека · 4 эпохи · кино' } },
+      stats:{ en:'{n} tracks · 4 eras · film', ru:'{n} трека · 4 эпохи · кино' } },
     { key:'jc', name:'Jackie Chan', native:'成龍', url:'/music/jackie-chan/',
-      accent:'#cd2c24', status:'live', total:166, storage:'jc-listened',
+      accent:'#cd2c24', status:'live', storage:'jc-listened',
       motif:'成龍',
       hook:{ en:'You watched the stunts — and slept through the fact that he sang. Himself, in five languages, for forty years.',
              ru:'Ты следил за трюками — и проспал, что он пел. Сам, на пяти языках, сорок лет.' },
-      stats:{ en:'166 songs · 40 years · 5 languages', ru:'166 песен · 40 лет · 5 языков' } },
+      stats:{ en:'{n} songs · 40 years · 5 languages', ru:'{n} песен · 40 лет · 5 языков' } },
     { key:'lp', name:'Linkin Park', native:'2000—', url:'/music/linkin-park/',
-      accent:'#16181d', status:'live', total:97, storage:'lp-listened',
+      accent:'#16181d', status:'live', total:LP_TRACKS.length, storage:'lp-listened',
       motif:'LP', mono:true,
       hook:{ en:'Roots, trunk, side projects, and the return with Emily — the whole arc, in order.',
              ru:'Корни, ствол, сайд-проекты и возвращение с Эмили — вся дуга по порядку.' },
-      stats:{ en:'97 tracks · 8 albums · 4 side projects', ru:'97 треков · 8 альбомов · 4 сайд-проекта' } },
+      stats:{ en:'{n} tracks · 8 albums · 4 side projects', ru:'{n} треков · 8 альбомов · 4 сайд-проекта' } },
     { key:'em', name:'Eminem', native:'Slim Shady', url:'/music/eminem/',
-      accent:'#16181d', status:'live', total:847, storage:'em-listened',
+      accent:'#16181d', status:'live', storage:'em-listened',
       motif:'Ǝ', mono:true,
       hook:{ en:'The whole career on one axis — from the birth of Slim Shady to his death, and “8 Mile”.',
              ru:'Вся карьера на одной оси — от рождения Slim Shady до его смерти, и «8 Mile».' },
-      stats:{ en:'847 tracks · full discography · 8 Mile', ru:'847 треков · вся дискография · 8 Mile' } },
+      stats:{ en:'{n} tracks · full discography · 8 Mile', ru:'{n} треков · вся дискография · 8 Mile' } },
     { key:'tj', name:{ en:'Tom and Jerry', ru:'Том и Джерри' }, native:'MGM · 1944—1967', url:'/music/tom-and-jerry/',
       accent:'#e5202b', status:'live', total:10, storage:'tj-listened',
       img:'/music/tom-and-jerry/img/title-card.jpeg',
       hook:{ en:"Ten shorts where music isn't the background — it's the plot. A comic issue with covers and two Oscars.",
              ru:'Десять короткометражек, где музыка не фон, а сам сюжет. Комикс-выпуск с обложками и двумя «Оскарами».' },
-      stats:{ en:'10 shorts · 2 Oscars · 1944—1967', ru:'10 серий · 2 «Оскара» · 1944—1967' } }
+      stats:{ en:'{n} shorts · 2 Oscars · 1944—1967', ru:'{n} серий · 2 «Оскара» · 1944—1967' } }
   ];
 
   /* Все треки всех гидов для ⌘K. LP — из LP_ALBUMS (синхронно), Джеки Чан и
@@ -73,16 +80,58 @@ window.RENSITE_MUSIC = (function(){
       .then(function(d){ return (d.tracks||[]).map(map); })
       .catch(function(){ return []; });
   }
+  /* alb уходит только в строку поиска ⌘K (palette.js его не рендерит), поэтому
+     сюда сгребаем всё, по чему трек разумно искать: контекст релиза, подписи
+     вариантов, типы. Поля s/l у Джеки билингвальные ({en,ru}) — склеиваем оба
+     языка, чтобы искалось на любом; у Eminem это обычные строки, они проходят
+     насквозь. Без этого объект молча превращался бы в "[object Object]". */
+  function albText(t){
+    var bits = [];
+    function push(v){
+      if (!v) return;
+      if (typeof v === 'object'){ if (v.en) bits.push(v.en); if (v.ru) bits.push(v.ru); }
+      else bits.push(v);
+    }
+    push(t.s);
+    (t.variants || []).forEach(function(v){ push(v.l); });
+    if (!bits.length) push((t.types || []).join(' ') || t.type);
+    return bits.join(' ');
+  }
   function loadAll(){
     if (allPromise) return allPromise;
     var jc = grab('/music/jackie-chan/data.json', function(t){
-      return {artist:'Jackie Chan', yr:t.yr, alb:t.s||t.type, n:t.n, q:t.q, guide:'/music/jackie-chan/'};
+      return {artist:'Jackie Chan', yr:t.yr, alb:albText(t), n:t.n, q:t.q, guide:'/music/jackie-chan/'};
     });
     var em = grab('/music/eminem/data.json', function(t){
-      return {artist:'Eminem', yr:t.yr, alb:t.s||t.type, n:t.n, q:t.q, ft:t.ft, guide:'/music/eminem/'};
+      return {artist:'Eminem', yr:t.yr, alb:albText(t), n:t.n, q:t.q, ft:t.ft, guide:'/music/eminem/'};
     });
     allPromise = Promise.all([jc, em]).then(function(r){ return LP_TRACKS.concat(r[0], r[1]); });
     return allPromise;
+  }
+
+  /* Длины маршрутов всех гидов: { key: n|null }. Асинхронна, потому что Джеки и
+     Eminem живут в своих data.json — синхронно их не сосчитать. Гид со своим total
+     (нет data.json: Michael, Tom & Jerry) отдаётся как есть; остальные считаются
+     по полю guide загруженных треков — так число всегда равно каталогу.
+     Если data.json не доехал, grab() вернул [] — такой гид получает null, а не 0:
+     «не знаем» и «ноль песен» это разные вещи, и показывать ноль нельзя. */
+  function totals(){
+    return loadAll().then(function(ts){
+      var by = {};
+      ts.forEach(function(t){ by[t.guide] = (by[t.guide] || 0) + 1; });
+      var out = {};
+      GUIDES.forEach(function(g){
+        out[g.key] = (g.total != null) ? g.total : (by[g.url] || null);
+      });
+      return out;
+    });
+  }
+
+  /* Согласование русского существительного с числом: plural(5, ['мир','мира','миров']).
+     Общий на весь сайт — каталог Джеки берёт его отсюда же. */
+  function plural(n, forms){
+    var a = Math.abs(n) % 100, b = a % 10;
+    return forms[(a > 10 && a < 20) ? 2 : (b > 1 && b < 5) ? 1 : (b === 1 ? 0 : 2)];
   }
 
   /* Прогресс «прослушано» поверх localStorage: общий хелпер для каталогов.
@@ -102,5 +151,6 @@ window.RENSITE_MUSIC = (function(){
     };
   }
 
-  return { LP_ALBUMS: LP_ALBUMS, LP_TRACKS: LP_TRACKS, GUIDES: GUIDES, loadAll: loadAll, progress: progress, yt: yt };
+  return { LP_ALBUMS: LP_ALBUMS, LP_TRACKS: LP_TRACKS, GUIDES: GUIDES,
+           loadAll: loadAll, totals: totals, progress: progress, plural: plural, yt: yt };
 })();

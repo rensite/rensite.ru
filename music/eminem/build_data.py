@@ -119,10 +119,11 @@ def build_tracks(conn):
 
 
 def serialize(tracks):
+    # count не пишем: длина tracks и так есть у любого, кто открыл файл, а
+    # отдельным полем она только разъезжается с фактом. Читателей у него не было.
     doc = {
         "_generated_from": GENERATED_FROM,
         "_license": LICENSE,
-        "count": len(tracks),
         "tracks": tracks,
     }
     return json.dumps(doc, ensure_ascii=False, separators=(",", ":"))

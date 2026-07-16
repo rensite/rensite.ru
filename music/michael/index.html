@@ -298,6 +298,9 @@
   .lang-tg button[aria-pressed="true"]{color:var(--gold-bright);opacity:1;background:transparent;}
   .lang-tg button:hover{color:var(--gold);opacity:1;}
   .lang-tg .sep{color:var(--ink-mute);opacity:.45;}
+  /* Заголовок страницы только для скринридеров и поиска: визуально страница
+     открывается прологом, но документу нужен h1 — без него он начинался с h2. */
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
   /* ── Плавные переходы между страницами (cross-document View Transitions) ── */
   @view-transition{navigation:auto}
   @media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
@@ -322,6 +325,7 @@
 </nav>
 
 <section class="manifesto container" id="top">
+  <h1 class="sr-only" data-ru="Michael Jackson — гид к фильму">Michael Jackson — A Guide to the Film</h1>
   <p class="serif reveal" data-ru-html="Майкл пел <em>дыханием</em>, акцентами, паузами. Слушай по порядку — и услышишь, как с каждой эпохой голос становится <em>чем-то большим</em>, чем просто голос.">Michael sang with his <em>breath</em>, his accents, his silences. Listen in order, and you'll hear the voice become <em>something more</em> than a voice with every era.</p>
 </section>
 

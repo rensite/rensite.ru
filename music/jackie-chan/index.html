@@ -341,13 +341,16 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
   </div>
 </footer>
 
-<script src="/music/tracks.js?v=20260716d"></script>
+<script src="/music/tracks.js?v=20260717a"></script>
 <script src="/i18n.js?v=20260713" defer></script>
 <script>
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ---------- DATA: единый источник — data.json (правится вручную) ----------
-const yt = q => "https://www.youtube.com/results?search_query="+encodeURIComponent(q);
+// Ссылки на YouTube: yt(q) — поиск, link(t) — точная ссылка t.y, если она есть,
+// иначе поиск. Оба общие, живут в /music/tracks.js — их же зовут хаб и палитра.
+const yt = window.RENSITE_MUSIC.yt;
+const link = window.RENSITE_MUSIC.link;
 // Согласование существительного с числом. Общие хелперы живут в /music/tracks.js
 // — их же использует хаб. plural(n,['запись','записи','записей']) — по месту,
 // в шаблонной строке; fill('{песня|песни|песен} в дискографии', n, lang()) —
@@ -358,7 +361,7 @@ const fill = window.RENSITE_MUSIC.fill;
 // Меняешь форму (поля, их смысл) — подними число здесь И в data.json.
 // Добавил трек или поправил текст — форма та же, не трогай. Подробности —
 // в ключе _schema_note самого data.json.
-const SCHEMA = 2;
+const SCHEMA = 3;
 let DATA = null, activeType = "Все", query = "";
 
 // ---------- i18n: язык + хелперы (English default, Russian toggle) ----------
@@ -375,6 +378,13 @@ const L = v => {
   return v == null ? '' : v;
 };
 const tt = (en, ru) => (lang() === 'ru' ? ru : en);
+// Песня в таймлайне: строка (название — язык-нейтрально, как везде на сайте)
+// или объект {n, y?, q?}, если у неё есть точная ссылка либо свой запрос.
+// Строки продолжают работать как раньше — их 96, мигрировать нечего.
+const tlSong = (s, album) => {
+  const g = (typeof s === 'string') ? { n: s } : s;
+  return { n: g.n, y: g.y, q: g.q || ('Jackie Chan ' + album + ' ' + g.n) };
+};
 // flat(v) — для поиска: {en,ru} превращаем в "en ru", чтобы искалось на любом языке.
 const flat = v => (v == null) ? '' : (typeof v === 'object' ? [v.en, v.ru].filter(Boolean).join(' ') : v);
 // varText(t) — подписи вариантов в строку поиска: иначе слитый трек перестал бы
@@ -386,7 +396,7 @@ const typeLabel = t => tt(TYPE_EN[t] || t, t);
 
 function renderStart(){
   document.getElementById('startGrid').innerHTML = DATA.hits.map(h=>`
-    <a class="start-card" href="${yt(h.q)}" target="_blank">
+    <a class="start-card" href="${link(h)}" target="_blank">
       <span class="yr mono">${h.yr}</span>
       <span class="ttl">${h.t}</span>
       <span class="meta">${L(h.m)}</span>
@@ -413,7 +423,10 @@ function renderTimeline(){
         ${head}
         ${p.d?`<p>${L(p.d)}</p>`:''}
         ${p.repack?`<p class="tl-repack">${tt(`= reissue of «${p.repack}» — same tracklist`,`= переиздание «${p.repack}» — тот же треклист`)}</p>`:''}
-        ${n?`<ul class="tl-songs" hidden>${p.songs.map(s=>`<li><a href="${yt('Jackie Chan '+title+' '+s)}" target="_blank">${s}</a></li>`).join('')}</ul>`:''}
+        ${n?`<ul class="tl-songs" hidden>${p.songs.map(s=>{
+          const g = tlSong(s, title);
+          return `<li><a href="${link(g)}" target="_blank">${g.n}</a></li>`;
+        }).join('')}</ul>`:''}
       </div>
     </div>`;
   }).join('');
@@ -490,9 +503,9 @@ function renderTracks(){
     const body = t.variants
       ? `<div class="tgo">${inner}
         <span class="tvars">${t.variants.map(v=>
-          `<a class="tvar" href="${yt(v.q)}" target="_blank">▶ ${L(v.l)}${v.yr!==t.yr?` · ${v.yr}`:''}</a>`).join('')}</span>
+          `<a class="tvar" href="${link(v)}" target="_blank">▶ ${L(v.l)}${v.yr!==t.yr?` · ${v.yr}`:''}</a>`).join('')}</span>
       </div>`
-      : `<a class="tgo" href="${yt(t.q)}" target="_blank">${inner}
+      : `<a class="tgo" href="${link(t)}" target="_blank">${inner}
         <span class="tplay">▶ YouTube</span>
       </a>`;
     return `
@@ -622,6 +635,6 @@ fetch('./data.json',{cache:'no-store'})
     dataError(tt(`Couldn't load the data (${err.message}). Open the page through a local server, not as a file.`,`Не удалось загрузить данные (${err.message}). Откройте страницу через локальный сервер, а не как файл.`));
   });
 </script>
-<script src="/palette.js?v=20260716d" defer></script>
+<script src="/palette.js?v=20260717a" defer></script>
 </body>
 </html>

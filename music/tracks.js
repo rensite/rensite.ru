@@ -25,6 +25,27 @@ window.RENSITE_MUSIC = (function(){
 
   function yt(q){ return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q); }
 
+  /* Куда ведёт трек: точная ссылка, если она известна, иначе поиск по q.
+     y — прямая ссылка на YouTube (полный URL). Конвенция пришла от Eminem,
+     где её пишет генератор из колонки youtube_url; здесь она общая на весь
+     сайт — иначе получается как было: страница гида ссылку чтит, а палитра
+     и «случайный трек» на хабе открывают поиск для трека, у которого точный
+     адрес уже лежит в данных.
+     q остаётся обязательным всегда: это не только фолбэк, но и ключ прогресса
+     в localStorage и строка поиска ⌘K. Прямая ссылка его не заменяет.
+     Ссылка, не похожая на http(s), — это опечатка в данных (частый случай:
+     «youtube.com/...» без протокола, что дало бы относительный путь и 404).
+     Ругаемся в консоль и уходим в поиск: рабочий поиск лучше битой ссылки. */
+  function link(t){
+    var y = t && t.y;
+    if (!y) return yt(t.q);
+    if (/^https?:\/\//i.test(y)) return y;
+    if (window.console && console.warn){
+      console.warn('RENSITE_MUSIC.link: y не похож на ссылку (нужен http:// или https://): ' + y);
+    }
+    return yt(t.q);
+  }
+
   /* Реестр гидов — единый источник для витрины /music/, сводного прогресса и ⌘K.
      storage — ключ localStorage гида, accent — цвет «мира» (полоса + заливка прогресс-бара).
 
@@ -100,11 +121,13 @@ window.RENSITE_MUSIC = (function(){
   }
   function loadAll(){
     if (allPromise) return allPromise;
+    /* y тащим наравне с q: без него палитра и хаб зовут link() на объекте без
+       прямой ссылки и молча уходят в поиск — трек-то найдётся, но мимо. */
     var jc = grab('/music/jackie-chan/data.json', function(t){
-      return {artist:'Jackie Chan', yr:t.yr, alb:albText(t), n:t.n, q:t.q, guide:'/music/jackie-chan/'};
+      return {artist:'Jackie Chan', yr:t.yr, alb:albText(t), n:t.n, q:t.q, y:t.y, guide:'/music/jackie-chan/'};
     });
     var em = grab('/music/eminem/data.json', function(t){
-      return {artist:'Eminem', yr:t.yr, alb:albText(t), n:t.n, q:t.q, ft:t.ft, guide:'/music/eminem/'};
+      return {artist:'Eminem', yr:t.yr, alb:albText(t), n:t.n, q:t.q, y:t.y, ft:t.ft, guide:'/music/eminem/'};
     });
     allPromise = Promise.all([jc, em]).then(function(r){ return LP_TRACKS.concat(r[0], r[1]); });
     return allPromise;
@@ -187,5 +210,6 @@ window.RENSITE_MUSIC = (function(){
   }
 
   return { LP_ALBUMS: LP_ALBUMS, LP_TRACKS: LP_TRACKS, GUIDES: GUIDES,
-           loadAll: loadAll, totals: totals, progress: progress, plural: plural, fill: fill, yt: yt };
+           loadAll: loadAll, totals: totals, progress: progress, plural: plural, fill: fill,
+           yt: yt, link: link };
 })();

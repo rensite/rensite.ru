@@ -54,7 +54,7 @@
       ? Promise.resolve(window.RENSITE_MUSIC)
       : new Promise(function(res){
           var sc = document.createElement('script');
-          sc.src = '/music/tracks.js?v=20260716d';
+          sc.src = '/music/tracks.js?v=20260717a';
           sc.onload = function(){ res(window.RENSITE_MUSIC); };
           sc.onerror = function(){ res(null); };
           document.head.appendChild(sc);
@@ -142,7 +142,7 @@
   function go(){
     var it = flat[sel]; if (!it) return;
     if (it.kind === 'page'){ close(); location.href = it.url; }
-    else { window.open(window.RENSITE_MUSIC.yt(it.t.q), '_blank', 'noopener'); }
+    else { window.open(window.RENSITE_MUSIC.link(it.t), '_blank', 'noopener'); }
   }
 
   var lastFocus = null;

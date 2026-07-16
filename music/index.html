@@ -227,7 +227,7 @@
     </footer>
 
   </div>
-<script src="/music/tracks.js?v=20260716d" defer></script>
+<script src="/music/tracks.js?v=20260717a" defer></script>
 <script src="/i18n.js?v=20260713" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function(){
@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function(){
   btn.addEventListener('click', function(){
     if (!pool.length) return;
     var t = pool[Math.floor(Math.random() * pool.length)];
-    window.open(M.yt(t.q), '_blank', 'noopener');
+    window.open(M.link(t), '_blank', 'noopener');
     btn.textContent = '▶ ' + t.n + ' — ' + t.artist;
     showingTrack = true;
     clearTimeout(reset);
@@ -318,6 +318,6 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 </script>
-<script src="/palette.js?v=20260716d" defer></script>
+<script src="/palette.js?v=20260717a" defer></script>
 </body>
 </html>

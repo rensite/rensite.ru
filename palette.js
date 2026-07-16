@@ -54,7 +54,7 @@
       ? Promise.resolve(window.RENSITE_MUSIC)
       : new Promise(function(res){
           var sc = document.createElement('script');
-          sc.src = '/music/tracks.js?v=20260716c';
+          sc.src = '/music/tracks.js?v=20260716d';
           sc.onload = function(){ res(window.RENSITE_MUSIC); };
           sc.onerror = function(){ res(null); };
           document.head.appendChild(sc);

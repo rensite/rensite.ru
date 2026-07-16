@@ -2318,8 +2318,8 @@
       {
         "from": "tracks",
         "l": {
-          "en": "songs in the discography",
-          "ru": "песен в дискографии"
+          "en": "{song|songs} in the discography",
+          "ru": "{песня|песни|песен} в дискографии"
         }
       },
       {

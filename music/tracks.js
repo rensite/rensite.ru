@@ -36,38 +36,39 @@ window.RENSITE_MUSIC = (function(){
 
      hook/stats/name — переводимые поля: строка = язык-нейтрально, объект { en, ru }
      выбирается по текущему языку (хаб выбирает через pick).
-     В stats {n} подставляется из totals() — число в строке не дублируем. */
+     stats — шаблон под fill(): {n} — число из totals(), {a|b|c} — существительное,
+     согласованное с ним. Число в строке не дублируем, форму не угадываем. */
   var GUIDES = [
     { key:'mj', name:'Michael Jackson', native:'King of Pop', url:'/music/michael/',
       accent:'#d4af37', status:'live', total:24, storage:'mj-listened',
       img:'/music/michael/posters/micheal.jpeg',
       hook:{ en:'He sang with breath, pauses, accents. A route from Jackson 5 to Bad — and the films.',
              ru:'Он пел дыханием, паузами, акцентами. Маршрут от Jackson 5 до Bad — и кино.' },
-      stats:{ en:'{n} tracks · 4 eras · film', ru:'{n} трека · 4 эпохи · кино' } },
+      stats:{ en:'{n} {track|tracks} · 4 eras · film', ru:'{n} {трек|трека|треков} · 4 эпохи · кино' } },
     { key:'jc', name:'Jackie Chan', native:'成龍', url:'/music/jackie-chan/',
       accent:'#cd2c24', status:'live', storage:'jc-listened',
       motif:'成龍',
       hook:{ en:'You watched the stunts — and slept through the fact that he sang. Himself, in five languages, for forty years.',
              ru:'Ты следил за трюками — и проспал, что он пел. Сам, на пяти языках, сорок лет.' },
-      stats:{ en:'{n} songs · 40 years · 5 languages', ru:'{n} песен · 40 лет · 5 языков' } },
+      stats:{ en:'{n} {song|songs} · 40 years · 5 languages', ru:'{n} {песня|песни|песен} · 40 лет · 5 языков' } },
     { key:'lp', name:'Linkin Park', native:'2000—', url:'/music/linkin-park/',
       accent:'#16181d', status:'live', total:LP_TRACKS.length, storage:'lp-listened',
       motif:'LP', mono:true,
       hook:{ en:'Roots, trunk, side projects, and the return with Emily — the whole arc, in order.',
              ru:'Корни, ствол, сайд-проекты и возвращение с Эмили — вся дуга по порядку.' },
-      stats:{ en:'{n} tracks · 8 albums · 4 side projects', ru:'{n} треков · 8 альбомов · 4 сайд-проекта' } },
+      stats:{ en:'{n} {track|tracks} · 8 albums · 4 side projects', ru:'{n} {трек|трека|треков} · 8 альбомов · 4 сайд-проекта' } },
     { key:'em', name:'Eminem', native:'Slim Shady', url:'/music/eminem/',
       accent:'#16181d', status:'live', storage:'em-listened',
       motif:'Ǝ', mono:true,
       hook:{ en:'The whole career on one axis — from the birth of Slim Shady to his death, and “8 Mile”.',
              ru:'Вся карьера на одной оси — от рождения Slim Shady до его смерти, и «8 Mile».' },
-      stats:{ en:'{n} tracks · full discography · 8 Mile', ru:'{n} треков · вся дискография · 8 Mile' } },
+      stats:{ en:'{n} {track|tracks} · full discography · 8 Mile', ru:'{n} {трек|трека|треков} · вся дискография · 8 Mile' } },
     { key:'tj', name:{ en:'Tom and Jerry', ru:'Том и Джерри' }, native:'MGM · 1944—1967', url:'/music/tom-and-jerry/',
       accent:'#e5202b', status:'live', total:10, storage:'tj-listened',
       img:'/music/tom-and-jerry/img/title-card.jpeg',
       hook:{ en:"Ten shorts where music isn't the background — it's the plot. A comic issue with covers and two Oscars.",
              ru:'Десять короткометражек, где музыка не фон, а сам сюжет. Комикс-выпуск с обложками и двумя «Оскарами».' },
-      stats:{ en:'{n} shorts · 2 Oscars · 1944—1967', ru:'{n} серий · 2 «Оскара» · 1944—1967' } }
+      stats:{ en:'{n} {short|shorts} · 2 Oscars · 1944—1967', ru:'{n} {серия|серии|серий} · 2 «Оскара» · 1944—1967' } }
   ];
 
   /* Все треки всех гидов для ⌘K. LP — из LP_ALBUMS (синхронно), Джеки Чан и
@@ -127,11 +128,45 @@ window.RENSITE_MUSIC = (function(){
     });
   }
 
-  /* Согласование русского существительного с числом: plural(5, ['мир','мира','миров']).
+  /* Согласование существительного с числом. Правило выбирает ЯЗЫК, а не длина
+     массива, поэтому форм должно быть ровно столько, сколько язык ждёт:
+       ru — три формы (1 / 2–4 / 5+):  plural(5, ['мир','мира','миров'])
+       en — две формы (1 / прочее):    plural(5, ['world','worlds'], 'en')
+     Язык по умолчанию русский: en-строки без склонения писать незачем, а вот
+     ru-код зовёт plural() россыпью (каталог Джеки), и третий аргумент там шум.
+     Форм не столько, сколько надо, — это опечатка в строке: ругаемся в консоль
+     и отдаём последнюю форму (в обоих языках это множественное число, самый
+     безопасный дефолт), чтобы кривая подпись не уронила страницу.
      Общий на весь сайт — каталог Джеки берёт его отсюда же. */
-  function plural(n, forms){
+  var FORMS_EXPECTED = { ru: 3, en: 2 };
+
+  function plural(n, forms, lang){
+    lang = lang || 'ru';
+    var want = FORMS_EXPECTED[lang] || 3;
+    if (forms.length !== want){
+      if (window.console && console.warn){
+        console.warn('RENSITE_MUSIC.plural: для «' + lang + '» нужно форм: ' + want +
+                     ', а в строке ' + forms.length + ' (' + forms.join('|') + ')');
+      }
+      return forms[forms.length - 1];
+    }
+    if (lang === 'en') return forms[n === 1 ? 0 : 1];
     var a = Math.abs(n) % 100, b = a % 10;
     return forms[(a > 10 && a < 20) ? 2 : (b > 1 && b < 5) ? 1 : (b === 1 ? 0 : 2)];
+  }
+
+  /* Подстановка числа в строку: {n} — само число, {песня|песни|песен} —
+     существительное, согласованное с ним. Формы живут прямо в строке, рядом
+     с текстом: правишь фразу — сразу видно, что склоняется.
+       fill('{n} {песня|песни|песен} · 40 лет', 158, 'ru') -> '158 песен · 40 лет'
+       fill('{n} {song|songs} · 40 years', 1, 'en')        -> '1 song · 40 years'
+     Числа, зашитые в строку руками («40 лет», «5 языков»), скобок не просят:
+     они написаны рядом со своим числом и меняются вместе с ним.
+     Строка ровно про одно число; если чисел два — зови fill дважды. */
+  function fill(tpl, n, lang){
+    return String(tpl)
+      .replace(/\{([^{}|]*\|[^{}]*)\}/g, function(_, s){ return plural(n, s.split('|'), lang); })
+      .replace(/\{n\}/g, n);
   }
 
   /* Прогресс «прослушано» поверх localStorage: общий хелпер для каталогов.
@@ -152,5 +187,5 @@ window.RENSITE_MUSIC = (function(){
   }
 
   return { LP_ALBUMS: LP_ALBUMS, LP_TRACKS: LP_TRACKS, GUIDES: GUIDES,
-           loadAll: loadAll, totals: totals, progress: progress, plural: plural, yt: yt };
+           loadAll: loadAll, totals: totals, progress: progress, plural: plural, fill: fill, yt: yt };
 })();

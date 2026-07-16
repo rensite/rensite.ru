@@ -227,7 +227,7 @@
     </footer>
 
   </div>
-<script src="/music/tracks.js?v=20260716c" defer></script>
+<script src="/music/tracks.js?v=20260716d" defer></script>
 <script src="/i18n.js?v=20260713" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function(){
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function(){
   var lang = function(){ return (window.I18N && window.I18N.get) ? window.I18N.get() : 'en'; };
   var pick = function(v){ if (v && typeof v==='object' && !Array.isArray(v)){ var l=lang(); return v[l]!=null?v[l]:(v.en!=null?v.en:v.ru); } return v==null?'':v; };
   var tt = function(en,ru){ return lang()==='ru'?ru:en; };
-  var plural = M.plural;
+  var fill = M.fill;                                  // '{n} {трек|трека|треков}' -> '97 треков'
 
   /* Длины маршрутов: { key: n }. null, пока не подгрузились data.json Джеки и
      Eminem — до этого момента карточки рисуются без цифр, а не с враньём.
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function(){
         + '<div class="gc-main"><div class="gc-head"><span class="gc-name">'+esc(pick(g.name))+'</span>'
         + '<span class="gc-native">'+esc(g.native)+'</span>'+badge+'</div>'
         + '<p class="gc-hook">'+esc(pick(g.hook))+'</p>'
-        + '<div class="gc-stats">'+(TOTALS && TOTALS[g.key]!=null ? esc(pick(g.stats).replace('{n}', TOTALS[g.key])) : '')+'</div></div>'
+        + '<div class="gc-stats">'+(TOTALS && TOTALS[g.key]!=null ? esc(fill(pick(g.stats), TOTALS[g.key], lang())) : '')+'</div></div>'
         + '</a>';
     }).join('');
     document.getElementById('guides').innerHTML = html;
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var liveGuides = M.GUIDES.filter(function(g){ return g.status==='live'; });
     var n = M.GUIDES.length;
     document.getElementById('foot-count').textContent =
-      n + tt(' guide'+(n===1?'':'s')+' · ', ' '+plural(n,['гид','гида','гидов'])+' · ')
+      fill(tt('{n} {guide|guides} · ', '{n} {гид|гида|гидов} · '), n, lang())
         + liveGuides.length + tt(' ready',' готовы');
 
     /* Сводный прогресс по всем готовым гидам. Знаменатель — сумма по всем живым
@@ -286,8 +286,9 @@ document.addEventListener('DOMContentLoaded', function(){
         + '<span class="bar"><i style="width:'+Math.min(pct,100)+'%"></i></span><span>'+pct+'%</span>';
     } else {
       var w = liveGuides.length;
-      hp.innerHTML = '<span>'+total
-        + tt(' tracks · '+w+' world'+(w===1?'':'s'), ' треков · '+w+' '+plural(w,['мир','мира','миров']))
+      hp.innerHTML = '<span>'                         // два числа — два fill: строка про одно
+        + fill(tt('{n} {track|tracks} · ', '{n} {трек|трека|треков} · '), total, lang())
+        + fill(tt('{n} {world|worlds}',    '{n} {мир|мира|миров}'),       w,     lang())
         + '</span>';
     }
   }
@@ -317,6 +318,6 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 </script>
-<script src="/palette.js?v=20260716c" defer></script>
+<script src="/palette.js?v=20260716d" defer></script>
 </body>
 </html>

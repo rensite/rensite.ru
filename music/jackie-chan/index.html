@@ -341,16 +341,19 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
   </div>
 </footer>
 
-<script src="/music/tracks.js?v=20260716c"></script>
+<script src="/music/tracks.js?v=20260716d"></script>
 <script src="/i18n.js?v=20260713" defer></script>
 <script>
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ---------- DATA: единый источник — data.json (генерируется build_data.py из xlsx) ----------
+// ---------- DATA: единый источник — data.json (правится вручную) ----------
 const yt = q => "https://www.youtube.com/results?search_query="+encodeURIComponent(q);
-// согласование рус. существительного с числом: plural(n,['запись','записи','записей'])
-// Общий хелпер живёт в /music/tracks.js — он же используется на хабе.
+// Согласование существительного с числом. Общие хелперы живут в /music/tracks.js
+// — их же использует хаб. plural(n,['запись','записи','записей']) — по месту,
+// в шаблонной строке; fill('{песня|песни|песен} в дискографии', n, lang()) —
+// когда фраза приходит из данных и форму выбирать некому.
 const plural = window.RENSITE_MUSIC.plural;
+const fill = window.RENSITE_MUSIC.fill;
 let DATA = null, activeType = "Все", query = "";
 
 // ---------- i18n: язык + хелперы (English default, Russian toggle) ----------
@@ -428,7 +431,7 @@ const counterValue = c => c.from === 'tracks' ? DATA.tracks.length : c.n;
 
 function renderStats(){
   document.getElementById('statRow').innerHTML = DATA.stats.counters.map(c=>
-    `<div class="stat"><div class="n" data-count="${counterValue(c)}"${c.plus?' data-plus="1"':''}>0</div><div class="l">${L(c.l)}</div></div>`
+    `<div class="stat"><div class="n" data-count="${counterValue(c)}"${c.plus?' data-plus="1"':''}>0</div><div class="l">${fill(L(c.l), counterValue(c), lang())}</div></div>`
   ).join('');
   // Подзаголовок каталога — то же число, что и в счётчике выше.
   const rec = DATA.tracks.length;
@@ -584,6 +587,6 @@ fetch('./data.json',{cache:'no-store'})
     if(tl) tl.innerHTML=`<p style="padding:var(--s-6) 0;color:var(--ink-mute)">${tt(`Couldn't load the data (${err.message}). Open the page through a local server, not as a file.`,`Не удалось загрузить данные (${err.message}). Откройте страницу через локальный сервер, а не как файл.`)}</p>`;
   });
 </script>
-<script src="/palette.js?v=20260716c" defer></script>
+<script src="/palette.js?v=20260716d" defer></script>
 </body>
 </html>

@@ -278,7 +278,8 @@
       "types": [
         "Саундтрек"
       ],
-      "q": "Jackie Chan Project A (A計劃) Project A"
+      "q": "Jackie Chan Project A (A計劃) Project A",
+      "y": "https://www.youtube.com/watch?v=qJe45cwSUxE"
     },
     {
       "yr": "1984",
@@ -299,10 +300,30 @@
         "en": "from «Love Me»",
         "ru": "из «Love Me»"
       },
+      "q": "Jackie Chan Love Me Hello Happy Song",
       "types": [
         "Альбом"
       ],
-      "q": "Jackie Chan Love Me Hello Happy Song"
+      "variants": [
+        {
+          "yr": "1985",
+          "l": {
+            "en": "Hello Happy Song",
+            "ru": "Hello Happy Song"
+          },
+          "q": "Jackie Chan Love Me Hello Happy Song",
+          "y": "https://www.youtube.com/watch?v=8EzKqrFdgJ0"
+        },
+        {
+          "yr": "1986",
+          "l": {
+            "en": "Cantonese Version",
+            "ru": "Версия на Кантонском"
+          },
+          "q": "Jackie Chan Love Me Hello Happy Song cantonese",
+          "y": "https://www.youtube.com/watch?v=8TuPWYcoSVY"
+        }
+      ]
     },
     {
       "yr": "1984",
@@ -314,7 +335,8 @@
       "types": [
         "Альбом"
       ],
-      "q": "Jackie Chan Love Me Jackie's Legend"
+      "q": "Jackie Chan Love Me Jackie's Legend",
+      "y": "https://www.youtube.com/watch?v=sQdFYxVTVkg"
     },
     {
       "yr": "1984",
@@ -606,7 +628,8 @@
       "types": [
         "Альбом"
       ],
-      "q": "Jackie Chan The Boy's Life (A Boy's Life) Wow Wow Wow"
+      "q": "Jackie Chan The Boy's Life (A Boy's Life) Wow Wow Wow",
+      "y": "https://www.youtube.com/watch?v=TYMCHqaTN3k"
     },
     {
       "yr": "1986",
@@ -628,7 +651,8 @@
             "en": "Soundtrack «Armour of God»",
             "ru": "Саундтрек «Доспехи бога»"
           },
-          "q": "Jackie Chan High Upon High Flight of the Dragon Armour of God"
+          "q": "Jackie Chan High Upon High Flight of the Dragon Armour of God",
+          "y": "https://www.youtube.com/watch?v=_412cAAKV-Y"
         },
         {
           "yr": "1986",
@@ -636,7 +660,8 @@
             "en": "Album «Sing Lung»",
             "ru": "Альбом «Sing Lung»"
           },
-          "q": "Jackie Chan Sing Lung Flight of the Dragon"
+          "q": "Jackie Chan Sing Lung Flight of the Dragon",
+          "y": "https://www.youtube.com/watch?v=PYhuwPSIcHE"
         }
       ]
     },
@@ -823,7 +848,8 @@
       "types": [
         "Саундтрек"
       ],
-      "q": "Jackie Chan Project A 2 (A計劃續集) Project A Part II"
+      "q": "Jackie Chan Project A 2 (A計劃續集) Project A Part II",
+      "y": "https://www.youtube.com/watch?v=VRUMfBw8Wfo"
     },
     {
       "yr": "1987",
@@ -931,7 +957,8 @@
       "types": [
         "Альбом"
       ],
-      "q": "Jackie Chan Hong Kong My Love Good Night (O-Y-A-S-U-M-I)"
+      "q": "Jackie Chan Hong Kong My Love Good Night (O-Y-A-S-U-M-I)",
+      "y": "https://www.youtube.com/watch?v=nKSnx2zJIek"
     },
     {
       "yr": "1988",
@@ -1285,7 +1312,8 @@
       "types": [
         "Саундтрек"
       ],
-      "q": "Jackie Chan City Hunter (城市獵人) City Hunter"
+      "q": "Jackie Chan City Hunter (城市獵人) City Hunter",
+      "y": "https://www.youtube.com/watch?v=k_0LTQxvKKc"
     },
     {
       "yr": "1993",
@@ -1954,7 +1982,8 @@
       "types": [
         "Прочее"
       ],
-      "q": "Jackie Chan City Lang Lang, Yao Ming"
+      "q": "Jackie Chan City Lang Lang, Yao Ming",
+      "y": "https://www.youtube.com/watch?v=FFiLmcrSLRE"
     },
     {
       "yr": "2009",

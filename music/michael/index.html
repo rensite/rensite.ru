@@ -114,17 +114,22 @@
     border-bottom:1px solid #d4af3755;color:var(--ink-mute);padding:0;cursor:pointer;transition:color .2s;}
   .mj-progress .reset:hover{color:var(--ink);}
   .mj-progress .reset[hidden]{display:none;}
-  .trkrow{display:grid;grid-template-columns:26px 1fr;align-items:center;gap:10px;border-bottom:1px solid var(--rule);
+  .trkrow{display:grid;grid-template-columns:1fr 26px;align-items:center;gap:10px;border-bottom:1px solid var(--rule);
     transition:opacity .25s;}
   .trkrow a.trk{border-bottom:none;}
   /* Прослушанное гаснет целиком — метка мягкая нарочно (см. Джеки). */
   .trkrow.done{opacity:.85;}
-  .trkrow .tlike{width:20px;height:20px;flex:none;border:0;background:transparent;color:#d4af3755;
-    cursor:pointer;font-size:14px;line-height:1;padding:0;transition:color .2s,transform .12s;}
+  .trkrow .tlike{width:20px;height:20px;justify-self:end;flex:none;border:0;background:transparent;color:#d4af3755;
+    cursor:pointer;font-size:14px;line-height:1;padding:0;transition:color .2s,transform .12s,opacity .2s;}
   .trkrow .tlike:hover{color:var(--gold);}
   .trkrow .tlike:active{transform:scale(.85);}
   .trkrow.liked .tlike{color:var(--gold-bright);}
-  @media(max-width:760px){ .trkrow{grid-template-columns:22px 1fr;gap:8px;} }
+  /* Пустое ♡ — только по наведению (см. Джеки: (hover:hover) держит тачи). */
+  @media (hover:hover){
+    .trkrow .tlike{opacity:0;}
+    .trkrow:hover .tlike,.trkrow .tlike:focus-visible,.trkrow.liked .tlike{opacity:1;}
+  }
+  @media(max-width:760px){ .trkrow{grid-template-columns:1fr 22px;gap:8px;} }
   /* spoiler toggle for the "ещё в фильме" list (прячет описания сцен) */
   .spoiler{margin-top:var(--s-3);}
   .spoiler:not([open]) .era-desc,.spoiler:not([open]) .tracklist{display:none;}
@@ -584,7 +589,7 @@
       const like=document.createElement('button'); like.type='button'; like.className='tlike';
       like.setAttribute('aria-pressed', String(liked.has(key)));
       like.setAttribute('aria-label',likeLbl()); like.textContent=liked.has(key)?'\u2665':'\u2661';
-      row.appendChild(like); row.appendChild(a);
+      row.appendChild(a); row.appendChild(like);
       like.addEventListener('click',e=>{ e.preventDefault();
         const on=liked.toggle(key); row.classList.toggle('liked',on);
         like.setAttribute('aria-pressed',String(on)); like.textContent=on?'\u2665':'\u2661'; paint(); });

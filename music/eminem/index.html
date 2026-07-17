@@ -367,14 +367,19 @@
   .tb-progress .reset:hover{color:var(--ink);}
   .tb-progress .reset[hidden]{display:none;}
   .tb-list{border-top:1px solid rgba(255,255,255,.08);margin-top:14px;}
-  .tb-row{display:grid;grid-template-columns:30px 1fr;align-items:center;border-bottom:1px solid rgba(255,255,255,.06);transition:background .2s,opacity .25s;}
+  .tb-row{display:grid;grid-template-columns:1fr 26px;column-gap:10px;align-items:center;border-bottom:1px solid rgba(255,255,255,.06);transition:background .2s,opacity .25s;}
   /* Прослушанное гаснет целиком — метка мягкая нарочно (см. Джеки). */
   .tb-row.done{opacity:.85;}
   .tb-row:hover{background:rgba(255,255,255,.03);}
-  .tb-like{width:18px;height:18px;justify-self:start;border:0;background:transparent;color:rgba(255,255,255,.2);font-size:13px;line-height:1;cursor:pointer;padding:0;transition:color .15s,transform .12s;}
+  .tb-like{width:18px;height:18px;justify-self:end;border:0;background:transparent;color:rgba(255,255,255,.2);font-size:13px;line-height:1;cursor:pointer;padding:0;transition:color .15s,transform .12s,opacity .2s;}
   .tb-like:hover{color:var(--steel);}
   .tb-like:active{transform:scale(.85);}
   .tb-row.liked .tb-like{color:var(--steel-bright);}
+  /* Пустое ♡ — только по наведению (см. Джеки: (hover:hover) держит тачи). */
+  @media (hover:hover){
+    .tb-row .tb-like{opacity:0;}
+    .tb-row:hover .tb-like,.tb-row .tb-like:focus-visible,.tb-row.liked .tb-like{opacity:1;}
+  }
   .tb-go{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:baseline;padding:11px 4px 11px 0;text-decoration:none;}
   .tb-yr{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--ink-mute);}
   .tb-nm{font-family:'Oswald',sans-serif;font-weight:500;font-size:1.06rem;color:var(--bone);line-height:1.22;}
@@ -385,7 +390,7 @@
   .tb-count{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);}
   @media(max-width:720px){
     .tb-controls{top:58px;}
-    .tb-row{grid-template-columns:26px 1fr;}
+    .tb-row{grid-template-columns:1fr 24px;}
     .tb-go{grid-template-columns:auto 1fr;column-gap:12px;row-gap:5px;}
     .tb-go .tb-nm{grid-column:2;}
     .tb-go .tb-play{grid-column:2;opacity:1;justify-self:start;}
@@ -979,11 +984,11 @@
         const done=seen.has(t.q), fav=liked.has(t.q), href=link(t);
         const src=[srcLabel(t.s),(t.ft?('ft. '+t.ft):'')].filter(Boolean).join(' · ');
         return '<div class="tb-row'+(done?' done':'')+(fav?' liked':'')+'" data-k="'+esc(t.q)+'">'
-          +'<button class="tb-like" type="button" aria-pressed="'+fav+'" aria-label="'+esc(tt('Like','Лайк')+': '+t.n)+'">'+(fav?'\u2665':'\u2661')+'</button>'
           +'<a class="tb-go" href="'+esc(href)+'" target="_blank" rel="noopener">'
           +'<span class="tb-yr">'+(t.yr||'—')+'</span>'
           +'<span class="tb-nm">'+esc(t.n)+'<span class="tb-cat">'+esc(typeLabel(t.type))+'</span>'+(src?'<span class="tb-src">'+esc(src)+'</span>':'')+'</span>'
-          +'<span class="tb-play">▶ YouTube</span></a></div>';
+          +'<span class="tb-play">▶ YouTube</span></a>'
+          +'<button class="tb-like" type="button" aria-pressed="'+fav+'" aria-label="'+esc(tt('Like','Лайк')+': '+t.n)+'">'+(fav?'\u2665':'\u2661')+'</button></div>';
       }).join('')||'<p style="padding:18px 0;color:var(--ink-mute)">'+tt('Nothing found.','Ничего не найдено.')+'</p>';
       cntEl.textContent=tt('Showing ','Показано ')+f.length+tt(' of ',' из ')+TRACKS.length+tt(' tracks',' треков');
       paintProgress();

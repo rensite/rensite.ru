@@ -163,15 +163,24 @@ hr{border:none;border-top:1px solid var(--rule)}
 .cat-progress .reset{font:inherit;text-transform:inherit;letter-spacing:inherit;background:transparent;border:0;border-bottom:1px solid var(--rule);color:var(--ink-mute);padding:0;cursor:pointer;transition:color .2s}
 .cat-progress .reset:hover{color:var(--ink)}
 .cat-progress .reset[hidden]{display:none}
-.track{display:grid;grid-template-columns:34px 1fr;align-items:center;border-bottom:1px solid var(--rule);transition:background .25s,opacity .25s}
+.track{display:grid;grid-template-columns:1fr 28px;column-gap:var(--s-3);align-items:center;border-bottom:1px solid var(--rule);transition:background .25s,opacity .25s}
 .track:hover{background:var(--bg-deep)}
 /* Прослушанное гаснет целиком — метка мягкая нарочно: список длинный, и
    пройденное должно уходить на второй план, а не вычёркиваться. */
 .track.done{opacity:.85}
-.tlike{width:19px;height:19px;justify-self:start;border:0;background:transparent;color:var(--rule);font-size:14px;line-height:1;cursor:pointer;padding:0;transition:color .2s,transform .12s}
+.tlike{width:19px;height:19px;justify-self:end;border:0;background:transparent;color:var(--rule);font-size:14px;line-height:1;cursor:pointer;padding:0;transition:color .2s,transform .12s,opacity .2s}
 .tlike:hover{color:var(--accent)}
 .tlike:active{transform:scale(.85)}
 .track.liked .tlike{color:var(--accent)}
+/* Пустое ♡ показываем только по наведению: лайк — редкое действие, а 158
+   бледных сердец в столбик — шум. Лайкнутое ♥ видно всегда, иначе список
+   любимого нечем читать. Прячем строго под (hover:hover): на тачах наведения
+   нет, и без этого условия кнопка исчезла бы там насовсем. focus-visible
+   держит её достижимой с клавиатуры. */
+@media (hover:hover){
+  .track .tlike{opacity:0}
+  .track:hover .tlike,.track .tlike:focus-visible,.track.liked .tlike{opacity:1}
+}
 .tgo{display:grid;grid-template-columns:3.5rem 1fr auto;gap:var(--s-3);align-items:baseline;padding:var(--s-3) 0;text-decoration:none}
 .track .tyr{font-family:"JetBrains Mono",monospace;font-size:var(--fs-sm);color:var(--ink-mute)}
 .track .tname{font-family:"Fraunces",serif;font-size:1.35rem;line-height:1.15}
@@ -212,7 +221,7 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
   .foot-top .foot-tip{text-align:left;max-width:none}
   /* каталог: фильтры прячем, строку результата — как у MJ (год слева, текст во всю ширину, YouTube строкой ниже) */
   .filters{display:none}
-  .track{grid-template-columns:28px 1fr;margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter)}
+  .track{grid-template-columns:1fr 26px;margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter)}
   .tgo{grid-template-columns:auto 1fr;column-gap:14px;row-gap:8px;align-items:start}
   .tgo .tname{grid-column:2}
   .tgo .tplay{grid-column:2;justify-self:start;opacity:1}
@@ -554,8 +563,8 @@ function renderTracks(){
       </a>`;
     return `
     <div class="track${t.significant?' is-sig':''}${done?' done':''}${fav?' liked':''}" data-k="${t.q}">
-      <button class="tlike" type="button" aria-pressed="${fav}" aria-label="${tt('Like','Лайк')}: ${t.n}">${fav?'♥':'♡'}</button>
       ${body}
+      <button class="tlike" type="button" aria-pressed="${fav}" aria-label="${tt('Like','Лайк')}: ${t.n}">${fav?'♥':'♡'}</button>
     </div>`;
   }).join('') || `<p style="padding:var(--s-6) 0;color:var(--ink-mute)">${tt('Nothing found.','Ничего не найдено.')}</p>`;
   document.getElementById('listCount').textContent = tt(`Showing ${filtered.length} of ${DATA.tracks.length} songs`,`Показано ${filtered.length} из ${DATA.tracks.length} песен`);

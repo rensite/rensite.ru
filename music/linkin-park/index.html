@@ -180,14 +180,19 @@ footer .disc{font-size:12px;color:var(--dim);margin-top:22px;max-width:680px;lin
 .cat-progress .reset{font:inherit;text-transform:inherit;letter-spacing:inherit;background:transparent;border:0;border-bottom:1px solid var(--line2);color:var(--mut);padding:0;cursor:pointer;transition:color .15s}
 .cat-progress .reset:hover{color:var(--txt)}
 .cat-progress .reset[hidden]{display:none}
-.trackrow{display:grid;grid-template-columns:30px 1fr;align-items:center;border-bottom:1px solid var(--line);transition:background .2s,opacity .25s}
+.trackrow{display:grid;grid-template-columns:1fr 26px;column-gap:10px;align-items:center;border-bottom:1px solid var(--line);transition:background .2s,opacity .25s}
 .trackrow:hover{background:var(--bg2)}
 /* Прослушанное гаснет целиком — метка мягкая нарочно (см. Джеки). */
 .trackrow.done{opacity:.85}
-.tlike{width:18px;height:18px;justify-self:start;border:0;background:transparent;color:var(--line2);font-size:13px;line-height:1;cursor:pointer;padding:0;transition:color .15s,transform .12s}
+.tlike{width:18px;height:18px;justify-self:end;border:0;background:transparent;color:var(--line2);font-size:13px;line-height:1;cursor:pointer;padding:0;transition:color .15s,transform .12s,opacity .2s}
 .tlike:hover{color:var(--green)}
 .tlike:active{transform:scale(.85)}
 .trackrow.liked .tlike{color:var(--green)}
+/* Пустое ♡ — только по наведению (см. Джеки: (hover:hover) держит тачи). */
+@media (hover:hover){
+  .trackrow .tlike{opacity:0}
+  .trackrow:hover .tlike,.trackrow .tlike:focus-visible,.trackrow.liked .tlike{opacity:1}
+}
 .tgo{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:baseline;padding:11px 4px 11px 0;text-decoration:none}
 .trackrow .tyr{font-family:var(--mono);font-size:12px;color:var(--dim)}
 .trackrow .tnm{font-family:var(--serif);font-size:18px;color:var(--txt);line-height:1.2}
@@ -195,7 +200,7 @@ footer .disc{font-size:12px;color:var(--dim);margin-top:22px;max-width:680px;lin
 .trackrow .tplay{font-family:var(--mono);font-size:11px;letter-spacing:.07em;color:var(--accent);white-space:nowrap;opacity:0;transition:opacity .15s}
 .trackrow:hover .tplay{opacity:1}
 @media(max-width:720px){
-  .trackrow{grid-template-columns:26px 1fr}
+  .trackrow{grid-template-columns:1fr 24px}
   .tgo{grid-template-columns:auto 1fr;column-gap:12px;row-gap:5px}
   .tgo .tnm{grid-column:2}
   .tgo .tplay{grid-column:2;opacity:1;justify-self:start}
@@ -353,7 +358,7 @@ footer .disc{font-size:12px;color:var(--dim);margin-top:22px;max-width:680px;lin
     const likeLbl=tt('Like','Лайк');
     listEl.innerHTML=f.map(t=>{
       const done=seen.has(t.k), fav=liked.has(t.k);
-      return `<div class="trackrow${done?' done':''}${fav?' liked':''}" data-k="${t.k}"><button class="tlike" type="button" aria-pressed="${fav}" aria-label="${likeLbl}: ${t.n}">${fav?'\u2665':'\u2661'}</button><a class="tgo" href="${yt('Linkin Park '+t.n)}" target="_blank" rel="noopener"><span class="tyr">${t.yr}</span><span class="tnm">${t.n}<span class="talb">${t.alb}</span></span><span class="tplay">\u25B6 YouTube</span></a></div>`;
+      return `<div class="trackrow${done?' done':''}${fav?' liked':''}" data-k="${t.k}"><a class="tgo" href="${yt('Linkin Park '+t.n)}" target="_blank" rel="noopener"><span class="tyr">${t.yr}</span><span class="tnm">${t.n}<span class="talb">${t.alb}</span></span><span class="tplay">\u25B6 YouTube</span></a><button class="tlike" type="button" aria-pressed="${fav}" aria-label="${likeLbl}: ${t.n}">${fav?'\u2665':'\u2661'}</button></div>`;
     }).join('')||`<p style="padding:18px 0;color:var(--dim)">${tt('Nothing found.','Ничего не найдено.')}</p>`;
     cntEl.textContent=tt('Showing '+f.length+' of '+TRACKS.length+' tracks','Показано '+f.length+' из '+TRACKS.length+' треков');
     paintProgress();

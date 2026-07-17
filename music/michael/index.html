@@ -109,13 +109,21 @@
     font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-mute);white-space:nowrap;}
   .mj-progress .bar{flex:1;height:3px;background:#d4af3722;border-radius:2px;overflow:hidden;}
   .mj-progress .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#8a6d1f,var(--gold),var(--gold-bright));transition:width .55s cubic-bezier(.16,1,.3,1);}
-  .trkrow{display:grid;grid-template-columns:26px 1fr;align-items:center;gap:10px;border-bottom:1px solid var(--rule);}
+  .mj-progress .likes{color:var(--gold-bright);}
+  .mj-progress .reset{font:inherit;text-transform:inherit;letter-spacing:inherit;background:transparent;border:0;
+    border-bottom:1px solid #d4af3755;color:var(--ink-mute);padding:0;cursor:pointer;transition:color .2s;}
+  .mj-progress .reset:hover{color:var(--ink);}
+  .mj-progress .reset[hidden]{display:none;}
+  .trkrow{display:grid;grid-template-columns:26px 1fr;align-items:center;gap:10px;border-bottom:1px solid var(--rule);
+    transition:opacity .25s;}
   .trkrow a.trk{border-bottom:none;}
-  .trkrow .tchk{width:20px;height:20px;flex:none;border:1px solid #d4af3755;background:transparent;color:var(--gold-bright);
-    border-radius:6px;cursor:pointer;font-size:12px;line-height:1;padding:0;transition:border-color .2s,background .2s;}
-  .trkrow .tchk:hover{border-color:var(--gold);}
-  .trkrow.done .tchk{border-color:var(--gold);background:#d4af3718;}
-  .trkrow.done a.trk .tname{color:var(--ink-mute);}
+  /* Прослушанное гаснет целиком — метка мягкая нарочно (см. Джеки). */
+  .trkrow.done{opacity:.85;}
+  .trkrow .tlike{width:20px;height:20px;flex:none;border:0;background:transparent;color:#d4af3755;
+    cursor:pointer;font-size:14px;line-height:1;padding:0;transition:color .2s,transform .12s;}
+  .trkrow .tlike:hover{color:var(--gold);}
+  .trkrow .tlike:active{transform:scale(.85);}
+  .trkrow.liked .tlike{color:var(--gold-bright);}
   @media(max-width:760px){ .trkrow{grid-template-columns:22px 1fr;gap:8px;} }
   /* spoiler toggle for the "ещё в фильме" list (прячет описания сцен) */
   .spoiler{margin-top:var(--s-3);}
@@ -519,7 +527,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="/music/tracks.js?v=20260717a"></script>
+<script src="/music/tracks.js?v=20260717b"></script>
 <script src="/i18n.js?v=20260713" defer></script>
 <script>
   gsap.registerPlugin(ScrollTrigger);
@@ -537,8 +545,9 @@
   // Оборачиваем до запуска ScrollTrigger, чтобы анимация .trk не сбилась.
   (function(){
     const M = window.RENSITE_MUSIC; if(!M || !M.progress) return;
-    const markLbl = function(){ return tt('Mark as listened', 'Отметить прослушанным'); };
+    const likeLbl = function(){ return tt('Like', 'Лайк'); };
     const seen = M.progress('mj-listened');
+    const liked = M.progress('mj-liked');
     const route = Array.prototype.filter.call(
       document.querySelectorAll('#eras .tracklist a.trk[data-yt]'),
       a => { const n=a.querySelector('.tnum'); return n && /^\d+$/.test(n.textContent.trim()); }
@@ -547,30 +556,45 @@
     const total = route.length;
     const head = document.querySelector('#eras .sec-head');
     const pbar = document.createElement('div'); pbar.className='mj-progress';
-    pbar.innerHTML='<span id="mjp-label"></span><span class="bar"><i id="mjp-fill"></i></span>';
+    pbar.innerHTML='<span id="mjp-label"></span><span class="bar"><i id="mjp-fill"></i></span>'
+      +'<span class="likes" id="mjp-likes"></span>'
+      +'<button class="reset" id="mjp-reset" type="button" hidden></button>';
     if(head) head.insertAdjacentElement('afterend', pbar);
     const fill=pbar.querySelector('#mjp-fill'), label=pbar.querySelector('#mjp-label');
+    const likesEl=pbar.querySelector('#mjp-likes'), resetEl=pbar.querySelector('#mjp-reset');
     function paint(){ const n=route.filter(a=>seen.has(a.dataset.yt)).length;
-      label.textContent=tt(n+' of '+total+' listened','прослушано '+n+' из '+total); fill.style.width=(n/total*100)+'%'; }
+      label.textContent=tt(n+' of '+total+' listened','прослушано '+n+' из '+total); fill.style.width=(n/total*100)+'%';
+      likesEl.textContent='\u2665 '+route.filter(a=>liked.has(a.dataset.yt)).length;
+      resetEl.textContent=tt('reset','сбросить'); resetEl.hidden=!n; }
+    // Сброс всего прослушанного: точечно снять отметку нельзя (клик по треку
+    // только добавляет), так что это единственный выход из промаха — и он рушит
+    // весь маршрут, поэтому спрашиваем. Лайки не трогаем, у них свой toggle.
+    resetEl.addEventListener('click',function(){
+      const n=route.filter(a=>seen.has(a.dataset.yt)).length;
+      if(!confirm(tt('Clear all '+n+' listened marks? This can\'t be undone.',
+                     'Снять все отметки о прослушанном ('+n+')? Отменить будет нельзя.'))) return;
+      seen.clear();
+      document.querySelectorAll('#eras .trkrow.done').forEach(function(r){ r.classList.remove('done'); });
+      paint();
+    });
     route.forEach(a=>{
       const key=a.dataset.yt;
-      const row=document.createElement('div'); row.className='trkrow'+(seen.has(key)?' done':'');
+      const row=document.createElement('div'); row.className='trkrow'+(seen.has(key)?' done':'')+(liked.has(key)?' liked':'');
       a.parentNode.insertBefore(row,a);
-      const chk=document.createElement('button'); chk.type='button'; chk.className='tchk';
-      chk.setAttribute('aria-pressed', String(seen.has(key)));
-      chk.setAttribute('aria-label',markLbl()); chk.textContent=seen.has(key)?'✓':'';
-      row.appendChild(chk); row.appendChild(a);
-      chk.addEventListener('click',e=>{ e.preventDefault();
-        const on=seen.toggle(key); row.classList.toggle('done',on);
-        chk.setAttribute('aria-pressed',String(on)); chk.textContent=on?'✓':''; paint(); });
-      a.addEventListener('click',()=>{ if(seen.add(key)){ row.classList.add('done');
-        chk.setAttribute('aria-pressed','true'); chk.textContent='✓'; paint(); } });  // ▶ открыл видео → засчитано
+      const like=document.createElement('button'); like.type='button'; like.className='tlike';
+      like.setAttribute('aria-pressed', String(liked.has(key)));
+      like.setAttribute('aria-label',likeLbl()); like.textContent=liked.has(key)?'\u2665':'\u2661';
+      row.appendChild(like); row.appendChild(a);
+      like.addEventListener('click',e=>{ e.preventDefault();
+        const on=liked.toggle(key); row.classList.toggle('liked',on);
+        like.setAttribute('aria-pressed',String(on)); like.textContent=on?'\u2665':'\u2661'; paint(); });
+      a.addEventListener('click',()=>{ if(seen.add(key)){ row.classList.add('done'); paint(); } });  // ▶ открыл видео → засчитано
     });
     paint();
-    // перерисовка на смену языка: подпись прогресса + aria чекбоксов
+    // перерисовка на смену языка: подписи прогресса + aria сердечек
     document.addEventListener('i18n:change', function(){
       paint();
-      document.querySelectorAll('#eras .trkrow .tchk').forEach(function(c){ c.setAttribute('aria-label', markLbl()); });
+      document.querySelectorAll('#eras .trkrow .tlike').forEach(function(c){ c.setAttribute('aria-label', likeLbl()); });
     });
   })();
 
@@ -706,6 +730,6 @@
     document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
   })();
 </script>
-<script src="/palette.js?v=20260717a" defer></script>
+<script src="/palette.js?v=20260717b" defer></script>
 </body>
 </html>

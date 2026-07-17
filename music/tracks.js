@@ -192,8 +192,13 @@ window.RENSITE_MUSIC = (function(){
       .replace(/\{n\}/g, n);
   }
 
-  /* Прогресс «прослушано» поверх localStorage: общий хелпер для каталогов.
-     storageKey — свой на гид (lp-listened, jc-listened). */
+  /* Множество ключей поверх localStorage: общий хелпер для каталогов.
+     Держит и «прослушано» (jc-listened), и «любимое» (jc-liked) — набор ключей
+     он и есть набор ключей, семантика живёт на странице. storageKey — свой
+     на гид и на смысл.
+     clear() нужен «прослушанному»: снять отметку с одного трека нельзя (клик
+     по строке только добавляет), так что сброс всего списка — единственный
+     выход из случайного клика. */
   function progress(storageKey){
     var set;
     try { set = new Set(JSON.parse(localStorage.getItem(storageKey) || '[]')); }
@@ -205,7 +210,8 @@ window.RENSITE_MUSIC = (function(){
       has: function(k){ return set.has(k); },
       add: function(k){ if (!set.has(k)){ set.add(k); save(); return true; } return false; },
       toggle: function(k){ set.has(k) ? set.delete(k) : set.add(k); save(); return set.has(k); },
-      size: function(){ return set.size; }
+      size: function(){ return set.size; },
+      clear: function(){ if (!set.size) return false; set.clear(); save(); return true; }
     };
   }
 

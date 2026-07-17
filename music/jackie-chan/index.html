@@ -159,12 +159,19 @@ hr{border:none;border-top:1px solid var(--rule)}
 .cat-progress{display:flex;align-items:center;gap:var(--s-3);margin-bottom:var(--s-4);font-family:"JetBrains Mono",monospace;font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-mute);white-space:nowrap}
 .cat-progress .bar{flex:1;height:3px;background:var(--rule);overflow:hidden}
 .cat-progress .bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .35s ease}
-.track{display:grid;grid-template-columns:34px 1fr;align-items:center;border-bottom:1px solid var(--rule);transition:background .25s}
+.cat-progress .likes{color:var(--accent)}
+.cat-progress .reset{font:inherit;text-transform:inherit;letter-spacing:inherit;background:transparent;border:0;border-bottom:1px solid var(--rule);color:var(--ink-mute);padding:0;cursor:pointer;transition:color .2s}
+.cat-progress .reset:hover{color:var(--ink)}
+.cat-progress .reset[hidden]{display:none}
+.track{display:grid;grid-template-columns:34px 1fr;align-items:center;border-bottom:1px solid var(--rule);transition:background .25s,opacity .25s}
 .track:hover{background:var(--bg-deep)}
-.tchk{width:19px;height:19px;justify-self:start;border:1px solid var(--rule);background:transparent;color:var(--accent);font-size:12px;line-height:1;cursor:pointer;padding:0;transition:border-color .2s}
-.tchk:hover{border-color:var(--ink)}
-.track.done .tchk{border-color:var(--accent)}
-.track.done .tname{color:var(--ink-mute)}
+/* Прослушанное гаснет целиком — метка мягкая нарочно: список длинный, и
+   пройденное должно уходить на второй план, а не вычёркиваться. */
+.track.done{opacity:.85}
+.tlike{width:19px;height:19px;justify-self:start;border:0;background:transparent;color:var(--rule);font-size:14px;line-height:1;cursor:pointer;padding:0;transition:color .2s,transform .12s}
+.tlike:hover{color:var(--accent)}
+.tlike:active{transform:scale(.85)}
+.track.liked .tlike{color:var(--accent)}
 .tgo{display:grid;grid-template-columns:3.5rem 1fr auto;gap:var(--s-3);align-items:baseline;padding:var(--s-3) 0;text-decoration:none}
 .track .tyr{font-family:"JetBrains Mono",monospace;font-size:var(--fs-sm);color:var(--ink-mute)}
 .track .tname{font-family:"Fraunces",serif;font-size:1.35rem;line-height:1.15}
@@ -341,7 +348,7 @@ footer{padding-block:var(--s-12);border-top:1px solid var(--rule)}
   </div>
 </footer>
 
-<script src="/music/tracks.js?v=20260717a"></script>
+<script src="/music/tracks.js?v=20260717b"></script>
 <script src="/i18n.js?v=20260713" defer></script>
 <script>
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -378,6 +385,22 @@ const L = v => {
   return v == null ? '' : v;
 };
 const tt = (en, ru) => (lang() === 'ru' ? ru : en);
+/* q обязателен: это ключ прогресса и лайка в localStorage, строка поиска ⌘K и
+   запасная ссылка, когда точной (y) нет. Легко потерять при ручной правке —
+   особенно перенося q внутрь variants и забыв оставить его на самом треке.
+   Молча это выглядит как data-k="undefined": лайки всех таких треков сольются
+   в один ключ. Ругаемся один раз при загрузке, а не в renderTracks: тот зовётся
+   на каждую букву в поиске. */
+function warnMissingQ(d){
+  if(!window.console || !console.warn) return;
+  const bad = [];
+  (d.tracks || []).forEach(t => {
+    if(!t.q) bad.push(`трек «${t.n}»`);
+    (t.variants || []).forEach(v => { if(!v.q) bad.push(`вариант «${L(v.l)}» трека «${t.n}»`); });
+  });
+  (d.hits || []).forEach(h => { if(!h.q) bad.push(`хит «${h.t}»`); });
+  if(bad.length) console.warn('data.json: нет обязательного q — ' + bad.join('; '));
+}
 // Песня в таймлайне: строка (название — язык-нейтрально, как везде на сайте)
 // или объект {n, y?, q?}, если у неё есть точная ссылка либо свой запрос.
 // Строки продолжают работать как раньше — их 96, мигрировать нечего.
@@ -456,10 +479,10 @@ function renderStats(){
   document.getElementById('catSub').innerHTML = tt(
     `<b>${rec}</b> ${rec===1?'song':'songs'} on their own — album cuts, `
     + `soundtracks, singles, and more. Filter by type or search by name. `
-    + `The checkmark marks what you've heard — progress is saved in this browser.`,
+    + `Opening a track marks it as heard; ♥ saves a favourite — both stay in this browser.`,
     `<b>${rec}</b> ${plural(rec,['песня','песни','песен'])} по отдельности — треки альбомов, `
     + `саундтреки, синглы и прочее. Фильтруй по типу или ищи по названию. `
-    + `Галочка отмечает прослушанное — прогресс хранится в этом браузере.`
+    + `Открыл трек — он отмечен прослушанным, ♥ добавит в любимые. И то и другое хранится в этом браузере.`
   );
 }
 
@@ -468,9 +491,12 @@ function renderFilters(){
   const order = ["Альбом","Саундтрек","Сингл","Прочее"];
   const present = order.filter(t=>DATA.tracks.some(x=>x.types.includes(t)));
   const hasSig = DATA.tracks.some(x=>x.significant);
-  const chips = ["Все", ...(hasSig?["Значимые"]:[]), ...present];
+  // «Любимые» показываем всегда, даже пустым: иначе о фильтре не узнать, пока
+  // не поставишь лайк вслепую.
+  const chips = ["Все", "Любимые", ...(hasSig?["Значимые"]:[]), ...present];
   // data-t остаётся русским ключом (под фильтр-логику); меняется только подпись.
-  const label = t => t==="Все" ? tt('All','Все') : t==="Значимые" ? tt('Significant','Значимые') : typeLabel(t);
+  const label = t => t==="Все" ? tt('All','Все') : t==="Любимые" ? tt('Liked','Любимые')
+    : t==="Значимые" ? tt('Significant','Значимые') : typeLabel(t);
   filtersEl.innerHTML = chips.map(t=>`<button class="filt${t===activeType?' active':''}" data-t="${t}">${label(t)}</button>`).join('');
 }
 filtersEl.addEventListener('click',e=>{
@@ -482,20 +508,38 @@ filtersEl.addEventListener('click',e=>{
 document.getElementById('search').addEventListener('input',e=>{query=e.target.value.toLowerCase();renderTracks();});
 
 const seen = window.RENSITE_MUSIC.progress('jc-listened');
+const liked = window.RENSITE_MUSIC.progress('jc-liked');
 function paintProgress(){
   const total = DATA.tracks.length;
   const n = DATA.tracks.filter(t=>seen.has(t.q)).length;
+  const nl = DATA.tracks.filter(t=>liked.has(t.q)).length;
   document.getElementById('catProg').innerHTML =
-    `<span>${tt(`heard ${n} of ${total}`,`прослушано ${n} из ${total}`)}</span><span class="bar"><i style="width:${(n/total*100).toFixed(1)}%"></i></span>`;
+    `<span>${tt(`heard ${n} of ${total}`,`прослушано ${n} из ${total}`)}</span>`
+    + `<span class="bar"><i style="width:${(n/total*100).toFixed(1)}%"></i></span>`
+    + `<span class="likes">♥ ${nl}</span>`
+    + `<button class="reset" type="button" ${n?'':'hidden'}>${tt('reset','сбросить')}</button>`;
 }
+// Сброс всего прослушанного. Точечно снять отметку нельзя — клик по строке
+// только добавляет — так что это единственный выход из промаха, и он рушит
+// весь список: спрашиваем. Лайки не трогаем, у них свой toggle.
+document.getElementById('catProg').addEventListener('click', e=>{
+  if(!e.target.closest('.reset')) return;
+  const n = DATA.tracks.filter(t=>seen.has(t.q)).length;
+  if(!confirm(tt(`Clear all ${n} listened marks? This can't be undone.`,
+                 `Снять все отметки о прослушанном (${n})? Отменить будет нельзя.`))) return;
+  seen.clear(); renderTracks();
+});
 function renderTracks(){
   const filtered = DATA.tracks.filter(t=>{
-    const okType = activeType==="Все" || (activeType==="Значимые" ? t.significant : t.types.includes(activeType));
+    const okType = activeType==="Все" ? true
+      : activeType==="Любимые" ? liked.has(t.q)
+      : activeType==="Значимые" ? t.significant
+      : t.types.includes(activeType);
     const okQ = !query || (t.n+" "+flat(t.s)+" "+flat(t.why)+" "+varText(t)).toLowerCase().includes(query);
     return okType && okQ;
   });
   document.getElementById('trackList').innerHTML = filtered.map(t=>{
-    const done = seen.has(t.q);
+    const done = seen.has(t.q), fav = liked.has(t.q);
     // Год варианта показываем, только если он расходится с годом песни (сингл нередко
     // опережал альбом) — иначе это был бы шум на каждом чипе.
     const inner = `<span class="tyr">${t.yr}</span>
@@ -509,8 +553,8 @@ function renderTracks(){
         <span class="tplay">▶ YouTube</span>
       </a>`;
     return `
-    <div class="track${t.significant?' is-sig':''}${done?' done':''}" data-k="${t.q}">
-      <button class="tchk" type="button" aria-pressed="${done}" aria-label="${tt('Heard','Прослушано')}: ${t.n}">${done?'✓':''}</button>
+    <div class="track${t.significant?' is-sig':''}${done?' done':''}${fav?' liked':''}" data-k="${t.q}">
+      <button class="tlike" type="button" aria-pressed="${fav}" aria-label="${tt('Like','Лайк')}: ${t.n}">${fav?'♥':'♡'}</button>
       ${body}
     </div>`;
   }).join('') || `<p style="padding:var(--s-6) 0;color:var(--ink-mute)">${tt('Nothing found.','Ничего не найдено.')}</p>`;
@@ -520,17 +564,20 @@ function renderTracks(){
 document.getElementById('trackList').addEventListener('click', e=>{
   const row = e.target.closest('.track'); if(!row) return;
   const k = row.dataset.k;
-  const b = row.querySelector('.tchk');
-  if(e.target.closest('.tchk')){
-    const on = seen.toggle(k);
-    row.classList.toggle('done', on);
-    b.setAttribute('aria-pressed', String(on)); b.textContent = on?'✓':'';
+  if(e.target.closest('.tlike')){
+    const on = liked.toggle(k);
+    // Под фильтром «Любимые» снятый лайк выкидывает трек из списка — строку
+    // не патчим, а перерисовываем весь список.
+    if(activeType==="Любимые"){ renderTracks(); return; }
+    const b = row.querySelector('.tlike');
+    row.classList.toggle('liked', on);
+    b.setAttribute('aria-pressed', String(on)); b.textContent = on?'♥':'♡';
     paintProgress();
   } else if(e.target.closest('a.tgo') || e.target.closest('.tvar')){
-    // ▶ и чипы-варианты тоже засчитывают. Селектор именно a.tgo: у треков с
+    // Открыл ▶ или чип-вариант — засчитано. Селектор именно a.tgo: у треков с
     // вариантами .tgo — это div, и клик по нему никуда не ведёт, так что
     // отмечать прослушанным нечего.
-    if(seen.add(k)){ row.classList.add('done'); b.setAttribute('aria-pressed','true'); b.textContent='✓'; paintProgress(); }
+    if(seen.add(k)){ row.classList.add('done'); paintProgress(); }
   }
 });
 
@@ -626,6 +673,7 @@ fetch('./data.json',{cache:'no-store'})
       return;
     }
     DATA = d;
+    warnMissingQ(d);
     renderAll();
     contentMotion();
     document.fonts.ready.then(()=>ScrollTrigger.refresh());
@@ -635,6 +683,6 @@ fetch('./data.json',{cache:'no-store'})
     dataError(tt(`Couldn't load the data (${err.message}). Open the page through a local server, not as a file.`,`Не удалось загрузить данные (${err.message}). Откройте страницу через локальный сервер, а не как файл.`));
   });
 </script>
-<script src="/palette.js?v=20260717a" defer></script>
+<script src="/palette.js?v=20260717b" defer></script>
 </body>
 </html>

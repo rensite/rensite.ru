@@ -176,12 +176,18 @@ footer .disc{font-size:12px;color:var(--dim);margin-top:22px;max-width:680px;lin
 .cat-progress{display:flex;align-items:center;gap:14px;margin-top:14px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--mut);white-space:nowrap}
 .cat-progress .bar{flex:1;height:3px;background:var(--line);border-radius:2px;overflow:hidden}
 .cat-progress .bar i{display:block;height:100%;background:var(--green);width:0;transition:width .35s ease}
-.trackrow{display:grid;grid-template-columns:30px 1fr;align-items:center;border-bottom:1px solid var(--line);transition:background .2s}
+.cat-progress .likes{color:var(--green)}
+.cat-progress .reset{font:inherit;text-transform:inherit;letter-spacing:inherit;background:transparent;border:0;border-bottom:1px solid var(--line2);color:var(--mut);padding:0;cursor:pointer;transition:color .15s}
+.cat-progress .reset:hover{color:var(--txt)}
+.cat-progress .reset[hidden]{display:none}
+.trackrow{display:grid;grid-template-columns:30px 1fr;align-items:center;border-bottom:1px solid var(--line);transition:background .2s,opacity .25s}
 .trackrow:hover{background:var(--bg2)}
-.tchk{width:18px;height:18px;justify-self:start;border:1px solid var(--line2);background:transparent;border-radius:5px;color:var(--green);font-size:11px;line-height:1;cursor:pointer;padding:0;transition:border-color .15s}
-.tchk:hover{border-color:var(--mut)}
-.trackrow.done .tchk{border-color:var(--green)}
-.trackrow.done .tnm{color:var(--mut)}
+/* Прослушанное гаснет целиком — метка мягкая нарочно (см. Джеки). */
+.trackrow.done{opacity:.85}
+.tlike{width:18px;height:18px;justify-self:start;border:0;background:transparent;color:var(--line2);font-size:13px;line-height:1;cursor:pointer;padding:0;transition:color .15s,transform .12s}
+.tlike:hover{color:var(--green)}
+.tlike:active{transform:scale(.85)}
+.trackrow.liked .tlike{color:var(--green)}
 .tgo{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:baseline;padding:11px 4px 11px 0;text-decoration:none}
 .trackrow .tyr{font-family:var(--mono);font-size:12px;color:var(--dim)}
 .trackrow .tnm{font-family:var(--serif);font-size:18px;color:var(--txt);line-height:1.2}
@@ -292,7 +298,7 @@ footer .disc{font-size:12px;color:var(--dim);margin-top:22px;max-width:680px;lin
 </section>
 
 <script src="/i18n.js?v=20260713" defer></script>
-<script src="/music/tracks.js?v=20260717a"></script>
+<script src="/music/tracks.js?v=20260717b"></script>
 <script>
 (function(){
   const M=window.RENSITE_MUSIC;
@@ -304,18 +310,21 @@ footer .disc{font-size:12px;color:var(--dim);margin-top:22px;max-width:680px;lin
   const TRACKS=[];
   ALBUMS.forEach(a=>a.tr.forEach(n=>TRACKS.push({yr:a.yr,alb:a.alb,n:n,k:a.alb+'|'+n})));
   const seen=M.progress('lp-listened');
+  const liked=M.progress('lp-liked');
   const ALL='__all__';                 // language-independent sentinel for the "all" filter
+  const LIKED='__liked__';             // ...и для фильтра «Любимые»
   let active=ALL, q="";
   const listEl=document.getElementById('catList'),cntEl=document.getElementById('catCount'),filtEl=document.getElementById('catFilters'),subEl=document.getElementById('catSub'),progEl=document.getElementById('catProg');
   if(!listEl)return;
   function subText(){
     const n=TRACKS.length;
-    const ru=n+' '+plRu(n,['трек','трека','треков'])+' восьми студийных альбомов — от Hybrid Theory до From Zero. \u25B6 ведёт на поиск YouTube, галочка отмечает прослушанное — прогресс хранится в этом браузере. Сайд-проекты и корни — в таймлайне выше.';
-    const en=n+' tracks across eight studio albums — from Hybrid Theory to From Zero. \u25B6 opens a YouTube search; the checkmark marks what you have heard, and your progress is saved in this browser. Side projects and roots live in the timeline above.';
+    const ru=n+' '+plRu(n,['трек','трека','треков'])+' восьми студийных альбомов — от Hybrid Theory до From Zero. \u25B6 ведёт на поиск YouTube и отмечает трек прослушанным, ♥ добавляет в любимые — и то и другое хранится в этом браузере. Сайд-проекты и корни — в таймлайне выше.';
+    const en=n+' tracks across eight studio albums — from Hybrid Theory to From Zero. \u25B6 opens a YouTube search and marks the track as heard; ♥ saves a favourite. Both stay in this browser. Side projects and roots live in the timeline above.';
     return tt(en,ru);
   }
   function renderFilters(){
-    filtEl.innerHTML=[[ALL,tt('All','Все')]].concat(ALBUMS.map(a=>[a.alb,a.alb]))
+    // «Любимые» показываем всегда, даже пустым: иначе о фильтре не узнать.
+    filtEl.innerHTML=[[ALL,tt('All','Все')],[LIKED,tt('Liked','Любимые')]].concat(ALBUMS.map(a=>[a.alb,a.alb]))
       .map(function(pair){var val=pair[0],label=pair[1];return `<button class="cat-filt${val===active?' active':''}" data-f="${val}">${label}</button>`;}).join('');
   }
   function renderChrome(){ subEl.textContent=subText(); renderFilters(); }
@@ -323,20 +332,28 @@ footer .disc{font-size:12px;color:var(--dim);margin-top:22px;max-width:680px;lin
   document.getElementById('catSearch').addEventListener('input',e=>{q=e.target.value.trim().toLowerCase();render();});
   function paintProgress(){
     const n=TRACKS.filter(t=>seen.has(t.k)).length;
+    const nl=TRACKS.filter(t=>liked.has(t.k)).length;
     const lbl=tt('listened '+n+' of '+TRACKS.length,'прослушано '+n+' из '+TRACKS.length);
-    progEl.innerHTML=`<span>${lbl}</span><span class="bar"><i style="width:${(n/TRACKS.length*100).toFixed(1)}%"></i></span>`;
+    progEl.innerHTML=`<span>${lbl}</span><span class="bar"><i style="width:${(n/TRACKS.length*100).toFixed(1)}%"></i></span>`
+      +`<span class="likes">♥ ${nl}</span>`
+      +`<button class="reset" type="button" ${n?'':'hidden'}>${tt('reset','сбросить')}</button>`;
   }
-  function markDone(row){
-    row.classList.add('done');
-    const b=row.querySelector('.tchk');
-    b.setAttribute('aria-pressed','true'); b.textContent='\u2713';
-  }
+  // Сброс всего прослушанного: точечно снять отметку нельзя (клик по строке
+  // только добавляет), так что это единственный выход из промаха — и он рушит
+  // весь список, поэтому спрашиваем. Лайки не трогаем, у них свой toggle.
+  progEl.addEventListener('click',e=>{
+    if(!e.target.closest('.reset'))return;
+    const n=TRACKS.filter(t=>seen.has(t.k)).length;
+    if(!confirm(tt('Clear all '+n+' listened marks? This can\'t be undone.',
+                   'Снять все отметки о прослушанном ('+n+')? Отменить будет нельзя.')))return;
+    seen.clear(); render();
+  });
   function render(){
-    const f=TRACKS.filter(t=>(active===ALL||t.alb===active)&&(!q||(t.n+" "+t.alb).toLowerCase().includes(q)));
-    const heard=tt('Listened','Прослушано');
+    const f=TRACKS.filter(t=>(active===ALL||(active===LIKED?liked.has(t.k):t.alb===active))&&(!q||(t.n+" "+t.alb).toLowerCase().includes(q)));
+    const likeLbl=tt('Like','Лайк');
     listEl.innerHTML=f.map(t=>{
-      const done=seen.has(t.k);
-      return `<div class="trackrow${done?' done':''}" data-k="${t.k}"><button class="tchk" type="button" aria-pressed="${done}" aria-label="${heard}: ${t.n}">${done?'\u2713':''}</button><a class="tgo" href="${yt('Linkin Park '+t.n)}" target="_blank" rel="noopener"><span class="tyr">${t.yr}</span><span class="tnm">${t.n}<span class="talb">${t.alb}</span></span><span class="tplay">\u25B6 YouTube</span></a></div>`;
+      const done=seen.has(t.k), fav=liked.has(t.k);
+      return `<div class="trackrow${done?' done':''}${fav?' liked':''}" data-k="${t.k}"><button class="tlike" type="button" aria-pressed="${fav}" aria-label="${likeLbl}: ${t.n}">${fav?'\u2665':'\u2661'}</button><a class="tgo" href="${yt('Linkin Park '+t.n)}" target="_blank" rel="noopener"><span class="tyr">${t.yr}</span><span class="tnm">${t.n}<span class="talb">${t.alb}</span></span><span class="tplay">\u25B6 YouTube</span></a></div>`;
     }).join('')||`<p style="padding:18px 0;color:var(--dim)">${tt('Nothing found.','Ничего не найдено.')}</p>`;
     cntEl.textContent=tt('Showing '+f.length+' of '+TRACKS.length+' tracks','Показано '+f.length+' из '+TRACKS.length+' треков');
     paintProgress();
@@ -344,14 +361,17 @@ footer .disc{font-size:12px;color:var(--dim);margin-top:22px;max-width:680px;lin
   listEl.addEventListener('click',e=>{
     const row=e.target.closest('.trackrow'); if(!row)return;
     const k=row.dataset.k;
-    if(e.target.closest('.tchk')){
-      const on=seen.toggle(k);
-      row.classList.toggle('done',on);
-      const b=row.querySelector('.tchk');
-      b.setAttribute('aria-pressed',String(on)); b.textContent=on?'\u2713':'';
+    if(e.target.closest('.tlike')){
+      const on=liked.toggle(k);
+      // Под фильтром «Любимые» снятый лайк выкидывает трек из списка —
+      // строку не патчим, а перерисовываем весь список.
+      if(active===LIKED){ render(); return; }
+      const b=row.querySelector('.tlike');
+      row.classList.toggle('liked',on);
+      b.setAttribute('aria-pressed',String(on)); b.textContent=on?'\u2665':'\u2661';
       paintProgress();
     } else if(e.target.closest('.tgo')){
-      if(seen.add(k)){ markDone(row); paintProgress(); }   // clicking \u25B6 also counts as a listen
+      if(seen.add(k)){ row.classList.add('done'); paintProgress(); }   // clicking \u25B6 marks it heard
     }
   });
   function boot(){ renderChrome(); render(); }
@@ -505,5 +525,5 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   let t;window.addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(run,150);});
 })();
 </script>
-<script src="/palette.js?v=20260717a" defer></script>
+<script src="/palette.js?v=20260717b" defer></script>
 </body></html>

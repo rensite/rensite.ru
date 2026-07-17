@@ -135,14 +135,6 @@
     font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-mute);white-space:nowrap;}
   .em-progress .bar{flex:1;height:3px;background:#ffffff14;border-radius:2px;overflow:hidden;}
   .em-progress .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#5b6066,var(--steel),var(--steel-bright));transition:width .55s cubic-bezier(.16,1,.3,1);}
-  .trkrow{display:grid;grid-template-columns:26px 1fr;align-items:center;gap:10px;border-bottom:1px solid var(--rule);}
-  .trkrow a.trk{border-bottom:none;}
-  .trkrow .tchk{width:20px;height:20px;flex:none;border:1px solid var(--rule-2);background:transparent;color:var(--steel-bright);
-    border-radius:6px;cursor:pointer;font-size:12px;line-height:1;padding:0;transition:border-color .2s,background .2s;}
-  .trkrow .tchk:hover{border-color:var(--steel);}
-  .trkrow.done .tchk{border-color:var(--steel);background:#ffffff16;}
-  .trkrow.done a.trk .tname{color:var(--ink-mute);}
-  @media(max-width:760px){.trkrow{grid-template-columns:22px 1fr;gap:8px;}}
 
   /* finale — 8 Mile */
   .film{padding-block:var(--s-16) var(--s-8);}
@@ -370,13 +362,19 @@
   .tb-progress{display:flex;align-items:center;gap:14px;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.04em;color:var(--ink-mute);white-space:nowrap;}
   .tb-progress .bar{flex:1;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;}
   .tb-progress .bar i{display:block;height:100%;background:var(--steel);width:0;transition:width .35s ease;}
+  .tb-progress .likes{color:var(--steel-bright);}
+  .tb-progress .reset{font:inherit;letter-spacing:inherit;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.16);color:var(--ink-mute);padding:0;cursor:pointer;transition:color .15s;}
+  .tb-progress .reset:hover{color:var(--ink);}
+  .tb-progress .reset[hidden]{display:none;}
   .tb-list{border-top:1px solid rgba(255,255,255,.08);margin-top:14px;}
-  .tb-row{display:grid;grid-template-columns:30px 1fr;align-items:center;border-bottom:1px solid rgba(255,255,255,.06);transition:background .2s;}
+  .tb-row{display:grid;grid-template-columns:30px 1fr;align-items:center;border-bottom:1px solid rgba(255,255,255,.06);transition:background .2s,opacity .25s;}
+  /* Прослушанное гаснет целиком — метка мягкая нарочно (см. Джеки). */
+  .tb-row.done{opacity:.85;}
   .tb-row:hover{background:rgba(255,255,255,.03);}
-  .tb-chk{width:18px;height:18px;justify-self:start;border:1px solid rgba(255,255,255,.2);background:transparent;border-radius:5px;color:var(--steel);font-size:11px;line-height:1;cursor:pointer;padding:0;transition:border-color .15s;}
-  .tb-chk:hover{border-color:var(--steel-dim);}
-  .tb-row.done .tb-chk{border-color:var(--steel);}
-  .tb-row.done .tb-nm{color:var(--ink-mute);}
+  .tb-like{width:18px;height:18px;justify-self:start;border:0;background:transparent;color:rgba(255,255,255,.2);font-size:13px;line-height:1;cursor:pointer;padding:0;transition:color .15s,transform .12s;}
+  .tb-like:hover{color:var(--steel);}
+  .tb-like:active{transform:scale(.85);}
+  .tb-row.liked .tb-like{color:var(--steel-bright);}
   .tb-go{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:baseline;padding:11px 4px 11px 0;text-decoration:none;}
   .tb-yr{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--ink-mute);}
   .tb-nm{font-family:'Oswald',sans-serif;font-weight:500;font-size:1.06rem;color:var(--bone);line-height:1.22;}
@@ -816,7 +814,7 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="/i18n.js?v=20260713" defer></script>
-<script src="/music/tracks.js?v=20260717a"></script>
+<script src="/music/tracks.js?v=20260717b"></script>
 <script>
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -936,32 +934,52 @@
     // Выбор «точная ссылка или поиск» живёт в tracks.js — тут только фолбэк на случай,
     // если модуль не приехал (как и у yt выше).
     const link=(M&&M.link)?M.link:function(t){return t.y||yt(t.q);};
-    const seen=(M&&M.progress)?M.progress('em-listened'):{has:function(){return false;},toggle:function(){return false;},add:function(){return false;},size:function(){return 0;}};
-    const ORDER=['Все','Соло','Фиты','Фристайлы','Скиты','Утечки'];
+    const stub={has:function(){return false;},toggle:function(){return false;},add:function(){return false;},size:function(){return 0;},clear:function(){return false;}};
+    const seen=(M&&M.progress)?M.progress('em-listened'):stub;
+    const liked=(M&&M.progress)?M.progress('em-liked'):stub;
+    const ORDER=['Все','Любимые','Соло','Фиты','Фристайлы','Скиты','Утечки'];
     let TRACKS=[], active='Все', q='', loaded=false;
     function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-    function subText(){ return TRACKS.length+tt(' entries — solo tracks, features, freestyles, skits and leaks, 1988—2025. ▶ opens a YouTube search; the check marks a track as heard (kept in this browser).',' записей — соло, фиты, фристайлы, скиты и утечки, 1988—2025. ▶ ведёт на поиск YouTube, галочка отмечает прослушанное (хранится в этом браузере).'); }
+    function subText(){ return TRACKS.length+tt(' entries — solo tracks, features, freestyles, skits and leaks, 1988—2025. ▶ opens a YouTube search and marks the track as heard; ♥ saves a favourite (kept in this browser).',' записей — соло, фиты, фристайлы, скиты и утечки, 1988—2025. ▶ ведёт на поиск YouTube и отмечает трек прослушанным, ♥ добавляет в любимые (хранится в этом браузере).'); }
     function paintProgress(){
       const n=TRACKS.filter(function(t){return seen.has(t.q);}).length;
-      progEl.innerHTML='<span>'+tt('heard ','прослушано ')+n+tt(' of ',' из ')+TRACKS.length+'</span><span class="bar"><i style="width:'+(TRACKS.length?(n/TRACKS.length*100).toFixed(1):0)+'%"></i></span>';
+      const nl=TRACKS.filter(function(t){return liked.has(t.q);}).length;
+      progEl.innerHTML='<span>'+tt('heard ','прослушано ')+n+tt(' of ',' из ')+TRACKS.length+'</span>'
+        +'<span class="bar"><i style="width:'+(TRACKS.length?(n/TRACKS.length*100).toFixed(1):0)+'%"></i></span>'
+        +'<span class="likes">\u2665 '+nl+'</span>'
+        +'<button class="reset" type="button"'+(n?'':' hidden')+'>'+tt('reset','сбросить')+'</button>';
     }
+    // Сброс всего прослушанного: точечно снять отметку нельзя (клик по строке
+    // только добавляет), так что это единственный выход из промаха — и он рушит
+    // весь список, поэтому спрашиваем. Лайки не трогаем, у них свой toggle.
+    progEl.addEventListener('click',function(e){
+      if(!e.target.closest('.reset')) return;
+      const n=TRACKS.filter(function(t){return seen.has(t.q);}).length;
+      if(!confirm(tt('Clear all '+n+' listened marks? This can\'t be undone.',
+                     'Снять все отметки о прослушанном ('+n+')? Отменить будет нельзя.'))) return;
+      seen.clear(); render();
+    });
     function buildFilters(){
-      const present=ORDER.filter(function(t){ return t==='Все'||TRACKS.some(function(x){return x.type===t;}); });
+      // «Любимые» показываем всегда, даже пустым: иначе о фильтре не узнать.
+      const present=ORDER.filter(function(t){ return t==='Все'||t==='Любимые'||TRACKS.some(function(x){return x.type===t;}); });
       filtEl.innerHTML=present.map(function(t){
-        const c=(t==='Все')?TRACKS.length:TRACKS.filter(function(x){return x.type===t;}).length;
-        const lbl=(t==='Все')?tt('All','Все'):typeLabel(t);
+        const c=(t==='Все')?TRACKS.length
+              :(t==='Любимые')?TRACKS.filter(function(x){return liked.has(x.q);}).length
+              :TRACKS.filter(function(x){return x.type===t;}).length;
+        const lbl=(t==='Все')?tt('All','Все'):(t==='Любимые')?tt('Liked','Любимые'):typeLabel(t);
         return '<button class="tb-filt'+(t===active?' active':'')+'" data-f="'+esc(t)+'">'+esc(lbl)+' '+c+'</button>';
       }).join('');
     }
     function render(){
       const f=TRACKS.filter(function(t){
-        return (active==='Все'||t.type===active) && (!q || (t.n+' '+(t.s||'')+' '+(t.ft||'')).toLowerCase().indexOf(q)>=0);
+        const okType=(active==='Все')?true:(active==='Любимые')?liked.has(t.q):t.type===active;
+        return okType && (!q || (t.n+' '+(t.s||'')+' '+(t.ft||'')).toLowerCase().indexOf(q)>=0);
       });
       listEl.innerHTML=f.map(function(t){
-        const done=seen.has(t.q), href=link(t);
+        const done=seen.has(t.q), fav=liked.has(t.q), href=link(t);
         const src=[srcLabel(t.s),(t.ft?('ft. '+t.ft):'')].filter(Boolean).join(' · ');
-        return '<div class="tb-row'+(done?' done':'')+'" data-k="'+esc(t.q)+'">'
-          +'<button class="tb-chk" type="button" aria-pressed="'+done+'" aria-label="'+esc(tt('Mark as heard','Отметить прослушанным'))+'">'+(done?'✓':'')+'</button>'
+        return '<div class="tb-row'+(done?' done':'')+(fav?' liked':'')+'" data-k="'+esc(t.q)+'">'
+          +'<button class="tb-like" type="button" aria-pressed="'+fav+'" aria-label="'+esc(tt('Like','Лайк')+': '+t.n)+'">'+(fav?'\u2665':'\u2661')+'</button>'
           +'<a class="tb-go" href="'+esc(href)+'" target="_blank" rel="noopener">'
           +'<span class="tb-yr">'+(t.yr||'—')+'</span>'
           +'<span class="tb-nm">'+esc(t.n)+'<span class="tb-cat">'+esc(typeLabel(t.type))+'</span>'+(src?'<span class="tb-src">'+esc(src)+'</span>':'')+'</span>'
@@ -972,12 +990,18 @@
     }
     listEl.addEventListener('click',function(e){
       const row=e.target.closest('.tb-row'); if(!row) return;
-      const k=row.dataset.k, b=row.querySelector('.tb-chk');
-      if(e.target.closest('.tb-chk')){
-        const on=seen.toggle(k); row.classList.toggle('done',on);
-        b.setAttribute('aria-pressed',String(on)); b.textContent=on?'✓':''; paintProgress();
+      const k=row.dataset.k;
+      if(e.target.closest('.tb-like')){
+        const on=liked.toggle(k);
+        buildFilters();
+        // Под фильтром «Любимые» снятый лайк выкидывает трек из списка —
+        // строку не патчим, а перерисовываем весь список.
+        if(active==='Любимые'){ render(); return; }
+        const b=row.querySelector('.tb-like');
+        row.classList.toggle('liked',on);
+        b.setAttribute('aria-pressed',String(on)); b.textContent=on?'\u2665':'\u2661'; paintProgress();
       }else if(e.target.closest('.tb-go')){
-        if(seen.add(k)){ row.classList.add('done'); b.setAttribute('aria-pressed','true'); b.textContent='✓'; paintProgress(); }
+        if(seen.add(k)){ row.classList.add('done'); paintProgress(); }
       }
     });
     filtEl.addEventListener('click',function(e){
@@ -986,7 +1010,7 @@
       b.classList.add('active'); active=b.dataset.f; render();
     });
     searchEl.addEventListener('input',function(e){ q=e.target.value.trim().toLowerCase(); render(); });
-    // смена языка — перестраиваем подпись, фильтры и список (галочка/язык — данные не трогаем)
+    // смена языка — перестраиваем подпись, фильтры и список (лайки/прогресс — данные не трогаем)
     document.addEventListener('i18n:change',function(){ if(!loaded) return; subEl.textContent=subText(); buildFilters(); render(); });
     fetch('./data.json',{cache:'no-store'})
       .then(function(r){ if(!r.ok) throw new Error('data.json '+r.status); return r.json(); })
@@ -1048,6 +1072,6 @@
     document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
   })();
 </script>
-<script src="/palette.js?v=20260717a" defer></script>
+<script src="/palette.js?v=20260717b" defer></script>
 </body>
 </html>

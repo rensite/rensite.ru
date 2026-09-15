@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E0C0B">
+<title>Moved — rensite.ru → renatgalin.pro</title>
+<meta name="description" content="rensite.ru now lives at renatgalin.pro.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://renatgalin.pro/">
+<noscript><meta http-equiv="refresh" content="0; url=https://renatgalin.pro/"></noscript>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Заглушка всего rensite.ru: сайт переехал на renatgalin.pro. Эта же страница
+   лежит как 404.html, поэтому GitHub Pages отдаёт её на любой старый адрес.
+   Сюжет — трюк: отсчёт, прыжок с крыши «rensite.ru» на крышу «renatgalin.pro»,
+   переход на тот же путь. localStorage привязан к домену, поэтому все ключи
+   сайта едут в хэше #rensite=… — принимает их i18n.js на той стороне. */
+:root{
+  --bg:#0E0C0B; --ink:#F2EDE6; --soft:#C3B9AC; --mute:#8C8175;
+  --red:#D8392B; --amber:#E0A33E; --gold:#F2C766; --rule:#F2EDE62E;
+  --display:"Bebas Neue","Oswald",Impact,"Arial Narrow",sans-serif;
+  --serif:"Fraunces",Georgia,serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{min-height:100vh;min-height:100dvh;background:var(--bg);color:var(--ink);font-family:var(--serif);
+  display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background:radial-gradient(70vmax 50vmax at 80% 0%, rgba(216,57,43,.22), transparent 60%), var(--bg)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:3px}
+
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px clamp(16px,4vw,40px);
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.top a{text-decoration:none}.top a:hover{color:var(--amber)}
+.lang button{appearance:none;background:none;border:0;font:inherit;color:var(--mute);cursor:pointer;padding:2px 3px;letter-spacing:.06em}
+.lang button[aria-pressed="true"]{color:var(--ink)}
+
+main{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,3vh,30px);
+  width:100%;max-width:1040px;margin:0 auto;padding:8px clamp(16px,4vw,40px) 40px}
+
+/* Хлопушка: сцена, дубль, «без дублёра». */
+.slate{display:flex;flex-wrap:wrap;border:1px solid var(--rule);width:max-content;max-width:100%;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.slate span{padding:6px 10px;border-right:1px solid var(--rule);color:var(--soft)}
+.slate span:last-child{border-right:0;color:var(--bg);background:var(--amber)}
+.slate b{font-weight:500;color:var(--ink)}
+
+h1{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.86;
+  font-size:clamp(56px,11vw,132px);letter-spacing:.005em}
+h1 em{font-style:normal;color:var(--amber)}
+:lang(ru) h1{letter-spacing:0}
+
+.scene{position:relative;width:100%;aspect-ratio:800/300;max-width:100%}
+.scene svg{display:block;width:100%;height:100%;overflow:visible}
+
+.lede{font-size:clamp(19px,2.2vw,26px);line-height:1.3;max-width:40ch;color:var(--ink)}
+.lede a{color:var(--gold);text-decoration-thickness:1px;text-underline-offset:3px}
+.marks{font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:var(--soft)}
+.marks b{color:var(--red);font-weight:500}
+
+.act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.jump{appearance:none;cursor:pointer;border:1px solid var(--red);background:var(--red);color:#fff;
+  font-family:var(--display);font-size:24px;letter-spacing:.06em;text-transform:uppercase;padding:12px 22px 10px;
+  transition:background .15s,color .15s,border-color .15s}
+.jump:hover{background:#fff;border-color:#fff;color:#8E1D14}
+.stay{appearance:none;cursor:pointer;background:none;border:0;border-bottom:1px solid var(--rule);
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding:4px 0}
+.stay:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.count{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.count b{display:inline-block;min-width:1.2em;text-align:center;font-family:var(--display);font-weight:400;
+  font-size:30px;line-height:1;color:var(--gold);vertical-align:-6px}
+.url{font-family:var(--mono);font-size:12.5px;color:var(--mute);word-break:break-all}
+.url a{text-decoration:none}.url a:hover{color:var(--gold)}
+
+footer{padding:14px clamp(16px,4vw,40px) 22px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--mute)}
+
+/* Окна небоскрёбов мерцают — медленно, по-ночному. */
+@media (prefers-reduced-motion:no-preference){
+  .win{animation:flick 7s steps(1) infinite}
+  .win:nth-child(3n){animation-delay:-2.3s}.win:nth-child(4n){animation-delay:-4.1s}.win:nth-child(5n){animation-duration:11s}
+  @keyframes flick{0%,86%{opacity:1}87%,93%{opacity:.25}94%{opacity:1}}
+  .idle{animation:bob 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+  @keyframes bob{50%{transform:translateY(-3px)}}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <span>rensite.ru</span>
+  <span class="lang" role="group" aria-label="Language / Язык"><button type="button" data-l="en">en</button>·<button type="button" data-l="ru">ru</button></span>
+</header>
+
+<main>
+  <p class="slate" aria-hidden="true">
+    <span data-t="scene">Scene <b>1</b></span><span>rensite.ru</span><span data-t="take">Take <b>1</b></span><span data-t="nodouble">no stunt double</span>
+  </p>
+
+  <h1 data-t="h1">We moved. <em>Jumped, actually.</em></h1>
+
+  <div class="scene" aria-hidden="true">
+    <svg viewBox="0 0 800 300" role="presentation">
+      <defs>
+        <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#D8392B" stop-opacity=".0"/>
+          <stop offset="1" stop-color="#D8392B" stop-opacity=".18"/>
+        </linearGradient>
+        <pattern id="wins" width="16" height="18" patternUnits="userSpaceOnUse">
+          <rect x="4" y="5" width="6" height="7" fill="#F2C766" opacity=".18"/>
+        </pattern>
+      </defs>
+
+      <!-- солнце и дальний город -->
+      <circle cx="690" cy="54" r="46" fill="#C92D20" opacity=".85"/>
+      <rect x="0" y="120" width="800" height="180" fill="url(#haze)"/>
+      <g fill="#1B1714">
+        <rect x="0" y="150" width="46" height="150"/><rect x="52" y="128" width="30" height="172"/>
+        <rect x="318" y="140" width="40" height="160"/><rect x="362" y="104" width="26" height="196"/><rect x="392" y="158" width="44" height="142"/>
+        <rect x="444" y="120" width="30" height="180"/><rect x="480" y="146" width="34" height="154"/>
+        <rect x="770" y="136" width="30" height="164"/>
+      </g>
+      <g fill="#F2C766">
+        <rect class="win" x="370" y="118" width="4" height="5"/><rect class="win" x="378" y="140" width="4" height="5"/>
+        <rect class="win" x="452" y="134" width="4" height="5"/><rect class="win" x="400" y="176" width="4" height="5"/>
+        <rect class="win" x="326" y="162" width="4" height="5"/><rect class="win" x="490" y="170" width="4" height="5"/>
+        <rect class="win" x="60" y="150" width="4" height="5"/><rect class="win" x="778" y="160" width="4" height="5"/>
+      </g>
+
+      <!-- крыша: отсюда -->
+      <rect x="40" y="186" width="250" height="114" fill="#2A221C"/>
+      <rect x="40" y="186" width="250" height="114" fill="url(#wins)"/>
+      <rect x="34" y="180" width="262" height="8" fill="#3A2F27"/>
+      <g transform="translate(70 138)">
+        <rect width="150" height="30" fill="#0E0C0B" stroke="#8C8175" stroke-width="1.5"/>
+        <text x="75" y="20" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#C3B9AC">rensite.ru</text>
+        <line x1="30" y1="30" x2="30" y2="42" stroke="#8C8175" stroke-width="2"/><line x1="120" y1="30" x2="120" y2="42" stroke="#8C8175" stroke-width="2"/>
+      </g>
+
+      <!-- крыша: сюда -->
+      <rect x="520" y="222" width="260" height="78" fill="#2A221C"/>
+      <rect x="520" y="222" width="260" height="78" fill="url(#wins)"/>
+      <rect x="514" y="216" width="272" height="8" fill="#3A2F27"/>
+      <g transform="translate(596 174)">
+        <rect width="176" height="30" fill="#0E0C0B" stroke="#E0A33E" stroke-width="1.5"/>
+        <text x="88" y="20" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#F2C766">renatgalin.pro</text>
+        <line x1="34" y1="30" x2="34" y2="42" stroke="#E0A33E" stroke-width="2"/><line x1="142" y1="30" x2="142" y2="42" stroke="#E0A33E" stroke-width="2"/>
+      </g>
+
+      <!-- траектория трюка -->
+      <path id="arc" d="M 250 158 Q 400 -20 552 194" fill="none" stroke="#F2EDE6" stroke-opacity=".28" stroke-width="2" stroke-dasharray="3 8" stroke-linecap="round"/>
+
+      <!-- каскадёр -->
+      <g id="hero" transform="translate(250 158)">
+        <g class="idle">
+          <g id="spin">
+            <circle cx="0" cy="-17" r="6" fill="#F2EDE6"/>
+            <path d="M0 -10 L0 7" stroke="#F2EDE6" stroke-width="4" stroke-linecap="round"/>
+            <path d="M0 -6 L-10 1 M0 -6 L10 -2" stroke="#F2EDE6" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M0 7 L-8 22 M0 7 L8 22" stroke="#F2EDE6" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M-6 -8 L6 -8" stroke="#D8392B" stroke-width="3" stroke-linecap="round"/>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <p class="lede" data-t="lede">rensite.ru now lives at <a class="to" href="https://renatgalin.pro/">renatgalin.pro</a>. Same music guides, notes and projects, same addresses — just a new domain.</p>
+  <p class="marks" id="marks" hidden></p>
+
+  <div class="act">
+    <button class="jump" id="jump" type="button" data-t="jump">Jump now →</button>
+    <span class="count" id="count"><span data-t="in">Jumping in</span> <b id="sec">6</b></span>
+    <button class="stay" id="stay" type="button" data-t="stay">Stay on the roof</button>
+  </div>
+  <p class="url"><a class="to" id="url" href="https://renatgalin.pro/">https://renatgalin.pro/</a></p>
+</main>
+
+<footer data-t="foot">Update your bookmarks: every old rensite.ru link works on renatgalin.pro with the same path.</footer>
+
+<script>
+(function(){
+  'use strict';
+  var ORIGIN = 'https://renatgalin.pro';
+  var T = {
+    en: {
+      scene: 'Scene <b>1</b>', take: 'Take <b>1</b>', nodouble: 'no stunt double',
+      h1: 'We moved. <em>Jumped, actually.</em>',
+      lede: 'rensite.ru now lives at <a class="to" href="' + ORIGIN + '/">renatgalin.pro</a>. Same music guides, notes and projects, same addresses — just a new domain.',
+      jump: 'Jump now →', in: 'Jumping in', stay: 'Stay on the roof', paused: 'Take paused — jump when ready',
+      foot: 'Update your bookmarks: every old rensite.ru link works on renatgalin.pro with the same path.',
+      title: 'Moved — rensite.ru → renatgalin.pro',
+      marks: function(n){ return 'No stunt double: your <b>' + n + '</b> ' + (n === 1 ? 'mark jumps' : 'marks jump') + ' with you.'; }
+    },
+    ru: {
+      scene: 'Сцена <b>1</b>', take: 'Дубль <b>1</b>', nodouble: 'без дублёра',
+      h1: 'Мы переехали. <em>Прыжком.</em>',
+      lede: 'rensite.ru теперь живёт на <a class="to" href="' + ORIGIN + '/">renatgalin.pro</a>. Те же музыкальные гиды, заметки и проекты, те же адреса — только домен новый.',
+      jump: 'Прыгнуть сейчас →', in: 'Прыжок через', stay: 'Постоять на крыше', paused: 'Дубль на паузе — прыгайте, когда будете готовы',
+      foot: 'Обновите закладки: любая старая ссылка rensite.ru работает на renatgalin.pro с тем же путём.',
+      title: 'Переехали — rensite.ru → renatgalin.pro',
+      marks: function(n){
+        var a = n % 100, b = a % 10;
+        var w = (a > 10 && a < 20) ? 'отметок' : (b === 1 ? 'отметка' : (b > 1 && b < 5) ? 'отметки' : 'отметок');
+        return 'Без дублёра: ваши <b>' + n + '</b> ' + w + ' прыгают вместе с вами.';
+      }
+    }
+  };
+
+  /* Тот же путь на новом домене. /404.html и /index.html — служебные имена Pages. */
+  var path = location.pathname.replace(/(^|\/)(404|index)\.html$/, '$1');
+  var TARGET = ORIGIN + path + location.search;
+  var anchor = /^#[\w-]+$/.test(location.hash) ? location.hash : '';
+
+  var lang = 'en';
+  try { var l = localStorage.getItem('rensite:lang'); if (l === 'ru' || l === 'en') lang = l; } catch (e) {}
+
+  /* Весь localStorage сайта → base64url JSON {ls:{ключ:строка}, a:'#якорь'}.
+     Отметки (списки ♥, «прослушано», «смотрел») на той стороне объединяются
+     с уже имеющимися, прочие ключи кладутся, только если их там ещё нет.
+     marks — сколько отметок поедет: считаем элементы списков. */
+  var ls = {}, keys = 0, marks = 0;
+  try {
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i), v = localStorage.getItem(k);
+      if (k === null || v === null || v.length > 50000) continue;
+      ls[k] = v; keys++;
+      try { var arr = JSON.parse(v); if (Array.isArray(arr)) marks += arr.length; } catch (e) {}
+    }
+  } catch (e) {}
+  function destination(){
+    if (!keys) return TARGET + anchor;
+    var payload = { ls: ls };
+    if (anchor) payload.a = anchor;
+    var bytes = new TextEncoder().encode(JSON.stringify(payload)), bin = '';
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return TARGET + '#rensite=' + btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function $(id){ return document.getElementById(id); }
+  var paused = false;
+  function paint(){
+    var t = T[lang];
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-t]').forEach(function(el){
+      var k = el.getAttribute('data-t'); if (typeof t[k] === 'string') el.innerHTML = t[k];
+    });
+    if (paused) $('count').textContent = t.paused;
+    var m = $('marks');
+    if (marks) { m.innerHTML = t.marks(marks); m.hidden = false; }
+    document.querySelectorAll('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-l') === lang ? 'true' : 'false'); });
+    document.querySelectorAll('a.to').forEach(function(a){ a.href = destination(); });
+    $('url').textContent = TARGET + anchor;
+    document.title = t.title;
+  }
+  document.querySelector('.lang').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    lang = b.getAttribute('data-l');
+    try { localStorage.setItem('rensite:lang', lang); } catch (e) {}
+    ls['rensite:lang'] = lang; keys = Object.keys(ls).length;
+    paint();
+  });
+  paint();
+
+  /* Прыжок: фигурка летит по дуге, крутит сальто и приземляется — потом переход.
+     Без анимации (reduced motion) — переходим сразу. */
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var jumped = false;
+  function go(){ location.href = destination(); }
+  function jump(){
+    if (jumped) return; jumped = true;
+    clearInterval(timer);
+    if (reduced || !window.requestAnimationFrame) return go();
+    var arc = $('arc'), hero = $('hero'), spin = $('spin'), len = arc.getTotalLength();
+    hero.querySelector('.idle').classList.remove('idle');
+    var t0 = null, D = 950;
+    function frame(ts){
+      if (t0 === null) t0 = ts;
+      var p = Math.min(1, (ts - t0) / D), e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      var pt = arc.getPointAtLength(e * len);
+      hero.setAttribute('transform', 'translate(' + pt.x + ' ' + pt.y + ')');
+      spin.setAttribute('transform', 'rotate(' + (e * 360) + ')');
+      if (p < 1) requestAnimationFrame(frame); else setTimeout(go, 280);
+    }
+    requestAnimationFrame(frame);
+    /* Фоновая вкладка не крутит rAF — страхуемся, переход не должен зависнуть. */
+    setTimeout(go, D + 1200);
+  }
+
+  var left = 6, timer = setInterval(function(){
+    if (paused) return;
+    left -= 1; $('sec').textContent = left;
+    if (left <= 0) jump();
+  }, 1000);
+
+  $('jump').addEventListener('click', jump);
+  $('stay').addEventListener('click', function(){
+    paused = true; clearInterval(timer);
+    $('stay').hidden = true;
+    $('count').textContent = T[lang].paused;
+  });
+})();
+</script>
+</body>
+</html>
